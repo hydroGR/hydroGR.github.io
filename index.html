@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>airGRteaching: Teaching Hydrological Modelling with GR</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<!-- NOTE: add "navbar-inverse" class for an alternate navbar background -->
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.html">airGRteaching</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="page_1_get_started_airGRteaching.html">Get Started</a></li>
+				<li class="Download">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a tabindex="-1" href="https://CRAN.R-project.org/package=airGRteaching" onclick="window.open(this.href); return false;">Package</a></li>
+						<li><a tabindex="-1" href="https://CRAN.R-project.org/package=airGRteaching/airGRteaching.pdf" onclick="window.open(this.href); return false;">Manual</a></li>
+					</ul>
+				</li>
+				<li><a href="NEWS.html">News</a></li>
+				<li><a href="page_publications.html">Publications</a></li>				
+				<li><a href="page_faq.html">FAQ</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<a href='http://www.irstea.fr/en/' onclick="window.open(this.href); return false;", title="irstea.fr"><img src='fig/logo_irstea.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.irstea.fr/en/' onclick="window.open(this.href); return false;", title="webgr.irstea.fr"><img src='fig/logo_irstea_hydro_COUL_smooth.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.irstea.fr/en/activites/airgrteaching/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGRteaching_square.png' style='width:45px;height:45px;'></a>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div><!--/.container -->
+</div><!--/.navbar -->
+
+
+<p style ="margin-top: 05px;">
+<a href="https://CRAN.R-project.org/package=airGRteaching">
+<svg xmlns="http://www.w3.org/2000/svg" width="145" height="020">
+  <linearGradient id="b" x2="0" y2="100%">
+    <stop offset="0" stop-opacity=".1" stop-color="#bbb"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <mask id="a">
+    <rect width="145" height="020" rx="3" fill="#fff"/>
+  </mask>
+  <g mask="url(#a)">
+    <path fill="#555"    d="M00 0h055v20H00z"/>
+    <path fill="#009EE0" d="M55 0h090v20H55z"/>
+    <path fill="url(#b)" d="M00 0h145v20H00z"/>
+  </g>
+  <g fill="#fff" text-anchor="middle"
+     font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
+    <text x="028" y="015" fill="#010101" fill-opacity=".3">
+      Package
+    </text>
+    <text x="028" y="014">
+      Package
+    </text>
+    <text x="100" y="015" fill="#010101" fill-opacity=".3">
+      airGRteaching
+    </text>
+    <text x="100" y="014">
+      airGRteaching
+    </text>
+  </g>
+</svg>
+</a>
+<a href="https://CRAN.R-project.org/package=airGRteaching"><img src="https://www.r-pkg.org/badges/version-ago/airGRteaching" /></a>
+<a href="https://www.rdocumentation.org/packages/airGRteaching"><img src="http://cranlogs.r-pkg.org/badges/grand-total/airGRteaching?color=orange" /></a>
+<a href="https://www.r-project.org/Licenses/GPL-2">
+<svg xmlns="http://www.w3.org/2000/svg" width="095" height="020">
+  <linearGradient id="b" x2="0" y2="100%">
+    <stop offset="0" stop-opacity=".1" stop-color="#bbb"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <mask id="a">
+    <rect width="095" height="020" rx="3" fill="#fff" />
+  </mask>
+  <g mask="url(#a)">
+    <path fill="#555"    d="M00 0h055v20H00z"/>
+    <path fill="#D1AA1E" d="M55 0h040v20H55z"/>
+    <path fill="url(#b)" d="M00 0h095v20H00z"/>
+  </g>
+  <g fill="#fff" text-anchor="middle"
+     font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
+    <text x="028" y="015" fill="#010101" fill-opacity=".3">
+      License
+    </text>
+    <text x="028" y="014">
+      License
+    </text>
+    <text x="075" y="015" fill="#010101" fill-opacity=".3">
+      GPL 2
+    </text>
+    <text x="075" y="014">
+      GPL 2
+    </text>
+  </g>
+</svg>
+</a>
+<a href="https://doi.org/10.29007/qsqj">
+ <svg xmlns="http://www.w3.org/2000/svg" width="114" height="020">
+  <linearGradient id="b" x2="0" y2="100%">
+    <stop offset="0" stop-opacity=".1" stop-color="#bbb"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <mask id="a">
+    <rect width="114" height="020" rx="3" fill="#fff"/>
+  </mask>
+  <g mask="url(#a)">
+    <path fill="#555"    d="M00 00h030v20H00z" />
+    <path fill="#007ec6" d="M30 00h084v20H30z" />
+    <path fill="url(#b)" d="M00 00h164v20H00z" />
+  </g>
+  <g fill="#fff" text-anchor="middle"
+     font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="10">
+    <text x="015" y="015" fill="#010101" fill-opacity=".3">
+      DOI
+    </text>
+    <text x="015" y="014">
+      DOI
+    </text>
+    <text x="71" y="015" fill="#010101" fill-opacity=".3">
+      10.29007/qsqj
+    </text>
+    <text x="71" y="014">
+      10.29007/qsqj
+    </text>
+  </g>
+</svg>
+</a>
+</p>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">airGRteaching: Teaching Hydrological Modelling with GR</h1>
+<h4 class="date">Update: 2019-03-28</h4>
+
+</div>
+
+
+<!-- ```{r, child="_badges.Rmd"} -->
+<!-- ``` -->
+<!-- ```{block, type='rmdcomment'} -->
+<!-- Some text for this block. Some text for this block. Some text for this block. Some text for this block. Some text for this block. Some text for this block. -->
+<!-- ``` -->
+<div id="what-is-the-airgrteaching-package" class="section level1">
+<h1><span class="header-section-number">1</span> What is the airGRteaching package?</h1>
+<div id="presentation" class="section level2">
+<h2><span class="header-section-number">1.1</span> Presentation</h2>
+<div style="float:left">
+<img src="fig/logo_airGRteaching_square.png" alt="airGRteaching logo" width="175px" />
+</div>
+<p><strong><font color="#009EE0">airGRteaching</font></strong> is an add-on package to the <strong><font color="#009EE0">airGR</font></strong> package. It simplifies its use and is more specifically oriented towards teaching than <strong><font color="#009EE0">airGR</font></strong>. It provides access to the GR rainfall-runoff models (GR4H, GR4J, GR5J, GR6J, GR2M, GR1A) and a snow melt and accumulation model (CemaNeige) with limited programming skills. This package also provides a graphical interface to help students exploring data and model results.</p>
+<p>The <strong><font color="#009EE0">airGRteaching</font></strong> package has been designed to fulfil a major requirement: facilitating the use of the <strong><font color="#009EE0">airGR</font></strong> functionalities by students. The names of the functions and their arguments were chosen to this end.</p>
+</div>
+<div id="main-features-of-airgrteaching" class="section level2">
+<h2><span class="header-section-number">1.2</span> Main features of airGRteaching</h2>
+<p>The package is mostly based on three new families of functions:</p>
+<ul>
+<li>the functions that allow to complete very simply a hydrological modelling exercise</li>
+<li>plotting functions to help students to explore observed data and to interpret the results of calibration and simulation of the GR models</li>
+<li>a function which runs a ‘Shiny’ graphical interface that allows for displaying in real-time model parameters impacts on hydrographs</li>
+</ul>
+<p><image src="fig/airGRteaching_ShinyUi_theme_united_big.png" width="100%" height="100%"></p>
+</div>
+</div>
+<div id="installation" class="section level1">
+<h1><span class="header-section-number">2</span> Installation</h1>
+<p>You can install the two packages with the following command:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;airGRteaching&quot;</span>)</code></pre></div>
+<p>If you use RStudio, you can use the <em>Packages interface</em> :</p>
+<p><img src = "fig/rstudio_install_pck.png"></img></p>
+<p>All the dependencie will ba automatically download and installed with <strong><font color="#009EE0">airGRteaching</font></strong>:</p>
+<ul>
+<li>airGR</li>
+<li>dygraphs</li>
+<li>htmlwidgets</li>
+<li>markdown</li>
+<li>plotrix</li>
+<li>shiny</li>
+<li>shinyjs</li>
+<li>xts</li>
+</ul>
+<p>You cannot run <strong><font color="#009EE0">airGRteaching</font></strong> without <strong><font color="#009EE0">airGR</font></strong>. You cannot perform dynamic graphics to visualize your inputs or your results time-series whithout the xts and the dygraphs packages, but you can produce static charts. All the other packages are needed to run the Shiny GUI.</p>
+<p>You can download the <strong><font color="#009EE0">airGRteaching</font></strong> source, Windows binaries or Mac OS X binaries on the <a href="https://CRAN.R-project.org/package=airGRteaching"><strong>CRAN</strong></a>.</p>
+</div>
+<div id="misc" class="section level1">
+<h1><span class="header-section-number">3</span> Misc</h1>
+<div id="how-to-cite-the-package" class="section level2">
+<h2><span class="header-section-number">3.1</span> How to cite the package</h2>
+<p>To cite the <strong><font color="#009EE0">airGRteaching</font></strong> packages in your scientific document, please use the references returned by the <code>citation()</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">citation</span>(<span class="st">&quot;airGRteaching&quot;</span>)</code></pre></div>
+<pre><code>
+To cite airGRteaching in publications use these two references:
+
+  Delaigue, O., Thirel, G., Coron, L., Brigode, P. (accepted). airGR and airGRteaching: two open
+  source tools for rainfall-runoff modeling and teaching hydrology. HIC2018 proceedings, 13th
+  International conference of Hydroinformatics, July 2018, Palermo, Italy.
+
+  Delaigue, O., Coron, L., Brigode, P. (2018). airGRteaching: Teaching Hydrological Modelling with
+  GR (Shiny Interface Included). R package version 0.2.3.2. URL:
+  https://webgr.irstea.fr/en/airGRteaching/.
+
+To see these entries in BibTeX format, use &#39;print(&lt;citation&gt;, bibtex=TRUE)&#39;, &#39;toBibtex(.)&#39;, or set
+&#39;options(citation.bibtex.max=999)&#39;.</code></pre>
+<p>To retrieve a “.bib” format for <strong>LaTeX</strong> documents, you can use the following command:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">toBibtex</span>(<span class="kw">citation</span>(<span class="st">&quot;airGRteaching&quot;</span>))</code></pre></div>
+<pre><code>@Article{,
+  title = {{airGR} and {airGRteaching}: two open source tools for rainfall-runoff modeling and teaching hydrology},
+  author = {O. Delaigue and G. Thirel and L. Coron and P. Brigode},
+  journal = {HIC2018 proceedings, 13th International conference of Hydroinformatics, July 2018, Palermo, Italy},
+  year = {accepted},
+}
+
+@Manual{,
+  title = {{airGRteaching}: Teaching Hydrological Modelling with {GR} ({Shiny} Interface Included)},
+  author = {O. Delaigue and L. Coron and P. Brigode},
+  journal = {R News},
+  year = {2018},
+  note = {R package version 0.2.3.2},
+  url = {https://webgr.irstea.fr/en/airGRteaching/},
+}</code></pre>
+</div>
+<div id="known-places-where-airgrteaching-is-used" class="section level2">
+<h2><span class="header-section-number">3.2</span> Known places where airGRteaching is used</h2>
+<ul>
+<li><a href="http://www2.agroparistech.fr/Presentation-of-AgroParisTech.html">AgroParisTech</a>, Paris, France</li>
+<li><a href="http://www.enpc.fr/en/welcome-school">École des Ponts ParisTech</a>, Champs-sur-Marne, France</li>
+<li><a href="https://www.eivp-paris.fr/en">Engineering School of Paris City</a>, Paris France</li>
+<li><a href="https://www.umontpellier.fr/en/">Montpellier University</a>, Montpellier, France</li>
+<li><a href="http://www.sorbonne-universite.fr/en">Sorbonne University</a>, Paris, France</li>
+<li><a href="https://www.unipd.it/en/">University of Padua</a>, Padua, Italy</li>
+<li><a href="http://www.polytech.unice.fr/">Polytech Nice Sophia - University of Nice Sophia Antipolis</a>, Antibes, France</li>
+</ul>
+<!-- ```{r, echo = FALSE, eval=FALSE} -->
+<!-- airGRteaching_map <- readRDS("data/airGRteaching_users_map.rds") -->
+<!-- airGRteaching_map_lib <- airGRteaching_map$dependencies[[1]]$src$file -->
+<!-- airGRteaching_lfl_lib <- sapply(.libPaths(), function(x) gsub("(.*/library)(.*)", paste(x, "\\2", sep = ""), airGRteaching_map_lib)) -->
+<!-- airGRteaching_lfl_lib <- airGRteaching_lfl_lib[file.exists(airGRteaching_lfl_lib)][1] -->
+<!-- airGRteaching_map$dependencies[[1]]$src$file <- airGRteaching_lfl_lib -->
+<!-- leaflet::setView(airGRteaching_map, lng = 30.0, lat = 20.0, zoom = 1) -->
+<!-- ``` -->
+<!-- <br> -->
+<!-- # References -->
+</div>
+</div>
+
+<footer>
+<p>Developed by IRSTEA &nbsp;<a href="https://webgr.irstea.fr/">Catchment Hydrology Research Group</a>&nbsp;- Antony, France.</p>
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
