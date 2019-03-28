@@ -1,3 +1,1 @@
-# airGRteaching R package website
-
-[**airGRteaching**](https://CRAN.R-project.org/package=airGRteaching) is Add-on package to the 'airGR' package that simplifies its use and is aimed at being used for teaching hydrology. The package provides 1) three functions that allow to complete very simply a hydrological modelling exercise 2) plotting functions to help students to explore observed data and to interpret the results of calibration and simulation of the GR ('Génie rural') models 3) a 'Shiny' graphical interface that allows for displaying the impact of model parameters on hydrographs and models internal variables.
+# Software website of the [IRSTEA Catchment Hydrology Research Group](https://webgr.irstea.fr/en/) - Antony, France.
