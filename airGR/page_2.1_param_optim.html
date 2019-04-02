@@ -122,9 +122,7 @@ h6 {
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -242,8 +240,6 @@ $(document).ready(function () {
   menuAnchor.closest('li.dropdown').addClass('active');
 });
 </script>
-
-<div class="container-fluid main-container">
 
 <!-- tabsets -->
 
@@ -402,6 +398,16 @@ div.tocify {
 
 </style>
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
 <div class="col-xs-12 col-sm-4 col-md-3">
@@ -428,86 +434,37 @@ div.tocify {
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li><a href="index.html">Home</a></li>
-<!-- 				<li><a href="page_1_get_started.html">Get Started</a></li> -->
-				<li class="Download">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Get Started<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="page_1.1_get_started_airGR.html">airGR</a></li>
-						<li><a href="page_1.2_get_started_airGRteaching.html">airGRteaching</a></li>
-					</ul>
-				</li>
+     				<li><a href="page_1_get_started.html">Get Started</a></li>
 				<li class="Download">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Articles<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="page_2.1_param_optim.html">Plugging in new calibration algorithms</a></li>
 						<li><a href="page_2.2_param_mcmc.html">MCMC Parameter estimation</a></li>
 						<li><a href="page_3_param_sets_GR4J.html">GR4J Generalist parameter sets</a></li>
-						<li><a href="page_4_customization.html">Customization</a></li>
+						<li><a href="page_4_cemaneige_hysteresis.html">Using CemaNeige with Hysteresis</a></li>
+						<li><a href="page_5_customization.html">Customization</a></li>
 					</ul>
 				</li>
 				<li class="Download">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li class="dropdown-submenu">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">airGR<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a tabindex="-1" href="https://CRAN.R-project.org/package=airGR" onclick="window.open(this.href); return false;">Package</a></li>
-								<li><a tabindex="-1" href="https://CRAN.R-project.org/package=airGR/airGR.pdf" onclick="window.open(this.href); return false;">Manual</a></li>
-							</ul>
-						</li>
-						<li class="dropdown-submenu">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">airGRteaching<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a tabindex="-1" href="https://CRAN.R-project.org/package=airGRteaching" onclick="window.open(this.href); return false;">Package</a></li>
-								<li><a tabindex="-1" href="https://CRAN.R-project.org/package=airGRteaching/airGRteaching.pdf" onclick="window.open(this.href); return false;">Manual</a></li>
-							</ul>
-							</li>
+						<li><a tabindex="-1" href="https://CRAN.R-project.org/package=airGR" onclick="window.open(this.href); return false;">Package</a></li>
+						<li><a tabindex="-1" href="https://CRAN.R-project.org/package=airGR/airGR.pdf" onclick="window.open(this.href); return false;">Manual</a></li>
 					</ul>
 				</li>
 				<li><a href="NEWS.html">News</a></li>
 				<li><a href="page_publications.html">Publications</a></li>
 				<li><a href="page_faq.html">FAQ</a></li>
+				<li><a tabindex="-1" href="https://hydroGR.github.io/airGRteaching/" onclick="window.open(this.href); return false;">airGRteaching website</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<a href='http://www.irstea.fr/en/' onclick="window.open(this.href); return false;", title="irstea.fr"><img src='fig/logo_irstea.svg' style='width:45px;height:45px;'></a>
 				<a href='https://webgr.irstea.fr/en/' onclick="window.open(this.href); return false;", title="webgr.irstea.fr"><img src='fig/logo_irstea_hydro_COUL_smooth.svg' style='width:45px;height:45px;'></a>
-				<a href='https://webgr.irstea.fr/en/activites/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGR.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.irstea.fr/en/software/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGR.svg' style='width:45px;height:45px;'></a>
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div><!--/.container -->
 </div><!--/.navbar -->
- <p style ="margin-top: -30px;">
-  <svg xmlns="http://www.w3.org/2000/svg" width="194" height="020">
-  <linearGradient id="b" x2="0" y2="100%">
-    <stop offset="0" stop-opacity=".1" stop-color="#fff"/>
-    <stop offset="0" stop-opacity=".1"/>
-  </linearGradient>
-  <mask id="a">
-    <rect width="194" height="020" rx="3" fill="#fff"/>
-  </mask>
-  <g mask="url(#a)">
-    <path fill="#fff"    d="M00 00h030v20H00z" />
-    <path fill="#fff"    d="M30 00h164v20H30z" />
-    <path fill="url(#b)" d="M00 00h194v20H00z" />
-  </g>
-  <g fill="#fff" text-anchor="middle"
-     font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="10">
-    <text x="015" y="015" fill="#fff" fill-opacity=".3">
-      FAKE
-    </text>
-    <text x="015" y="014">
-      FAKE
-    </text>
-    <text x="111" y="015" fill="#fff" fill-opacity=".3">
-      unused badge to avoid problems
-    </text>
-    <text x="111" y="014">
-      unused badge to avoid problems
-    </text>
-  </g>
-</svg>
-</p>
-
 <p style ="margin-top: 15px;">
   <a href="https://CRAN.R-project.org/package=airGR">
 <svg xmlns="http://www.w3.org/2000/svg" width="095" height="020">
@@ -606,126 +563,12 @@ div.tocify {
 </a>
 </p>
 
-<p style ="margin-top: 05px;">
-<a href="https://CRAN.R-project.org/package=airGRteaching">
-<svg xmlns="http://www.w3.org/2000/svg" width="145" height="020">
-  <linearGradient id="b" x2="0" y2="100%">
-    <stop offset="0" stop-opacity=".1" stop-color="#bbb"/>
-    <stop offset="1" stop-opacity=".1"/>
-  </linearGradient>
-  <mask id="a">
-    <rect width="145" height="020" rx="3" fill="#fff"/>
-  </mask>
-  <g mask="url(#a)">
-    <path fill="#555"    d="M00 0h055v20H00z"/>
-    <path fill="#009EE0" d="M55 0h090v20H55z"/>
-    <path fill="url(#b)" d="M00 0h145v20H00z"/>
-  </g>
-  <g fill="#fff" text-anchor="middle"
-     font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
-    <text x="028" y="015" fill="#010101" fill-opacity=".3">
-      Package
-    </text>
-    <text x="028" y="014">
-      Package
-    </text>
-    <text x="100" y="015" fill="#010101" fill-opacity=".3">
-      airGRteaching
-    </text>
-    <text x="100" y="014">
-      airGRteaching
-    </text>
-  </g>
-</svg>
-</a>
-<a href="https://CRAN.R-project.org/package=airGRteaching"><img src="https://www.r-pkg.org/badges/version-ago/airGRteaching" /></a>
-<a href="https://www.rdocumentation.org/packages/airGRteaching"><img src="http://cranlogs.r-pkg.org/badges/grand-total/airGRteaching?color=orange" /></a>
-<a href="https://www.r-project.org/Licenses/GPL-2">
-<svg xmlns="http://www.w3.org/2000/svg" width="095" height="020">
-  <linearGradient id="b" x2="0" y2="100%">
-    <stop offset="0" stop-opacity=".1" stop-color="#bbb"/>
-    <stop offset="1" stop-opacity=".1"/>
-  </linearGradient>
-  <mask id="a">
-    <rect width="095" height="020" rx="3" fill="#fff" />
-  </mask>
-  <g mask="url(#a)">
-    <path fill="#555"    d="M00 0h055v20H00z"/>
-    <path fill="#D1AA1E" d="M55 0h040v20H55z"/>
-    <path fill="url(#b)" d="M00 0h095v20H00z"/>
-  </g>
-  <g fill="#fff" text-anchor="middle"
-     font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
-    <text x="028" y="015" fill="#010101" fill-opacity=".3">
-      License
-    </text>
-    <text x="028" y="014">
-      License
-    </text>
-    <text x="075" y="015" fill="#010101" fill-opacity=".3">
-      GPL 2
-    </text>
-    <text x="075" y="014">
-      GPL 2
-    </text>
-  </g>
-</svg>
-</a>
-<a href="https://doi.org/10.29007/qsqj">
- <svg xmlns="http://www.w3.org/2000/svg" width="114" height="020">
-  <linearGradient id="b" x2="0" y2="100%">
-    <stop offset="0" stop-opacity=".1" stop-color="#bbb"/>
-    <stop offset="1" stop-opacity=".1"/>
-  </linearGradient>
-  <mask id="a">
-    <rect width="114" height="020" rx="3" fill="#fff"/>
-  </mask>
-  <g mask="url(#a)">
-    <path fill="#555"    d="M00 00h030v20H00z" />
-    <path fill="#007ec6" d="M30 00h084v20H30z" />
-    <path fill="url(#b)" d="M00 00h164v20H00z" />
-  </g>
-  <g fill="#fff" text-anchor="middle"
-     font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="10">
-    <text x="015" y="015" fill="#010101" fill-opacity=".3">
-      DOI
-    </text>
-    <text x="015" y="014">
-      DOI
-    </text>
-    <text x="71" y="015" fill="#010101" fill-opacity=".3">
-      10.29007/qsqj
-    </text>
-    <text x="71" y="014">
-      10.29007/qsqj
-    </text>
-  </g>
-</svg>
-</a>
-</p>
-
-<br> <br>
-
-<p style ="margin-top: -40px;" align="center">
-  <marquee direction="left">new&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;airGRteaching&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;free on CRAN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new</marquee>
-</p>
-<p style="margin-top: -10px;color:#009EE0" align="center">
-  The <b>airGRteaching</b> package has been especially developed to teach hydrological modelling  <br>with the GR rainfall-runoff models ('Shiny' interface included)
-  <br>
-  <a href="https://CRAN.R-project.org/package=airGRteaching">Free download on the CRAN</a>
-  <br>
-  <img src="logo/logo_airGRteaching.svg"  alt="airGRteaching logo" width=10% />
-</p>
-<p style ="margin-top: -15px;" align="center">
-  <marquee direction="right">new&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;airGRteaching&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;free on CRAN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new</marquee>
-</p>
-
 <div class="fluid-row" id="header">
 
 
 
 <h1 class="title toc-ignore">Plugging in new calibration algorithms in airGR</h1>
-<h4 class="author"><em>François Bourgin</em></h4>
+<h4 class="author">François Bourgin</h4>
 
 </div>
 
@@ -784,23 +627,23 @@ listOptPORT &lt;-<span class="st"> </span><span class="kw">apply</span>(startGR4
 <p>We can then extract the best parameter sets and the value of the performance criteria:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">parPORT &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="kw">sapply</span>(listOptPORT, <span class="cf">function</span>(x) x<span class="op">$</span>par))
 objPORT &lt;-<span class="st"> </span><span class="kw">sapply</span>(listOptPORT, <span class="cf">function</span>(x) x<span class="op">$</span>objective)
-resPORT  &lt;-<span class="st"> </span><span class="kw">data.frame</span>(parPORT, <span class="dt">RMSE =</span> objPORT)</code></pre></div>
+resPORT &lt;-<span class="st"> </span><span class="kw">data.frame</span>(parPORT, <span class="dt">RMSE =</span> objPORT)</code></pre></div>
 <p>As can be seen below, the optimum performance criterion values (column <em>objective</em>) can differ from the global optimum value in many cases, resulting in various parameter sets.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(resPORT)</code></pre></div>
-<pre><code>##        X1              X2               X3                  X4           
-##  Min.   :5.548   Min.   :0.1240   Min.   :-0.038062   Min.   :-8.242667  
-##  1st Qu.:5.548   1st Qu.:0.1243   1st Qu.:-0.003741   1st Qu.:-8.242667  
-##  Median :5.548   Median :0.8866   Median : 4.478766   Median :-8.242667  
-##  Mean   :5.682   Mean   :0.6325   Mean   : 2.977265   Mean   :-5.820890  
-##  3rd Qu.:5.946   3rd Qu.:0.8866   3rd Qu.: 4.478766   3rd Qu.:-1.965413  
-##  Max.   :5.953   Max.   :0.8866   Max.   : 4.478767   Max.   : 0.009845  
-##       RMSE       
-##  Min.   :0.7864  
-##  1st Qu.:0.7864  
-##  Median :0.7864  
-##  Mean   :0.9220  
-##  3rd Qu.:1.1630  
-##  Max.   :1.2235</code></pre>
+<pre><code>##        X1             X2              X3              X4       
+##  Min.   :5.55   Min.   :0.124   Min.   :-0.04   Min.   :-8.24  
+##  1st Qu.:5.55   1st Qu.:0.124   1st Qu.: 0.00   1st Qu.:-8.24  
+##  Median :5.55   Median :0.887   Median : 4.48   Median :-8.24  
+##  Mean   :5.68   Mean   :0.632   Mean   : 2.98   Mean   :-5.82  
+##  3rd Qu.:5.95   3rd Qu.:0.887   3rd Qu.: 4.48   3rd Qu.:-1.97  
+##  Max.   :5.95   Max.   :0.887   Max.   : 4.48   Max.   : 0.01  
+##       RMSE      
+##  Min.   :0.786  
+##  1st Qu.:0.786  
+##  Median :0.786  
+##  Mean   :0.922  
+##  3rd Qu.:1.163  
+##  Max.   :1.223</code></pre>
 <p>The existence of several local minima illustrates the importance of defining an appropriate starting point or of using a multi-start strategy or a global optimization strategy.</p>
 </div>
 <div id="global-optimization" class="section level1">
@@ -833,12 +676,12 @@ resPORT  &lt;-<span class="st"> </span><span class="kw">data.frame</span>(parPOR
 <div id="results" class="section level1">
 <h1><span class="header-section-number">4</span> Results</h1>
 <p>As it can be seen in the table below, the four additional optimization strategies tested lead to very close optima.</p>
-<pre><code>##    Algo      X1    X2     X3    X4
-## 1 airGR 257.238 1.012 88.235 2.208
-## 2  PORT 256.840 1.007 88.126 2.205
-## 3    DE 256.840 1.007 88.126 2.205
-## 4   PSO 256.799 1.007 88.147 2.205
-## 5 MA-LS 256.820 1.007 88.116 2.205</code></pre>
+<pre><code>##    Algo  X1   X2   X3   X4
+## 1 airGR 257 1.01 88.2 2.21
+## 2  PORT 257 1.01 88.1 2.21
+## 3    DE 257 1.01 88.1 2.21
+## 4   PSO 257 1.01 88.1 2.21
+## 5 MA-LS 257 1.01 88.1 2.21</code></pre>
 <!-- This is an expected result because the response surface for quadratic performance criteria of the **GR4J** model is generally sufficiently well defined in the transformed parameter space to allow using a local optimization strategy instead of a more time consuming global optimization strategy. -->
 </div>
 
