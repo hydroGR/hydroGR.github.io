@@ -651,7 +651,7 @@ mcmcDRAM &lt;-<span class="st"> </span><span class="kw">apply</span>(iniParPORT,
   }))
 gelRub &lt;-<span class="st"> </span>coda<span class="op">::</span><span class="kw">gelman.diag</span>(multDRAM, <span class="dt">autoburnin =</span> <span class="ot">TRUE</span>)<span class="op">$</span>mpsrf</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gelRub</code></pre></div>
-<pre><code>## [1] 1.06</code></pre>
+<pre><code>## [1] 1.062202</code></pre>
 <p>In addition, graphical tools can be used, with for example the <a href="https://cran.r-project.org/package=ggmcmc">ggmcmc</a> package.</p>
 <p>First, the evolution of the Markov chains can be seen with a traceplot:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">parDRAM &lt;-<span class="st"> </span>ggmcmc<span class="op">::</span><span class="kw">ggs</span>(multDRAM) ## to convert objet for using by all ggs_* graphical functions

@@ -616,8 +616,8 @@ div.tocify {
 </div>
 <div id="object-model-preparation" class="section level2">
 <h2><span class="header-section-number">1.4</span> Object model preparation</h2>
-<p>We assume that the R global environment contains data and functions from the <a href="V01_get_started.html">Get Started</a> vignette.</p>
-<p>The calibration period has been defined from 2000-09-01 to 2005-08-31, and the validation period from 2005-09-01 to 2010-07-31. CemaNeige will be used in coupling with GR4J in this vignette.</p>
+<p>We assume that the R global environment contains data and functions from the <a href="https://hydrogr.github.io/airGR/page_1_get_started.html">Get Started</a> page.</p>
+<p>The calibration period has been defined from 2000-09-01 to 2005-08-31, and the validation period from 2005-09-01 to 2010-07-31. CemaNeige will be used in coupling with GR4J in this page.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## preparation of the InputsModel object
 InputsModel &lt;-<span class="st"> </span><span class="kw">CreateInputsModel</span>(<span class="dt">FUN_MOD =</span> RunModel_CemaNeigeGR4J,
                                  <span class="dt">DatesR =</span> BasinObs<span class="op">$</span>DatesR, <span class="dt">Precip =</span> BasinObs<span class="op">$</span>P,
@@ -687,13 +687,12 @@ OutputsCalib &lt;-<span class="st"> </span><span class="kw">Calibration</span>(<
                             <span class="dt">FUN_CALIB =</span> Calibration_Michel)</code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (6561 runs)
-##       Param =  432.681 ,   -0.020 ,   83.096 ,    2.384 ,    0.002 ,    3.787 ,   15.000 ,    0.850
+##       Param =  432.681,   -0.020,   83.096,    2.384,    0.002,    3.787,   15.000,    0.850
 ##       Crit. Composite    = 0.8139
 ## Steepest-descent local search in progress
 ##   Calibration completed (107 iterations, 8248 runs)
-##       Param =  419.893 ,    0.517 ,  275.687 ,    1.345 ,    0.632 ,    3.864 ,   16.911 ,    0.472
+##       Param =  419.893,    0.517,  275.687,    1.345,    0.632,    3.864,   16.911,    0.472
 ##       Crit. Composite    = 0.8995
-## 
 ##  Formula: sum(0.75 * KGE&#39;[Q], 0.05 * KGE&#39;[SCA], 0.05 * KGE&#39;[SCA],
 ##           0.05 * KGE&#39;[SCA], 0.05 * KGE&#39;[SCA], 0.05 * KGE&#39;[SCA])</code></pre>
 <p>Now we can run it on the calibration period and assess it.</p>
@@ -801,11 +800,11 @@ OutputsCalib_NoHyst &lt;-<span class="st"> </span><span class="kw">Calibration</
                                    <span class="dt">FUN_MOD =</span> RunModel_CemaNeigeGR4J, <span class="dt">FUN_CALIB =</span> Calibration_Michel)</code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (729 runs)
-##       Param =  432.681 ,   -0.020 ,   83.096 ,    2.384 ,    0.002 ,    3.787
+##       Param =  432.681,   -0.020,   83.096,    2.384,    0.002,    3.787
 ##       Crit. KGE&#39;[Q]      = 0.7830
 ## Steepest-descent local search in progress
 ##   Calibration completed (50 iterations, 1307 runs)
-##       Param =  835.709 ,    0.400 ,  171.501 ,    1.330 ,    0.869 ,    4.103
+##       Param =  835.709,    0.400,  171.501,    1.330,    0.869,    4.103
 ##       Crit. KGE&#39;[Q]      = 0.9370</code></pre>
 <p>And run it over the calibration and validation periods.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OutputsModel_Cal_NoHyst &lt;-<span class="st"> </span><span class="kw">RunModel_CemaNeigeGR4J</span>(<span class="dt">InputsModel =</span> InputsModel,
