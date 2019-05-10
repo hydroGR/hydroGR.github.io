@@ -28,41 +28,66 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
 
 </style>
 <script>
@@ -548,7 +573,7 @@ div.tocify {
 <h2><span class="header-section-number">1.1</span> Scope</h2>
 <p>In this page, we give an example of parameter estimation within a Bayesian MCMC approach.</p>
 <p>We use the <strong>GR4J</strong> model and we assume that the R global environment contains data and functions from the <a href="page_1_get_started.html">Get Started</a> page.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">example</span>(<span class="st">&quot;Calibration_Michel&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">example</span>(<span class="st">&quot;Calibration_Michel&quot;</span>)</a></code></pre></div>
 <p>Please refer to the <a href="page_2.1_param_optim.html">Plugging in new calibration</a> page for explanations on how to plug in a parameter estimation algorithm to <strong><font color="#009EE0">airGR</font></strong>.</p>
 <p>Please note that this page is only for illustration purposes and does not provide any guidance about which parameter inference strategy is recommended for the family of the GR models.</p>
 </div>
@@ -556,23 +581,23 @@ div.tocify {
 <h2><span class="header-section-number">1.2</span> Standard Least Squares (SLS) Bayesian inference</h2>
 <p>We show how to use the DRAM algorithm for SLS Bayesian inference, with the <code>modMCMC()</code> function of the <a href="https://cran.r-project.org/package=FME">FME</a> package. First, we need to define a function that returns twice the opposite of the log-likelihood for a given parameter set.</p>
 <p>Nota: in the <code>RunAirGR4J()</code> function, the computation of the log-likelihood is simplified in order to ensure a good computing performance. It corresponds to a translation of the two following lines.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Likelihood &lt;-<span class="st"> </span><span class="kw">sum</span>((ObsY <span class="op">-</span><span class="st"> </span>ModY)<span class="op">^</span><span class="dv">2</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)<span class="op">^</span>(<span class="op">-</span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(ObsY)) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)
-LogLike &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">log</span>(Likelihood)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">Likelihood &lt;-<span class="st"> </span><span class="kw">sum</span>((ObsY <span class="op">-</span><span class="st"> </span>ModY)<span class="op">^</span><span class="dv">2</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)<span class="op">^</span>(<span class="op">-</span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(ObsY)) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2">LogLike &lt;-<span class="st"> </span><span class="dv">-2</span> <span class="op">*</span><span class="st"> </span><span class="kw">log</span>(Likelihood)</a></code></pre></div>
 <p>In our simplified setting of Gaussian likelihood with measurement error integrated out, the log of the sum of squared error is related to the log-likelihood.</p>
 <p>Note that we do not use here any discharge transformation, although applying Box-Cox transformation is quite popular in hydrological modelling.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">LogLikeGR4J &lt;-<span class="st"> </span><span class="cf">function</span>(ParamOptim) {
-  ## Transformation to real space
-  RawParamOptim &lt;-<span class="st"> </span>airGR<span class="op">::</span><span class="kw">TransfoParam_GR4J</span>(<span class="dt">ParamIn =</span> ParamOptim,
-                                            <span class="dt">Direction =</span> <span class="st">&quot;TR&quot;</span>)
-  ## Simulation given a parameter set
-  OutputsModel &lt;-<span class="st"> </span>airGR<span class="op">::</span><span class="kw">RunModel_GR4J</span>(<span class="dt">InputsModel =</span> InputsModel,
-                                       <span class="dt">RunOptions =</span> RunOptions,
-                                       <span class="dt">Param =</span> RawParamOptim)
-  ## Computation of the log-likelihood: N * log(SS)
-  ObsY &lt;-<span class="st"> </span>InputsCrit<span class="op">$</span>Obs
-  ModY &lt;-<span class="st"> </span>OutputsModel<span class="op">$</span>Qsim
-  LogLike &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(ObsY)) <span class="op">*</span><span class="st"> </span><span class="kw">log</span>(<span class="kw">sum</span>((ObsY <span class="op">-</span><span class="st"> </span>ModY)<span class="op">^</span><span class="dv">2</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))
-}</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">LogLikeGR4J &lt;-<span class="st"> </span><span class="cf">function</span>(ParamOptim) {</a>
+<a class="sourceLine" id="cb3-2" title="2">  <span class="co">## Transformation to real space</span></a>
+<a class="sourceLine" id="cb3-3" title="3">  RawParamOptim &lt;-<span class="st"> </span>airGR<span class="op">::</span><span class="kw">TransfoParam_GR4J</span>(<span class="dt">ParamIn =</span> ParamOptim,</a>
+<a class="sourceLine" id="cb3-4" title="4">                                            <span class="dt">Direction =</span> <span class="st">&quot;TR&quot;</span>)</a>
+<a class="sourceLine" id="cb3-5" title="5">  <span class="co">## Simulation given a parameter set</span></a>
+<a class="sourceLine" id="cb3-6" title="6">  OutputsModel &lt;-<span class="st"> </span>airGR<span class="op">::</span><span class="kw">RunModel_GR4J</span>(<span class="dt">InputsModel =</span> InputsModel,</a>
+<a class="sourceLine" id="cb3-7" title="7">                                       <span class="dt">RunOptions =</span> RunOptions,</a>
+<a class="sourceLine" id="cb3-8" title="8">                                       <span class="dt">Param =</span> RawParamOptim)</a>
+<a class="sourceLine" id="cb3-9" title="9">  <span class="co">## Computation of the log-likelihood: N * log(SS)</span></a>
+<a class="sourceLine" id="cb3-10" title="10">  ObsY &lt;-<span class="st"> </span>InputsCrit<span class="op">$</span>Obs</a>
+<a class="sourceLine" id="cb3-11" title="11">  ModY &lt;-<span class="st"> </span>OutputsModel<span class="op">$</span>Qsim</a>
+<a class="sourceLine" id="cb3-12" title="12">  LogLike &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(ObsY)) <span class="op">*</span><span class="st"> </span><span class="kw">log</span>(<span class="kw">sum</span>((ObsY <span class="op">-</span><span class="st"> </span>ModY)<span class="op">^</span><span class="dv">2</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb3-13" title="13">}</a></code></pre></div>
 </div>
 </div>
 <div id="mcmc-algorithm-for-bayesian-inference" class="section level1">
@@ -580,58 +605,58 @@ LogLike &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">
 <div id="estimation-of-the-best-fit-parameters-as-a-starting-point" class="section level2">
 <h2><span class="header-section-number">2.1</span> Estimation of the best-fit parameters as a starting point</h2>
 <p>We start by using the PORT optimization routine to estimate the best-fit parameters.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">optPORT &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw">nlminb</span>(<span class="dt">start =</span> <span class="kw">c</span>(<span class="fl">4.1</span>, <span class="fl">3.9</span>, <span class="op">-</span><span class="fl">0.9</span>, <span class="op">-</span><span class="fl">8.7</span>), 
-                         <span class="dt">objective =</span> LogLikeGR4J,
-                         <span class="dt">lower =</span> <span class="kw">rep</span>(<span class="op">-</span><span class="fl">9.9</span>, <span class="dt">times =</span> <span class="dv">4</span>), <span class="dt">upper =</span> <span class="kw">rep</span>(<span class="fl">9.9</span>, <span class="dt">times =</span> <span class="dv">4</span>),
-                         <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">trace =</span> <span class="dv">1</span>))
-iniParPORT &lt;-<span class="st"> </span>optPORT<span class="op">$</span>par</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">optPORT &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw">nlminb</span>(<span class="dt">start =</span> <span class="kw">c</span>(<span class="fl">4.1</span>, <span class="fl">3.9</span>, <span class="fl">-0.9</span>, <span class="fl">-8.7</span>), </a>
+<a class="sourceLine" id="cb4-2" title="2">                         <span class="dt">objective =</span> LogLikeGR4J,</a>
+<a class="sourceLine" id="cb4-3" title="3">                         <span class="dt">lower =</span> <span class="kw">rep</span>(<span class="op">-</span><span class="fl">9.9</span>, <span class="dt">times =</span> <span class="dv">4</span>), <span class="dt">upper =</span> <span class="kw">rep</span>(<span class="fl">9.9</span>, <span class="dt">times =</span> <span class="dv">4</span>),</a>
+<a class="sourceLine" id="cb4-4" title="4">                         <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">trace =</span> <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb4-5" title="5">iniParPORT &lt;-<span class="st"> </span>optPORT<span class="op">$</span>par</a></code></pre></div>
 </div>
 <div id="running-3-chains-for-convergence-assessment" class="section level2">
 <h2><span class="header-section-number">2.2</span> Running 3 chains for convergence assessment</h2>
 <p>We run 3 chains with different initial values to assess the convergence of the Markov chains. The number of iterations is fixed to 2000 with a burning length of 0.</p>
 <p>Nota: in this example, there are relatively few iterations (2000), in order to limit the running time of this page. In addition, the burning length has been set to zero in order to show the convergence process but, in a true exercise, it is better to define more iterations (5000) and to burn the first iterations.</p>
 <p>With the DRAM algorithm, the covariance of the proposal is updated every 100 runs and delayed rejection is applied.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iniParPORT &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Chain1 =</span> iniParPORT, <span class="dt">Chain2 =</span> iniParPORT, <span class="dt">Chain3 =</span> iniParPORT,
-                           <span class="dt">row.names =</span> <span class="kw">paste0</span>(<span class="st">&quot;X&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>))
-iniParPORT &lt;-<span class="st"> </span><span class="kw">sweep</span>(iniParPORT, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">STATS =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">0.9</span>, <span class="fl">1.1</span>), <span class="dt">FUN =</span> <span class="st">&quot;*&quot;</span>)
-iniParPORT[iniParPORT <span class="op">&lt;</span><span class="st"> </span><span class="op">-</span><span class="fl">9.9</span>] &lt;-<span class="st"> </span><span class="op">-</span><span class="fl">9.9</span>
-iniParPORT[iniParPORT <span class="op">&gt;</span><span class="st"> </span><span class="op">+</span><span class="fl">9.9</span>] &lt;-<span class="st"> </span><span class="op">+</span><span class="fl">9.9</span>
-
-mcmcDRAM &lt;-<span class="st"> </span><span class="kw">apply</span>(iniParPORT, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> <span class="cf">function</span>(iIniParPORT) {
-  FME<span class="op">::</span><span class="kw">modMCMC</span>(<span class="dt">f            =</span> LogLikeGR4J,
-               <span class="dt">p            =</span> iIniParPORT,
-               <span class="dt">lower        =</span> <span class="kw">rep</span>(<span class="op">-</span><span class="fl">9.9</span>, <span class="dt">times =</span> <span class="dv">4</span>), ## lower bounds for GR4J
-               <span class="dt">upper        =</span> <span class="kw">rep</span>(<span class="op">+</span><span class="fl">9.9</span>, <span class="dt">times =</span> <span class="dv">4</span>), ## upper bounds for GR4J
-               <span class="dt">niter        =</span> <span class="dv">2000</span>,
-               <span class="dt">jump         =</span> <span class="fl">0.01</span>,
-               <span class="dt">outputlength =</span> <span class="dv">2000</span>,
-               <span class="dt">burninlength =</span> <span class="dv">0</span>,
-               <span class="dt">updatecov    =</span> <span class="dv">100</span>, ## Adaptative Metropolis
-               <span class="dt">ntrydr       =</span> <span class="dv">2</span>)   ## Delayed Rejection
-})</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">iniParPORT &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Chain1 =</span> iniParPORT, <span class="dt">Chain2 =</span> iniParPORT, <span class="dt">Chain3 =</span> iniParPORT,</a>
+<a class="sourceLine" id="cb5-2" title="2">                           <span class="dt">row.names =</span> <span class="kw">paste0</span>(<span class="st">&quot;X&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb5-3" title="3">iniParPORT &lt;-<span class="st"> </span><span class="kw">sweep</span>(iniParPORT, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">STATS =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">0.9</span>, <span class="fl">1.1</span>), <span class="dt">FUN =</span> <span class="st">&quot;*&quot;</span>)</a>
+<a class="sourceLine" id="cb5-4" title="4">iniParPORT[iniParPORT <span class="op">&lt;</span><span class="st"> </span><span class="fl">-9.9</span>] &lt;-<span class="st"> </span><span class="fl">-9.9</span></a>
+<a class="sourceLine" id="cb5-5" title="5">iniParPORT[iniParPORT <span class="op">&gt;</span><span class="st"> </span><span class="fl">+9.9</span>] &lt;-<span class="st"> </span><span class="fl">+9.9</span></a>
+<a class="sourceLine" id="cb5-6" title="6"></a>
+<a class="sourceLine" id="cb5-7" title="7">mcmcDRAM &lt;-<span class="st"> </span><span class="kw">apply</span>(iniParPORT, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> <span class="cf">function</span>(iIniParPORT) {</a>
+<a class="sourceLine" id="cb5-8" title="8">  FME<span class="op">::</span><span class="kw">modMCMC</span>(<span class="dt">f            =</span> LogLikeGR4J,</a>
+<a class="sourceLine" id="cb5-9" title="9">               <span class="dt">p            =</span> iIniParPORT,</a>
+<a class="sourceLine" id="cb5-10" title="10">               <span class="dt">lower        =</span> <span class="kw">rep</span>(<span class="op">-</span><span class="fl">9.9</span>, <span class="dt">times =</span> <span class="dv">4</span>), <span class="co">## lower bounds for GR4J</span></a>
+<a class="sourceLine" id="cb5-11" title="11">               <span class="dt">upper        =</span> <span class="kw">rep</span>(<span class="op">+</span><span class="fl">9.9</span>, <span class="dt">times =</span> <span class="dv">4</span>), <span class="co">## upper bounds for GR4J</span></a>
+<a class="sourceLine" id="cb5-12" title="12">               <span class="dt">niter        =</span> <span class="dv">2000</span>,</a>
+<a class="sourceLine" id="cb5-13" title="13">               <span class="dt">jump         =</span> <span class="fl">0.01</span>,</a>
+<a class="sourceLine" id="cb5-14" title="14">               <span class="dt">outputlength =</span> <span class="dv">2000</span>,</a>
+<a class="sourceLine" id="cb5-15" title="15">               <span class="dt">burninlength =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb5-16" title="16">               <span class="dt">updatecov    =</span> <span class="dv">100</span>, <span class="co">## Adaptative Metropolis</span></a>
+<a class="sourceLine" id="cb5-17" title="17">               <span class="dt">ntrydr       =</span> <span class="dv">2</span>)   <span class="co">## Delayed Rejection</span></a>
+<a class="sourceLine" id="cb5-18" title="18">})</a></code></pre></div>
 </div>
 <div id="mcmc-diagnostics-and-visualisation-tools" class="section level2">
 <h2><span class="header-section-number">2.3</span> MCMC diagnostics and visualisation tools</h2>
 <p>There are several diagnostics that can be used to check the convergence of the chains. The R package <a href="https://cran.r-project.org/package=coda">coda</a> provides several diagnostic tests.</p>
 <p>Among others, the Gelman and Rubin’s convergence can be used. A value close to 1 suggests acceptable convergence. The result will be better with more iterations than 2000. As we kept the iterations during the convergence process, we have to set the <code>autoburnin</code> argument to <code>TRUE</code> in order to consider only the second half of the series.</p>
 <p>Note that we rescale model parameter sets of the GR4J model from the transformed space to the real space.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">multDRAM &lt;-<span class="st"> </span>coda<span class="op">::</span><span class="kw">as.mcmc.list</span>(<span class="kw">lapply</span>(mcmcDRAM, <span class="dt">FUN =</span> <span class="cf">function</span>(x) {
-  coda<span class="op">::</span><span class="kw">as.mcmc</span>(airGR<span class="op">::</span><span class="kw">TransfoParam_GR4J</span>(<span class="kw">as.matrix</span>(x<span class="op">$</span>pars), <span class="dt">Direction =</span> <span class="st">&quot;TR&quot;</span>))
-  }))
-gelRub &lt;-<span class="st"> </span>coda<span class="op">::</span><span class="kw">gelman.diag</span>(multDRAM, <span class="dt">autoburnin =</span> <span class="ot">TRUE</span>)<span class="op">$</span>mpsrf</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gelRub</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">multDRAM &lt;-<span class="st"> </span>coda<span class="op">::</span><span class="kw">as.mcmc.list</span>(<span class="kw">lapply</span>(mcmcDRAM, <span class="dt">FUN =</span> <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb6-2" title="2">  coda<span class="op">::</span><span class="kw">as.mcmc</span>(airGR<span class="op">::</span><span class="kw">TransfoParam_GR4J</span>(<span class="kw">as.matrix</span>(x<span class="op">$</span>pars), <span class="dt">Direction =</span> <span class="st">&quot;TR&quot;</span>))</a>
+<a class="sourceLine" id="cb6-3" title="3">  }))</a>
+<a class="sourceLine" id="cb6-4" title="4">gelRub &lt;-<span class="st"> </span>coda<span class="op">::</span><span class="kw">gelman.diag</span>(multDRAM, <span class="dt">autoburnin =</span> <span class="ot">TRUE</span>)<span class="op">$</span>mpsrf</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">gelRub</a></code></pre></div>
 <pre><code>## [1] 1.062202</code></pre>
 <p>In addition, graphical tools can be used, with for example the <a href="https://cran.r-project.org/package=ggmcmc">ggmcmc</a> package.</p>
 <p>First, the evolution of the Markov chains can be seen with a traceplot:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">parDRAM &lt;-<span class="st"> </span>ggmcmc<span class="op">::</span><span class="kw">ggs</span>(multDRAM) ## to convert objet for using by all ggs_* graphical functions
-ggmcmc<span class="op">::</span><span class="kw">ggs_traceplot</span>(parDRAM)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">parDRAM &lt;-<span class="st"> </span>ggmcmc<span class="op">::</span><span class="kw">ggs</span>(multDRAM) <span class="co">## to convert objet for using by all ggs_* graphical functions</span></a>
+<a class="sourceLine" id="cb9-2" title="2">ggmcmc<span class="op">::</span><span class="kw">ggs_traceplot</span>(parDRAM)</a></code></pre></div>
 <p><img src="page_2.2_param_mcmc_files/figure-html/unnamed-chunk-11-1.png" width="576" /></p>
 <p>The posterior density for each parameter can then be visualised:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">burnParDRAM &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(parDRAM, Iteration <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>) <span class="co"># to keep only the second half of the series</span>
-ggmcmc<span class="op">::</span><span class="kw">ggs_density</span>(burnParDRAM)</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">burnParDRAM &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(parDRAM, Iteration <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>) <span class="co"># to keep only the second half of the series</span></a>
+<a class="sourceLine" id="cb10-2" title="2">ggmcmc<span class="op">::</span><span class="kw">ggs_density</span>(burnParDRAM)</a></code></pre></div>
 <p><img src="page_2.2_param_mcmc_files/figure-html/unnamed-chunk-12-1.png" width="576" /></p>
 <p>Finally, a paired plot can be useful to look at the correlation between parameters. Highly correlated parameters can be seen as an indication for a structural deficit of the model used.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ggmcmc<span class="op">::</span><span class="kw">ggs_pairs</span>(burnParDRAM, <span class="dt">lower =</span> <span class="kw">list</span>(<span class="dt">continuous =</span> <span class="st">&quot;density&quot;</span>))</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">ggmcmc<span class="op">::</span><span class="kw">ggs_pairs</span>(burnParDRAM, <span class="dt">lower =</span> <span class="kw">list</span>(<span class="dt">continuous =</span> <span class="st">&quot;density&quot;</span>))</a></code></pre></div>
 <p><img src="page_2.2_param_mcmc_files/figure-html/unnamed-chunk-13-1.png" width="576" /></p>
 </div>
 <div id="exploring-further-possibilities" class="section level2">

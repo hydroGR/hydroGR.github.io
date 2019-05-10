@@ -479,11 +479,7 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>Write a model in Fortran or modify an existing Fortran code that is included in the <strong><font color="#009EE0">airGR</font></strong> package</li>
 <li>Create specific <strong>R</strong> functions to the model (<code>RunModel_MyNewModel()</code>, <code>TransfParam_MyNewModel()</code>)</li>
-<li>Two possibilities exist to include the new model:
-<ol style="list-style-type: lower-alpha">
-<li>Create a dynamically loadable library (DLL; also known as shared object) ensuring compatibility with <strong>R</strong> and load it with the <code>dyn.load()</code> function</li>
-<li>Create a new package dependent on <strong><font color="#009EE0">airGR</font></strong> which contains only your <strong>R</strong> model and functions of step 2</li>
-</ol></li>
+<li>Two possibilities exist to include the new model: a. Create a dynamically loadable library (DLL; also known as shared object) ensuring compatibility with <strong>R</strong> and load it with the <code>dyn.load()</code> function b. Create a new package dependent on <strong><font color="#009EE0">airGR</font></strong> which contains only your <strong>R</strong> model and functions of step 2</li>
 <li>If the new model requires model inputs that are not already present in <strong><font color="#009EE0">airGR</font></strong>, you have to adapt the <code>CreateInputsModel()</code> and <code>CreateRunOptions()</code> functions (note: it is better to duplicate these functions and to modify them, to avoid any conflict when using original <strong><font color="#009EE0">airGR</font></strong> models)</li>
 </ol>
 

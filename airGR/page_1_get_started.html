@@ -27,41 +27,66 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
 
 </style>
 <script>
@@ -545,7 +570,7 @@ div.tocify {
 <h1><span class="header-section-number">1</span> Loading data</h1>
 <p>In the following example, we use a data sample contained in the package. For real applications, the user has to import its data into <strong>R</strong> and to prepare it with an adequate data.frame format as described below.</p>
 <p>First, it is necessary to load the <strong><font color="#009EE0">airGR</font></strong> package:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(airGR)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(airGR)</a></code></pre></div>
 <p>Below is presented an example of a <code>data.frame</code> of daily hydrometeorological observations time series for a fictional catchment included in the <strong><font color="#009EE0">airGR</font></strong> package that contains:</p>
 <ul>
 <li><em>DatesR</em>: dates in the POSIXt format</li>
@@ -555,8 +580,8 @@ div.tocify {
 <li><em>Qls</em>: outlet discharge [l/s]</li>
 <li><em>Qmm</em>: outlet discharge [mm/day]</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(L0123001)
-<span class="kw">summary</span>(BasinObs)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">data</span>(L0123001)</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">summary</span>(BasinObs)</a></code></pre></div>
 <pre><code>##      DatesR                 P                T                 E        
 ##  Min.   :1984-01-01   Min.   : 0.000   Min.   :-18.700   Min.   :0.000  
 ##  1st Qu.:1991-04-02   1st Qu.: 0.000   1st Qu.:  4.100   1st Qu.:0.600  
@@ -573,7 +598,7 @@ div.tocify {
 ##  3rd Qu.: 7850   3rd Qu.: 1.8840  
 ##  Max.   :99500   Max.   :23.8800  
 ##  NA&#39;s   :772     NA&#39;s   :772</code></pre>
-<p>The usual functions (e.g. <code>read.table()</code>) can be used to load real-case data sets.</p>
+<p>The usual functions (e.g. <code>read.table()</code>) can be used to load real-case data sets.</p>
 </div>
 <div id="preparation-of-functions-inputs" class="section level1">
 <h1><span class="header-section-number">2</span> Preparation of functions inputs</h1>
@@ -590,9 +615,9 @@ div.tocify {
 <p>To run a GR hydrological model or CemaNeige, the user has to prepare the input data with the <code>CreateInputsModel()</code> function. As arguments, this function needs the function name corresponding to the model the user wants to run, a vector of dates, a vector of precipitation and a vector of potential evapotranspiration.</p>
 <p>In the example below, we already have the potential evapotranspiration. If the user does not have these data, it is possible to compute it with the <a href="http://dx.doi.org/10.1016/j.jhydrol.2004.08.026">Oudin’s formula</a> with the <code>PEdaily_Oudin()</code> function (this function only needs Julian days, daily average air temperature and latitude).</p>
 <p>Missing values (<code>NA</code>) of precipitation (or potential evapotranspiration) are <strong>not allowed</strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">InputsModel &lt;-<span class="st"> </span><span class="kw">CreateInputsModel</span>(<span class="dt">FUN_MOD =</span> RunModel_GR4J, <span class="dt">DatesR =</span> BasinObs<span class="op">$</span>DatesR,
-                                 <span class="dt">Precip =</span> BasinObs<span class="op">$</span>P, <span class="dt">PotEvap =</span> BasinObs<span class="op">$</span>E)
-<span class="kw">str</span>(InputsModel)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">InputsModel &lt;-<span class="st"> </span><span class="kw">CreateInputsModel</span>(<span class="dt">FUN_MOD =</span> RunModel_GR4J, <span class="dt">DatesR =</span> BasinObs<span class="op">$</span>DatesR,</a>
+<a class="sourceLine" id="cb4-2" title="2">                                 <span class="dt">Precip =</span> BasinObs<span class="op">$</span>P, <span class="dt">PotEvap =</span> BasinObs<span class="op">$</span>E)</a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="kw">str</span>(InputsModel)</a></code></pre></div>
 <pre><code>## List of 3
 ##  $ DatesR : POSIXlt[1:10593], format: &quot;1984-01-01&quot; &quot;1984-01-02&quot; ...
 ##  $ Precip : num [1:10593] 4.1 15.9 0.8 0 0 0 0 0 2.9 0 ...
@@ -609,9 +634,9 @@ div.tocify {
 <li><code>IndPeriod_Run</code>: the period on which the model is run</li>
 </ul>
 <p>To select a period for which the user wants to run the model, select the corresponding indexes for different time periods (not the POSIXt dates), as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Ind_Run &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">which</span>(<span class="kw">format</span>(BasinObs<span class="op">$</span>DatesR, <span class="dt">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>) <span class="op">==</span><span class="st"> &quot;1999-01-01&quot;</span>), 
-               <span class="kw">which</span>(<span class="kw">format</span>(BasinObs<span class="op">$</span>DatesR, <span class="dt">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>)<span class="op">==</span><span class="st">&quot;1999-12-31&quot;</span>))
-<span class="kw">str</span>(Ind_Run)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">Ind_Run &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">which</span>(<span class="kw">format</span>(BasinObs<span class="op">$</span>DatesR, <span class="dt">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>) <span class="op">==</span><span class="st"> &quot;1999-01-01&quot;</span>), </a>
+<a class="sourceLine" id="cb6-2" title="2">               <span class="kw">which</span>(<span class="kw">format</span>(BasinObs<span class="op">$</span>DatesR, <span class="dt">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>)<span class="op">==</span><span class="st">&quot;1999-12-31&quot;</span>))</a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="kw">str</span>(Ind_Run)</a></code></pre></div>
 <pre><code>##  int [1:365] 5480 5481 5482 5483 5484 5485 5486 5487 5488 5489 ...</code></pre>
 <p>The initialization of hydrological models is of the utmost importance. Indeed, an inaccurate initialization causes poor quality discharge simulations during the earliest stages of the running period. For example, in the GR models, by default, the production and the routing store levels store level are respectively set to 30 % and 50 % of their capacity, which may be far from their ideal value. Two solutions are offered to accurately initialize the GR models in <strong><font color="#009EE0">airGR</font></strong>: manually predefining the initial states (e.g. from a previous run) or running the models during a warm up period before the actual running period. It is generally advised to set up this warm up period to be equal or superior to one year.</p>
 <p>As a consequence, it is possible to define in <code>CreateRunOptions()</code> the following arguments:</p>
@@ -620,12 +645,12 @@ div.tocify {
 <li><code>IniResLevels</code>: the initial levels of the production and routing stores</li>
 <li><code>IndPeriod_WarmUp</code>: the warm up period used to run the model, to be defined in the same format as <code>IndPeriod_Run</code></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">RunOptions &lt;-<span class="st"> </span><span class="kw">CreateRunOptions</span>(<span class="dt">FUN_MOD =</span> RunModel_GR4J,
-                               <span class="dt">InputsModel =</span> InputsModel, <span class="dt">IndPeriod_Run =</span> Ind_Run,
-                               <span class="dt">IniStates =</span> <span class="ot">NULL</span>, <span class="dt">IniResLevels =</span> <span class="ot">NULL</span>, <span class="dt">IndPeriod_WarmUp =</span> <span class="ot">NULL</span>)</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">RunOptions &lt;-<span class="st"> </span><span class="kw">CreateRunOptions</span>(<span class="dt">FUN_MOD =</span> RunModel_GR4J,</a>
+<a class="sourceLine" id="cb8-2" title="2">                               <span class="dt">InputsModel =</span> InputsModel, <span class="dt">IndPeriod_Run =</span> Ind_Run,</a>
+<a class="sourceLine" id="cb8-3" title="3">                               <span class="dt">IniStates =</span> <span class="ot">NULL</span>, <span class="dt">IniResLevels =</span> <span class="ot">NULL</span>, <span class="dt">IndPeriod_WarmUp =</span> <span class="ot">NULL</span>)</a></code></pre></div>
 <pre><code>## Warning in CreateRunOptions(FUN_MOD = RunModel_GR4J, InputsModel = InputsModel, : model warm up period not defined: default configuration used
 ##   the year preceding the run period is used</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(RunOptions)</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">str</span>(RunOptions)</a></code></pre></div>
 <pre><code>## List of 6
 ##  $ IndPeriod_WarmUp: int [1:365] 5115 5116 5117 5118 5119 5120 5121 5122 5123 5124 ...
 ##  $ IndPeriod_Run   : int [1:365] 5480 5481 5482 5483 5484 5485 5486 5487 5488 5489 ...
@@ -651,9 +676,9 @@ div.tocify {
 <li><code>Obs</code>: the observed variable time serie (e.g. the discharge expressed in <em>mm/time step</em>)</li>
 </ul>
 <p>Missing values (<code>NA</code>) are <strong>allowed</strong> for observed discharge.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">InputsCrit &lt;-<span class="st"> </span><span class="kw">CreateInputsCrit</span>(<span class="dt">FUN_CRIT =</span> ErrorCrit_NSE, <span class="dt">InputsModel =</span> InputsModel, 
-                               <span class="dt">RunOptions =</span> RunOptions, <span class="dt">VarObs =</span> <span class="st">&quot;Q&quot;</span>, <span class="dt">Obs =</span> BasinObs<span class="op">$</span>Qmm[Ind_Run])
-<span class="kw">str</span>(InputsCrit)</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">InputsCrit &lt;-<span class="st"> </span><span class="kw">CreateInputsCrit</span>(<span class="dt">FUN_CRIT =</span> ErrorCrit_NSE, <span class="dt">InputsModel =</span> InputsModel, </a>
+<a class="sourceLine" id="cb12-2" title="2">                               <span class="dt">RunOptions =</span> RunOptions, <span class="dt">VarObs =</span> <span class="st">&quot;Q&quot;</span>, <span class="dt">Obs =</span> BasinObs<span class="op">$</span>Qmm[Ind_Run])</a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="kw">str</span>(InputsCrit)</a></code></pre></div>
 <pre><code>## List of 8
 ##  $ FUN_CRIT:function (InputsCrit, OutputsModel, warnings = TRUE, verbose = TRUE)  
 ##  $ Obs     : num [1:365] 4.01 4.27 4.97 4.39 3.82 ...
@@ -672,8 +697,8 @@ div.tocify {
 <li><code>FUN_MOD</code>: the name of the model function</li>
 <li><code>FUN_CALIB</code>: the name of the calibration algorithm</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CalibOptions &lt;-<span class="st"> </span><span class="kw">CreateCalibOptions</span>(<span class="dt">FUN_MOD =</span> RunModel_GR4J, <span class="dt">FUN_CALIB =</span> Calibration_Michel)
-<span class="kw">str</span>(CalibOptions)</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">CalibOptions &lt;-<span class="st"> </span><span class="kw">CreateCalibOptions</span>(<span class="dt">FUN_MOD =</span> RunModel_GR4J, <span class="dt">FUN_CALIB =</span> Calibration_Michel)</a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="kw">str</span>(CalibOptions)</a></code></pre></div>
 <pre><code>## List of 3
 ##  $ FixedParam       : logi [1:4] NA NA NA NA
 ##  $ SearchRanges     : num [1:2, 1:4] 4.59e-05 2.18e+04 -1.09e+04 1.09e+04 4.59e-05 ...
@@ -701,9 +726,9 @@ div.tocify {
 <li>a screening of the parameters space is performed using either a rough predefined grid or a user-defined list of parameter sets</li>
 <li>a simple steepest descent local search algorithm is performed from the best set of parameters found at the first step</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OutputsCalib &lt;-<span class="st"> </span><span class="kw">Calibration_Michel</span>(<span class="dt">InputsModel =</span> InputsModel, <span class="dt">RunOptions =</span> RunOptions,
-                                   <span class="dt">InputsCrit =</span> InputsCrit, <span class="dt">CalibOptions =</span> CalibOptions,
-                                   <span class="dt">FUN_MOD =</span> RunModel_GR4J)</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">OutputsCalib &lt;-<span class="st"> </span><span class="kw">Calibration_Michel</span>(<span class="dt">InputsModel =</span> InputsModel, <span class="dt">RunOptions =</span> RunOptions,</a>
+<a class="sourceLine" id="cb16-2" title="2">                                   <span class="dt">InputsCrit =</span> InputsCrit, <span class="dt">CalibOptions =</span> CalibOptions,</a>
+<a class="sourceLine" id="cb16-3" title="3">                                   <span class="dt">FUN_MOD =</span> RunModel_GR4J)</a></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (81 runs)
 ##       Param =  169.017,   -0.020,   83.096,    2.384
@@ -712,8 +737,8 @@ div.tocify {
 ##   Calibration completed (23 iterations, 249 runs)
 ##       Param =  225.879,    1.779,  105.636,    2.218
 ##       Crit. NSE[Q]       = 0.7953</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Param &lt;-<span class="st"> </span>OutputsCalib<span class="op">$</span>ParamFinalR
-Param</code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">Param &lt;-<span class="st"> </span>OutputsCalib<span class="op">$</span>ParamFinalR</a>
+<a class="sourceLine" id="cb18-2" title="2">Param</a></code></pre></div>
 <pre><code>## [1] 225.879123   1.778599 105.636082   2.217718</code></pre>
 <p>The <code>Calibration_Michel()</code> function is the only one implemented in the <strong><font color="#009EE0">airGR</font></strong> package to calibrate the model, but the user can implement its own calibration function.</p>
 <p>The <code>Calibration_Michel()</code> function returns a vector with the parameters of the chosen model, which means that the number of values can differ depending on the model that is used. It is possible to use the <code>Calibration_Michel()</code> function with user-implemented hydrological models.</p>
@@ -728,8 +753,8 @@ Param</code></pre></div>
 <div id="simulation-run" class="section level2">
 <h2><span class="header-section-number">6.1</span> Simulation run</h2>
 <p>To run a model, the user has to use the <code>RunModel*()</code> functions (<code>InputsModel</code>, <code>RunOptions</code> and parameters). All the data needed have already been prepared in the previous steps defined in this guide.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OutputsModel &lt;-<span class="st"> </span><span class="kw">RunModel_GR4J</span>(<span class="dt">InputsModel =</span> InputsModel, <span class="dt">RunOptions =</span> RunOptions, <span class="dt">Param =</span> Param)
-<span class="kw">str</span>(OutputsModel)</code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">OutputsModel &lt;-<span class="st"> </span><span class="kw">RunModel_GR4J</span>(<span class="dt">InputsModel =</span> InputsModel, <span class="dt">RunOptions =</span> RunOptions, <span class="dt">Param =</span> Param)</a>
+<a class="sourceLine" id="cb20-2" title="2"><span class="kw">str</span>(OutputsModel)</a></code></pre></div>
 <pre><code>## List of 20
 ##  $ DatesR  : POSIXlt[1:365], format: &quot;1999-01-01&quot; &quot;1999-01-02&quot; ...
 ##  $ PotEvap : num [1:365] 0.6 0.4 0.2 0.1 0.3 0.3 0.1 0 0.1 0.2 ...
@@ -775,16 +800,16 @@ Param</code></pre></div>
 <li>correlation plot between simulated and observed discharge (if observed discharge provided)</li>
 <li>cumulative frequency plot for simulated discharge (and for observed discharge if provided)</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(OutputsModel, <span class="dt">Qobs =</span> BasinObs<span class="op">$</span>Qmm[Ind_Run])</code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">plot</span>(OutputsModel, <span class="dt">Qobs =</span> BasinObs<span class="op">$</span>Qmm[Ind_Run])</a></code></pre></div>
 <p><img src="page_1_get_started_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>Moreover, if the CemaNeige model is used, the air temperature and the simulated snowpack water equivalent time series are plotted.</p>
 </div>
 <div id="efficiency-criterion" class="section level2">
 <h2><span class="header-section-number">6.3</span> Efficiency criterion</h2>
 <p>To evaluate the efficiency of the model, it is possible to use the same criterion as defined at the calibration step or to use another criterion.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OutputsCrit &lt;-<span class="st"> </span><span class="kw">ErrorCrit_NSE</span>(<span class="dt">InputsCrit =</span> InputsCrit, <span class="dt">OutputsModel =</span> OutputsModel)</code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">OutputsCrit &lt;-<span class="st"> </span><span class="kw">ErrorCrit_NSE</span>(<span class="dt">InputsCrit =</span> InputsCrit, <span class="dt">OutputsModel =</span> OutputsModel)</a></code></pre></div>
 <pre><code>## Crit. NSE[Q] = 0.7953</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(OutputsCrit)</code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">str</span>(OutputsCrit)</a></code></pre></div>
 <pre><code>## List of 5
 ##  $ CritValue      : num 0.795
 ##  $ CritName       : chr &quot;NSE[Q]&quot;
@@ -792,12 +817,12 @@ Param</code></pre></div>
 ##  $ Multiplier     : num -1
 ##  $ Ind_notcomputed: NULL
 ##  - attr(*, &quot;class&quot;)= chr [1:2] &quot;NSE&quot; &quot;ErrorCrit&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OutputsCrit &lt;-<span class="st"> </span><span class="kw">ErrorCrit_KGE</span>(<span class="dt">InputsCrit =</span> InputsCrit, <span class="dt">OutputsModel =</span> OutputsModel)</code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">OutputsCrit &lt;-<span class="st"> </span><span class="kw">ErrorCrit_KGE</span>(<span class="dt">InputsCrit =</span> InputsCrit, <span class="dt">OutputsModel =</span> OutputsModel)</a></code></pre></div>
 <pre><code>## Crit. KGE[Q] = 0.7506</code></pre>
 <pre><code>##  SubCrit. KGE[Q] cor(sim, obs, &quot;pearson&quot;) = 0.9023 
 ##  SubCrit. KGE[Q] sd(sim)/sd(obs)          = 0.7742 
 ##  SubCrit. KGE[Q] mean(sim)/mean(obs)      = 1.0406</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(OutputsCrit)</code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">str</span>(OutputsCrit)</a></code></pre></div>
 <pre><code>## List of 7
 ##  $ CritValue      : num 0.751
 ##  $ CritName       : chr &quot;KGE[Q]&quot;
