@@ -468,16 +468,51 @@ div.tocify {
 </div>
 
 
+<div id="release-notes-2019-05-02" class="section level3">
+<h3>0.2.6.29 Release Notes (2019-05-02)</h3>
+<div id="bug-fixes" class="section level4">
+<h4>Bug fixes</h4>
+<ul>
+<li><code>ShinyGR()</code> can export the csv table again. It was broken due to modifications to the version 1.2.13.16 of the airGR package</li>
+</ul>
+</div>
+<div id="user-visible-changes" class="section level4">
+<h4>User-visible changes</h4>
+<ul>
+<li>it is now possible to export the diagram plot of the model from the <code>ShinyGR()</code> interface</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="release-notes-2019-04-23" class="section level3">
+<h3>0.2.6.27 Release Notes (2019-04-23)</h3>
+<div id="bug-fixes-1" class="section level4">
+<h4>Bug fixes</h4>
+<ul>
+<li><p><code>ShinyGR()</code> may now run for any timezone</p></li>
+<li><p><code>ShinyGR()</code> takes into account the fact that on 1 time step <code>airGR::ErrorCrit_KGE</code> do not return CritName (temporary patch)</p></li>
+<li><p><code>ShinyGR()</code> takes into account the fact that the previous simulation could have a missing value criterion</p></li>
+<li><p><code>ShinyGR()</code> takes into account the fact the prevuous Qsim is sometimes to long of one value (temporary patch)</p></li>
+</ul>
+</div>
+<div id="user-visible-changes-1" class="section level4">
+<h4>User-visible changes</h4>
+<ul>
+<li>The WarmUp element returned by <code>CalGR()</code> and <code>SimGR()</code> now presents a timezone defined as UTC</li>
+</ul>
+<hr />
+</div>
+</div>
 <div id="release-notes-2019-04-03" class="section level3">
 <h3>0.2.6.14 Release Notes (2019-04-03)</h3>
 <div id="cran-compatibility-updates" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
-<li><p>now depends on the latest version (1.2.13.16) of the airGR package. <code>CalGR()</code>, <code>SimGR()</code> and <code>ShinyGR()</code> have been updated.</p></li>
+<li><p>now depends on the latest version (1.2.13.16) of the airGR package: <code>CalGR()</code>, <code>SimGR()</code> and <code>ShinyGR()</code> have been updated</p></li>
 <li><p>the htmlwidget package is no longer imported</p></li>
 </ul>
 </div>
-<div id="user-visible-changes" class="section level4">
+<div id="user-visible-changes-2" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><p>the CemaNeige model is now allowed when the model diagram is drawn in <code>ShinyGR()</code></p></li>
@@ -495,7 +530,7 @@ div.tocify {
 <li>now depends on the latest version (1.1.1.6) of the dygraphs package from CRAN (embeded dygraphs functions have been removed)</li>
 </ul>
 </div>
-<div id="user-visible-changes-1" class="section level4">
+<div id="user-visible-changes-3" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><p>the article reference is updated</p></li>
@@ -506,13 +541,13 @@ div.tocify {
 </div>
 <div id="release-notes-2018-03-21" class="section level3">
 <h3>0.2.2.2 Release Notes (2018-03-21)</h3>
-<div id="bug-fixes" class="section level4">
+<div id="bug-fixes-2" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed in <code>ShinyGR()</code>, the criteria values are now right on Unix system</li>
 </ul>
 </div>
-<div id="user-visible-changes-2" class="section level4">
+<div id="user-visible-changes-4" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>vignette added</li>
@@ -532,7 +567,7 @@ div.tocify {
 </div>
 <div id="release-notes-2018-02-01" class="section level3">
 <h3>0.1.11.26 Release Notes (2018-02-01)</h3>
-<div id="bug-fixes-1" class="section level4">
+<div id="bug-fixes-3" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><p>bug fixed in <code>ShinyGR()</code> when C1 (or C2) is modified after calibration; the calibration button is now reset</p></li>
@@ -545,7 +580,7 @@ div.tocify {
 <li><code>ObsBV</code> argument has been renamed <code>ObsDF</code> in <code>PrepGR()</code> and <code>ShinyGR()</code> functions</li>
 </ul>
 </div>
-<div id="user-visible-changes-3" class="section level4">
+<div id="user-visible-changes-5" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><p>update and homogenization of the unit of time abbreviation in <code>.TypeModelGR()</code> and <code>ShinyGR()</code></p></li>
@@ -566,7 +601,7 @@ div.tocify {
 </div>
 <div id="release-notes-2018-01-30-1" class="section level3">
 <h3>0.1.9.29 Release Notes (2018-01-30)</h3>
-<div id="bug-fixes-2" class="section level4">
+<div id="bug-fixes-4" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><p>missing exchange added on exp. store when plotting GR6J model diagram in <code>ShinyGR()</code></p></li>
@@ -577,7 +612,7 @@ div.tocify {
 <li><p>bug fixed to disable calibration when there is no Qobs in <code>ShinyGR()</code></p></li>
 </ul>
 </div>
-<div id="user-visible-changes-4" class="section level4">
+<div id="user-visible-changes-6" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><p>it is now possible to draw the model diagram in <code>ShinyGR()</code> using the GR6J model</p></li>
@@ -591,7 +626,7 @@ div.tocify {
 </div>
 <div id="release-notes-2017-11-29" class="section level3">
 <h3>0.1.8.14 Release Notes (2017-11-29)</h3>
-<div id="bug-fixes-3" class="section level4">
+<div id="bug-fixes-5" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><p><code>ObsGR()</code> function now returns an error if the time zone is not defined as <code>“UTC”</code></p></li>
@@ -600,7 +635,7 @@ div.tocify {
 <li><p>Psol et Pliq bars are reversed in <code>dyplot.default()</code></p></li>
 </ul>
 </div>
-<div id="user-visible-changes-5" class="section level4">
+<div id="user-visible-changes-7" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>new reactive to prepare data for plotting in the <code>ShinyGR()</code> interface</li>
@@ -610,12 +645,12 @@ div.tocify {
 </div>
 <div id="release-notes-2017-10-05" class="section level3">
 <h3>0.1.7.6 Release Notes (2017-10-05)</h3>
-<div id="user-visible-changes-6" class="section level4">
+<div id="user-visible-changes-8" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><p><code>SimGR()</code> now runs only once to compute all <code>ErrorCrit</code></p></li>
 <li><p>it is now possible to show the table of the last simulation criteria in the <code>ShinyGR()</code> interface</p></li>
-<li><p>it is now possible to export state variable plot from <code>ShinyGR()</code> interface</p></li>
+<li><p>it is now possible to export state variable plot from the <code>ShinyGR()</code> interface</p></li>
 </ul>
 <hr />
 </div>
@@ -628,14 +663,14 @@ div.tocify {
 <li><code>dyplot()</code> now allows to draw an additional time series of flow</li>
 </ul>
 </div>
-<div id="bug-fixes-4" class="section level4">
+<div id="bug-fixes-6" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><p>bug fixed when zooming after changing snow model on plot to see the last simulation in <code>ShinyGR()</code></p></li>
 <li><p><code>dyplot()</code> now plots Pliq and Psol when CemaNeige is used (<code>dyStackedBarGroup()</code> instead of the plotter argument)</p></li>
 </ul>
 </div>
-<div id="user-visible-changes-7" class="section level4">
+<div id="user-visible-changes-9" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><p>disable and enable buttons in <code>ShinyGR()</code> interface (using the shinyjs package)</p></li>
@@ -653,7 +688,7 @@ div.tocify {
 <li><p>in <code>ShinyGR()</code>, <code>TypeModel</code> inputIds renamed into <code>HydroModel</code></p></li>
 </ul>
 </div>
-<div id="bug-fixes-5" class="section level4">
+<div id="bug-fixes-7" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>period slider is linked to the dygraphs selected period</li>
@@ -665,7 +700,7 @@ div.tocify {
 <li>deprecated <code>Param</code> arguments in <code>ShinyGR()</code></li>
 </ul>
 </div>
-<div id="user-visible-changes-8" class="section level4">
+<div id="user-visible-changes-10" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>the size of the “Model performance” plot is now adapted if CemaNeige is used or not</li>
@@ -687,7 +722,7 @@ div.tocify {
 <li><code>ShinyGR()</code> now use dygraph devices (except for model perf.)</li>
 </ul>
 </div>
-<div id="user-visible-changes-9" class="section level4">
+<div id="user-visible-changes-11" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><code>dyplot.default()</code> now draws precipitation as a true bar plot and not a step plot</li>
@@ -704,7 +739,7 @@ div.tocify {
 <li><p>it is now possible to choose the objective function to calibrate the model</p></li>
 </ul>
 </div>
-<div id="bug-fixes-6" class="section level4">
+<div id="bug-fixes-8" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>NA values can be drawn by <code>dyplot*()</code> functions</li>
@@ -726,13 +761,13 @@ div.tocify {
 <li>the <code>shiny.SimGR()</code> function has been renamed into <code>ShinyGR()</code></li>
 </ul>
 </div>
-<div id="bug-fixes-7" class="section level4">
+<div id="bug-fixes-9" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed in <code>ShinyGR()</code> to plot state variables with GRJ</li>
 </ul>
 </div>
-<div id="user-visible-changes-10" class="section level4">
+<div id="user-visible-changes-12" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>the <code>shiny.SimGR()</code> function has been renamed into <code>ShinyGR()</code></li>
@@ -742,7 +777,7 @@ div.tocify {
 </div>
 <div id="release-notes-2017-03-21" class="section level3">
 <h3>0.1.1.20 Release Notes (2017-03-21)</h3>
-<div id="user-visible-changes-11" class="section level4">
+<div id="user-visible-changes-13" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><p>in <code>shiny.SimGR()</code> if the model diagram is plotted, the animation can be run only from the Event slider and no more from the “Period” slider</p></li>
@@ -772,7 +807,7 @@ div.tocify {
 <li><code>TypeModelGR()</code> is now a private function</li>
 </ul>
 </div>
-<div id="bug-fixes-8" class="section level4">
+<div id="bug-fixes-10" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><p>bug fixed, it is now possible to run <code>CalGR()</code> with <code>verbose = FALSE</code></p></li>
