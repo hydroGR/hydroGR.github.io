@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -70,7 +71,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -231,48 +231,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -473,6 +434,30 @@ div.tocify {
 </div>
 
 
+<div id="release-notes-2019-09-20" class="section level3">
+<h3>1.3.2.42 Release Notes (2019-09-20)</h3>
+<div id="version-control-and-issue-tracking" class="section level4">
+<h4>Version control and issue tracking</h4>
+<ul>
+<li>Users can now track changes (<code><a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr" class="uri">https://gitlab.irstea.fr/HYCAR-Hydro/airgr</a></code>) and issues (<code><a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/issues" class="uri">https://gitlab.irstea.fr/HYCAR-Hydro/airgr/issues</a></code>).</li>
+</ul>
+</div>
+<div id="bug-fixes" class="section level4">
+<h4>Bug fixes</h4>
+<ul>
+<li>Fixed bug in <code>RunModel_CemaNeige()</code>. The function now runs correctly when <code>IndPeriod_WarmUp = 0L</code> in <code>CreateRunOptions()</code> in order to completely disable the warm-up period (e.g. to perform a forecast form a given initial state).</li>
+<li>Fixed bug in <code>CreateIniStates()</code>. The function now returns the right number of end states when CemaNeige is used whithout hysteresis.</li>
+<li>Fixed bug in the <code>RunModel_CemaNeige*()</code> functions. G and Gthr end states are no more inverted in the output values.</li>
+</ul>
+</div>
+<div id="minor-user-visible-changes" class="section level4">
+<h4>Minor user-visible changes</h4>
+<ul>
+<li>Spurious flows set to <code>NA</code> into the <code>BasinObs</code> time series of the <code>L0123001</code> dataset.</li>
+</ul>
+<hr />
+</div>
+</div>
 <div id="release-notes-2019-06-20" class="section level3">
 <h3>1.3.2.23 Release Notes (2019-06-20)</h3>
 <div id="new-features" class="section level4">
@@ -490,7 +475,7 @@ div.tocify {
 <li><p><code>plot.OutputsModel()</code> now presents a <code>LayoutMat</code> argument (and additionnal related argument: <code>LayoutWidths</code>, <code>LayoutHeights</code>) to specify complex plot arrangements.</p></li>
 </ul>
 </div>
-<div id="bug-fixes" class="section level4">
+<div id="bug-fixes-1" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>plot.OutputsModel()</code>. The function now runs correctly when the <code>which</code> argument contains the <code>“CorQQ”</code> value without <code>“CumFreq”</code>.</li>
@@ -503,7 +488,7 @@ div.tocify {
 <li><p><code>plot.OutputsModel()</code> now allows new values for the which argument: <code>“all”</code> corresponds to all graphs, <code>“synth”</code> corresponds to the main graphs (default value; corresponding to <code>“all”</code> in the previous versions of the package) (i.e. <code>c(“Precip”, “Temp”, “SnowPack”, “Flows”, “Regime”, “CumFreq”, “CorQQ”)</code>), <code>“ts”</code> corresponds to the time series graphs (i.e. <code>c(“Precip”, “PotEvap”, “Temp”, “SnowPack”, “Flows”)</code>) and “perf” corresponds to the performance graphs (i.e. <code>c(“Error”, “Regime”, “CumFreq”, “CorQQ”)</code>).</p></li>
 </ul>
 </div>
-<div id="minor-user-visible-changes" class="section level4">
+<div id="minor-user-visible-changes-1" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><p><code>.ErrorCrit()</code> private function added to check inputs into <code>ErrorCrit_*()</code> functions. The <code>ErrorCrit_*()</code> functions were simplified accordingly.</p></li>
@@ -553,12 +538,12 @@ div.tocify {
 <li><p>It is now possible to use a character vector for all <code>FUN_*</code> arguments (in addition to function objects) in the following functions: <code>Calibration()</code>, <code>Calibration_Michel()</code>, <code>CreateCalibOptions()</code>, <code>CreateIniStates()</code>, <code>CreateIniStates()</code>, <code>CreateInputsCrit()</code>, <code>CreateInputsModel()</code>, <code>CreateRunOptions()</code>, <code>ErrorCrit()</code>, <code>RunModel()</code> and <code>TransfoParam()</code>.</p></li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-1" class="section level4">
+<div id="minor-user-visible-changes-2" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><p><code>ErrorCrit_*()</code> functions now return objects of class <code>ErrorCrit</code> and <code>NSE</code>, <code>KGE</code>, <code>KGE2</code> or <code>RMSE</code>.</p></li>
 <li><p><code>.FortranOutputs()</code> private function added to manage Fortran outputs.</p></li>
-<li><p>Outputs of frun_GR2M Fortran subroutine were reordered.</p></li>
+<li><p>Outputs of <code>frun_GR2M</code> Fortran subroutine were reordered.</p></li>
 <li><p><code>DataAltiExtrapolation_Valery()</code> now returns named elements of lists relative to elevation layer.</p></li>
 <li><p><code>Calibration()</code> function now returns an error message if <code>FUN_CALIB</code> is not a function.</p></li>
 <li><p>Inputs of <code>PEdaily_Oudin()</code> are now checked.</p></li>
@@ -578,13 +563,13 @@ div.tocify {
 </div>
 <div id="release-notes-2018-10-10" class="section level3">
 <h3>1.0.15.2 Release Notes (2018-10-10)</h3>
-<div id="bug-fixes-1" class="section level4">
+<div id="bug-fixes-2" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>CreateRunOptions()</code>. The function now accounts correctly for leap years when no warm-up period is defined.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-2" class="section level4">
+<div id="minor-user-visible-changes-3" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><code>CreateRunOptions()</code> was cleant, with no effect on its outputs.</li>
@@ -623,7 +608,7 @@ div.tocify {
 <li><p><code>ErrorCrit_*()</code> functions now return a warning message in the following case: there are zeroes values in <code>Qobs</code> or <code>Qsim</code>, <code>epsilon = NULL</code> and <code>transfo = log</code> or <code>inv</code>.</p></li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-3" class="section level4">
+<div id="minor-user-visible-changes-4" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><p>Several functions of the package were cleant or slightly modified, with no effect on their outputs.</p></li>
@@ -643,7 +628,7 @@ div.tocify {
 </div>
 <div id="release-notes-2018-06-29" class="section level3">
 <h3>1.0.10.11 Release Notes (2018-06-29)</h3>
-<div id="bug-fixes-2" class="section level4">
+<div id="bug-fixes-3" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>RunModel_GR2M()</code>. The function now returns the total precipitation (P) instead of the net rainfall (P1).</li>
@@ -657,7 +642,7 @@ div.tocify {
 <li><p>The article reference is corrected.</p></li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-4" class="section level4">
+<div id="minor-user-visible-changes-5" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>The documentation and help of several functions were improved.</li>
@@ -676,7 +661,7 @@ div.tocify {
 <li><p>Three vignettes have been added. They are relative to different calibration methods (including the generalist parameters sets of the GR4J model).</p></li>
 </ul>
 </div>
-<div id="bug-fixes-3" class="section level4">
+<div id="bug-fixes-4" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><p>Fixed bug in <code>RunModel_GR4H()</code>: in <code>frun_GR4H</code> Fortran subroutine, <code>St(2)</code> is now set to 0 (instead of <code>St(1)</code>) when <code>St(2) &lt; 0</code>.</p></li>
@@ -699,7 +684,7 @@ div.tocify {
 <li><p><code>RunModel_GR5J</code> now returns <code>StateEnd</code> in the same order as the other models.</p></li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-5" class="section level4">
+<div id="minor-user-visible-changes-6" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><p><code>plot.OutputsModel()</code> now returns a warning message when the length of Qobs is different from the length of Qsim.</p></li>
@@ -725,7 +710,7 @@ div.tocify {
 <li><code>DataAltiExtrapolation_Valery()</code> and <code>CreateInputsModel()</code> now present a <code>PrecipScale</code> argument which allows rescaling precipitation when it is interpolated on the elevation layers when CemaNeige is used.</li>
 </ul>
 </div>
-<div id="bug-fixes-4" class="section level4">
+<div id="bug-fixes-5" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>DataAltiExtrapolation_Valery()</code>. The elevation gradients for air temperature returned by <code>CreateInputsModel()</code> are improved.</li>
@@ -770,7 +755,7 @@ div.tocify {
 <li><code>ErrorCrit_*()</code> functions gain a <code>warnings</code> argument to replace the verbose action and the <code>verbose</code> argument now prints the criterion value(s).</li>
 </ul>
 </div>
-<div id="bug-fixes-5" class="section level4">
+<div id="bug-fixes-6" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>CreateCalibOptions()</code> when <code>StartParamList</code> or <code>StartParamDistrib</code> arguments are used.</li>
@@ -795,7 +780,7 @@ div.tocify {
 <li><p>A tutorial is available online on the following link: from <a href="http://webgr.irstea.fr/airGR" class="uri">http://webgr.irstea.fr/airGR</a>. It can also be displayed with the <code>vignette(“airGR”)</code> command.</p></li>
 </ul>
 </div>
-<div id="bug-fixes-6" class="section level4">
+<div id="bug-fixes-7" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>The value <code>sort</code> for the <code>transfo</code> argument of <code>CreateInputsCrit()</code> was not taken into account. It is now fixed.</li>
@@ -814,7 +799,7 @@ div.tocify {
 <li>The <code>RunModel_GR6J()</code> and <code>RunModel_CemaNeigeGR6J()</code> models were modified back to versions previous to 1.0.1 to prevent from unwanted efficiency criteria deterioration related to the calibration with <code>Calibration_Michel()</code>. The actual model codes were not modified but the <code>TransfoParam_GR6J()</code> and <code>CreateCalibOptions()</code> functions were modified regarding the X5 parameter. It is strongly advised to use airGR 1.0.2 for the <code>RunModel_GR6J()</code> and <code>RunModel_CemaNeigeGR6J()</code> functions if you are using <code>Calibration_Michel()</code>, as they are much more efficient. In case you were using your own calibration algorithm, you will not notice any difference.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-6" class="section level4">
+<div id="minor-user-visible-changes-7" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><code>CreateInputsModel()</code> and <code>DataAltiExtrapolation_Valery()</code> functions now allow both <code>POSIXt</code> formats (<code>POSIXct</code> and <code>POSIXlt</code>).</li>
@@ -840,7 +825,7 @@ div.tocify {
 <li><p>The quantiles of the parameters have been recalculated with the new transformations (<code>CreateCalibOptions()</code> function). Since these quantiles constitute the starting point of the calibration algorithm, calibration results will be different.</p></li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-7" class="section level4">
+<div id="minor-user-visible-changes-8" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>The Fortran model core codes have been modified:
@@ -856,14 +841,14 @@ div.tocify {
 </div>
 <div id="release-notes-2015-08-21" class="section level3">
 <h3>0.8.1.2 Release Notes (2015-08-21)</h3>
-<div id="bug-fixes-7" class="section level4">
+<div id="bug-fixes-8" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><p>Fixed bug in <code>CreateInputsModel()</code> that was related to the handling of missing values.</p></li>
 <li><p>Fixed bug in <code>CreateRunOptions()</code> that prevented the correct use of the <code>IniResLevels</code> argument (to manually set the filling rate of the production and routing stores).</p></li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-8" class="section level4">
+<div id="minor-user-visible-changes-9" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Removal of an unnecessary warning when <code>IndPeriod_WarmUp = 0</code>.</li>
@@ -886,7 +871,7 @@ div.tocify {
 <li><p>New function <code>SeriesAggreg()</code> to easily aggreg timesteps.</p></li>
 </ul>
 </div>
-<div id="bug-fixes-8" class="section level4">
+<div id="bug-fixes-9" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>ErrorCrit_RMSE()</code> which led to incorrect calibration (the criterion was maximised instead of minimised).</li>
@@ -899,7 +884,7 @@ div.tocify {
 <li><p>Modification of CemaNeige Fortran code to add an update of Gratio after the SnowPack update (no impact on snow simulation).</p></li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-9" class="section level4">
+<div id="minor-user-visible-changes-10" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><p>Improvement of the <code>plot_OutputsModel()</code> function to allow a selection among available plots.</p></li>
@@ -918,7 +903,7 @@ div.tocify {
 <li>New argument in many functions (<code>quiet = TRUE</code> or <code>FALSE</code>) to choose if the warnings should be suppressed or not.</li>
 </ul>
 </div>
-<div id="bug-fixes-9" class="section level4">
+<div id="bug-fixes-10" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><p>Fixed bug in <code>CreateCalibOptions()</code> to handle models with only one parameter.</p></li>
@@ -941,7 +926,7 @@ div.tocify {
 <li><p>Improved documentation and examples.</p></li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-10" class="section level4">
+<div id="minor-user-visible-changes-11" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><p>Improvements allowing the arrival of new models.</p></li>
@@ -963,7 +948,7 @@ div.tocify {
 <li><p>The field Multiplier has been added in the ErrorCrit() outputs, to indicate whether the criterion is an error (to minimise) or and efficiency (to maximise). This allows to provide real efficiency values in the outputs e.g. NSE[Q] instead of (-1) × NSE[Q].</p></li>
 </ul>
 </div>
-<div id="bug-fixes-10" class="section level4">
+<div id="bug-fixes-11" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><p>RC11 bug correction: the automatic selection of the warm-up period was not working properly when no data was available from warm-up (i.e. when the user had set the run to start at the very first index).</p></li>
@@ -987,7 +972,7 @@ div.tocify {
 <li>The definition of the generic function is now made in a much simpler way (e.g. see <code>DefineFunctions_Model()</code> or <code>DefineFunctions_ErrorCrit()</code>).</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-11" class="section level4">
+<div id="minor-user-visible-changes-12" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><p>Code improvements to reduce the computation time.</p></li>
@@ -1016,7 +1001,7 @@ div.tocify {
 <li><p>Name of the calibration criterion provided in <code>OutputsAlgo()</code>.</p></li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-12" class="section level4">
+<div id="minor-user-visible-changes-13" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Missing values in Fortran are now -999.999 instead of -9.999.</li>
@@ -1032,7 +1017,7 @@ div.tocify {
 <li>New <code>EfficiencyCrit_NSE_sqrtQ()</code> function to compute NSE criterion on sqrt flows.</li>
 </ul>
 </div>
-<div id="bug-fixes-11" class="section level4">
+<div id="bug-fixes-12" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><p>Incorrect arguments in the call to <code>RunModelAndCrit</code> from <code>CalibrationAlgo_optim_stats</code> and <code>CalibrationAlgo_nlminb_stats</code>.</p></li>
@@ -1063,6 +1048,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
