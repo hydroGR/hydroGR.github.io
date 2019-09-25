@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -70,7 +71,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -231,48 +231,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -485,7 +446,7 @@ div.tocify {
 <div id="manuals" class="section level2">
 <h2>Manuals</h2>
 <ul>
-<li>Coron, L., Delaigue, O., Thirel, G., Perrin, C. and Michel, C. (2019). airGR: Suite of GR Hydrological Models for Precipitation-Runoff Modelling. R package version 1.3.2.23. URL: <a href="https://CRAN.R-project.org/package=airGR" class="uri">https://CRAN.R-project.org/package=airGR</a>.<br />
+<li>Coron, L., Delaigue, O., Thirel, G., Perrin, C. and Michel, C. (2019). airGR: Suite of GR Hydrological Models for Precipitation-Runoff Modelling. R package version 1.3.2.42. URL: <a href="https://CRAN.R-project.org/package=airGR" class="uri">https://CRAN.R-project.org/package=airGR</a>.<br />
 <a href="https://cran.r-project.org/web/packages/airGR/airGR.pdf">PDF version of the manual</a></li>
 </ul>
 </div>
@@ -555,28 +516,34 @@ Poster at the <a href="https://www.egu2016.eu/">European Geoscience Union Genera
 <div id="upcoming" class="section level3">
 <h3>Upcoming</h3>
 <ul>
-<li>Barker L.J., Hannaford J., Parry S., Smith K.A., Tanguy M. &amp; Prudhomme C. (2019). Historic hydrological droughts 1891&amp;ndash;2015: systematic characterisation for a diverse set of catchments across the UK. Hydrology and Earth System Sciences Discussions, 1–31. OI: <a href="https://doi.org/10.5194/hess-2019-202">10.5194/hess-2019-202</a></li>
-<li>Smith K.A., Barker L.J., Tanguy M., Parry S., Harrigan S., Legg T.P., et al. (2019). A Multi-Objective Ensemble Approach to Hydrological Modelling in the UK: An Application to Historic Drought Reconstruction. Hydrology and Earth System Sciences Discussions, 1–26. DOI: <a href="https://doi.org/10.5194/hess-2019-3">10.5194/hess-2019-3</a></li>
-<li>Visser A., Beevers L. &amp; Patidar S. (accepted) Replication of ecologically relevant hydrological indicators following a covariance approach to hydrological model parameterisation. Hydrology and Earth System Sciences Discussions, 1–24. DOI: <a href="https://doi.org/10.5194/hess-2018-536">10.5194/hess-2018-536</a></li>
+<li>Barker L.J., Hannaford J., Parry S., Smith K.A., Tanguy M. &amp; Prudhomme C. (2019). Historic hydrological droughts 1891&amp;ndash;2015: systematic characterisation for a diverse set of catchments across the UK. Hydrology and Earth System Sciences Discussions, 1–31. DOI: <a href="https://doi.org/10.5194/hess-2019-202">10.5194/hess-2019-202</a></li>
 </ul>
 </div>
 <div id="section-4" class="section level3">
 <h3>2019</h3>
 <ul>
+<li>Ayzel G., Varentsova N., Erina O., Sokolov D., Kurochkina L. &amp; Moreydo V. (2019). OpenForecast: The First Open-Source Operational Runoff Forecasting System in Russia. Water 11, 1546. DOI: <a href="https://doi.org/10.3390/w11081546">10.3390/w11081546</a></li>
 <li>Coxon G., Freer J., Lane R., Dunne T., Knoben W.J.M., Howden N.J.K., et al. (2019). DECIPHeR v1: Dynamic fluxEs and ConnectIvity for Predictions of HydRology. Geoscientific Model Development 12, 2285–2306. DOI: <a href="https://doi.org/10.5194/gmd-12-2285-2019">10.5194/gmd-12-2285-201</a></li>
 <li>Ficchì A., Perrin C. &amp; Andréassian V. (2019). Hydrological modelling at multiple sub-daily time steps: model improvement via flux-matching. Journal of Hydrology. DOI: <a href="https://doi.org/10.1016/j.jhydrol.2019.05.084">10.1016/j.jhydrol.2019.05.084</a></li>
+<li>García-Romero, L., Paredes-Arquiola, J., Solera, A., Belda, E., Andreu, J. &amp; Sánchez-Quispe, S.T. (2019). Optimization of the Multi-Start Strategy of a Direct-Search Algorithm for the Calibration of Rainfall–Runoff Models for Water-Resource Assessment. Water 11, 1876. DOI: <a href="https://doi.org/10.3390/w11091876">10.3390/w11091876</a></li>
 <li>Givati A., Thirel G., Rosenfeld D. &amp; Paz D. (2019). Climate change impacts on streamflow at the upper Jordan River based on an ensemble of regional climate models. Journal of Hydrology: Regional Studies 21, 92–109. DOI: <a href="https://doi.org/10.1016/j.ejrh.2018.12.004">10.1016/j.ejrh.2018.12.004</a></li>
 <li>Knoben W.J.M., Freer J.E., Fowler K.J.A., Peel M.C. &amp; Woods R.A. (2019). Modular Assessment of Rainfall–Runoff Models Toolbox (MARRMoT) v1.2: an open-source, extendable framework providing implementations of 46 conceptual hydrologic models as continuous state-space formulations. Geoscientific Model Development 12, 2463–2480. <a href="https://doi.org/10.5194/gmd-12-2463-2019">10.5194/gmd-12-2463-2019</a></li>
 <li>Lima F.N., Fernandes W. &amp; Nascimento N. (2019). Joint calibration of a hydrological model and rating curve parameters for simulation of flash flood in urban areas. RBRH 24. <a href="https://doi.org/10.1590/2318-0331.241920180066">10.1590/2318-0331.241920180066</a></li>
-<li>Ma, Xiong, Xia, Xiong, Yang &amp; Xu (2019). A Censored Shifted Mixture Distribution Mapping Method to Correct the Bias of Daily IMERG Satellite Precipitation Estimates. Remote Sensing 11, 1345. DOI: <a href="https://doi.org/10.3390/rs11111345">10.3390/rs11111345</a></li>
+<li>Ma, Q., Xiong, L., Xia, J., Xiong, B., Yang, H. &amp; Xu, C.Y (2019). A Censored Shifted Mixture Distribution Mapping Method to Correct the Bias of Daily IMERG Satellite Precipitation Estimates. Remote Sensing 11, 1345. DOI: <a href="https://doi.org/10.3390/rs11111345">10.3390/rs11111345</a></li>
+<li>Navas R., Alonso J., Gorgoglione A. &amp; Vervoort R.W. (2019). Identifying Climate and Human Impact Trends in Streamflow: A Case Study in Uruguay. Water 11, 1433. DOI: <a href="https://doi.org/10.3390/w11071433">10.3390/w11071433</a></li>
 <li>Pérez-Sánchez J., Senent-Aparicio J., Segura-Méndez F., Pulido-Velazquez D. &amp; Srinivasan R. (2019). Evaluating Hydrological Models for Deriving Water Resources in Peninsular Spain. Sustainability 11, 2872. DOI: <a href="https://doi.org/10.3390/su11102872">10.3390/su11102872</a></li>
 <li>Riboust P., Thirel G., Le Moine N. &amp; Ribstein P. (2019). Revisiting a simple degree-day model for integrating satellite data: implementation of SWE-SCA hystereses. Journal of Hydrology and Hydrodynamics 67(1), 70–81, 2019. DOI: <a href="https://doi.org/10.2478/johh-2018-0004">10.2478/johh-2018-0004</a></li>
+<li>Saadi M., Oudin L. &amp; Ribstein P. (2019). Random Forest Ability in Regionalizing Hourly Hydrological Model Parameters. Water 11, 1540. DOI: <a href="https://doi.org/10.3390/w11081540">10.3390/w11081540</a></li>
 <li>Sapač, C., Medved, A., Rusjan, S. &amp; Bezak, N. (2019). Investigation of Low- and High-Flow Characteristics of Karst Catchments under Climate Change. Water 11, 925. <a href="https://doi.org/10.3390/w11050925">10.3390/w11050925</a></li>
+<li>Sauquet E., Richard B., Devers A. &amp; Prudhomme C. (2019). Water restrictions under climate change: a Rhône–Mediterranean perspective combining bottom-up and top-down approaches. Hydrology and Earth System Sciences 23, 3683–3710. DOI: <a href="https://doi.org/10.5194/hess-23-3683-2019">10.5194/hess-23-3683-2019</a></li>
 <li>Sezen C., Bezak N., Bai Y. &amp; Šraj M. (2019). Hydrological modelling of karst catchment using lumped conceptual and data mining models. Journal of Hydrology 576, 98–110. DOI: <a href="https://doi.org/10.1016/j.jhydrol.2019.06.036">10.1016/j.jhydrol.2019.06.036</a></li>
 <li>Slater L.J., Thirel G., Harrigan S., Delaigue O., Hurley A., Khouakhi A., et al. (2019). Using R in hydrology: a review of recent developments and future directions. Hydrology and Earth System Sciences 23, 2939–2963. DOI: <a href="https://doi.org/10.5194/hess-23-2939-2019">10.5194/hess-23-2939-2019</a></li>
+<li>Smith K.A., Barker L.J., Tanguy M., Parry S., Harrigan S., Legg T.P., et al. (2019). A multi-objective ensemble approach to hydrological modelling in the UK: an application to historic drought reconstruction. Hydrology and Earth System Sciences 23, 3247–3268. DOI: <a href="https://doi.org/10.5194/hess-23-3247-2019">10.5194/hess-23-3247-2019</a></li>
 <li>Tilloy A., Malamud B.D., Winter H. &amp; Joly-Laugel A. (2019). A review of quantification methodologies for multi-hazard interrelationships. Earth-Science Reviews 196, 102881. DOI: <a href="https://doi.org/10.1016/j.earscirev.2019.102881">10.1016/j.earscirev.2019.102881</a></li>
+<li>Tyralis H., Papacharalampous G., Burnetas A. &amp; Langousis A. (2019). Hydrological post-processing using stacked generalization of quantile regression algorithms: Large-scale application over CONUS. Journal of Hydrology 577, 123957. DOI: <a href="https://doi.org/10.1016/j.jhydrol.2019.123957">10.1016/j.jhydrol.2019.123957</a></li>
 <li>Visser A.G., Beevers L. &amp; Patidar S. (2019). A coupled modelling framework to assess the hydroecological impact of climate change. Environmental Modelling &amp; Software 114, 12–28. DOI: <a href="https://doi.org/10.1016/j.envsoft.2019.01.004">10.1016/j.envsoft.2019.01.004</a></li>
 <li>Visser A., Beevers L. &amp; Patidar S. (2019). The Impact of Climate Change on Hydroecological Response in Chalk Streams. Water 11, 596. DOI: <a href="https://doi.org/10.3390/w11030596">10.3390/w11030596</a></li>
+<li>Visser-Quinn A., Beevers L. &amp; Patidar S. (2019). Replication of ecologically relevant hydrological indicators following a modified covariance approach to hydrological model parameterization. Hydrology and Earth System Sciences 23, 3279–3303. DOI: <a href="https://doi.org/10.5194/hess-23-3279-2019">10.5194/hess-23-3279-2019</a></li>
 </ul>
 </div>
 <div id="section-5" class="section level3">
@@ -591,7 +558,6 @@ Poster at the <a href="https://www.egu2016.eu/">European Geoscience Union Genera
 <li>Pedruco P., Szemis J.M., Brown R., Lett R., Ladson A.R., Kiem A.S., et al. (2018). Assessing climate change impacts on rural flooding in Victoria. In: Water and Communities. pp. 645–648. Melbourne.</li>
 <li>Santos L., Thirel G. &amp; Perrin C. (2018). Continuous state-space representation of a bucket-type rainfall-runoff model: a case study with the GR4 model using state-space GR4 (version 1.0). Geoscientific Model Development 11, 1591–1605. DOI: <a href="https://doi.org/10.5194/gmd-11-1591-2018">10.5194/gmd-11-1591-2018</a></li>
 <li>Santos, L., Thirel, G. &amp; Perrin, C. (2018). Technical note: Pitfalls in using log-transformed flows within the KGE criterion, Hydrology and Earth System Sciences Discussions 22, 4583-4591. DOI: <a href="https://doi.org/10.5194/hess-2018-298">10.5194/hess-2018-298</a></li>
-<li>Sauquet E., Richard B., Devers A. &amp; Prudhomme C. (2018). Water restrictions under climate change: a Rhone-Mediterranean perspective combining ‘bottom up’ and ‘top- down’ approaches. Hydrology and Earth System Sciences Discussions, 1–40. DOI: <a href="https://doi.org/10.5194/hess-2018-456">10.5194/hess-2018-456</a></li>
 <li>Sezen C., Bezak N. &amp; Šraj M. (2018). Hydrological modelling of the karst Ljubljanica River catchment using lumped conceptual model. Acta hydrotechnica, 87–100. DOI: <a href="https://doi.org/10.15292/acta.hydro.2018.06">10.15292/acta.hydro.2018.06</a></li>
 <li>Sezen C. &amp; Partal T. (2018). The utilization of GR4J model and wavelet based artificial neural network for rainfall-runoff modelling. Water Science and Technology: Water Supply. DOI: <a href="https://doi.org/10.2166/ws.2018.189">10.2166/ws.2018.189</a></li>
 <li>Soldanova V. &amp; Cisty, M. (2018). Extrapolation of carpatclim data for engineering purposes. In: SGEM2018. 18th International Multidisciplinary Scientific GeoConference Surveying Geology and Mining Ecology Management, 18(3.1), pp. 305-312. DOI: <a href="https://doi.org/10.5593/sgem2018/3.1/S12.040">10.5593/sgem2018/3.1/S12.040</a></li>
@@ -631,9 +597,11 @@ Poster at the <a href="https://www.egu2016.eu/">European Geoscience Union Genera
 <div id="msc-reports" class="section level2">
 <h2>MSc reports</h2>
 <ul>
+<li>Boutouba R., Fougere M., Lamouri A., Leguemani A.M. &amp; Roux Q. (2019). Peut-on améliorer les performances de modèles pluie-débit en utilisant les données satellites MODIS ? Application sur le bassin versant de la Roya. Polytech Nice-Sophia.</li>
 <li>Cesarini C. (2019). Analysis of the importance of the snow module and of the simulation of extreme streamflows in the presence of a dam using the “GR” hydrological models. Università di Bologna, Irstea, Antony. <a href="https://webgr.irstea.fr/wp-content/uploads/2019/03/msreport_CesariniChiara_EN.pdf">PDF</a></li>
-<li>Huang P. (2019). Impact of coupling an actual evapotranspiration model with a lumped hydrological model to improve hydrological simulations. PolyTech’Nice Sophia, Irstea, Antony. <a href="https://webgr.irstea.fr/wp-content/uploads/2019/01/HUANG_Rapport_Final.pdf">PDF</a></li>
-<li>Garnier, S. (2018). Évaluation de la qualité des prévisions saisonnières de pluies, de températures et débits en France. Université Montpellier, Irstea, Antony, France, 59 pp. <a href="https://webgr.irstea.fr/wp-content/uploads/2018/09/Rapport_M2_Sacha_VF_IRSTEA.pdf">PDF</a></li>
+<li>Sleziak P. (2019). Vývoj webovej aplikácie pre potreby hydrologického modelovania. Technická univerzita Ostrava. <a href="https://dspace.vsb.cz/bitstream/handle/10084/137295/SLE0066_HGF_N3654_3608T002_2019.pdf?sequence=1">PDF</a></li>
+<li>Garnier S. (2018). Évaluation de la qualité des prévisions saisonnières de pluies, de températures et débits en France. Université Montpellier, Irstea, Antony, France. <a href="https://webgr.irstea.fr/wp-content/uploads/2018/09/Rapport_M2_Sacha_VF_IRSTEA.pdf">PDF</a></li>
+<li>Huang P. (2018). Impact of coupling an actual evapotranspiration model with a lumped hydrological model to improve hydrological simulations. PolyTech’Nice Sophia, Irstea, Antony. <a href="https://webgr.irstea.fr/wp-content/uploads/2019/01/HUANG_Rapport_Final.pdf">PDF</a></li>
 <li>Bildstein, A. (2017). Tests exploratoires pour la mise en place de prévisions opérationnelles des crues sur l’île de la Réunion. ENTPE Lyon, Irstea, Antony. <a href="https://webgr.irstea.fr/wp-content/uploads/2017/12/Rapport_TFE_BILDSTEIN_VFinale_V3.pdf">PDF</a></li>
 <li>Jeantet A. (2017). Validation de l’utilisation des pluies satellitaires pour la modélisation hydrologique en Guyane française. Université Pierre et Marie Curie, Paris 6. <a href="https://webgr.irstea.fr/wp-content/uploads/2017/11/2017-Jeantet-M2-versionfinale.pdf">PDF</a></li>
 <li>Koné M.L. (2017). Évaluation du bilan hydrologique à l’aide du modèle GR6J : cas d’un sous-bassin du Cavally en Côte d’Ivoire. Université Nangui-Abrogoua.</li>
@@ -675,6 +643,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
