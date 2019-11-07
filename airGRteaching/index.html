@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -102,7 +103,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -160,7 +161,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -321,48 +321,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -552,7 +513,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">airGRteaching: Teaching Hydrological Modelling with GR</h1>
-<h4 class="date">Update: 2019-07-16</h4>
+<h4 class="date">Update: 2019-11-07</h4>
 
 </div>
 
@@ -593,7 +554,6 @@ div.tocify {
 <ul>
 <li>airGR</li>
 <li>dygraphs</li>
-<li>htmlwidgets</li>
 <li>markdown</li>
 <li>plotrix</li>
 <li>shiny</li>
@@ -602,13 +562,29 @@ div.tocify {
 </ul>
 <p>You cannot run <strong><font color="#009EE0">airGRteaching</font></strong> without <strong><font color="#009EE0">airGR</font></strong>. You cannot perform dynamic graphics to visualize your inputs or your results time-series whithout the xts and the dygraphs packages, but you can produce static charts. All the other packages are needed to run the Shiny GUI.</p>
 <p>You can download the <strong><font color="#009EE0">airGRteaching</font></strong> source, Windows binaries or Mac OS X binaries on the <a href="https://CRAN.R-project.org/package=airGRteaching"><strong>CRAN</strong></a>.</p>
+<div style="background-color:#DD4814;color:white;padding:10px;">
+<b>
+<h3>
+WARNING
+</h3>
+</b>
+<p>
+Following the recent update of the <b>htmlwidgets</b> package, problems have been observed in the use of dynamic graphics and in the graphical interface of the <b>airGRteaching</b> package (in fact due to the use of the <b>dygraphs</b> package).
+</p>
+<p>
+After installing the <b>airGRteaching</b> packages, which will install the latest version of <b>htmlwidgets</b> (<b>version 1.5.1</b>), you must therefore install the previous version of this package (<b>version 1.3</b>) with the following command.
+</p>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">mirror &lt;-<span class="st"> &quot;https://cran.r-project.org/src/contrib/Archive/htmlwidgets&quot;</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">install.packages</span>(<span class="dt">pkgs =</span> <span class="kw">file.path</span>(mirror, <span class="st">&quot;htmlwidgets_1.3.tar.gz&quot;</span>),</a>
+<a class="sourceLine" id="cb2-3" title="3">                 <span class="dt">repos =</span> <span class="ot">NULL</span>, <span class="dt">type =</span> <span class="st">&quot;source&quot;</span>)</a></code></pre></div>
 </div>
 <div id="misc" class="section level1">
 <h1><span class="header-section-number">3</span> Misc</h1>
 <div id="how-to-cite-the-package" class="section level2">
 <h2><span class="header-section-number">3.1</span> How to cite the package</h2>
 <p>To cite the <strong><font color="#009EE0">airGRteaching</font></strong> package in your scientific document, please use the references returned by the <code>citation()</code> function:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">citation</span>(<span class="st">&quot;airGRteaching&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">citation</span>(<span class="st">&quot;airGRteaching&quot;</span>)</a></code></pre></div>
 <pre><code>
 To cite airGRteaching in publications use these two references:
 
@@ -625,7 +601,7 @@ To cite airGRteaching in publications use these two references:
 To see these entries in BibTeX format, use &#39;print(&lt;citation&gt;, bibtex=TRUE)&#39;, &#39;toBibtex(.)&#39;, or set
 &#39;options(citation.bibtex.max=999)&#39;.</code></pre>
 <p>To retrieve a “.bib” format for <strong>LaTeX</strong> documents, you can use the following command:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">toBibtex</span>(<span class="kw">citation</span>(<span class="st">&quot;airGRteaching&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">toBibtex</span>(<span class="kw">citation</span>(<span class="st">&quot;airGRteaching&quot;</span>))</a></code></pre></div>
 <pre><code>@InProceedings{,
   author = {O. Delaigue and G. Thirel and L. Coron and P. Brigode},
   title = {{airGR} and {airGRteaching}: Two Open-Source Tools for Rainfall-Runoff Modeling and Teaching Hydrology},
@@ -696,6 +672,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
