@@ -515,7 +515,7 @@ WARNING
 <br>
 Following the recent update of the <b>htmlwidgets</b> package, problems have been observed in the use of dynamic graphics and in the graphical interface of the <b>airGRteaching</b> package (in fact due to the use of the <b>dygraphs</b> package).
 <br>
-After installing the <b>airGRteaching</b> packages, which will install the latest version of <b>htmlwidgets</b> (<b>version 1.5.1</b>), you must therefore install the previous version of this package (<b>version 1.3</b>) with the following command.
+After installing the <b>airGRteaching</b> packages, which will install the latest version of htmlwidgets available on CRAN (<b>version 1.5.1</b>), you will must therefore install the latest version available on GitHub.
 <br>
 <a href ="file:///E:/Data/boulot/misc/logiciels/airGR/website/airGRteaching_gitlab/_site/index.html#_warning_">How to manage</a>
 </div>
@@ -532,7 +532,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 
 
 <h1 class="title toc-ignore">airGRteaching: Teaching Hydrological Modelling with GR</h1>
-<h4 class="date">Update: 2019-11-08</h4>
+<h4 class="date">Update: 2019-11-13</h4>
 
 </div>
 
@@ -591,12 +591,9 @@ WARNING
 Following the recent update of the <b>htmlwidgets</b> package, problems have been observed in the use of dynamic graphics and in the graphical interface of the <b>airGRteaching</b> package (in fact due to the use of the <b>dygraphs</b> package).
 </p>
 <p>
-After installing the <b>airGRteaching</b> packages, which will install the latest version of <b>htmlwidgets</b> (<b>version 1.5.1</b>), you must therefore install the previous version of this package (<b>version 1.3</b>) with the following command.
-</p>
+After installing the <b>airGRteaching</b> packages, which will install the latest version of htmlwidgets available on CRAN (<b>version 1.5.1</b>), you will must therefore install the latest version available on GitHub.
 </div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">mirror &lt;-<span class="st"> &quot;https://cran.r-project.org/src/contrib/Archive/htmlwidgets&quot;</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw">install.packages</span>(<span class="dt">pkgs =</span> <span class="kw">file.path</span>(mirror, <span class="st">&quot;htmlwidgets_1.3.tar.gz&quot;</span>),</a>
-<a class="sourceLine" id="cb2-3" title="3">                 <span class="dt">repos =</span> <span class="ot">NULL</span>, <span class="dt">type =</span> <span class="st">&quot;source&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&#39;ramnathv/htmlwidgets&#39;</span>)</a></code></pre></div>
 </div>
 <div id="misc" class="section level1">
 <h1><span class="header-section-number">3</span> Misc</h1>
@@ -614,8 +611,8 @@ To cite airGRteaching in publications use these two references:
   https://easychair.org/publications/paper/VQ52.
 
   Delaigue, O., Coron, L., Brigode, P. (2019). airGRteaching: Teaching Hydrological Modelling with
-  GR (Shiny Interface Included). R package version 0.2.6.30. URL:
-  https://CRAN.R-project.org/package=airGRteaching.
+  GR (Shiny Interface Included). R package version 0.2.6.29. URL:
+  https://CRAN.R-project.org/package=airGRteaching/.
 
 To see these entries in BibTeX format, use &#39;print(&lt;citation&gt;, bibtex=TRUE)&#39;, &#39;toBibtex(.)&#39;, or set
 &#39;options(citation.bibtex.max=999)&#39;.</code></pre>
@@ -642,8 +639,8 @@ To see these entries in BibTeX format, use &#39;print(&lt;citation&gt;, bibtex=T
   author = {O. Delaigue and L. Coron and P. Brigode},
   journal = {R News},
   year = {2019},
-  note = {R package version 0.2.6.30},
-  url = {https://CRAN.R-project.org/package=airGRteaching},
+  note = {R package version 0.2.6.29},
+  url = {https://CRAN.R-project.org/package=airGRteaching/},
 }</code></pre>
 </div>
 <div id="known-places-where-airgrteaching-is-used" class="section level2">
