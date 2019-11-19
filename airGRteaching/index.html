@@ -337,6 +337,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -532,7 +538,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 
 
 <h1 class="title toc-ignore">airGRteaching: Teaching Hydrological Modelling with GR</h1>
-<h4 class="date">Update: 2019-11-18</h4>
+<h4 class="date">Update: 2019-11-19</h4>
 
 </div>
 
@@ -593,7 +599,8 @@ Following the recent update of the <b>htmlwidgets</b> package, problems have bee
 <p>
 After installing the <b>airGRteaching</b> packages, which will install the latest version of htmlwidgets available on CRAN (<b>version 1.5.1</b>), you will must therefore install the latest version available on GitHub.
 </div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&#39;ramnathv/htmlwidgets&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2">remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&#39;ramnathv/htmlwidgets&#39;</span>)</a></code></pre></div>
 </div>
 <div id="misc" class="section level1">
 <h1><span class="header-section-number">3</span> Misc</h1>
