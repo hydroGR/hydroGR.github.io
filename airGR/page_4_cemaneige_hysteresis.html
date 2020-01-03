@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -309,6 +308,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -337,6 +337,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -440,9 +446,10 @@ div.tocify {
 				<li><a tabindex="-1" href="https://hydroGR.github.io/airGRteaching/" onclick="window.open(this.href); return false;">airGRteaching website</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<a href='http://www.irstea.fr/en/' onclick="window.open(this.href); return false;", title="irstea.fr"><img src='fig/logo_irstea.svg' style='width:45px;height:45px;'></a>
+				<a href='https://www.inrae.fr//en/' onclick="window.open(this.href); return false;", title="inrae.fr"><img src='fig/logo_inrae.svg' style='width:45px;height:45px;'></a>
 				<a href='https://webgr.irstea.fr/en/' onclick="window.open(this.href); return false;", title="webgr.irstea.fr"><img src='fig/logo_irstea_hydro_COUL_smooth.svg' style='width:45px;height:45px;'></a>
 				<a href='https://webgr.irstea.fr/en/software/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGR.svg' style='width:45px;height:45px;'></a>
+				<a href='https://gitlab.irstea.fr/HYCAR-Hydro/airgr/' onclick="window.open(this.href); return false;", title="GitLab"><img src='fig/logo_gitlab_square.svg' style='width:45px;height:45px;'></a>				
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div><!--/.container -->
@@ -542,30 +549,22 @@ div.tocify {
 <h2><span class="header-section-number">1.3</span> loading catchment data</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">data</span>(X0310010)</a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw">summary</span>(BasinObs)</a></code></pre></div>
-<pre><code>##      DatesR                          P              T        
-##  Min.   :1999-01-01 00:00:00   Min.   : 0.0   Min.   :-16.6  
-##  1st Qu.:2001-11-23 06:00:00   1st Qu.: 0.0   1st Qu.: -2.1  
-##  Median :2004-10-15 12:00:00   Median : 0.1   Median :  3.1  
-##  Mean   :2004-10-15 12:00:00   Mean   : 2.8   Mean   :  3.1  
-##  3rd Qu.:2007-09-07 18:00:00   3rd Qu.: 2.3   3rd Qu.:  8.6  
-##  Max.   :2010-07-31 00:00:00   Max.   :82.3   Max.   : 18.2  
-##                                                              
-##        E             Qls              Qmm           SCA1     
-##  Min.   :0.00   Min.   :  5698   Min.   : 0    Min.   :0     
-##  1st Qu.:0.20   1st Qu.: 20710   1st Qu.: 1    1st Qu.:0     
-##  Median :0.80   Median : 32041   Median : 1    Median :0     
-##  Mean   :1.16   Mean   : 47487   Mean   : 2    Mean   :0     
-##  3rd Qu.:2.00   3rd Qu.: 55559   3rd Qu.: 2    3rd Qu.:0     
-##  Max.   :4.00   Max.   :433747   Max.   :16    Max.   :1     
-##                 NA&#39;s   :397      NA&#39;s   :397   NA&#39;s   :2058  
-##       SCA2           SCA3           SCA4           SCA5     
-##  Min.   :0      Min.   :0      Min.   :0      Min.   :0     
-##  1st Qu.:0      1st Qu.:0      1st Qu.:0      1st Qu.:0     
-##  Median :0      Median :0      Median :0      Median :0     
-##  Mean   :0      Mean   :0      Mean   :0      Mean   :0     
-##  3rd Qu.:1      3rd Qu.:1      3rd Qu.:1      3rd Qu.:1     
-##  Max.   :1      Max.   :1      Max.   :1      Max.   :1     
-##  NA&#39;s   :2211   NA&#39;s   :2266   NA&#39;s   :2349   NA&#39;s   :2456</code></pre>
+<pre><code>##      DatesR                          P              T               E             Qls              Qmm     
+##  Min.   :1999-01-01 00:00:00   Min.   : 0.0   Min.   :-16.6   Min.   :0.00   Min.   :  5698   Min.   : 0   
+##  1st Qu.:2001-11-23 06:00:00   1st Qu.: 0.0   1st Qu.: -2.1   1st Qu.:0.20   1st Qu.: 20710   1st Qu.: 1   
+##  Median :2004-10-15 12:00:00   Median : 0.1   Median :  3.1   Median :0.80   Median : 32041   Median : 1   
+##  Mean   :2004-10-15 12:00:00   Mean   : 2.8   Mean   :  3.1   Mean   :1.16   Mean   : 47487   Mean   : 2   
+##  3rd Qu.:2007-09-07 18:00:00   3rd Qu.: 2.3   3rd Qu.:  8.6   3rd Qu.:2.00   3rd Qu.: 55559   3rd Qu.: 2   
+##  Max.   :2010-07-31 00:00:00   Max.   :82.3   Max.   : 18.2   Max.   :4.00   Max.   :433747   Max.   :16   
+##                                                                              NA&#39;s   :397      NA&#39;s   :397  
+##       SCA1           SCA2           SCA3           SCA4           SCA5     
+##  Min.   :0      Min.   :0      Min.   :0      Min.   :0      Min.   :0     
+##  1st Qu.:0      1st Qu.:0      1st Qu.:0      1st Qu.:0      1st Qu.:0     
+##  Median :0      Median :0      Median :0      Median :0      Median :0     
+##  Mean   :0      Mean   :0      Mean   :0      Mean   :0      Mean   :0     
+##  3rd Qu.:0      3rd Qu.:1      3rd Qu.:1      3rd Qu.:1      3rd Qu.:1     
+##  Max.   :1      Max.   :1      Max.   :1      Max.   :1      Max.   :1     
+##  NA&#39;s   :2058   NA&#39;s   :2211   NA&#39;s   :2266   NA&#39;s   :2349   NA&#39;s   :2456</code></pre>
 </div>
 <div id="object-model-preparation" class="section level2">
 <h2><span class="header-section-number">1.4</span> Object model preparation</h2>
@@ -842,7 +841,7 @@ div.tocify {
 </div>
 
 <footer>
-<p>Developed by IRSTEA &nbsp;<a href="https://webgr.irstea.fr/">Catchment Hydrology Research Group</a>&nbsp;- Antony, France.</p>
+<p>Developed by INRAE &nbsp;<a href="https://webgr.irstea.fr/">Catchment Hydrology Research Group</a>&nbsp;- Antony, France.</p>
 </footer>
 
 

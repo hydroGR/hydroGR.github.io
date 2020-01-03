@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -219,6 +218,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -247,6 +247,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -350,9 +356,10 @@ div.tocify {
 				<li><a tabindex="-1" href="https://hydroGR.github.io/airGRteaching/" onclick="window.open(this.href); return false;">airGRteaching website</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<a href='http://www.irstea.fr/en/' onclick="window.open(this.href); return false;", title="irstea.fr"><img src='fig/logo_irstea.svg' style='width:45px;height:45px;'></a>
+				<a href='https://www.inrae.fr//en/' onclick="window.open(this.href); return false;", title="inrae.fr"><img src='fig/logo_inrae.svg' style='width:45px;height:45px;'></a>
 				<a href='https://webgr.irstea.fr/en/' onclick="window.open(this.href); return false;", title="webgr.irstea.fr"><img src='fig/logo_irstea_hydro_COUL_smooth.svg' style='width:45px;height:45px;'></a>
 				<a href='https://webgr.irstea.fr/en/software/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGR.svg' style='width:45px;height:45px;'></a>
+				<a href='https://gitlab.irstea.fr/HYCAR-Hydro/airgr/' onclick="window.open(this.href); return false;", title="GitLab"><img src='fig/logo_gitlab_square.svg' style='width:45px;height:45px;'></a>				
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div><!--/.container -->
@@ -487,7 +494,7 @@ div.tocify {
 </div>
 
 <footer>
-<p>Developed by IRSTEA &nbsp;<a href="https://webgr.irstea.fr/">Catchment Hydrology Research Group</a>&nbsp;- Antony, France.</p>
+<p>Developed by INRAE &nbsp;<a href="https://webgr.irstea.fr/">Catchment Hydrology Research Group</a>&nbsp;- Antony, France.</p>
 </footer>
 
 

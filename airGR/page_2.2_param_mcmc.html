@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -310,6 +309,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -338,6 +338,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -441,9 +447,10 @@ div.tocify {
 				<li><a tabindex="-1" href="https://hydroGR.github.io/airGRteaching/" onclick="window.open(this.href); return false;">airGRteaching website</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<a href='http://www.irstea.fr/en/' onclick="window.open(this.href); return false;", title="irstea.fr"><img src='fig/logo_irstea.svg' style='width:45px;height:45px;'></a>
+				<a href='https://www.inrae.fr//en/' onclick="window.open(this.href); return false;", title="inrae.fr"><img src='fig/logo_inrae.svg' style='width:45px;height:45px;'></a>
 				<a href='https://webgr.irstea.fr/en/' onclick="window.open(this.href); return false;", title="webgr.irstea.fr"><img src='fig/logo_irstea_hydro_COUL_smooth.svg' style='width:45px;height:45px;'></a>
 				<a href='https://webgr.irstea.fr/en/software/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGR.svg' style='width:45px;height:45px;'></a>
+				<a href='https://gitlab.irstea.fr/HYCAR-Hydro/airgr/' onclick="window.open(this.href); return false;", title="GitLab"><img src='fig/logo_gitlab_square.svg' style='width:45px;height:45px;'></a>				
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div><!--/.container -->
@@ -604,7 +611,7 @@ div.tocify {
 <a class="sourceLine" id="cb6-3" title="3">  }))</a>
 <a class="sourceLine" id="cb6-4" title="4">gelRub &lt;-<span class="st"> </span>coda<span class="op">::</span><span class="kw">gelman.diag</span>(multDRAM, <span class="dt">autoburnin =</span> <span class="ot">TRUE</span>)<span class="op">$</span>mpsrf</a></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">gelRub</a></code></pre></div>
-<pre><code>## [1] 1.062202</code></pre>
+<pre><code>## [1] 1.06</code></pre>
 <p>In addition, graphical tools can be used, with for example the <a href="https://cran.r-project.org/package=ggmcmc">ggmcmc</a> package.</p>
 <p>First, the evolution of the Markov chains can be seen with a traceplot:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">parDRAM &lt;-<span class="st"> </span>ggmcmc<span class="op">::</span><span class="kw">ggs</span>(multDRAM) <span class="co">## to convert objet for using by all ggs_* graphical functions</span></a>
@@ -627,7 +634,7 @@ div.tocify {
 </div>
 
 <footer>
-<p>Developed by IRSTEA &nbsp;<a href="https://webgr.irstea.fr/">Catchment Hydrology Research Group</a>&nbsp;- Antony, France.</p>
+<p>Developed by INRAE &nbsp;<a href="https://webgr.irstea.fr/">Catchment Hydrology Research Group</a>&nbsp;- Antony, France.</p>
 </footer>
 
 

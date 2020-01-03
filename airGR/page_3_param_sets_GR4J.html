@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -309,6 +308,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -337,6 +337,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -440,9 +446,10 @@ div.tocify {
 				<li><a tabindex="-1" href="https://hydroGR.github.io/airGRteaching/" onclick="window.open(this.href); return false;">airGRteaching website</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<a href='http://www.irstea.fr/en/' onclick="window.open(this.href); return false;", title="irstea.fr"><img src='fig/logo_irstea.svg' style='width:45px;height:45px;'></a>
+				<a href='https://www.inrae.fr//en/' onclick="window.open(this.href); return false;", title="inrae.fr"><img src='fig/logo_inrae.svg' style='width:45px;height:45px;'></a>
 				<a href='https://webgr.irstea.fr/en/' onclick="window.open(this.href); return false;", title="webgr.irstea.fr"><img src='fig/logo_irstea_hydro_COUL_smooth.svg' style='width:45px;height:45px;'></a>
 				<a href='https://webgr.irstea.fr/en/software/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGR.svg' style='width:45px;height:45px;'></a>
+				<a href='https://gitlab.irstea.fr/HYCAR-Hydro/airgr/' onclick="window.open(this.href); return false;", title="GitLab"><img src='fig/logo_gitlab_square.svg' style='width:45px;height:45px;'></a>				
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div><!--/.container -->
@@ -606,10 +613,9 @@ div.tocify {
 <a class="sourceLine" id="cb5-6" title="6">})</a></code></pre></div>
 <p>Find below the 27 criteria corresponding to the different parameter sets.</p>
 <p>The criterion values are quite low (from -1.639 to 0.336), which can be expected as this does not represents an actual calibration.</p>
-<pre><code>##  [1]  0.0573  0.1331 -0.0168  0.1613  0.0345  0.1046 -0.0458  0.3359
-##  [9]  0.2440 -0.3858 -0.0830 -1.0930  0.2843  0.2792  0.1505 -0.0209
-## [17] -0.0825  0.1298  0.2903 -0.1188 -0.3834 -0.0836  0.0279 -0.0488
-## [25] -0.1675  0.1719 -1.6386</code></pre>
+<pre><code>##  [1]  0.0573  0.1331 -0.0168  0.1613  0.0345  0.1046 -0.0458  0.3359  0.2440 -0.3858 -0.0830 -1.0930  0.2843
+## [14]  0.2792  0.1505 -0.0209 -0.0825  0.1298  0.2903 -0.1188 -0.3834 -0.0836  0.0279 -0.0488 -0.1675  0.1719
+## [27] -1.6386</code></pre>
 <p>The parameter set corresponding to the best criterion is the following:</p>
 <pre><code>##     X1     X2     X3     X4 
 ## 291.00   0.30 109.10   2.01</code></pre>
@@ -650,7 +656,7 @@ div.tocify {
 </div>
 
 <footer>
-<p>Developed by IRSTEA &nbsp;<a href="https://webgr.irstea.fr/">Catchment Hydrology Research Group</a>&nbsp;- Antony, France.</p>
+<p>Developed by INRAE &nbsp;<a href="https://webgr.irstea.fr/">Catchment Hydrology Research Group</a>&nbsp;- Antony, France.</p>
 </footer>
 
 
