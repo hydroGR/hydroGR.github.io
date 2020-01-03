@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -219,6 +218,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -247,6 +247,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -350,9 +356,10 @@ div.tocify {
 				<li><a tabindex="-1" href="https://hydroGR.github.io/airGRteaching/" onclick="window.open(this.href); return false;">airGRteaching website</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<a href='http://www.irstea.fr/en/' onclick="window.open(this.href); return false;", title="irstea.fr"><img src='fig/logo_irstea.svg' style='width:45px;height:45px;'></a>
+				<a href='https://www.inrae.fr//en/' onclick="window.open(this.href); return false;", title="inrae.fr"><img src='fig/logo_inrae.svg' style='width:45px;height:45px;'></a>
 				<a href='https://webgr.irstea.fr/en/' onclick="window.open(this.href); return false;", title="webgr.irstea.fr"><img src='fig/logo_irstea_hydro_COUL_smooth.svg' style='width:45px;height:45px;'></a>
 				<a href='https://webgr.irstea.fr/en/software/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGR.svg' style='width:45px;height:45px;'></a>
+				<a href='https://gitlab.irstea.fr/HYCAR-Hydro/airgr/' onclick="window.open(this.href); return false;", title="GitLab"><img src='fig/logo_gitlab_square.svg' style='width:45px;height:45px;'></a>				
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div><!--/.container -->
@@ -455,6 +462,10 @@ div.tocify {
 <div id="section" class="section level3">
 <h3>2019</h3>
 <ul>
+<li><strong>Les Modéles pluie-débit GR en open source pour l’enseignement et la recherche</strong><br />
+Poster at the <a href="https://www.metis.upmc.fr/fr/node/615/">Journées de modélisation des surfaces continentales #3</a>, Paris (France), 14-15 November 2019<br />
+<a href="ref/2019-11-1415_DELAIGUE_poster_JMSC_airGR-teaching.pdf">PDF version of the poster</a><br />
+</li>
 <li><strong>airGR &amp; airGRteaching: two packages for rainfall-runoff modeling and teaching hydrology</strong><br />
 Poster at the <a href="http://www.user2019.fr/">useR! International R User Conference #15</a>, Toulouse (France), 9-12 July 2019<br />
 <a href="ref/2019-07-0912_DELAIGUE_poster_EGU_airGR_and_airGRteaching.pdf">PDF version of the poster</a><br />
@@ -516,21 +527,32 @@ Poster at the <a href="https://www.egu2016.eu/">European Geoscience Union Genera
 <div id="upcoming" class="section level3">
 <h3>Upcoming</h3>
 <ul>
-<li>Barker L.J., Hannaford J., Parry S., Smith K.A., Tanguy M. &amp; Prudhomme C. (2019). Historic hydrological droughts 1891&amp;ndash;2015: systematic characterisation for a diverse set of catchments across the UK. Hydrology and Earth System Sciences Discussions, 1–31. DOI: <a href="https://doi.org/10.5194/hess-2019-202">10.5194/hess-2019-202</a></li>
+<li>Pelletier A. &amp; Andréassian V. (2019). Hydrograph separation: an impartial parametrization for an imperfect method. Catchment hydrology/Modelling approaches. DOI: <a href="https://doi.org/10.5194/hess-2019-503">10.5194/hess-2019-503</a></li>
 </ul>
 </div>
 <div id="section-4" class="section level3">
+<h3>2020</h3>
+<ul>
+<li>Adeyeri O.E., Laux P., Arnault J., Lawin A.E. &amp; Kunstmann H. (2020). Conceptual hydrological model calibration using multi-objective optimization techniques over the transboundary Komadugu-Yobe basin, Lake Chad Area, West Africa. Journal of Hydrology: Regional Studies 27, 100655. DOI: <a href="https://doi.org/10.1016/j.ejrh.2019.100655">10.1016/j.ejrh.2019.100655</a></li>
+<li>Papacharalampous G., Tyralis H., Koutsoyiannis D. &amp; Montanari A. (2020). Quantification of predictive uncertainty in hydrological modelling by harnessing the wisdom of the crowd: A large-sample experiment at monthly timescale. Advances in Water Resources 136, 103470. DOI: <a href="https://doi.org/10.1016/j.advwatres.2019.103470">10.1016/j.advwatres.2019.103470</a></li>
+</ul>
+</div>
+<div id="section-5" class="section level3">
 <h3>2019</h3>
 <ul>
+<li>Allani M., Mezzi R., Zouabi A., Béji R., Joumade-Mansouri F., Hamza M.E., et al. (2019). Impact of future climate change on water supply and irrigation demand in a small mediterranean catchment. Case study: Nebhana dam system, Tunisia. Journal of Water and Climate Change, jwc2019131. DOI: <a href="https://doi.org/10.2166/wcc.2019.131">10.2166/wcc.2019.131</a></li>
 <li>Ayzel G., Varentsova N., Erina O., Sokolov D., Kurochkina L. &amp; Moreydo V. (2019). OpenForecast: The First Open-Source Operational Runoff Forecasting System in Russia. Water 11, 1546. DOI: <a href="https://doi.org/10.3390/w11081546">10.3390/w11081546</a></li>
+<li>Barker L.J., Hannaford J., Parry S., Smith K.A., Tanguy M. &amp; Prudhomme C. (2019). Historic hydrological droughts 1891-2015: systematic characterisation for a diverse set of catchments across the UK. Hydrology and Earth System Sciences 23, 4583–4602. DOI: <a href="https://doi.org/10.5194/hess-2019-202">10.5194/hess-2019-202</a></li>
 <li>Coxon G., Freer J., Lane R., Dunne T., Knoben W.J.M., Howden N.J.K., et al. (2019). DECIPHeR v1: Dynamic fluxEs and ConnectIvity for Predictions of HydRology. Geoscientific Model Development 12, 2285–2306. DOI: <a href="https://doi.org/10.5194/gmd-12-2285-2019">10.5194/gmd-12-2285-201</a></li>
 <li>Ficchì A., Perrin C. &amp; Andréassian V. (2019). Hydrological modelling at multiple sub-daily time steps: model improvement via flux-matching. Journal of Hydrology. DOI: <a href="https://doi.org/10.1016/j.jhydrol.2019.05.084">10.1016/j.jhydrol.2019.05.084</a></li>
 <li>García-Romero, L., Paredes-Arquiola, J., Solera, A., Belda, E., Andreu, J. &amp; Sánchez-Quispe, S.T. (2019). Optimization of the Multi-Start Strategy of a Direct-Search Algorithm for the Calibration of Rainfall–Runoff Models for Water-Resource Assessment. Water 11, 1876. DOI: <a href="https://doi.org/10.3390/w11091876">10.3390/w11091876</a></li>
 <li>Givati A., Thirel G., Rosenfeld D. &amp; Paz D. (2019). Climate change impacts on streamflow at the upper Jordan River based on an ensemble of regional climate models. Journal of Hydrology: Regional Studies 21, 92–109. DOI: <a href="https://doi.org/10.1016/j.ejrh.2018.12.004">10.1016/j.ejrh.2018.12.004</a></li>
 <li>Knoben W.J.M., Freer J.E., Fowler K.J.A., Peel M.C. &amp; Woods R.A. (2019). Modular Assessment of Rainfall–Runoff Models Toolbox (MARRMoT) v1.2: an open-source, extendable framework providing implementations of 46 conceptual hydrologic models as continuous state-space formulations. Geoscientific Model Development 12, 2463–2480. <a href="https://doi.org/10.5194/gmd-12-2463-2019">10.5194/gmd-12-2463-2019</a></li>
+<li>Lavenne A., Andréassian V., Thirel G., Ramos M. ‐H. &amp; Perrin C. (2019). A Regularization Approach to Improve the Sequential Calibration of a Semidistributed Hydrological Model. Water Resources Research 55, 8821–8839. DOI: <a href="https://doi.org/10.1029/2018WR024266">10.1029/2018WR024266</a></li>
 <li>Lima F.N., Fernandes W. &amp; Nascimento N. (2019). Joint calibration of a hydrological model and rating curve parameters for simulation of flash flood in urban areas. RBRH 24. <a href="https://doi.org/10.1590/2318-0331.241920180066">10.1590/2318-0331.241920180066</a></li>
 <li>Ma, Q., Xiong, L., Xia, J., Xiong, B., Yang, H. &amp; Xu, C.Y (2019). A Censored Shifted Mixture Distribution Mapping Method to Correct the Bias of Daily IMERG Satellite Precipitation Estimates. Remote Sensing 11, 1345. DOI: <a href="https://doi.org/10.3390/rs11111345">10.3390/rs11111345</a></li>
 <li>Navas R., Alonso J., Gorgoglione A. &amp; Vervoort R.W. (2019). Identifying Climate and Human Impact Trends in Streamflow: A Case Study in Uruguay. Water 11, 1433. DOI: <a href="https://doi.org/10.3390/w11071433">10.3390/w11071433</a></li>
+<li>Papacharalampous G., Tyralis H., Langousis A., Jayawardena A.W., Sivakumar B., Mamassis N., et al. (2019). Probabilistic Hydrological Post-Processing at Scale: Why and How to Apply Machine-Learning Quantile Regression Algorithms. Water 11, 2126. DOI: <a href="https://doi.org/10.3390/w11102126">10.3390/w11102126</a></li>
 <li>Pérez-Sánchez J., Senent-Aparicio J., Segura-Méndez F., Pulido-Velazquez D. &amp; Srinivasan R. (2019). Evaluating Hydrological Models for Deriving Water Resources in Peninsular Spain. Sustainability 11, 2872. DOI: <a href="https://doi.org/10.3390/su11102872">10.3390/su11102872</a></li>
 <li>Riboust P., Thirel G., Le Moine N. &amp; Ribstein P. (2019). Revisiting a simple degree-day model for integrating satellite data: implementation of SWE-SCA hystereses. Journal of Hydrology and Hydrodynamics 67(1), 70–81, 2019. DOI: <a href="https://doi.org/10.2478/johh-2018-0004">10.2478/johh-2018-0004</a></li>
 <li>Saadi M., Oudin L. &amp; Ribstein P. (2019). Random Forest Ability in Regionalizing Hourly Hydrological Model Parameters. Water 11, 1540. DOI: <a href="https://doi.org/10.3390/w11081540">10.3390/w11081540</a></li>
@@ -546,7 +568,7 @@ Poster at the <a href="https://www.egu2016.eu/">European Geoscience Union Genera
 <li>Visser-Quinn A., Beevers L. &amp; Patidar S. (2019). Replication of ecologically relevant hydrological indicators following a modified covariance approach to hydrological model parameterization. Hydrology and Earth System Sciences 23, 3279–3303. DOI: <a href="https://doi.org/10.5194/hess-23-3279-2019">10.5194/hess-23-3279-2019</a></li>
 </ul>
 </div>
-<div id="section-5" class="section level3">
+<div id="section-6" class="section level3">
 <h3>2018</h3>
 <ul>
 <li>Faty B., Ali A., Dacosta H., Bodian A., Diop S. &amp; Descroix L. (2018). Assessment of satellite rainfall products for stream flow simulation in Gambia watershed. African Journal of Environmental Science and Technology 12, 501–513. DOI: <a href="https://doi.org/10.5897/AJEST2018.2551">10.5897/AJEST2018.2551</a></li>
@@ -564,7 +586,7 @@ Poster at the <a href="https://www.egu2016.eu/">European Geoscience Union Genera
 <li>Zhang Y., Li Y., Ji X., Luo X. &amp; Li X. (2018). Evaluation and Hydrologic Validation of Three Satellite-Based Precipitation Products in the Upper Catchment of the Red River Basin, China. Remote Sensing 10, 1881. DOI: <a href="https://doi.org/10.3390/rs10121881">10.3390/rs10121881</a></li>
 </ul>
 </div>
-<div id="section-6" class="section level3">
+<div id="section-7" class="section level3">
 <h3>2017</h3>
 <ul>
 <li>de Boer-Euser T., Bouaziz L., De Niel J., Brauer C., Dewals B., Drogue G., et al. (2017). Looking beyond general metrics for model comparison; lessons from an international model intercomparison study. Hydrology and Earth System Sciences 21, 423–440. DOI: <a href="https://doi.org/10.5194/hess-21-423-2017">10.5194/hess-21-423-2017</a></li>
@@ -574,7 +596,7 @@ Poster at the <a href="https://www.egu2016.eu/">European Geoscience Union Genera
 <li>Riboust P., Le Moine N., Thirel G. &amp; Ribstein P. (2017). How to simulate radiative inputs in complex topographic areas, an analysis on 115 Swiss Alps weather stations. Hydrol. Earth Syst. Sci. Discuss. DOI: <a href="https://doi.org/10.5194/hess-2017-539">10.5194/hess-2017-539</a></li>
 </ul>
 </div>
-<div id="section-7" class="section level3">
+<div id="section-8" class="section level3">
 <h3>2016</h3>
 <ul>
 <li>Ficchì A., Perrin C. &amp; Andréassian V. (2016). Impact of temporal resolution of inputs on hydrological model performance: An analysis based on 2400 flood events. Journal of Hydrology 538, 454–470. DOI: <a href="https://doi.org/10.1016/j.jhydrol.2016.04.016">10.1016/j.jhydrol.2016.04.016</a></li>
@@ -615,15 +637,18 @@ Poster at the <a href="https://www.egu2016.eu/">European Geoscience Union Genera
 <div id="conferences-1" class="section level2">
 <h2>Conferences</h2>
 <ul>
-<li>Tyralis H., Papacharalampous G., Burnetas A. &amp; Langousis A. (2019). Stacking of probabilistic predictions for improving hydrological forecasts. 18th edition of the European Geoscience Union General Assembly. Vienna, 7-12 April 2019. <a href="https://meetingorganizer.copernicus.org/EGU2019/EGU2019-2827.pdf">PDF abstract</a></li>
-<li>Kodja D.J., Akognongbé A.J.S., Amoussou E., Mahé G., Expédit V., Paturel J.E., et al. (2018). Calibration of the hydrological model GR4J based on potential evapotranspiration estimates by the Penman-Monteith and Oudin methods in the Ouémé watershed (West Africa). 8th edition of the Global Friend-Water Conference. United Nations Educational, Scientific and Cultural Organization, Beijing, 6-9 november 2018.</li>
-<li>Harrigan S., Smith K., Parry S., Tanguy M. &amp; Prudhomme C. (2017). Benchmarking Ensemble Streamflow Prediction Skill in the UK. 16th edition of the European Geoscience Union General Assembly. Vienna, 23-28 April 2017. <a href="https://meetingorganizer.copernicus.org/EGU2017/EGU2017-17716.pdf">PDF abstract</a></li>
+<li>Barria Sandoval I., Barria P., Carrasco J. &amp; Casassa G. (2019). Open source tools as an instrument for decision- making for adaptation to climate change: airGR GR2M streamflow projections. 1st edition of the Congreso Internacional de Gestión Integral del Agua. Cochabamba (Bolivia), 2-4 October 2019. <a href="ref/BARRIA-SANDOVAL_2019_Tools_for_decision-making.pdf">PDF slideshow</a></li>
+<li>Sapač K., Rusjan S., Bezak N. &amp; Šraj M. (2019). Analysis of low-flow conditions in a heterogeneous karst catchment as a basis for future planning of water resource management. 28th nedition of the Conference of the Danubian countries on hydrological forecasting and hydrological bases of water management. Kiev (Ukraine), 6-8 November 2019. <a href="ref/SAPAC_2019_low-flow_conditions_karst_catchment.pdf">PDF proceedings</a></li>
+<li>Tyralis H., Papacharalampous G., Burnetas A. &amp; Langousis A. (2019). Stacking of probabilistic predictions for improving hydrological forecasts. 18th edition of the European Geoscience Union General Assembly. Vienna (Austria), 7-12 April 2019. <a href="https://meetingorganizer.copernicus.org/EGU2019/EGU2019-2827.pdf">PDF abstract</a></li>
+<li>Kodja D.J., Akognongbé A.J.S., Amoussou E., Mahé G., Expédit V., Paturel J.E., et al. (2018). Calibration of the hydrological model GR4J based on potential evapotranspiration estimates by the Penman-Monteith and Oudin methods in the Ouémé watershed (West Africa). 8th edition of the Global Friend-Water Conference. United Nations Educational, Scientific and Cultural Organization, Beijing (China), 6-9 november 2018.</li>
+<li>Newcomb A. &amp; Smith S. (2018). Dams and Hydrologic Regime in the Penobscot River: A reappraisal based on historical records and hydrologic modeling. 4th edition of the Maine Sustainability &amp; Water Conference. Augusta (United States of America), 29 March 2018. <a href="ref/NEWCOMB_2018_Dams_and_hydrologic_regime.pdf">PDF poster</a></li>
+<li>Harrigan S., Smith K., Parry S., Tanguy M. &amp; Prudhomme C. (2017). Benchmarking Ensemble Streamflow Prediction Skill in the UK. 16th edition of the European Geoscience Union General Assembly. Vienna (Austria), 23-28 April 2017. <a href="https://meetingorganizer.copernicus.org/EGU2017/EGU2017-17716.pdf">PDF abstract</a></li>
 </ul>
 </div>
 </div>
 
 <footer>
-<p>Developed by IRSTEA &nbsp;<a href="https://webgr.irstea.fr/">Catchment Hydrology Research Group</a>&nbsp;- Antony, France.</p>
+<p>Developed by INRAE &nbsp;<a href="https://webgr.irstea.fr/">Catchment Hydrology Research Group</a>&nbsp;- Antony, France.</p>
 </footer>
 
 
