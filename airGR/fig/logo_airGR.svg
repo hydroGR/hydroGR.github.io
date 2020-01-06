@@ -13,9 +13,9 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    xml:space="preserve"
-   width="210.5"
-   height="204.09399"
-   viewBox="0 0 210.5 204.09399"
+   width="211"
+   height="205"
+   viewBox="0 0 211 205"
    sodipodi:docname="logo_airGR.svg"
    inkscape:export-filename="\\anasdata.cemagref.fr\Projets\hban\Equipes\Hydro\ADMINISTRATIF\EQUIPE\PRATIQUE\Logo\airGR\path14.png"
    inkscape:export-xdpi="90"
@@ -37,7 +37,7 @@
      id="namedview4"
      showgrid="false"
      inkscape:zoom="1.907168"
-     inkscape:cx="263.91861"
+     inkscape:cx="161.67277"
      inkscape:cy="173.8796"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
@@ -46,7 +46,7 @@
      id="g10"
      inkscape:groupmode="layer"
      inkscape:label="logo_airGR"
-     transform="matrix(1.25,0,0,-1.25,0,204.09399)"><g
+     transform="matrix(1.25,0,0,-1.25,0,205)"><g
        id="g12"><path
          style="fill:#ffffff"
          inkscape:connector-curvature="0"
