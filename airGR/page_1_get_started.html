@@ -548,14 +548,14 @@ div.tocify {
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">data</span>(L0123001)</a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="kw">summary</span>(BasinObs)</a></code></pre></div>
-<pre><code>##      DatesR                 P              T                E             Qls             Qmm     
-##  Min.   :1984-01-01   Min.   : 0.0   Min.   :-18.70   Min.   :0.00   Min.   :   70   Min.   : 0   
-##  1st Qu.:1991-04-02   1st Qu.: 0.0   1st Qu.:  4.10   1st Qu.:0.60   1st Qu.: 1640   1st Qu.: 0   
-##  Median :1998-07-02   Median : 0.3   Median :  9.10   Median :1.40   Median : 4050   Median : 1   
-##  Mean   :1998-07-02   Mean   : 2.9   Mean   :  9.15   Mean   :1.76   Mean   : 6130   Mean   : 1   
-##  3rd Qu.:2005-10-01   3rd Qu.: 3.6   3rd Qu.: 14.50   3rd Qu.:2.90   3rd Qu.: 7850   3rd Qu.: 2   
-##  Max.   :2012-12-31   Max.   :66.8   Max.   : 28.40   Max.   :5.50   Max.   :99500   Max.   :24   
-##                                                                      NA&#39;s   :772     NA&#39;s   :802</code></pre>
+<pre><code>##      DatesR                 P                T                 E              Qls             Qmm         
+##  Min.   :1984-01-01   Min.   : 0.000   Min.   :-18.700   Min.   :0.000   Min.   :   70   Min.   : 0.0168  
+##  1st Qu.:1991-04-02   1st Qu.: 0.000   1st Qu.:  4.100   1st Qu.:0.600   1st Qu.: 1640   1st Qu.: 0.3936  
+##  Median :1998-07-02   Median : 0.300   Median :  9.100   Median :1.400   Median : 4050   Median : 0.9768  
+##  Mean   :1998-07-02   Mean   : 2.915   Mean   :  9.147   Mean   :1.764   Mean   : 6130   Mean   : 1.4732  
+##  3rd Qu.:2005-10-01   3rd Qu.: 3.600   3rd Qu.: 14.500   3rd Qu.:2.900   3rd Qu.: 7850   3rd Qu.: 1.8840  
+##  Max.   :2012-12-31   Max.   :66.800   Max.   : 28.400   Max.   :5.500   Max.   :99500   Max.   :23.8800  
+##                                                                          NA&#39;s   :772     NA&#39;s   :802</code></pre>
 <p>The usual functions (e.g. <code>read.table()</code>) can be used to load real-case data sets.</p>
 </div>
 <div id="preparation-of-functions-inputs" class="section level1">
@@ -697,7 +697,7 @@ div.tocify {
 ##       Crit. NSE[Q]       = 0.7988</code></pre>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">Param &lt;-<span class="st"> </span>OutputsCalib<span class="op">$</span>ParamFinalR</a>
 <a class="sourceLine" id="cb18-2" title="2">Param</a></code></pre></div>
-<pre><code>## [1] 257.24   1.01  88.23   2.21</code></pre>
+<pre><code>## [1] 257.237556   1.012237  88.234673   2.207958</code></pre>
 <p>The <code>Calibration_Michel()</code> function is the only one implemented in the <strong><font color="#009EE0">airGR</font></strong> package to calibrate the model, but the user can implement its own calibration function.</p>
 <p>The <code>Calibration_Michel()</code> function returns a vector with the parameters of the chosen model, which means that the number of values can differ depending on the model that is used. It is possible to use the <code>Calibration_Michel()</code> function with user-implemented hydrological models.</p>
 </div>
