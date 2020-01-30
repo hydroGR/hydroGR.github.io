@@ -413,10 +413,15 @@ div.tocify {
 
 <div id="release-notes-2020-01-28" class="section level3">
 <h3>1.4.3.60 Release Notes (2020-01-28)</h3>
+<div id="new-features" class="section level4">
+<h4>New features</h4>
+<ul>
+<li>A digital object identifier (DOI) now allows to identify the manual of the airGR package. When you use airGR in your work, please always cite both the article and the manual. The last one allows to know the version of the package that is used in order to enhance reproducible research. The references can be displayed with the <code>citation(“airGR”)</code> command.</li>
+</ul>
+</div>
 <div id="bug-fixes" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
-<li>A digital object identifier (DOI) now allows to identify the manual of the airGR package. When you use airGR in your work, please always cite both the article and the manual. The last one allows to know the version of the package that is used in order to enhance reproducible research. The references can be displayed with the <code>citation(“airGR”)</code> command.</li>
 <li>Fixed bug in <code>Imax()</code>. The default value of the <code>TestedValues</code> argument was wrong due to a mistyped argument name in the <code>seq()</code> function.</li>
 </ul>
 <hr />
@@ -424,7 +429,7 @@ div.tocify {
 </div>
 <div id="release-notes-2020-01-21" class="section level3">
 <h3>1.4.3.52 Release Notes (2020-01-21)</h3>
-<div id="new-features" class="section level4">
+<div id="new-features-1" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>plot.Outputsmodel()</code> now allows to draw actual evapotranspiration when <code>which = “ActuEvap”</code> or <code>which = “All”</code> (overlaid to potential evapotranspiration if already drawn).</li>
@@ -488,7 +493,7 @@ div.tocify {
 </div>
 <div id="release-notes-2019-06-20" class="section level3">
 <h3>1.3.2.23 Release Notes (2019-06-20)</h3>
-<div id="new-features-1" class="section level4">
+<div id="new-features-2" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><p><code>CreateInputsCrit()</code> now allows power (as a numeric or as a character) and the Box-Cox transformations in the <code>transfo</code> argument.</p></li>
@@ -537,7 +542,7 @@ div.tocify {
 <li><p>The <code>plot_OutputsModel()</code> had been deprecated in airGR 1.0.4 (it had been replaced by the use of <code>plot.OutputsModel()</code> or <code>plot()</code>) and is defunct now.</p></li>
 </ul>
 </div>
-<div id="new-features-2" class="section level4">
+<div id="new-features-3" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><p><code>CreateInputsCrit()</code> now presents a <code>VarObs</code> argument in order to allow to prepare an <code>InputsCrit</code> object in order to run a criterion on other variables than observed discharges with the <code>ErrorCrit()</code> function (at the moment SCA and SWE).</p></li>
@@ -620,7 +625,7 @@ div.tocify {
 <li><p>The unused <code>Ind_zeroes</code> argument of the <code>CreateInputsCrit()</code> function is now deprecated.</p></li>
 </ul>
 </div>
-<div id="new-features-3" class="section level4">
+<div id="new-features-4" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>PEdaily_Oudin()</code> now presents a <code>LatUnit</code> argument which allows to choose the unit of the latitude (radians and degrees).</li>
@@ -680,7 +685,7 @@ div.tocify {
 </div>
 <div id="release-notes-2017-11-10" class="section level3">
 <h3>1.0.9.64 Release Notes (2017-11-10)</h3>
-<div id="new-features-4" class="section level4">
+<div id="new-features-5" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><p>An article describing the airGR package has been published. Its reference has been added and will be displayed with <code>citation(“airGR”)</code>.</p></li>
@@ -732,7 +737,7 @@ div.tocify {
 </div>
 <div id="release-notes-2017-01-23" class="section level3">
 <h3>1.0.5.12 Release Notes (2017-01-23)</h3>
-<div id="new-features-5" class="section level4">
+<div id="new-features-6" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>DataAltiExtrapolation_Valery()</code> and <code>CreateInputsModel()</code> now present a <code>PrecipScale</code> argument which allows rescaling precipitation when it is interpolated on the elevation layers when CemaNeige is used.</li>
@@ -754,7 +759,7 @@ div.tocify {
 </div>
 <div id="release-notes-2017-01-18" class="section level3">
 <h3>1.0.4 Release Notes (2017-01-18)</h3>
-<div id="new-features-6" class="section level4">
+<div id="new-features-7" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>RunModel_CemaNeige()</code>, <code>RunModel_CemaNeigeGR4J()</code>, <code>RunModel_CemaNeigeGR5J()</code> and <code>RunModel_CemaNeigeGR6J()</code> now return air temperature for each elevation layer.</li>
@@ -777,7 +782,7 @@ div.tocify {
 </div>
 <div id="release-notes-2016-12-09" class="section level3">
 <h3>1.0.3 Release Notes (2016-12-09)</h3>
-<div id="new-features-7" class="section level4">
+<div id="new-features-8" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>ErrorCrit_*()</code> functions gain a <code>warnings</code> argument to replace the verbose action and the <code>verbose</code> argument now prints the criterion value(s).</li>
@@ -800,7 +805,7 @@ div.tocify {
 </div>
 <div id="release-notes-2016-11-03" class="section level3">
 <h3>1.0.2 Release Notes (2016-11-03)</h3>
-<div id="new-features-8" class="section level4">
+<div id="new-features-9" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><p><code>SeriesAggreg()</code> gains a TimeLag argument that corresponds to a numeric value indicating a time lag (in seconds) for the time series aggregation (useful to aggregate hourly time series to the daily time step for instance). In addition, the function now accepts input dates in both <code>POSIXt</code> formats (<code>POSIXct</code> and <code>POSIXlt</code>). The output is in <code>POSIXct</code> format.</p></li>
@@ -892,7 +897,7 @@ div.tocify {
 </div>
 <div id="release-notes-2015-04-15" class="section level3">
 <h3>0.8.0.2 Release Notes (2015-04-15)</h3>
-<div id="new-features-9" class="section level4">
+<div id="new-features-10" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><p>Three new hydrological models: <code>RunModel_GR4H() function for </code> GR4H (hourly), <code>RunModel_GR2M()</code> function for GR2M (monthly) and <code>RunModel_GR1A()</code> function for GR1A (yearly).</p></li>
@@ -925,7 +930,7 @@ div.tocify {
 </div>
 <div id="release-notes-2014-11-01" class="section level3">
 <h3>0.7.4 Release Notes (2014-11-01)</h3>
-<div id="new-features-10" class="section level4">
+<div id="new-features-11" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>New argument in many functions (<code>quiet = TRUE</code> or <code>FALSE</code>) to choose if the warnings should be suppressed or not.</li>
@@ -968,7 +973,7 @@ div.tocify {
 </div>
 <div id="release-notes-2014-02-12" class="section level3">
 <h3>0.6.2 Release Notes (2014-02-12)</h3>
-<div id="new-features-11" class="section level4">
+<div id="new-features-12" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><p>Additional functions for results plotting (the <code>{zoo}</code> package is required for some of them).</p></li>
@@ -1039,7 +1044,7 @@ div.tocify {
 </div>
 <div id="release-notes-2014-01-27" class="section level3">
 <h3>0.5.1 Release Notes (2014-01-27)</h3>
-<div id="new-features-12" class="section level4">
+<div id="new-features-13" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>New <code>EfficiencyCrit_NSE_sqrtQ()</code> function to compute NSE criterion on sqrt flows.</li>
