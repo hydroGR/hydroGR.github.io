@@ -356,46 +356,15 @@ div.tocify {
 				<li><a tabindex="-1" href="https://hydroGR.github.io/airGRteaching/" onclick="window.open(this.href); return false;">airGRteaching website</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<a href='https://www.inrae.fr/en/' onclick="window.open(this.href); return false;", title="inrae.fr"><img src='fig/logo_inrae_square.svg' style='width:45px;height:45px;'></a>
-				<a href='https://webgr.inrae.fr/en/' onclick="window.open(this.href); return false;", title="webgr.inrae.fr"><img src='fig/logo_irstea_hydro_COUL_smooth.svg' style='width:45px;height:45px;'></a>
-				<a href='https://webgr.inrae.fr/en/software/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGR.svg' style='width:45px;height:45px;'></a>
-				<a href='https://gitlab.irstea.fr/HYCAR-Hydro/airgr/' onclick="window.open(this.href); return false;", title="GitLab"><img src='fig/logo_gitlab_square.svg' style='width:45px;height:45px;'></a>				
+				<a href='https://www.inrae.fr/en/' onclick="window.open(this.href); return false;", title="inrae.fr"><img src='fig/logo_inrae_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.inrae.fr/en/' onclick="window.open(this.href); return false;", title="webgr.inrae.fr"><img src='fig/logo_inrae_hydro_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.inrae.fr/en/software/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGR_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://gitlab.irstea.fr/HYCAR-Hydro/airgr/' onclick="window.open(this.href); return false;", title="GitLab"><img src='fig/logo_gitlab_CMJN_square.svg' style='width:45px;height:45px;'></a>				
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div><!--/.container -->
 </div><!--/.navbar -->
 <p style ="margin-top: 15px;">
-  <a href="https://CRAN.R-project.org/package=airGR">
-<svg xmlns="http://www.w3.org/2000/svg" width="095" height="020">
-  <linearGradient id="b" x2="0" y2="100%">
-    <stop offset="0" stop-opacity=".1" stop-color="#bbb"/>
-    <stop offset="1" stop-opacity=".1"/>
-  </linearGradient>
-  <mask id="a">
-    <rect width="095" height="020" rx="3" fill="#fff" />
-  </mask>
-  <g mask="url(#a)">
-    <path fill="#555"    d="M00 0h055v20H00z"/>
-    <path fill="#009EE0" d="M55 0h040v20H55z"/>
-    <path fill="url(#b)" d="M00 0h095v20H00z"/>
-  </g>
-  <g fill="#fff" text-anchor="middle"
-     font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
-    <text x="028" y="015" fill="#010101" fill-opacity=".3">
-      Package
-    </text>
-    <text x="028" y="014">
-      Package
-    </text>
-    <text x="075" y="015" fill="#010101" fill-opacity=".3">
-      airGR
-    </text>
-    <text x="075" y="014">
-      airGR
-    </text>
-  </g>
-</svg>
-</a>
 <a href="https://CRAN.R-project.org/package=airGR"><img src="https://www.r-pkg.org/badges/version-ago/airGR" /></a>
 <a href="https://www.rdocumentation.org/packages/airGR"><img src="http://cranlogs.r-pkg.org/badges/grand-total/airGR?color=orange" /></a>
 <a href="https://www.r-project.org/Licenses/GPL-2">
@@ -409,7 +378,7 @@ div.tocify {
   </mask>
   <g mask="url(#a)">
     <path fill="#555"    d="M00 0h055v20H00z"/>
-    <path fill="#D1AA1E" d="M55 0h040v20H55z"/>
+    <path fill="#00a3a6" d="M55 0h040v20H55z"/>
     <path fill="url(#b)" d="M00 0h095v20H00z"/>
   </g>
   <g fill="#fff" text-anchor="middle"
@@ -429,7 +398,8 @@ div.tocify {
   </g>
 </svg>
 </a>
-<a href="https://doi.org/10.1016/j.envsoft.2017.05.002"><img src="https://img.shields.io/badge/doi-10.1016/j.envsoft.2017.05.002-steelblue.svg" /></a>
+<a href="https://doi.org/10.1016/j.envsoft.2017.05.002"><img src="https://img.shields.io/badge/doi-10.1016/j.envsoft.2017.05.002-purple.svg" /></a>
+<a href="https://doi.org/10.15454/EX11NA">              <img src="https://img.shields.io/badge/doi-10.15454/EX11NA-purple.svg" /></a>
 </p>
 
 <div class="fluid-row" id="header">
@@ -441,12 +411,12 @@ div.tocify {
 </div>
 
 
-<p>It is possible to complement the <strong><font color="#009EE0">airGR</font></strong> package with a new model. To do that, the main steps are the following:</p>
+<p>It is possible to complement the <strong><font color="#00a3a6">airGR</font></strong> package with a new model. To do that, the main steps are the following:</p>
 <ol style="list-style-type: decimal">
-<li>Write a model in Fortran or modify an existing Fortran code that is included in the <strong><font color="#009EE0">airGR</font></strong> package</li>
+<li>Write a model in Fortran or modify an existing Fortran code that is included in the <strong><font color="#00a3a6">airGR</font></strong> package</li>
 <li>Create specific <strong>R</strong> functions to the model (<code>RunModel_MyNewModel()</code>, <code>TransfParam_MyNewModel()</code>)</li>
-<li>Two possibilities exist to include the new model: a. Create a dynamically loadable library (DLL; also known as shared object) ensuring compatibility with <strong>R</strong> and load it with the <code>dyn.load()</code> function b. Create a new package dependent on <strong><font color="#009EE0">airGR</font></strong> which contains only your <strong>R</strong> model and functions of step 2</li>
-<li>If the new model requires model inputs that are not already present in <strong><font color="#009EE0">airGR</font></strong>, you have to adapt the <code>CreateInputsModel()</code> and <code>CreateRunOptions()</code> functions (note: it is better to duplicate these functions and to modify them, to avoid any conflict when using original <strong><font color="#009EE0">airGR</font></strong> models)</li>
+<li>Two possibilities exist to include the new model: a. Create a dynamically loadable library (DLL; also known as shared object) ensuring compatibility with <strong>R</strong> and load it with the <code>dyn.load()</code> function b. Create a new package dependent on <strong><font color="#00a3a6">airGR</font></strong> which contains only your <strong>R</strong> model and functions of step 2</li>
+<li>If the new model requires model inputs that are not already present in <strong><font color="#00a3a6">airGR</font></strong>, you have to adapt the <code>CreateInputsModel()</code> and <code>CreateRunOptions()</code> functions (note: it is better to duplicate these functions and to modify them, to avoid any conflict when using original <strong><font color="#00a3a6">airGR</font></strong> models)</li>
 </ol>
 
 <footer>
