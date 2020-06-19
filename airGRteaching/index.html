@@ -506,7 +506,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 
 
 <h1 class="title toc-ignore">airGRteaching: Teaching Hydrological Modelling with GR</h1>
-<h4 class="date">Update: 2020-03-10</h4>
+<h4 class="date">Update: 2020-06-19</h4>
 
 </div>
 
@@ -523,7 +523,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 <div style="float:left">
 <img src="fig/logo_airGRteaching_CMJN_square.png" alt="airGRteaching logo" width="175px" />
 </div>
-<p><strong><font color="#009EE0">airGRteaching</font></strong> is an add-on package to the <strong><font color="#009EE0">airGR</font></strong> package. It simplifies its use and is more specifically oriented towards teaching than <strong><font color="#009EE0">airGR</font></strong>. It provides access to the GR rainfall-runoff models (GR4H, GR4J, GR5J, GR6J, GR2M, GR1A) and a snow melt and accumulation model (CemaNeige) with limited programming skills. This package also provides a graphical interface to help students exploring data and model results.</p>
+<p><strong><font color="#009EE0">airGRteaching</font></strong> is an add-on package to the <strong><font color="#009EE0">airGR</font></strong> package. It simplifies its use and is more specifically oriented towards teaching than <strong><font color="#009EE0">airGR</font></strong>. It provides access to the GR rainfall-runoff models (GR4H, GR5H, GR4J, GR5J, GR6J, GR2M, GR1A) and a snow melt and accumulation model (CemaNeige) with limited programming skills. This package also provides a graphical interface to help students exploring data and model results.</p>
 <p>The <strong><font color="#009EE0">airGRteaching</font></strong> package has been designed to fulfil a major requirement: facilitating the use of the <strong><font color="#009EE0">airGR</font></strong> functionalities by students. The names of the functions and their arguments were chosen to this end.</p>
 </div>
 <div id="main-features-of-airgrteaching" class="section level2">
@@ -626,9 +626,10 @@ To see these entries in BibTeX format, use &#39;print(&lt;citation&gt;, bibtex=T
 <li><a href="https://www.polytechnique.edu/">École polytechnique</a>, Palaiseau, France</li>
 <li><a href="https://www.eivp-paris.fr/en">Engineering School of Paris City</a>, Paris France</li>
 <li><a href="https://www.umontpellier.fr/en/">Montpellier University</a>, Montpellier, France</li>
+<li><a href="https://www.universite-paris-saclay.fr/en">Paris-Saclay University</a>, Saint-Aubin, France</li>
+<li><a href="http://www.polytech.unice.fr/">Polytech Nice Sophia - University of Nice Sophia Antipolis</a>, Antibes, France</li>
 <li><a href="http://www.sorbonne-universite.fr/en">Sorbonne University</a>, Paris, France</li>
 <li><a href="https://www.unipd.it/en/">University of Padua</a>, Padua, Italy</li>
-<li><a href="http://www.polytech.unice.fr/">Polytech Nice Sophia - University of Nice Sophia Antipolis</a>, Antibes, France</li>
 </ul>
 <!-- ```{r, echo = FALSE, eval=FALSE} -->
 <!-- airGRteaching_map <- readRDS("data/airGRteaching_users_map.rds") -->
@@ -644,7 +645,7 @@ To see these entries in BibTeX format, use &#39;print(&lt;citation&gt;, bibtex=T
 </div>
 
 <footer>
-<p>Developed by INRAE &nbsp;<a href="https://webgr.inrae.fr/en">Catchment Hydrology Research Group</a>&nbsp;- Antony, France.</p>
+<p>Developed by INRAE&nbsp;<a href="https://webgr.inrae.fr/en">Catchment Hydrology Research Group</a>&nbsp;- Antony, France.</p>
 </footer>
 
 
@@ -696,7 +697,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
