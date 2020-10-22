@@ -24,6 +24,17 @@
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -492,7 +503,7 @@ WARNING
 <br>
 Following the recent update of the <b>htmlwidgets</b> package, problems have been observed in the use of dynamic graphics and in the graphical interface of the <b>airGRteaching</b> package (in fact due to the use of the <b>dygraphs</b> package).
 <br>
-After installing the <b>airGRteaching</b> packages, which will install the latest version of htmlwidgets available on CRAN (<b>version 1.5.1</b>), you will must therefore install the latest version available on GitHub.
+After installing the <b>airGRteaching</b> packages, which will install the latest version of htmlwidgets available on CRAN (<b>version 1.5.2</b>), you will must therefore install the latest version available on GitHub.
 <br>
 <a href ="https://hydrogr.github.io/airGRteaching/index.html#_WARNING_">How to manage</a>
 </div>
@@ -509,7 +520,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 
 
 <h1 class="title toc-ignore">airGRteaching: Teaching Hydrological Modelling with GR</h1>
-<h4 class="date">Update: 2020-07-01</h4>
+<h4 class="date">Update: 2020-10-22</h4>
 
 </div>
 
@@ -568,7 +579,7 @@ WARNING
 Following the recent update of the <b>htmlwidgets</b> package, problems have been observed in the use of dynamic graphics and in the graphical interface of the <b>airGRteaching</b> package (in fact due to the use of the <b>dygraphs</b> package).
 </p>
 <p>
-After installing the <b>airGRteaching</b> packages, which will install the latest version of htmlwidgets available on CRAN (<b>version 1.5.1</b>), you will must therefore install the latest version available on GitHub.
+After installing the <b>airGRteaching</b> packages, which will install the latest version of htmlwidgets available on CRAN (<b>version 1.5.2</b>), you will must therefore install the latest version available on GitHub.
 </div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&#39;ramnathv/htmlwidgets&#39;</span>)</span></code></pre></div>
@@ -588,7 +599,7 @@ To cite airGRteaching in publications use these two references:
   Marchis), vol. 3 of EPiC Series in Engineering, p. 541-548, EasyChair, DOI: 10.29007/qsqj.
 
   Delaigue, O., Coron, L., Brigode, P. (2020). airGRteaching: Teaching Hydrological Modelling with
-  GR (Shiny Interface Included). R package version 0.2.8.69. DOI: 10.15454/W0SSKT. URL:
+  GR (Shiny Interface Included). R package version 0.2.9.25. DOI: 10.15454/W0SSKT. URL:
   https://CRAN.R-project.org/package=airGRteaching.
 
 To see these entries in BibTeX format, use &#39;print(&lt;citation&gt;, bibtex=TRUE)&#39;, &#39;toBibtex(.)&#39;, or set
@@ -616,7 +627,7 @@ To see these entries in BibTeX format, use &#39;print(&lt;citation&gt;, bibtex=T
   author = {O. Delaigue and L. Coron and P. Brigode},
   journal = {R News},
   year = {2020},
-  note = {R package version 0.2.8.69},
+  note = {R package version 0.2.9.25},
   url = {https://CRAN.R-project.org/package=airGRteaching},
   doi = {10.15454/W0SSKT},
 }</code></pre>
@@ -661,7 +672,7 @@ To see these entries in BibTeX format, use &#39;print(&lt;citation&gt;, bibtex=T
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

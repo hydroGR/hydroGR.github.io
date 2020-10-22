@@ -24,6 +24,17 @@
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 
 
@@ -400,7 +411,7 @@ WARNING
 <br>
 Following the recent update of the <b>htmlwidgets</b> package, problems have been observed in the use of dynamic graphics and in the graphical interface of the <b>airGRteaching</b> package (in fact due to the use of the <b>dygraphs</b> package).
 <br>
-After installing the <b>airGRteaching</b> packages, which will install the latest version of htmlwidgets available on CRAN (<b>version 1.5.1</b>), you will must therefore install the latest version available on GitHub.
+After installing the <b>airGRteaching</b> packages, which will install the latest version of htmlwidgets available on CRAN (<b>version 1.5.2</b>), you will must therefore install the latest version available on GitHub.
 <br>
 <a href ="https://hydrogr.github.io/airGRteaching/index.html#_WARNING_">How to manage</a>
 </div>
@@ -421,14 +432,36 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 </div>
 
 
+<div id="release-notes-2020-10-16" class="section level3">
+<h3>0.2.9.25 Release Notes (2020-10-16)</h3>
+<div id="new-features" class="section level4">
+<h4>New features</h4>
+<ul>
+<li>in the <code>ShinyGR()</code> interface, there is a new tab panel that shows a summary sheets of basin if the name of the dataset contains the code station (8 characters : 1 letter and 7 numbers) of the Banque Hydro French database (so it is available only for the dataset of this database) (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/10">#10</a>)</li>
+</ul>
+</div>
+<div id="user-visible-changes" class="section level4">
+<h4>User-visible changes</h4>
+<ul>
+<li>the <code>theme</code> agument of the <code>ShinyGR()</code> function now works even if a wrong character case</li>
+</ul>
+</div>
+<div id="cran-compatibility-updates" class="section level4">
+<h4>CRAN-compatibility updates</h4>
+<ul>
+<li>when the package is loaded or when the <code>dyplot()</code> and the <code>ShinyGR()</code> function are used, a message warns the users if they use a version of ‘htmlwidgets’ &lt; 1.5.2.9000. The latest version of this package, available on GitHub, avoids troubles with the use of dynamic graphics of the ‘dygraphs’ package (called by the <code>dyplot*()</code> and the <code>ShinyGR()</code> functions) (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/5">#5</a>)</li>
+</ul>
+<hr />
+</div>
+</div>
 <div id="release-notes-2020-02-28" class="section level3">
 <h3>0.2.8.69 Release Notes (2020-02-28)</h3>
-<div id="new-features" class="section level4">
+<div id="new-features-1" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><p>added <code>as.data.frame.airGRt()</code> method in order to create a <code>data.frame</code> from outputs of <code>PrepGR()</code>, <code>CalGR()</code> and <code>SimGR()</code> functions. This <code>data.frame</code> always presents the same structure and contains observed flow, simulated flow, simulated solid precipitation fraction, etc. When it does not make sense, the concerned column is assigned with <code>NA</code> values (e.g. Qsim with the <code>PrepGR()</code> function)</p></li>
 <li><p>a digital object identifier (DOI) now allows to identify the manual of the ‘airGRteaching’ package. When you use airGRteaching in your work, please always cite both the article and the manual. The last one allows to know the version of the package that is used in order to enhance reproducible research. The references can be displayed with the <code>citation(“airGRteaching”)</code> command</p></li>
-<li><p>two themes of alternative stylesheet are available (<code>“Inrae”</code> and <code>“Saclay”</code>)</p></li>
+<li><p>two themes of alternative stylesheet are available (<code>“Inrae”</code> and <code>“Saclay”</code>) using the <code>theme</code> agument of the <code>ShinyGR()</code> function</p></li>
 </ul>
 </div>
 <div id="deprecated-and-defunct" class="section level4">
@@ -443,10 +476,10 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 <li><code>ShinyGR()</code> now runs when independent arguments (<code>DatesR</code>, <code>Precip</code>, etc.) are used instead of the <code>ObsDF</code> argument</li>
 </ul>
 </div>
-<div id="user-visible-changes" class="section level4">
+<div id="user-visible-changes-1" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
-<li><p>it is now possible to use the GR4H and GR5H hourly models with or without CemaNeige. For that, in the <code>PrepGR()</code>, the <code>HydroModel</code> argument could be set to <code>“GR4H”</code> or <code>“GR5H”</code>. In the GUI, launched by <code>ShinyGR()</code> function, nothing changed, only the daily models are available. So, now airGRteaching depends on the version of airGR &gt;= 1.4.3.52)</p></li>
+<li><p>it is now possible to use the GR4H and GR5H hourly models with or without CemaNeige. For that, in the <code>PrepGR()</code>, the <code>HydroModel</code> argument could be set to <code>“GR4H”</code> or <code>“GR5H”</code>. In the GUI, launched by <code>ShinyGR()</code> function, nothing changed, only the daily models are available. So, now airGRteaching depends on the version of ‘airGR’ &gt;= 1.4.3.52)</p></li>
 <li><p>it is now possible to run the <code>PrepGR()</code> function when discharge is not provided in <code>Qobs</code>. If it is the case, the <code>CalGR()</code> function will return an error message because it is not possible to calibrate the model. The <code>SimGR()</code> function will return a warning message because it is not possible to compute any efficiency criterion</p></li>
 <li><p>it is now possible to run the <code>ShinyGR()</code> function when discharge is not provided in <code>Qobs</code></p></li>
 <li><p>when observed discharge is provided in <code>ShinyGR()</code>, the first plotting panel now draws the flow error time series</p></li>
@@ -455,7 +488,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 <li><p>there is now only one help page for all <code>plot.*()</code> functions (use <code>?plot</code> to call it)</p></li>
 </ul>
 </div>
-<div id="cran-compatibility-updates" class="section level4">
+<div id="cran-compatibility-updates-1" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>when the package is loaded, a message warns the users if they use a version of ‘htmlwidgets’ &lt; 1.5.1.9000. The latest version of this package, available on GitHub, avoids troubles with the use of dynamic graphics of the ‘dygraphs’ package (called by the <code>dyplot*()</code> and the <code>ShinyGR()</code> functions)</li>
@@ -471,7 +504,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 <li><code>ShinyGR()</code> can export the csv table again. It was broken due to modifications to the version 1.2.13.16 of the ‘airGR’ package</li>
 </ul>
 </div>
-<div id="user-visible-changes-1" class="section level4">
+<div id="user-visible-changes-2" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>it is now possible to export the diagram plot of the model from the <code>ShinyGR()</code> interface</li>
@@ -490,7 +523,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 <li><p><code>ShinyGR()</code> takes into account the fact the prevuous Qsim is sometimes to long of one value (temporary patch)</p></li>
 </ul>
 </div>
-<div id="user-visible-changes-2" class="section level4">
+<div id="user-visible-changes-3" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>The WarmUp element returned by <code>CalGR()</code> and <code>SimGR()</code> now presents a timezone defined as UTC</li>
@@ -500,14 +533,14 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 </div>
 <div id="release-notes-2019-04-03" class="section level3">
 <h3>0.2.6.14 Release Notes (2019-04-03)</h3>
-<div id="cran-compatibility-updates-1" class="section level4">
+<div id="cran-compatibility-updates-2" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li><p>now depends on the latest version (1.2.13.16) of the ‘airGR’ package: <code>CalGR()</code>, <code>SimGR()</code> and <code>ShinyGR()</code> have been updated</p></li>
-<li><p>the ‘htmlwidget’ package is no longer imported</p></li>
+<li><p>the ‘htmlwidgets’ package is no longer imported</p></li>
 </ul>
 </div>
-<div id="user-visible-changes-3" class="section level4">
+<div id="user-visible-changes-4" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><p>the CemaNeige model is now allowed when the model diagram is drawn in <code>ShinyGR()</code></p></li>
@@ -519,13 +552,13 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 </div>
 <div id="release-notes-2018-08-08" class="section level3">
 <h3>0.2.3.2 Release Notes (2018-08-08)</h3>
-<div id="cran-compatibility-updates-2" class="section level4">
+<div id="cran-compatibility-updates-3" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>now depends on the latest version (1.1.1.6) of the ‘dygraphs’ package from CRAN (embeded ‘dygraphs’ functions have been removed)</li>
 </ul>
 </div>
-<div id="user-visible-changes-4" class="section level4">
+<div id="user-visible-changes-5" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><p>the article reference is updated</p></li>
@@ -542,7 +575,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 <li>bug fixed in <code>ShinyGR()</code>, the criteria values are now right on Unix system</li>
 </ul>
 </div>
-<div id="user-visible-changes-5" class="section level4">
+<div id="user-visible-changes-6" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>vignette added</li>
@@ -552,7 +585,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 </div>
 <div id="release-notes-2018-03-16" class="section level3">
 <h3>0.2.0.9 Release Notes (2018-03-16)</h3>
-<div id="cran-compatibility-updates-3" class="section level4">
+<div id="cran-compatibility-updates-4" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>embeding ‘dygraphs’ functions to avoid user to install the last version of this package from GitHub (import of devtools not necessary)</li>
@@ -575,7 +608,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 <li><code>ObsBV</code> argument has been renamed <code>ObsDF</code> in <code>PrepGR()</code> and <code>ShinyGR()</code> functions</li>
 </ul>
 </div>
-<div id="user-visible-changes-6" class="section level4">
+<div id="user-visible-changes-7" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><p>update and homogenization of the unit of time abbreviation in <code>.TypeModelGR()</code> and <code>ShinyGR()</code></p></li>
@@ -607,7 +640,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 <li><p>bug fixed to disable calibration when there is no Qobs in <code>ShinyGR()</code></p></li>
 </ul>
 </div>
-<div id="user-visible-changes-7" class="section level4">
+<div id="user-visible-changes-8" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><p>it is now possible to draw the model diagram in <code>ShinyGR()</code> using the GR6J model</p></li>
@@ -630,7 +663,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 <li><p>Psol et Pliq bars are reversed in <code>dyplot.default()</code></p></li>
 </ul>
 </div>
-<div id="user-visible-changes-8" class="section level4">
+<div id="user-visible-changes-9" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>new reactive to prepare data for plotting in the <code>ShinyGR()</code> interface</li>
@@ -640,7 +673,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 </div>
 <div id="release-notes-2017-10-05" class="section level3">
 <h3>0.1.7.6 Release Notes (2017-10-05)</h3>
-<div id="user-visible-changes-9" class="section level4">
+<div id="user-visible-changes-10" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><p><code>SimGR()</code> now runs only once to compute all <code>ErrorCrit</code></p></li>
@@ -652,7 +685,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 </div>
 <div id="release-notes-2017-09-29" class="section level3">
 <h3>0.1.6.15 Release Notes (2017-09-29)</h3>
-<div id="new-features-1" class="section level4">
+<div id="new-features-2" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>dyplot()</code> now allows to draw an additional time series of flow</li>
@@ -665,7 +698,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 <li><p><code>dyplot()</code> now plots Pliq and Psol when CemaNeige is used (<code>dyStackedBarGroup()</code> instead of the plotter argument)</p></li>
 </ul>
 </div>
-<div id="user-visible-changes-10" class="section level4">
+<div id="user-visible-changes-11" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><p>disable and enable buttons in <code>ShinyGR()</code> interface (using the ‘shinyjs’ package)</p></li>
@@ -676,7 +709,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 </div>
 <div id="release-notes-2017-09-14" class="section level3">
 <h3>0.1.5.22 Release Notes (2017-09-14)</h3>
-<div id="new-features-2" class="section level4">
+<div id="new-features-3" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><p>it is now possible to export some plots and tables from <code>ShinyGR()</code> interface</p></li>
@@ -686,7 +719,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 <div id="bug-fixes-8" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
-<li>period slider is linked to the dygraphs selected period</li>
+<li>period slider is linked to the ‘dygraphs’ selected period</li>
 </ul>
 </div>
 <div id="deprecated-and-defunct-3" class="section level4">
@@ -695,29 +728,29 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 <li>deprecated <code>Param</code> arguments in <code>ShinyGR()</code></li>
 </ul>
 </div>
-<div id="user-visible-changes-11" class="section level4">
+<div id="user-visible-changes-12" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>the size of the “Model performance” plot is now adapted if CemaNeige is used or not</li>
 </ul>
 </div>
-<div id="cran-compatibility-updates-4" class="section level4">
+<div id="cran-compatibility-updates-5" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
-<li><code>dyplot()</code> updated to be compatible with dygraphs &gt;= 1.1.1.4 (available only on GitHub)</li>
+<li><code>dyplot()</code> updated to be compatible with ‘dygraphs’ &gt;= 1.1.1.4 (available only on GitHub)</li>
 </ul>
 <hr />
 </div>
 </div>
 <div id="release-notes-2017-07-21" class="section level3">
 <h3>0.1.4.0 Release Notes (2017-07-21)</h3>
-<div id="new-features-3" class="section level4">
+<div id="new-features-4" class="section level4">
 <h4>New features</h4>
 <ul>
-<li><code>ShinyGR()</code> now use dygraph devices (except for model perf.)</li>
+<li><code>ShinyGR()</code> now use ‘dygraphs’ devices (except for model perf.)</li>
 </ul>
 </div>
-<div id="user-visible-changes-12" class="section level4">
+<div id="user-visible-changes-13" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><code>dyplot.default()</code> now draws precipitation as a true bar plot and not a step plot</li>
@@ -727,7 +760,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 </div>
 <div id="release-notes-2017-06-22" class="section level3">
 <h3>0.1.3.9 Release Notes (2017-06-22)</h3>
-<div id="new-features-4" class="section level4">
+<div id="new-features-5" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><p>added GR5J in the Model diagram of <code>ShinyGR()</code></p></li>
@@ -744,7 +777,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 </div>
 <div id="release-notes-2017-06-02" class="section level3">
 <h3>0.1.2.52 Release Notes (2017-06-02)</h3>
-<div id="new-features-5" class="section level4">
+<div id="new-features-6" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>shiny.SimGR()</code> now presents a theme argument that allows to change the stylesheet</li>
@@ -762,7 +795,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 <li>bug fixed in <code>ShinyGR()</code> to plot state variables with GRJ</li>
 </ul>
 </div>
-<div id="user-visible-changes-13" class="section level4">
+<div id="user-visible-changes-14" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>the <code>shiny.SimGR()</code> function has been renamed into <code>ShinyGR()</code></li>
@@ -772,14 +805,14 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 </div>
 <div id="release-notes-2017-03-21" class="section level3">
 <h3>0.1.1.20 Release Notes (2017-03-21)</h3>
-<div id="user-visible-changes-14" class="section level4">
+<div id="user-visible-changes-15" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><p>in <code>shiny.SimGR()</code> if the model diagram is plotted, the animation can be run only from the Event slider and no more from the “Period” slider</p></li>
 <li><p><code>SimGR()</code> now also returns the <code>OptionsCrit</code> value</p></li>
 </ul>
 </div>
-<div id="cran-compatibility-updates-5" class="section level4">
+<div id="cran-compatibility-updates-6" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>the package now depends on ‘airGR’ version 1.0.5.22</li>
@@ -789,7 +822,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 </div>
 <div id="release-notes-2017-01-19" class="section level3">
 <h3>0.0.3.15 Release Notes (2017-01-19)</h3>
-<div id="new-features-6" class="section level4">
+<div id="new-features-7" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><p>it is now possible to calibrate the model in <code>shiny.SimGR()</code> and to draw new plots</p></li>
@@ -825,7 +858,7 @@ After installing the <b>airGRteaching</b> packages, which will install the lates
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
