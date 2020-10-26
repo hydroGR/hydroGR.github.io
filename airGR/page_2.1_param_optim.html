@@ -24,13 +24,25 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -40,14 +52,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -56,9 +70,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { background-color: #f8f8f8; }
+  {  background-color: #f8f8f8; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -509,7 +523,7 @@ div.tocify {
 <h2><span class="header-section-number">1.1</span> Scope</h2>
 <p>The Michel’s calibration strategy (<code>Calibration_Michel()</code> function) is the calibration algorithm proposed in <strong><font color="#00a3a6">airGR</font></strong>. However, other optimization methods can be used in combination with <strong><font color="#00a3a6">airGR</font></strong>. We show here how to use different R packages to perform parameter estimation.</p>
 <p>In this page, we use the <strong>GR4J</strong> model to illustrate the different optimization strategies. In particular, we assume that the R global environment contains input climate data, observed discharge and functions from the <a href="page_1_get_started.html">Get Started</a> page, as shown below. Please note that the calibration period is defined in the <code>CreateRunOptions()</code> function .</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">example</span>(<span class="st">&quot;Calibration_Michel&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">example</span>(<span class="st">&quot;Calibration_Michel&quot;</span>)</span></code></pre></div>
 <p>Regarding the different optimization strategies presented here, we refer to each package for in-depth information about the description of the methods used.</p>
 <p>Please note that this page is only for illustration purposes and does not provide any guidance about which optimization strategies is recommended for the family of the <strong>GR</strong> models.</p>
 </div>
@@ -517,49 +531,49 @@ div.tocify {
 <h2><span class="header-section-number">1.2</span> Definition of the necessary function</h2>
 <p>Parameter estimation can be performed by defining a function that takes a parameter set as input and returns the value of the performance criterion. There are two important steps: the transformation of parameters to real space and the computation of the value of the performance criterion. Here we choose to minimize the root mean square error.</p>
 <p>The change of the repository from the “real” parameter space to a “transformed” space ensures homogeneity of displacement in the different dimensions of the parameter space during the step-by-step procedure of the calibration algorithm of the model.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">OptimGR4J &lt;-<span class="st"> </span><span class="cf">function</span>(ParamOptim) {</a>
-<a class="sourceLine" id="cb2-2" title="2">  <span class="co">## Transformation of the parameter set to real space</span></a>
-<a class="sourceLine" id="cb2-3" title="3">  RawParamOptim &lt;-<span class="st"> </span>airGR<span class="op">::</span><span class="kw">TransfoParam_GR4J</span>(<span class="dt">ParamIn =</span> ParamOptim,</a>
-<a class="sourceLine" id="cb2-4" title="4">                                            <span class="dt">Direction =</span> <span class="st">&quot;TR&quot;</span>)</a>
-<a class="sourceLine" id="cb2-5" title="5">  <span class="co">## Simulation given a parameter set</span></a>
-<a class="sourceLine" id="cb2-6" title="6">  OutputsModel &lt;-<span class="st"> </span>airGR<span class="op">::</span><span class="kw">RunModel_GR4J</span>(<span class="dt">InputsModel =</span> InputsModel,</a>
-<a class="sourceLine" id="cb2-7" title="7">                                       <span class="dt">RunOptions =</span> RunOptions,</a>
-<a class="sourceLine" id="cb2-8" title="8">                                       <span class="dt">Param =</span> RawParamOptim)</a>
-<a class="sourceLine" id="cb2-9" title="9">  <span class="co">## Computation of the value of the performance criteria</span></a>
-<a class="sourceLine" id="cb2-10" title="10">  OutputsCrit &lt;-<span class="st"> </span>airGR<span class="op">::</span><span class="kw">ErrorCrit_RMSE</span>(<span class="dt">InputsCrit =</span> InputsCrit,</a>
-<a class="sourceLine" id="cb2-11" title="11">                                       <span class="dt">OutputsModel =</span> OutputsModel,</a>
-<a class="sourceLine" id="cb2-12" title="12">                                       <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb2-13" title="13">  <span class="kw">return</span>(OutputsCrit<span class="op">$</span>CritValue)</a>
-<a class="sourceLine" id="cb2-14" title="14">}</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>OptimGR4J &lt;-<span class="st"> </span><span class="cf">function</span>(ParamOptim) {</span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="co">## Transformation of the parameter set to real space</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  RawParamOptim &lt;-<span class="st"> </span>airGR<span class="op">::</span><span class="kw">TransfoParam_GR4J</span>(<span class="dt">ParamIn =</span> ParamOptim,</span>
+<span id="cb2-4"><a href="#cb2-4"></a>                                            <span class="dt">Direction =</span> <span class="st">&quot;TR&quot;</span>)</span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="co">## Simulation given a parameter set</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  OutputsModel &lt;-<span class="st"> </span>airGR<span class="op">::</span><span class="kw">RunModel_GR4J</span>(<span class="dt">InputsModel =</span> InputsModel,</span>
+<span id="cb2-7"><a href="#cb2-7"></a>                                       <span class="dt">RunOptions =</span> RunOptions,</span>
+<span id="cb2-8"><a href="#cb2-8"></a>                                       <span class="dt">Param =</span> RawParamOptim)</span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="co">## Computation of the value of the performance criteria</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>  OutputsCrit &lt;-<span class="st"> </span>airGR<span class="op">::</span><span class="kw">ErrorCrit_RMSE</span>(<span class="dt">InputsCrit =</span> InputsCrit,</span>
+<span id="cb2-11"><a href="#cb2-11"></a>                                       <span class="dt">OutputsModel =</span> OutputsModel,</span>
+<span id="cb2-12"><a href="#cb2-12"></a>                                       <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb2-13"><a href="#cb2-13"></a>  <span class="kw">return</span>(OutputsCrit<span class="op">$</span>CritValue)</span>
+<span id="cb2-14"><a href="#cb2-14"></a>}</span></code></pre></div>
 <p>In addition, we need to define the lower and upper bounds of the four <strong>GR4J</strong> parameters in the transformed parameter space:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">lowerGR4J &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="op">-</span><span class="fl">9.99</span>, <span class="dt">times =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb3-2" title="2">upperGR4J &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="op">+</span><span class="fl">9.99</span>, <span class="dt">times =</span> <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>lowerGR4J &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="op">-</span><span class="fl">9.99</span>, <span class="dt">times =</span> <span class="dv">4</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a>upperGR4J &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="op">+</span><span class="fl">9.99</span>, <span class="dt">times =</span> <span class="dv">4</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="local-optimization" class="section level1">
 <h1><span class="header-section-number">2</span> Local optimization</h1>
 <p>We start with a local optimization strategy by using the PORT routines (using the <code>nlminb()</code> of the <code>stats</code> package) and by setting a starting point in the transformed parameter space:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">startGR4J &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">4.1</span>, <span class="fl">3.9</span>, <span class="fl">-0.9</span>, <span class="fl">-8.7</span>)</a>
-<a class="sourceLine" id="cb4-2" title="2">optPORT &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw">nlminb</span>(<span class="dt">start =</span> startGR4J, </a>
-<a class="sourceLine" id="cb4-3" title="3">                         <span class="dt">objective =</span> OptimGR4J,</a>
-<a class="sourceLine" id="cb4-4" title="4">                         <span class="dt">lower =</span> lowerGR4J, <span class="dt">upper =</span> upperGR4J,</a>
-<a class="sourceLine" id="cb4-5" title="5">                         <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">trace =</span> <span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>startGR4J &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">4.1</span>, <span class="fl">3.9</span>, <span class="fl">-0.9</span>, <span class="fl">-8.7</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a>optPORT &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw">nlminb</span>(<span class="dt">start =</span> startGR4J, </span>
+<span id="cb4-3"><a href="#cb4-3"></a>                         <span class="dt">objective =</span> OptimGR4J,</span>
+<span id="cb4-4"><a href="#cb4-4"></a>                         <span class="dt">lower =</span> lowerGR4J, <span class="dt">upper =</span> upperGR4J,</span>
+<span id="cb4-5"><a href="#cb4-5"></a>                         <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">trace =</span> <span class="dv">1</span>))</span></code></pre></div>
 <p>The RMSE value reaches a local minimum value after 35 iterations.</p>
 <p>We can also try a multi-start approach to test the consistency of the local optimization. Here we use the same grid used for the filtering step of the Michel’s calibration strategy (<code>Calibration_Michel()</code> function). For each starting point, a local optimization is performed.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">startGR4J &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="kw">data.frame</span>(CalibOptions<span class="op">$</span>StartParamDistrib))</a>
-<a class="sourceLine" id="cb5-2" title="2">optPORT_ &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb5-3" title="3">  opt &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw">nlminb</span>(<span class="dt">start =</span> x, </a>
-<a class="sourceLine" id="cb5-4" title="4">                       <span class="dt">objective =</span> OptimGR4J,</a>
-<a class="sourceLine" id="cb5-5" title="5">                       <span class="dt">lower =</span> lowerGR4J, <span class="dt">upper =</span> upperGR4J,</a>
-<a class="sourceLine" id="cb5-6" title="6">                       <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">trace =</span> <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb5-7" title="7">}</a>
-<a class="sourceLine" id="cb5-8" title="8">listOptPORT &lt;-<span class="st"> </span><span class="kw">apply</span>(startGR4J, <span class="dt">MARGIN =</span> <span class="dv">1</span>, <span class="dt">FUN =</span> optPORT_)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>startGR4J &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="kw">data.frame</span>(CalibOptions<span class="op">$</span>StartParamDistrib))</span>
+<span id="cb5-2"><a href="#cb5-2"></a>optPORT_ &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb5-3"><a href="#cb5-3"></a>  opt &lt;-<span class="st"> </span>stats<span class="op">::</span><span class="kw">nlminb</span>(<span class="dt">start =</span> x, </span>
+<span id="cb5-4"><a href="#cb5-4"></a>                       <span class="dt">objective =</span> OptimGR4J,</span>
+<span id="cb5-5"><a href="#cb5-5"></a>                       <span class="dt">lower =</span> lowerGR4J, <span class="dt">upper =</span> upperGR4J,</span>
+<span id="cb5-6"><a href="#cb5-6"></a>                       <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">trace =</span> <span class="dv">1</span>))</span>
+<span id="cb5-7"><a href="#cb5-7"></a>}</span>
+<span id="cb5-8"><a href="#cb5-8"></a>listOptPORT &lt;-<span class="st"> </span><span class="kw">apply</span>(startGR4J, <span class="dt">MARGIN =</span> <span class="dv">1</span>, <span class="dt">FUN =</span> optPORT_)</span></code></pre></div>
 <p>We can then extract the best parameter sets and the value of the performance criteria:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">parPORT &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="kw">sapply</span>(listOptPORT, <span class="cf">function</span>(x) x<span class="op">$</span>par))</a>
-<a class="sourceLine" id="cb6-2" title="2">objPORT &lt;-<span class="st"> </span><span class="kw">sapply</span>(listOptPORT, <span class="cf">function</span>(x) x<span class="op">$</span>objective)</a>
-<a class="sourceLine" id="cb6-3" title="3">resPORT &lt;-<span class="st"> </span><span class="kw">data.frame</span>(parPORT, <span class="dt">RMSE =</span> objPORT)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>parPORT &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="kw">sapply</span>(listOptPORT, <span class="cf">function</span>(x) x<span class="op">$</span>par))</span>
+<span id="cb6-2"><a href="#cb6-2"></a>objPORT &lt;-<span class="st"> </span><span class="kw">sapply</span>(listOptPORT, <span class="cf">function</span>(x) x<span class="op">$</span>objective)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>resPORT &lt;-<span class="st"> </span><span class="kw">data.frame</span>(parPORT, <span class="dt">RMSE =</span> objPORT)</span></code></pre></div>
 <p>As can be seen below, the optimum performance criterion values (column <em>objective</em>) can differ from the global optimum value in many cases, resulting in various parameter sets.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">summary</span>(resPORT)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">summary</span>(resPORT)</span></code></pre></div>
 <pre><code>##        X1              X2               X3                  X4                 RMSE       
 ##  Min.   :5.548   Min.   :0.1240   Min.   :-0.038062   Min.   :-8.242667   Min.   :0.7864  
 ##  1st Qu.:5.548   1st Qu.:0.1243   1st Qu.:-0.003715   1st Qu.:-8.242667   1st Qu.:0.7864  
@@ -579,21 +593,21 @@ div.tocify {
 </ul>
 <div id="differential-evolution" class="section level2">
 <h2><span class="header-section-number">3.1</span> Differential Evolution</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">optDE &lt;-<span class="st"> </span>DEoptim<span class="op">::</span><span class="kw">DEoptim</span>(<span class="dt">fn =</span> OptimGR4J,</a>
-<a class="sourceLine" id="cb9-2" title="2">                          <span class="dt">lower =</span> lowerGR4J, <span class="dt">upper =</span> upperGR4J,</a>
-<a class="sourceLine" id="cb9-3" title="3">                          <span class="dt">control =</span> DEoptim<span class="op">::</span><span class="kw">DEoptim.control</span>(<span class="dt">NP =</span> <span class="dv">40</span>, <span class="dt">trace =</span> <span class="dv">10</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>optDE &lt;-<span class="st"> </span>DEoptim<span class="op">::</span><span class="kw">DEoptim</span>(<span class="dt">fn =</span> OptimGR4J,</span>
+<span id="cb9-2"><a href="#cb9-2"></a>                          <span class="dt">lower =</span> lowerGR4J, <span class="dt">upper =</span> upperGR4J,</span>
+<span id="cb9-3"><a href="#cb9-3"></a>                          <span class="dt">control =</span> DEoptim<span class="op">::</span><span class="kw">DEoptim.control</span>(<span class="dt">NP =</span> <span class="dv">40</span>, <span class="dt">trace =</span> <span class="dv">10</span>))</span></code></pre></div>
 </div>
 <div id="particle-swarm" class="section level2">
 <h2><span class="header-section-number">3.2</span> Particle Swarm</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">optPSO &lt;-<span class="st"> </span>hydroPSO<span class="op">::</span><span class="kw">hydroPSO</span>(<span class="dt">fn =</span> OptimGR4J,</a>
-<a class="sourceLine" id="cb10-2" title="2">                             <span class="dt">lower =</span> lowerGR4J, <span class="dt">upper =</span> upperGR4J,</a>
-<a class="sourceLine" id="cb10-3" title="3">                             <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">write2disk =</span> <span class="ot">FALSE</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>optPSO &lt;-<span class="st"> </span>hydroPSO<span class="op">::</span><span class="kw">hydroPSO</span>(<span class="dt">fn =</span> OptimGR4J,</span>
+<span id="cb10-2"><a href="#cb10-2"></a>                             <span class="dt">lower =</span> lowerGR4J, <span class="dt">upper =</span> upperGR4J,</span>
+<span id="cb10-3"><a href="#cb10-3"></a>                             <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">write2disk =</span> <span class="ot">FALSE</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>))</span></code></pre></div>
 </div>
 <div id="ma-ls-chains" class="section level2">
 <h2><span class="header-section-number">3.3</span> MA-LS-Chains</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">optMALS &lt;-<span class="st"> </span>Rmalschains<span class="op">::</span><span class="kw">malschains</span>(<span class="dt">fn =</span> OptimGR4J,</a>
-<a class="sourceLine" id="cb11-2" title="2">                                   <span class="dt">lower =</span> lowerGR4J, <span class="dt">upper =</span> upperGR4J, </a>
-<a class="sourceLine" id="cb11-3" title="3">                                   <span class="dt">maxEvals =</span> <span class="dv">2000</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>optMALS &lt;-<span class="st"> </span>Rmalschains<span class="op">::</span><span class="kw">malschains</span>(<span class="dt">fn =</span> OptimGR4J,</span>
+<span id="cb11-2"><a href="#cb11-2"></a>                                   <span class="dt">lower =</span> lowerGR4J, <span class="dt">upper =</span> upperGR4J, </span>
+<span id="cb11-3"><a href="#cb11-3"></a>                                   <span class="dt">maxEvals =</span> <span class="dv">2000</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="results" class="section level1">
@@ -622,7 +636,7 @@ div.tocify {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
