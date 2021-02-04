@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="David Dorchies" />
+
+
+<title>Simulating a reservoir with semi-distributed GR4J model</title>
+
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<!-- NOTE: add "navbar-inverse" class for an alternate navbar background -->
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.html">airGR</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="index.html">Home</a></li>
+     				<li><a href="page_1_get_started.html">Get Started</a></li>
+				<li class="Download">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Articles<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="page_2.1_param_optim.html">Plugging in new calibration algorithms in airGR</a></li>
+						<li><a href="page_2.2_param_mcmc.html">Parameter estimation within a Bayesian MCMC framework</a></li>
+						<li><a href="page_3_param_sets_GR4J.html">Generalist parameter sets for the GR4J model</a></li>
+						<li><a href="page_4_cemaneige_hysteresis.html">Using satellite snow cover area data for calibrating and improving CemaNeige</a></li>
+						<li><a href="page_5_sd_model.html">SSimulating a reservoir with semi-distributed GR4J model</a></li>
+					</ul>
+				</li>
+				<li class="Download">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a tabindex="-1" href="https://CRAN.R-project.org/package=airGR" onclick="window.open(this.href); return false;">Package</a></li>
+						<li><a tabindex="-1" href="https://CRAN.R-project.org/package=airGR/airGR.pdf" onclick="window.open(this.href); return false;">Manual</a></li>
+					</ul>
+				</li>
+				<li><a href="NEWS.html">News</a></li>
+				<li><a href="page_publications.html">Publications</a></li>
+				<li><a href="page_faq.html">FAQ</a></li>
+				<li><a tabindex="-1" href="https://hydroGR.github.io/airGRteaching/" onclick="window.open(this.href); return false;">airGRteaching website</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<a href='https://www.inrae.fr/en/' onclick="window.open(this.href); return false;", title="inrae.fr"><img src='fig/logo_inrae_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.inrae.fr/en/' onclick="window.open(this.href); return false;", title="webgr.inrae.fr"><img src='fig/logo_inrae_hydro_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.inrae.fr/en/software/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGR_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://gitlab.irstea.fr/HYCAR-Hydro/airgr/' onclick="window.open(this.href); return false;", title="GitLab"><img src='fig/logo_gitlab_CMJN_square.svg' style='width:45px;height:45px;'></a>				
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div><!--/.container -->
+</div><!--/.navbar -->
+<p style ="margin-top: 15px;">
+<a href="https://CRAN.R-project.org/package=airGR"><img src="https://www.r-pkg.org/badges/version-ago/airGR" /></a>
+<a href="https://www.rdocumentation.org/packages/airGR"><img src="http://cranlogs.r-pkg.org/badges/grand-total/airGR?color=orange" /></a>
+<a href="https://www.r-project.org/Licenses/GPL-2">
+<svg xmlns="http://www.w3.org/2000/svg" width="095" height="020">
+  <linearGradient id="b" x2="0" y2="100%">
+    <stop offset="0" stop-opacity=".1" stop-color="#bbb"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <mask id="a">
+    <rect width="095" height="020" rx="3" fill="#fff" />
+  </mask>
+  <g mask="url(#a)">
+    <path fill="#555"    d="M00 0h055v20H00z"/>
+    <path fill="#00a3a6" d="M55 0h040v20H55z"/>
+    <path fill="url(#b)" d="M00 0h095v20H00z"/>
+  </g>
+  <g fill="#fff" text-anchor="middle"
+     font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
+    <text x="028" y="015" fill="#010101" fill-opacity=".3">
+      License
+    </text>
+    <text x="028" y="014">
+      License
+    </text>
+    <text x="075" y="015" fill="#010101" fill-opacity=".3">
+      GPL 2
+    </text>
+    <text x="075" y="014">
+      GPL 2
+    </text>
+  </g>
+</svg>
+</a>
+<a href="https://doi.org/10.1016/j.envsoft.2017.05.002"><img src="https://img.shields.io/badge/doi-10.1016/j.envsoft.2017.05.002-purple.svg" /></a>
+<a href="https://doi.org/10.15454/EX11NA">              <img src="https://img.shields.io/badge/doi-10.15454/EX11NA-purple.svg" /></a>
+</p>
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Simulating a reservoir with semi-distributed GR4J model</h1>
+<h4 class="author">David Dorchies</h4>
+
+</div>
+
+
+<div id="introduction" class="section level1" number="1">
+<h1 number="1"><span class="header-section-number">1</span> Introduction</h1>
+<div id="scope" class="section level2" number="1.1">
+<h2 number="1.1"><span class="header-section-number">1.1</span> Scope</h2>
+<p>The <strong>airGR</strong> package implements semi-distributed model capabilities using a lag model between subcatchments. It allows to chain together several lumped models as well as integrating anthropogenic influence such as reservoirs or withdrawals.</p>
+<p><code>RunModel_Lag</code> documentation gives an example of simulating the influence of a reservoir in a lumped model. Try <code>example(RunModel_Lag)</code> to get it.</p>
+<p>In this vignette, we show how to calibrate 2 sub-catchments in series with a semi-distributed model consisting of 2 GR4J models. For doing this we compare two strategies for calibrating the downstream subcatchment:</p>
+<ul>
+<li>using upstream observed flows</li>
+<li>using upstream simulated flows</li>
+</ul>
+<p>We finally compare these calibrations with a theoretical set of parameters.</p>
+</div>
+<div id="model-description" class="section level2" number="1.2">
+<h2 number="1.2"><span class="header-section-number">1.2</span> Model description</h2>
+<p>We use an example data set from the package that unfortunately contains data for only one catchment.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## loading catchment data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(L0123001)</span></code></pre></div>
+<p>Let’s imagine that this catchment of 360 km² is divided into 2 subcatchments:</p>
+<ul>
+<li>An upstream subcatchment of 180 km²</li>
+<li>100 km downstream another subcatchment of 180 km²</li>
+</ul>
+<p>We consider that meteorological data are homogeneous on the whole catchment, so we use the same pluviometry <code>BasinObs$P</code> and the same evapotranspiration <code>BasinObs$E</code> for the 2 subcatchments.</p>
+<p>For the observed flow at the downstream outlet, we generate it with the assumption that the upstream flow arrives at downstream with a constant delay of 2 days.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>QObsDown <span class="ot">&lt;-</span> (BasinObs<span class="sc">$</span>Qmm <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, BasinObs<span class="sc">$</span>Qmm[<span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(BasinObs<span class="sc">$</span>Qmm)<span class="sc">-</span><span class="dv">2</span>)])) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">cbind</span>(<span class="at">QObsUp =</span> BasinObs<span class="sc">$</span>Qmm, QObsDown))</span></code></pre></div>
+<pre><code>##      QObsUp       QObsDown  
+##  Min.   : 0    Min.   : 0   
+##  1st Qu.: 0    1st Qu.: 0   
+##  Median : 1    Median : 1   
+##  Mean   : 1    Mean   : 1   
+##  3rd Qu.: 2    3rd Qu.: 2   
+##  Max.   :24    Max.   :20   
+##  NA&#39;s   :802   NA&#39;s   :820</code></pre>
+</div>
+</div>
+<div id="calibration-of-the-upstream-subcatchment" class="section level1" number="2">
+<h1 number="2"><span class="header-section-number">2</span> Calibration of the upstream subcatchment</h1>
+<p>The operations are exactly the same as the ones for a GR4J lumped model. So we do exactly the same operations as in the <a href="V01_get_started.html">Get Started</a> vignette.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>InputsModelUp <span class="ot">&lt;-</span> <span class="fu">CreateInputsModel</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">DatesR =</span> BasinObs<span class="sc">$</span>DatesR,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">Precip =</span> BasinObs<span class="sc">$</span>P, <span class="at">PotEvap =</span> BasinObs<span class="sc">$</span>E)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Ind_Run <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">which</span>(<span class="fu">format</span>(BasinObs<span class="sc">$</span>DatesR, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>) <span class="sc">==</span> <span class="st">&quot;1990-01-01&quot;</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>               <span class="fu">which</span>(<span class="fu">format</span>(BasinObs<span class="sc">$</span>DatesR, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>) <span class="sc">==</span> <span class="st">&quot;1999-12-31&quot;</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>RunOptionsUp <span class="ot">&lt;-</span> <span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">InputsModel =</span> InputsModelUp,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">IndPeriod_WarmUp =</span> <span class="cn">NULL</span>, <span class="at">IndPeriod_Run =</span> Ind_Run,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">IniStates =</span> <span class="cn">NULL</span>, <span class="at">IniResLevels =</span> <span class="cn">NULL</span>)</span></code></pre></div>
+<pre><code>## Warning in CreateRunOptions(FUN_MOD = RunModel_GR4J, InputsModel = InputsModelUp, : model warm up period not defined: default configuration used
+##   the year preceding the run period is used</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>InputsCritUp <span class="ot">&lt;-</span> <span class="fu">CreateInputsCrit</span>(<span class="at">FUN_CRIT =</span> ErrorCrit_NSE, <span class="at">InputsModel =</span> InputsModelUp,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">RunOptions =</span> RunOptionsUp,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">VarObs =</span> <span class="st">&quot;Q&quot;</span>, <span class="at">Obs =</span> BasinObs<span class="sc">$</span>Qmm[Ind_Run])</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>CalibOptionsUp <span class="ot">&lt;-</span> <span class="fu">CreateCalibOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">FUN_CALIB =</span> Calibration_Michel)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>OutputsCalibUp <span class="ot">&lt;-</span> <span class="fu">Calibration_Michel</span>(<span class="at">InputsModel =</span> InputsModelUp, <span class="at">RunOptions =</span> RunOptionsUp,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">InputsCrit =</span> InputsCritUp, <span class="at">CalibOptions =</span> CalibOptionsUp,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">FUN_MOD =</span> RunModel_GR4J)</span></code></pre></div>
+<pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
+##   Screening completed (81 runs)
+##       Param =  247.151,   -0.020,   83.096,    2.384
+##       Crit. NSE[Q]       = 0.7688
+## Steepest-descent local search in progress
+##   Calibration completed (21 iterations, 234 runs)
+##       Param =  257.238,    1.012,   88.235,    2.208
+##       Crit. NSE[Q]       = 0.7988</code></pre>
+<p>And see the result of the simulation:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>OutputsModelUp <span class="ot">&lt;-</span> <span class="fu">RunModel_GR4J</span>(<span class="at">InputsModel =</span> InputsModelUp, <span class="at">RunOptions =</span> RunOptionsUp,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">Param =</span> OutputsCalibUp<span class="sc">$</span>ParamFinalR)</span></code></pre></div>
+</div>
+<div id="calibration-of-the-downstream-subcatchment-with-upstream-flow-observations" class="section level1" number="3">
+<h1 number="3"><span class="header-section-number">3</span> Calibration of the downstream subcatchment with upstream flow observations</h1>
+<p>Observed flow data contain <code>NA</code> values and a complete time series is mandatory for running the Lag model. We propose to complete the observed upstream flow with linear interpolation:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>QObsUp <span class="ot">&lt;-</span> imputeTS<span class="sc">::</span><span class="fu">na_interpolation</span>(BasinObs<span class="sc">$</span>Qmm)</span></code></pre></div>
+<p>we need to create the <code>InputsModel</code> object completed with upstream information:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>InputsModelDown1 <span class="ot">&lt;-</span> <span class="fu">CreateInputsModel</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">DatesR =</span> BasinObs<span class="sc">$</span>DatesR,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Precip =</span> BasinObs<span class="sc">$</span>P, <span class="at">PotEvap =</span> BasinObs<span class="sc">$</span>E,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Qupstream =</span> <span class="fu">matrix</span>(QObsUp, <span class="at">ncol =</span> <span class="dv">1</span>), <span class="co"># upstream observed flow</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">LengthHydro =</span> <span class="fl">1e2</span> <span class="sc">*</span> <span class="fl">1e3</span>, <span class="co"># distance between upstream catchment outlet &amp; the downstream one [m]</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">BasinAreas =</span> <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">180</span>) <span class="co"># upstream and downstream areas [km²]</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>And then calibrate the combination of Lag model for upstream flow transfer and GR4J model for the runoff of the downstream subcatchment:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>RunOptionsDown <span class="ot">&lt;-</span> <span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">InputsModel =</span> InputsModelDown1,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">IndPeriod_WarmUp =</span> <span class="cn">NULL</span>, <span class="at">IndPeriod_Run =</span> Ind_Run,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">IniStates =</span> <span class="cn">NULL</span>, <span class="at">IniResLevels =</span> <span class="cn">NULL</span>)</span></code></pre></div>
+<pre><code>## Warning in CreateRunOptions(FUN_MOD = RunModel_GR4J, InputsModel = InputsModelDown1, : model warm up period not defined: default configuration used
+##   the year preceding the run period is used</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>InputsCritDown <span class="ot">&lt;-</span> <span class="fu">CreateInputsCrit</span>(<span class="at">FUN_CRIT =</span> ErrorCrit_NSE, <span class="at">InputsModel =</span> InputsModelDown1,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">RunOptions =</span> RunOptionsDown,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">VarObs =</span> <span class="st">&quot;Q&quot;</span>, <span class="at">Obs =</span> QObsDown[Ind_Run])</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>CalibOptionsDown <span class="ot">&lt;-</span> <span class="fu">CreateCalibOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">FUN_CALIB =</span> Calibration_Michel,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">IsSD =</span> <span class="cn">TRUE</span>) <span class="co"># specify that it&#39;s a SD model</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>OutputsCalibDown1 <span class="ot">&lt;-</span> <span class="fu">Calibration_Michel</span>(<span class="at">InputsModel =</span> InputsModelDown1,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">RunOptions =</span> RunOptionsDown,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">InputsCrit =</span> InputsCritDown,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">CalibOptions =</span> CalibOptionsDown,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">FUN_MOD =</span> RunModel_GR4J)</span></code></pre></div>
+<pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
+##   Screening completed (243 runs)
+##       Param =   11.250,  247.151,   -0.020,   83.096,    2.384
+##       Crit. NSE[Q]       = 0.8861
+## Steepest-descent local search in progress
+##   Calibration completed (45 iterations, 675 runs)
+##       Param =    2.560,  265.072,    0.970,   83.931,    4.648
+##       Crit. NSE[Q]       = 0.9489</code></pre>
+<p>To run the complete model, we should substitute the observed upstream flow by the simulated one:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>InputsModelDown2 <span class="ot">&lt;-</span> InputsModelDown1</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>InputsModelDown2<span class="sc">$</span>Qupstream[Ind_Run] <span class="ot">&lt;-</span> OutputsModelUp<span class="sc">$</span>Qsim</span></code></pre></div>
+<p><code>RunModel</code> is run in order to automatically combine GR4J and Lag models.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>OutputsModelDown1 <span class="ot">&lt;-</span> <span class="fu">RunModel</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">RunOptions =</span> RunOptionsDown,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Param =</span> OutputsCalibDown1<span class="sc">$</span>ParamFinalR,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">FUN_MOD =</span> RunModel_GR4J)</span></code></pre></div>
+<p>Performance of the model validation is then:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>CritDown1 <span class="ot">&lt;-</span> <span class="fu">ErrorCrit_NSE</span>(InputsCritDown, OutputsModelDown1)</span></code></pre></div>
+<pre><code>## Crit. NSE[Q] = 0.8170</code></pre>
+</div>
+<div id="calibration-of-the-downstream-subcatchment-with-upstream-simulated-flow" class="section level1" number="4">
+<h1 number="4"><span class="header-section-number">4</span> Calibration of the downstream subcatchment with upstream simulated flow</h1>
+<p>We calibrate the model with the <code>InputsModel</code> object previously created for substituting the observed upstream flow with the simulated one:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>OutputsCalibDown2 <span class="ot">&lt;-</span> <span class="fu">Calibration_Michel</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">RunOptions =</span> RunOptionsDown,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">InputsCrit =</span> InputsCritDown,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">CalibOptions =</span> CalibOptionsDown,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">FUN_MOD =</span> RunModel_GR4J)</span></code></pre></div>
+<pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
+##   Screening completed (243 runs)
+##       Param =   11.250,  247.151,   -0.020,   83.096,    2.384
+##       Crit. NSE[Q]       = 0.7468
+## Steepest-descent local search in progress
+##   Calibration completed (39 iterations, 616 runs)
+##       Param =    1.970,  270.426,    0.822,   68.717,    5.214
+##       Crit. NSE[Q]       = 0.8185</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ParamDown2 <span class="ot">&lt;-</span> OutputsCalibDown2<span class="sc">$</span>ParamFinalR</span></code></pre></div>
+</div>
+<div id="discussion" class="section level1" number="5">
+<h1 number="5"><span class="header-section-number">5</span> Discussion</h1>
+<div id="identification-of-lag-parameter" class="section level2" number="5.1">
+<h2 number="5.1"><span class="header-section-number">5.1</span> Identification of Lag parameter</h2>
+<p>The theoretical Lag parameter should be equal to:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Lag <span class="ot">&lt;-</span> InputsModelDown1<span class="sc">$</span>LengthHydro <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="dv">86400</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="fu">format</span>(Lag), <span class="st">&quot;m/s&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;0.579 m/s&quot;</code></pre>
+<p>Both calibrations overestimate this parameter:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mLag <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(Lag,</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                 OutputsCalibDown1<span class="sc">$</span>ParamFinalR[<span class="dv">1</span>],</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                 OutputsCalibDown2<span class="sc">$</span>ParamFinalR[<span class="dv">1</span>]),</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">ncol =</span> <span class="dv">1</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;theoretical&quot;</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">&quot;calibrated with observed upstream flow&quot;</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">&quot;calibrated with simulated  upstream flow&quot;</span>),</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">c</span>(<span class="st">&quot;Lag parameter&quot;</span>)))</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(mLag)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Lag parameter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">theoretical</td>
+<td align="right">0.579</td>
+</tr>
+<tr class="even">
+<td align="left">calibrated with observed upstream flow</td>
+<td align="right">2.560</td>
+</tr>
+<tr class="odd">
+<td align="left">calibrated with simulated upstream flow</td>
+<td align="right">1.970</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="value-of-the-performance-criteria-with-theoretical-calibration" class="section level2" number="5.2">
+<h2 number="5.2"><span class="header-section-number">5.2</span> Value of the performance criteria with theoretical calibration</h2>
+<p>Theoretically, the parameters of the downstream GR4J model should be the same as the upstream one and we know the lag time. So this set of parameter should give a better performance criteria:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ParamDownTheo <span class="ot">&lt;-</span> <span class="fu">c</span>(Lag, OutputsCalibUp<span class="sc">$</span>ParamFinalR)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>OutputsModelDownTheo <span class="ot">&lt;-</span> <span class="fu">RunModel</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">RunOptions =</span> RunOptionsDown,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">Param =</span> ParamDownTheo,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">FUN_MOD =</span> RunModel_GR4J)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>CritDownTheo <span class="ot">&lt;-</span> <span class="fu">ErrorCrit_NSE</span>(InputsCritDown, OutputsModelDownTheo)</span></code></pre></div>
+<pre><code>## Crit. NSE[Q] = 0.8159</code></pre>
+</div>
+<div id="parameters-and-performance-of-each-subcatchment-for-all-calibrations" class="section level2" number="5.3">
+<h2 number="5.3"><span class="header-section-number">5.3</span> Parameters and performance of each subcatchment for all calibrations</h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>comp <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>, OutputsCalibUp<span class="sc">$</span>ParamFinalR,</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">rep</span>(OutputsCalibDown1<span class="sc">$</span>ParamFinalR, <span class="dv">2</span>),</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                 OutputsCalibDown2<span class="sc">$</span>ParamFinalR,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                 ParamDownTheo),</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>comp <span class="ot">&lt;-</span> <span class="fu">cbind</span>(comp, <span class="fu">c</span>(OutputsCalibUp<span class="sc">$</span>CritFinal,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>                      OutputsCalibDown1<span class="sc">$</span>CritFinal,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                      CritDown1<span class="sc">$</span>CritValue,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>                      OutputsCalibDown2<span class="sc">$</span>CritFinal,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>                      CritDownTheo<span class="sc">$</span>CritValue))</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(comp) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Lag&quot;</span>, <span class="fu">paste0</span>(<span class="st">&quot;X&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>), <span class="st">&quot;NSE&quot;</span>)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(comp) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Calibration of the upstream subcatchment&quot;</span>,</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;Calibration 1 with observed upstream flow&quot;</span>,</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;Validation 1 with simulated upstream flow&quot;</span>,</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;Calibration 2 with simulated upstream flow&quot;</span>,</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;Validation theoretical set of parameters&quot;</span>)</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(comp)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Lag</th>
+<th align="right">X1</th>
+<th align="right">X2</th>
+<th align="right">X3</th>
+<th align="right">X4</th>
+<th align="right">NSE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Calibration of the upstream subcatchment</td>
+<td align="right">0.000</td>
+<td align="right">257</td>
+<td align="right">1.012</td>
+<td align="right">88.2</td>
+<td align="right">2.21</td>
+<td align="right">0.799</td>
+</tr>
+<tr class="even">
+<td align="left">Calibration 1 with observed upstream flow</td>
+<td align="right">2.560</td>
+<td align="right">265</td>
+<td align="right">0.970</td>
+<td align="right">83.9</td>
+<td align="right">4.65</td>
+<td align="right">0.949</td>
+</tr>
+<tr class="odd">
+<td align="left">Validation 1 with simulated upstream flow</td>
+<td align="right">2.560</td>
+<td align="right">265</td>
+<td align="right">0.970</td>
+<td align="right">83.9</td>
+<td align="right">4.65</td>
+<td align="right">0.817</td>
+</tr>
+<tr class="even">
+<td align="left">Calibration 2 with simulated upstream flow</td>
+<td align="right">1.970</td>
+<td align="right">270</td>
+<td align="right">0.822</td>
+<td align="right">68.7</td>
+<td align="right">5.21</td>
+<td align="right">0.818</td>
+</tr>
+<tr class="odd">
+<td align="left">Validation theoretical set of parameters</td>
+<td align="right">0.579</td>
+<td align="right">257</td>
+<td align="right">1.012</td>
+<td align="right">88.2</td>
+<td align="right">2.21</td>
+<td align="right">0.816</td>
+</tr>
+</tbody>
+</table>
+<p>Even if calibration with observed upstream flows gives an improved performance criteria, in validation using simulated upstream flows the result is quite similar as the performance obtained with the calibration with upstream simulated flows. The theoretical set of parameters give also an equivalent performance but still underperforming the calibration 2 one.</p>
+</div>
+</div>
+
+<footer>
+<p>Developed by INRAE&nbsp;<a href="https://webgr.inrae.fr/en">Catchment Hydrology Research Group</a>&nbsp;- Antony, France.</p>
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
