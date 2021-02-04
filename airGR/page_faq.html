@@ -13,6 +13,7 @@
 
 <title>Frequently asked questions</title>
 
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -23,9 +24,6 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -65,6 +63,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
@@ -349,10 +348,11 @@ div.tocify {
 				<li class="Download">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Articles<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="page_2.1_param_optim.html">Plugging in new calibration algorithms</a></li>
-						<li><a href="page_2.2_param_mcmc.html">MCMC Parameter estimation</a></li>
-						<li><a href="page_3_param_sets_GR4J.html">GR4J Generalist parameter sets</a></li>
-						<li><a href="page_4_cemaneige_hysteresis.html">Using CemaNeige with Hysteresis</a></li>
+						<li><a href="page_2.1_param_optim.html">Plugging in new calibration algorithms in airGR</a></li>
+						<li><a href="page_2.2_param_mcmc.html">Parameter estimation within a Bayesian MCMC framework</a></li>
+						<li><a href="page_3_param_sets_GR4J.html">Generalist parameter sets for the GR4J model</a></li>
+						<li><a href="page_4_cemaneige_hysteresis.html">Using satellite snow cover area data for calibrating and improving CemaNeige</a></li>
+						<li><a href="page_5_sd_model.html">SSimulating a reservoir with semi-distributed GR4J model</a></li>
 					</ul>
 				</li>
 				<li class="Download">
@@ -414,6 +414,7 @@ div.tocify {
 <a href="https://doi.org/10.15454/EX11NA">              <img src="https://img.shields.io/badge/doi-10.15454/EX11NA-purple.svg" /></a>
 </p>
 
+
 <div class="fluid-row" id="header">
 
 
@@ -459,15 +460,15 @@ div.tocify {
 </div>
 <div id="can-we-perform-climate-change-impact-studies-with-airgr" class="section level3">
 <h3>Can we perform climate change impact studies with airGR?</h3>
-<p>Yes of course! What you are trying to do is very similar to a calibration/control exercise as described in the <a href="page_1_get_started.html">Get Started</a> page. You calibrate on a historical period and you simulate the future conditions using the parameters obtained from the previously mentioned calibration. Please note that when analysing your future conditions, you must compare them to simulations made by the model forced by present time GCM/RCM output, not directly to discharge observations, as otherwise you would mix in your analysis the bias of the hydrological model, the bias of the GCM/RCM data and the actual impact of climate change. But this is very common in CC studies so I guess you know all of this.</p>
+<p>Yes of course! What you are trying to do is very similar to a calibration/control exercise as described in the <a href="page_1_get_started.html">Get Started</a> article. You calibrate on a historical period and you simulate the future conditions using the parameters obtained from the previously mentioned calibration. Please note that when analysing your future conditions, you must compare them to simulations made by the model forced by present time GCM/RCM output, not directly to discharge observations, as otherwise you would mix in your analysis the bias of the hydrological model, the bias of the GCM/RCM data and the actual impact of climate change. But this is very common in CC studies so I guess you know all of this.</p>
 </div>
 <div id="i-prefer-to-use-a-mcmc-based-or-a-particle-swarm-optimization-algorithm.-are-these-methods-implemented-in-airgr" class="section level3">
 <h3>I prefer to use a MCMC-based or a particle swarm optimization algorithm. Are these methods implemented in airGR?</h3>
-<p>No, but as these algorithms exist in other packages, they can easily be plugged to <strong><font color="#00a3a6">airGR</font></strong>. Please read the <a href="page_2.1_param_optim.html">Plugging in new calibration algorithms</a> and the <a href="page_2.2_param_mcmc.html">Bayesian MCMC framework</a> pages to access other global or MCMC-based methods. Detailed examples of how to link the functions are given.</p>
+<p>No, but as these algorithms exist in other packages, they can easily be plugged to <strong><font color="#00a3a6">airGR</font></strong>. Please read the <a href="page_2.1_param_optim.html">Plugging in new calibration algorithms</a> and the <a href="page_2.2_param_mcmc.html">Bayesian MCMC framework</a> articles to access other global or MCMC-based methods. Detailed examples of how to link the functions are given.</p>
 </div>
 <div id="i-dont-have-enough-discharge-data-to-calibrate-gr4j.-do-you-have-any-solution-for-me" class="section level3">
 <h3>I don’t have enough discharge data to calibrate GR4J. Do you have any solution for me?</h3>
-<p>A set of generalist parameters for GR4J is provided in the <code>Param_Sets_GR4J</code> object. This set of parameters can be loaded with the following R command: <code>data(Param_Sets_GR4J)</code>. The <a href="page_3_param_sets_GR4J.html">Generalist parameter sets</a> page explains how to use this list. This set of parameters is quite general and showed to perform better than automatic calibration when very few data are available. Good performance is not warranted, but it is better than nothing. We do not have such a list for the other RR models.</p>
+<p>A set of generalist parameters for GR4J is provided in the <code>Param_Sets_GR4J</code> object. This set of parameters can be loaded with the following R command: <code>data(Param_Sets_GR4J)</code>. The <a href="page_3_param_sets_GR4J.html">Generalist parameter sets</a> article explains how to use this list. This set of parameters is quite general and showed to perform better than automatic calibration when very few data are available. Good performance is not warranted, but it is better than nothing. We do not have such a list for the other RR models.</p>
 </div>
 <div id="the-streamflows-simulated-by-the-model-are-very-lowhigh-for-the-first-time-steps.-what-am-i-doing-wrong" class="section level3">
 <h3>The streamflows simulated by the model are very low/high for the first time steps. What am I doing wrong?</h3>

@@ -9,10 +9,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Olivier Delaigue, Guillaume Thirel" />
 
 
 <title>Generalist parameter sets for the GR4J model</title>
 
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -23,9 +25,6 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -39,19 +38,18 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -71,7 +69,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {  background-color: #f8f8f8; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -155,6 +153,29 @@ h6 {
 }
 .table th:not([align]) {
   text-align: left;
+}
+</style>
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
 }
 </style>
 
@@ -441,10 +462,11 @@ div.tocify {
 				<li class="Download">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Articles<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="page_2.1_param_optim.html">Plugging in new calibration algorithms</a></li>
-						<li><a href="page_2.2_param_mcmc.html">MCMC Parameter estimation</a></li>
-						<li><a href="page_3_param_sets_GR4J.html">GR4J Generalist parameter sets</a></li>
-						<li><a href="page_4_cemaneige_hysteresis.html">Using CemaNeige with Hysteresis</a></li>
+						<li><a href="page_2.1_param_optim.html">Plugging in new calibration algorithms in airGR</a></li>
+						<li><a href="page_2.2_param_mcmc.html">Parameter estimation within a Bayesian MCMC framework</a></li>
+						<li><a href="page_3_param_sets_GR4J.html">Generalist parameter sets for the GR4J model</a></li>
+						<li><a href="page_4_cemaneige_hysteresis.html">Using satellite snow cover area data for calibrating and improving CemaNeige</a></li>
+						<li><a href="page_5_sd_model.html">SSimulating a reservoir with semi-distributed GR4J model</a></li>
 					</ul>
 				</li>
 				<li class="Download">
@@ -506,37 +528,39 @@ div.tocify {
 <a href="https://doi.org/10.15454/EX11NA">              <img src="https://img.shields.io/badge/doi-10.15454/EX11NA-purple.svg" /></a>
 </p>
 
+
 <div class="fluid-row" id="header">
 
 
 
 <h1 class="title toc-ignore">Generalist parameter sets for the GR4J model</h1>
+<h4 class="author">Olivier Delaigue, Guillaume Thirel</h4>
 
 </div>
 
 
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<div id="scope" class="section level2">
-<h2><span class="header-section-number">1.1</span> Scope</h2>
+<div id="introduction" class="section level1" number="1">
+<h1 number="1"><span class="header-section-number">1</span> Introduction</h1>
+<div id="scope" class="section level2" number="1.1">
+<h2 number="1.1"><span class="header-section-number">1.1</span> Scope</h2>
 <p>In the <strong><font color="#00a3a6">airGR</font></strong> package, the classical way to calibrate a model is to use the Michel’s algorithm (see the <code>Calibration_Michel()</code> function).</p>
 <p>The Michel’s algorithm combines a global and a local approach. A screening is first performed either based on a rough predefined grid (considering various initial values for each parameter) or from a list of initial parameter sets. The best set identified in this screening is then used as a starting point for the steepest descent local search algorithm.</p>
 <p>In some specific situations, for example if the calibration period is too short and by consequence non representative of the catchment behaviour, a local calibration algorithm can give poor results.</p>
-<p>In this page, we show a method using a known parameter set that can be used as an alternative for the grid-screening calibration procedure, and we well compare to two methods using the <code>Calibration_Michel()</code> function. The generalist parameters sets introduced here are taken from <span class="citation">Andréassian et al. (2014)</span>.</p>
+<p>In this article, we show a method using a known parameter set that can be used as an alternative for the grid-screening calibration procedure, and we well compare to two methods using the <code>Calibration_Michel()</code> function. The generalist parameters sets introduced here are taken from <span class="citation">Andréassian et al. (2014)</span>.</p>
 </div>
-<div id="data-preparation" class="section level2">
-<h2><span class="header-section-number">1.2</span> Data preparation</h2>
+<div id="data-preparation" class="section level2" number="1.2">
+<h2 number="1.2"><span class="header-section-number">1.2</span> Data preparation</h2>
 <p>We load an example data set from the package and the GR4J parameter sets.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">## loading catchment data</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">data</span>(L0123001)</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co">## loading generalist parameter sets</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">data</span>(Param_Sets_GR4J)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## loading catchment data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(L0123001)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="do">## loading generalist parameter sets</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Param_Sets_GR4J)</span></code></pre></div>
 <p>The given GR4J <strong>X4u</strong> variable does not correspond to the actual GR4J <strong>X4</strong> parameter. As explained in <span class="citation">Andréassian et al. (2014, sec. 2.1)</span>, the given GR4J <strong>X4u</strong> value has to be adjusted (rescaled) using catchment area (S) [km2] as follows: <code>X4 = X4u / 5.995 * S^0.3</code> (please= note that <strong>the formula is erroneous in the publication</strong>).</p>
 <p>It means we need first to transform the <strong>X4</strong> parameter.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>Param_Sets_GR4J<span class="op">$</span>X4 &lt;-<span class="st"> </span>Param_Sets_GR4J<span class="op">$</span>X4u <span class="op">/</span><span class="st"> </span><span class="fl">5.995</span> <span class="op">*</span><span class="st"> </span>BasinInfo<span class="op">$</span>BasinArea<span class="op">^</span><span class="fl">0.3</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>Param_Sets_GR4J<span class="op">$</span>X4u &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>Param_Sets_GR4J &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(Param_Sets_GR4J)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Param_Sets_GR4J<span class="sc">$</span>X4 <span class="ot">&lt;-</span> Param_Sets_GR4J<span class="sc">$</span>X4u <span class="sc">/</span> <span class="fl">5.995</span> <span class="sc">*</span> BasinInfo<span class="sc">$</span>BasinArea<span class="sc">^</span><span class="fl">0.3</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Param_Sets_GR4J<span class="sc">$</span>X4u <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Param_Sets_GR4J <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(Param_Sets_GR4J)</span></code></pre></div>
 <p>Please, find below the summary of the 27 sets of the 4 parameters.</p>
 <pre><code>##        X1             X2              X3            X4      
 ##  Min.   : 126   Min.   :-54.5   Min.   :  8   Min.   :1.21  
@@ -546,55 +570,55 @@ div.tocify {
 ##  3rd Qu.: 359   3rd Qu.: -0.6   3rd Qu.:106   3rd Qu.:2.45  
 ##  Max.   :4006   Max.   :  0.8   Max.   :318   Max.   :3.47</code></pre>
 </div>
-<div id="object-model-preparation" class="section level2">
-<h2><span class="header-section-number">1.3</span> Object model preparation</h2>
-<p>We assume that the R global environment contains data and functions from the <a href="page_1_get_started.html">Get Started</a> page.</p>
+<div id="object-model-preparation" class="section level2" number="1.3">
+<h2 number="1.3"><span class="header-section-number">1.3</span> Object model preparation</h2>
+<p>We assume that the R global environment contains data and functions from the <a href="page_1_get_started.html">Get Started</a> article.</p>
 <p>The calibration period has been defined from <strong>1990-01-01</strong> to <strong>1990-02-28</strong>, and the validation period from <strong>1990-03-01</strong> to <strong>1999-12-31</strong>.</p>
 <p>As a consequence, in this example the calibration period is very short, less than 6 months.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">## preparation of the InputsModel object</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>InputsModel &lt;-<span class="st"> </span><span class="kw">CreateInputsModel</span>(<span class="dt">FUN_MOD =</span> RunModel_GR4J, <span class="dt">DatesR =</span> BasinObs<span class="op">$</span>DatesR, </span>
-<span id="cb4-3"><a href="#cb4-3"></a>                                 <span class="dt">Precip =</span> BasinObs<span class="op">$</span>P, <span class="dt">PotEvap =</span> BasinObs<span class="op">$</span>E)</span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co">## ---- calibration step</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co">## short calibration period selection (&lt; 6 months)</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>Ind_Cal &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">which</span>(<span class="kw">format</span>(BasinObs<span class="op">$</span>DatesR, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y %H:%M&quot;</span>)<span class="op">==</span><span class="st">&quot;01/01/1990 00:00&quot;</span>), </span>
-<span id="cb4-9"><a href="#cb4-9"></a>               <span class="kw">which</span>(<span class="kw">format</span>(BasinObs<span class="op">$</span>DatesR, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y %H:%M&quot;</span>)<span class="op">==</span><span class="st">&quot;28/02/1990 00:00&quot;</span>))</span>
-<span id="cb4-10"><a href="#cb4-10"></a></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="co">## preparation of the RunOptions object for the calibration period</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a>RunOptions_Cal &lt;-<span class="st"> </span><span class="kw">CreateRunOptions</span>(<span class="dt">FUN_MOD =</span> RunModel_GR4J,</span>
-<span id="cb4-13"><a href="#cb4-13"></a>                               <span class="dt">InputsModel =</span> InputsModel, <span class="dt">IndPeriod_Run =</span> Ind_Cal)</span>
-<span id="cb4-14"><a href="#cb4-14"></a></span>
-<span id="cb4-15"><a href="#cb4-15"></a><span class="co">## efficiency criterion: Nash-Sutcliffe Efficiency</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a>InputsCrit_Cal  &lt;-<span class="st"> </span><span class="kw">CreateInputsCrit</span>(<span class="dt">FUN_CRIT =</span> ErrorCrit_NSE, <span class="dt">InputsModel =</span> InputsModel, </span>
-<span id="cb4-17"><a href="#cb4-17"></a>                                    <span class="dt">RunOptions =</span> RunOptions_Cal, <span class="dt">Qobs =</span> BasinObs<span class="op">$</span>Qmm[Ind_Cal])</span>
-<span id="cb4-18"><a href="#cb4-18"></a></span>
-<span id="cb4-19"><a href="#cb4-19"></a></span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="co">## ---- validation step</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a></span>
-<span id="cb4-22"><a href="#cb4-22"></a><span class="co">## validation period selection</span></span>
-<span id="cb4-23"><a href="#cb4-23"></a>Ind_Val &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">which</span>(<span class="kw">format</span>(BasinObs<span class="op">$</span>DatesR, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y %H:%M&quot;</span>)<span class="op">==</span><span class="st">&quot;01/03/1990 00:00&quot;</span>), </span>
-<span id="cb4-24"><a href="#cb4-24"></a>               <span class="kw">which</span>(<span class="kw">format</span>(BasinObs<span class="op">$</span>DatesR, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y %H:%M&quot;</span>)<span class="op">==</span><span class="st">&quot;31/12/1999 00:00&quot;</span>))</span>
-<span id="cb4-25"><a href="#cb4-25"></a></span>
-<span id="cb4-26"><a href="#cb4-26"></a><span class="co">## preparation of the RunOptions object for the validation period</span></span>
-<span id="cb4-27"><a href="#cb4-27"></a>RunOptions_Val &lt;-<span class="st"> </span><span class="kw">CreateRunOptions</span>(<span class="dt">FUN_MOD =</span> RunModel_GR4J,</span>
-<span id="cb4-28"><a href="#cb4-28"></a>                                   <span class="dt">InputsModel =</span> InputsModel, <span class="dt">IndPeriod_Run =</span> Ind_Val)</span>
-<span id="cb4-29"><a href="#cb4-29"></a></span>
-<span id="cb4-30"><a href="#cb4-30"></a><span class="co">## efficiency criterion (Nash-Sutcliffe Efficiency) on the validation period</span></span>
-<span id="cb4-31"><a href="#cb4-31"></a>InputsCrit_Val  &lt;-<span class="st"> </span><span class="kw">CreateInputsCrit</span>(<span class="dt">FUN_CRIT =</span> ErrorCrit_NSE, <span class="dt">InputsModel =</span> InputsModel, </span>
-<span id="cb4-32"><a href="#cb4-32"></a>                                <span class="dt">RunOptions =</span> RunOptions_Val, <span class="dt">Qobs =</span> BasinObs<span class="op">$</span>Qmm[Ind_Val])</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## preparation of the InputsModel object</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>InputsModel <span class="ot">&lt;-</span> <span class="fu">CreateInputsModel</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">DatesR =</span> BasinObs<span class="sc">$</span>DatesR, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">Precip =</span> BasinObs<span class="sc">$</span>P, <span class="at">PotEvap =</span> BasinObs<span class="sc">$</span>E)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">## ---- calibration step</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="do">## short calibration period selection (&lt; 6 months)</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>Ind_Cal <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">which</span>(<span class="fu">format</span>(BasinObs<span class="sc">$</span>DatesR, <span class="at">format =</span> <span class="st">&quot;%d/%m/%Y %H:%M&quot;</span>)<span class="sc">==</span><span class="st">&quot;01/01/1990 00:00&quot;</span>), </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>               <span class="fu">which</span>(<span class="fu">format</span>(BasinObs<span class="sc">$</span>DatesR, <span class="at">format =</span> <span class="st">&quot;%d/%m/%Y %H:%M&quot;</span>)<span class="sc">==</span><span class="st">&quot;28/02/1990 00:00&quot;</span>))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="do">## preparation of the RunOptions object for the calibration period</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>RunOptions_Cal <span class="ot">&lt;-</span> <span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                               <span class="at">InputsModel =</span> InputsModel, <span class="at">IndPeriod_Run =</span> Ind_Cal)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="do">## efficiency criterion: Nash-Sutcliffe Efficiency</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>InputsCrit_Cal  <span class="ot">&lt;-</span> <span class="fu">CreateInputsCrit</span>(<span class="at">FUN_CRIT =</span> ErrorCrit_NSE, <span class="at">InputsModel =</span> InputsModel, </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">RunOptions =</span> RunOptions_Cal, <span class="at">Obs =</span> BasinObs<span class="sc">$</span>Qmm[Ind_Cal])</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="do">## ---- validation step</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="do">## validation period selection</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>Ind_Val <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">which</span>(<span class="fu">format</span>(BasinObs<span class="sc">$</span>DatesR, <span class="at">format =</span> <span class="st">&quot;%d/%m/%Y %H:%M&quot;</span>)<span class="sc">==</span><span class="st">&quot;01/03/1990 00:00&quot;</span>), </span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>               <span class="fu">which</span>(<span class="fu">format</span>(BasinObs<span class="sc">$</span>DatesR, <span class="at">format =</span> <span class="st">&quot;%d/%m/%Y %H:%M&quot;</span>)<span class="sc">==</span><span class="st">&quot;31/12/1999 00:00&quot;</span>))</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="do">## preparation of the RunOptions object for the validation period</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>RunOptions_Val <span class="ot">&lt;-</span> <span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J,</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">InputsModel =</span> InputsModel, <span class="at">IndPeriod_Run =</span> Ind_Val)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="do">## efficiency criterion (Nash-Sutcliffe Efficiency) on the validation period</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>InputsCrit_Val  <span class="ot">&lt;-</span> <span class="fu">CreateInputsCrit</span>(<span class="at">FUN_CRIT =</span> ErrorCrit_NSE, <span class="at">InputsModel =</span> InputsModel, </span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>                                <span class="at">RunOptions =</span> RunOptions_Val, <span class="at">Obs =</span> BasinObs<span class="sc">$</span>Qmm[Ind_Val])</span></code></pre></div>
 </div>
 </div>
-<div id="calibration-of-the-gr4j-model-with-the-generalist-parameter-sets" class="section level1">
-<h1><span class="header-section-number">2</span> Calibration of the GR4J model with the generalist parameter sets</h1>
-<p>It is recommended to use the generalist parameter sets when the calibration period is less than 6 month.</p>
+<div id="calibration-of-the-gr4j-model-with-the-generalist-parameter-sets" class="section level1" number="2">
+<h1 number="2"><span class="header-section-number">2</span> Calibration of the GR4J model with the generalist parameter sets</h1>
+<p>It is recommended to use the generalist parameter sets when the calibration period is less than 6 months.</p>
 <p>As shown in <span class="citation">Andréassian et al. (2014, fig. 4)</span>, a recommended way to use the <code>Param_Sets_GR4J</code> <code>data.frame</code> is to run the GR4J model with each parameter set and to select the best one according to an objective function (here we use the Nash-Sutcliffe Efficiency criterion).</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>OutputsCrit_Loop &lt;-<span class="st"> </span><span class="kw">apply</span>(Param_Sets_GR4J, <span class="dv">1</span>, <span class="cf">function</span>(iParam) {</span>
-<span id="cb5-2"><a href="#cb5-2"></a>  OutputsModel_Cal &lt;-<span class="st"> </span><span class="kw">RunModel_GR4J</span>(<span class="dt">InputsModel =</span> InputsModel, <span class="dt">RunOptions =</span> RunOptions_Cal,</span>
-<span id="cb5-3"><a href="#cb5-3"></a>                                    <span class="dt">Param =</span> iParam)</span>
-<span id="cb5-4"><a href="#cb5-4"></a>  OutputsCrit &lt;-<span class="st"> </span><span class="kw">ErrorCrit_NSE</span>(<span class="dt">InputsCrit =</span> InputsCrit_Cal, <span class="dt">OutputsModel =</span> OutputsModel_Cal)</span>
-<span id="cb5-5"><a href="#cb5-5"></a>  <span class="kw">return</span>(OutputsCrit<span class="op">$</span>CritValue)</span>
-<span id="cb5-6"><a href="#cb5-6"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>OutputsCrit_Loop <span class="ot">&lt;-</span> <span class="fu">apply</span>(Param_Sets_GR4J, <span class="dv">1</span>, <span class="cf">function</span>(iParam) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  OutputsModel_Cal <span class="ot">&lt;-</span> <span class="fu">RunModel_GR4J</span>(<span class="at">InputsModel =</span> InputsModel, <span class="at">RunOptions =</span> RunOptions_Cal,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">Param =</span> iParam)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  OutputsCrit <span class="ot">&lt;-</span> <span class="fu">ErrorCrit_NSE</span>(<span class="at">InputsCrit =</span> InputsCrit_Cal, <span class="at">OutputsModel =</span> OutputsModel_Cal)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(OutputsCrit<span class="sc">$</span>CritValue)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>Find below the 27 criteria corresponding to the different parameter sets.</p>
 <p>The criterion values are quite low (from -1.639 to 0.336), which can be expected as this does not represents an actual calibration.</p>
 <pre><code>##  [1]  0.0573  0.1331 -0.0168  0.1613  0.0345  0.1046 -0.0458  0.3359  0.2440 -0.3858 -0.0830 -1.0930  0.2843
@@ -605,24 +629,24 @@ div.tocify {
 ## 291.00   0.30 109.10   2.01</code></pre>
 <p>Now we can compute the Nash-Sutcliffe Efficiency criterion on the validation period. A quite good value (0.777) is found.</p>
 </div>
-<div id="calibration-of-the-gr4j-model-with-the-built-in-calibration_michel-function" class="section level1">
-<h1><span class="header-section-number">3</span> Calibration of the GR4J model with the built-in <code>Calibration_Michel()</code> function</h1>
+<div id="calibration-of-the-gr4j-model-with-the-built-in-calibration_michel-function" class="section level1" number="3">
+<h1 number="3"><span class="header-section-number">3</span> Calibration of the GR4J model with the built-in <code>Calibration_Michel()</code> function</h1>
 <p>As seen above, the Michel’s calibration algorithm is based on a local search procedure.</p>
 <p>It is <strong>not recommanded</strong> to use the <code>Calibration_Michel()</code> function when the <strong>calibration period is less than 6 month</strong>. We will show below its application on the same short period for two configurations of the grid-screening step to demonstrate that it is less efficient than the generalist parameters sets calibration.</p>
-<div id="gr4j-parameter-distributions-quantiles-used-in-the-grid-screening-step" class="section level2">
-<h2><span class="header-section-number">3.1</span> GR4J parameter distributions quantiles used in the grid-screening step</h2>
+<div id="gr4j-parameter-distributions-quantiles-used-in-the-grid-screening-step" class="section level2" number="3.1">
+<h2 number="3.1"><span class="header-section-number">3.1</span> GR4J parameter distributions quantiles used in the grid-screening step</h2>
 <p>By default, the predefined grid used by the <code>Calibration_Michel()</code> function contains parameters quantiles computed after recursive calibrations on 1200 basins (from Australia, France and USA).</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>CalibOptions &lt;-<span class="st"> </span><span class="kw">CreateCalibOptions</span>(<span class="dt">FUN_MOD =</span> RunModel_GR4J, <span class="dt">FUN_CALIB =</span> Calibration_Michel)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>CalibOptions <span class="ot">&lt;-</span> <span class="fu">CreateCalibOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">FUN_CALIB =</span> Calibration_Michel)</span></code></pre></div>
 <p>The parameter set corresponding to the best criterion is the following:</p>
 <pre><code>##     X1     X2     X3     X4 
 ## 165.05   6.46 422.50   2.45</code></pre>
 <p>The Nash-Sutcliffe Efficiency criterion computed on the calibration period is better (0.495) than with the generalist parameter sets, but the one computed on the validation period is lower (0.57). This shows that the generalist parameter sets give more robust model in this case.</p>
 </div>
-<div id="gr4j-parameter-sets-used-in-the-grid-screening-step" class="section level2">
-<h2><span class="header-section-number">3.2</span> GR4J parameter sets used in the grid-screening step</h2>
+<div id="gr4j-parameter-sets-used-in-the-grid-screening-step" class="section level2" number="3.2">
+<h2 number="3.2"><span class="header-section-number">3.2</span> GR4J parameter sets used in the grid-screening step</h2>
 <p>It is also possible to give to the <code>CreateCalibOptions()</code> function a matrix of parameter sets used for the grid-screening calibration procedure. So, it possible is to use by this way the GR4J generalist parameter sets.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>CalibOptions &lt;-<span class="st"> </span><span class="kw">CreateCalibOptions</span>(<span class="dt">FUN_MOD =</span> RunModel_GR4J, <span class="dt">FUN_CALIB =</span> Calibration_Michel,</span>
-<span id="cb10-2"><a href="#cb10-2"></a>                                   <span class="dt">StartParamList =</span> Param_Sets_GR4J)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>CalibOptions <span class="ot">&lt;-</span> <span class="fu">CreateCalibOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">FUN_CALIB =</span> Calibration_Michel,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">StartParamList =</span> Param_Sets_GR4J)</span></code></pre></div>
 <p>Here is the parameter set corresponding to the best criteria found.</p>
 <pre><code>##     X1     X2     X3     X4 
 ## 161.62   6.53 429.00   2.45</code></pre>
@@ -631,10 +655,10 @@ div.tocify {
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-<div id="refs" class="references">
-<div id="ref-andreassian_seeking_2014">
-<p>Andréassian, Vazken, François Bourgin, Ludovic Oudin, Thibault Mathevet, Charles Perrin, Julien Lerat, Laurent Coron, and Lionel Berthet. 2014. “Seeking Genericity in the Selection of Parameter Sets: Impact on Hydrological Model Efficiency.” <em>Water Resources Research</em> 50 (10): 8356–66. <a href="https://doi.org/10.1002/2013WR014761">https://doi.org/10.1002/2013WR014761</a>.</p>
+<h1 class="unnumbered">References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-andreassian_seeking_2014" class="csl-entry">
+Andréassian, Vazken, François Bourgin, Ludovic Oudin, Thibault Mathevet, Charles Perrin, Julien Lerat, Laurent Coron, and Lionel Berthet. 2014. <span>“Seeking Genericity in the Selection of Parameter Sets: <span>Impact</span> on Hydrological Model Efficiency.”</span> <em>Water Resources Research</em> 50 (10): 8356–66. <a href="https://doi.org/10.1002/2013WR014761">https://doi.org/10.1002/2013WR014761</a>.
 </div>
 </div>
 </div>
