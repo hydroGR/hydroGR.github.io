@@ -13,6 +13,7 @@
 
 <title>airGRteaching: Teaching Hydrological Modelling with GR</title>
 
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -36,26 +37,27 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -64,9 +66,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { background-color: #f8f8f8; }
+  {  background-color: #f8f8f8; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -509,12 +511,13 @@ The latest version of the <b>htmlwidgets</b> package has been fixed and is now a
 -->
 </p>
 
+
 <div class="fluid-row" id="header">
 
 
 
 <h1 class="title toc-ignore">airGRteaching: Teaching Hydrological Modelling with GR</h1>
-<h4 class="date">Update: 2020-12-15</h4>
+<h4 class="date">Update: 2021-02-05</h4>
 
 </div>
 
@@ -524,18 +527,18 @@ The latest version of the <b>htmlwidgets</b> package has been fixed and is now a
 <!-- ```{block, type='rmdcomment'} -->
 <!-- Some text for this block. Some text for this block. Some text for this block. Some text for this block. Some text for this block. Some text for this block. -->
 <!-- ``` -->
-<div id="what-is-the-airgrteaching-package" class="section level1">
-<h1><span class="header-section-number">1</span> What is the airGRteaching package?</h1>
-<div id="presentation" class="section level2">
-<h2><span class="header-section-number">1.1</span> Presentation</h2>
+<div id="what-is-the-airgrteaching-package" class="section level1" number="1">
+<h1 number="1"><span class="header-section-number">1</span> What is the airGRteaching package?</h1>
+<div id="presentation" class="section level2" number="1.1">
+<h2 number="1.1"><span class="header-section-number">1.1</span> Presentation</h2>
 <div style="float:left">
 <img src="fig/logo_airGRteaching_CMJN_square.png" alt="airGRteaching logo" width="175px" />
 </div>
 <p><strong><font color="#009EE0">airGRteaching</font></strong> is an add-on package to the <strong><font color="#009EE0">airGR</font></strong> package. It simplifies its use and is more specifically oriented towards teaching than <strong><font color="#009EE0">airGR</font></strong>. It provides access to the GR rainfall-runoff models (GR4H, GR5H, GR4J, GR5J, GR6J, GR2M, GR1A) and a snow melt and accumulation model (CemaNeige) with limited programming skills. This package also provides a graphical interface to help students exploring data and model results.</p>
 <p>The <strong><font color="#009EE0">airGRteaching</font></strong> package has been designed to fulfil a major requirement: facilitating the use of the <strong><font color="#009EE0">airGR</font></strong> functionalities by students. The names of the functions and their arguments were chosen to this end.</p>
 </div>
-<div id="main-features-of-airgrteaching" class="section level2">
-<h2><span class="header-section-number">1.2</span> Main features of airGRteaching</h2>
+<div id="main-features-of-airgrteaching" class="section level2" number="1.2">
+<h2 number="1.2"><span class="header-section-number">1.2</span> Main features of airGRteaching</h2>
 <p>The package is mostly based on three new families of functions:</p>
 <ul>
 <li>the functions that allow to complete very simply a hydrological modelling exercise</li>
@@ -545,10 +548,10 @@ The latest version of the <b>htmlwidgets</b> package has been fixed and is now a
 <p><image src="fig/airGRteaching_GUI_MD_theme-United_1873x939.png" width="100%" height="100%"></p>
 </div>
 </div>
-<div id="installation" class="section level1">
-<h1><span class="header-section-number">2</span> Installation</h1>
+<div id="installation" class="section level1" number="2">
+<h1 number="2"><span class="header-section-number">2</span> Installation</h1>
 <p>You can install the package with the following command:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;airGRteaching&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;airGRteaching&quot;</span>)</span></code></pre></div>
 <p>If you use RStudio, you can use the <em>Packages interface</em> :</p>
 <p><img src = "fig/rstudio_install_pck.png"></img></p>
 <p>All the dependencie will ba automatically download and installed with <strong><font color="#009EE0">airGRteaching</font></strong>:</p>
@@ -581,33 +584,33 @@ The latest version of <b>htmlwidgets (&gt;= 1.5.3)</b> is fixed and is now avail
 <p>
 You can check the installed version of the <b>htmlwidgets (&gt;= 1.5.3)</b> package by the following command:
 </div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">packageVersion</span>(<span class="st">&quot;htmlwidgets&quot;</span>)</a></code></pre></div>
-<pre><code>[1] &#39;1.5.3&#39;</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">&quot;htmlwidgets&quot;</span>)</span></code></pre></div>
+<pre><code>[1] &#39;1.5.3.9000&#39;</code></pre>
 <p>If you have a to old version, please install a new time the package from the CRAN.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">install.package</span>(<span class="st">&quot;htmlwidgets&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.package</span>(<span class="st">&quot;htmlwidgets&quot;</span>)</span></code></pre></div>
 </div>
-<div id="misc" class="section level1">
-<h1><span class="header-section-number">3</span> Misc</h1>
-<div id="how-to-cite-the-package" class="section level2">
-<h2><span class="header-section-number">3.1</span> How to cite the package</h2>
+<div id="misc" class="section level1" number="3">
+<h1 number="3"><span class="header-section-number">3</span> Misc</h1>
+<div id="how-to-cite-the-package" class="section level2" number="3.1">
+<h2 number="3.1"><span class="header-section-number">3.1</span> How to cite the package</h2>
 <p>To cite the <strong><font color="#009EE0">airGRteaching</font></strong> package in your scientific document, please use the references returned by the <code>citation()</code> function:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">citation</span>(<span class="st">&quot;airGRteaching&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">&quot;airGRteaching&quot;</span>)</span></code></pre></div>
 <pre><code>
 To cite airGRteaching in publications use these two references:
 
-  Delaigue, O., Thirel, G., Coron, L., Brigode, P. (2018). airGR and airGRteaching: Two
+  Delaigue, O., Thirel, G., Coron, L. and Brigode, P. (2018). airGR and airGRteaching: Two
   open-source tools for rainfall-runoff modeling and teaching hydrology. HIC 2018. 13th
-  International Conference on Hydroinformatics (eds. G.L. Loggia, G. Freni, V. Puleo &amp; M.D.
-  Marchis), vol. 3 of EPiC Series in Engineering, p. 541-548, EasyChair, DOI: 10.29007/qsqj.
+  International Conference on Hydroinformatics. EPiC Series in Engineering (eds. G.L. Loggia, G.
+  Freni, V. Puleo &amp; M.D. Marchis), 3, 541-548, EasyChair, doi: 10.29007/qsqj.
 
-  Delaigue, O., Coron, L., Brigode, P. (2020). airGRteaching: Teaching Hydrological Modelling with
-  GR (Shiny Interface Included). R package version 0.2.9.25. DOI: 10.15454/W0SSKT. URL:
+  Delaigue, O., Coron, L. and Brigode, P. (2021). airGRteaching: Teaching Hydrological Modelling
+  with GR (Shiny Interface Included). R package version 0.2.10.112, doi: 10.15454/W0SSKT, URL:
   https://CRAN.R-project.org/package=airGRteaching.
 
 To see these entries in BibTeX format, use &#39;print(&lt;citation&gt;, bibtex=TRUE)&#39;, &#39;toBibtex(.)&#39;, or set
 &#39;options(citation.bibtex.max=999)&#39;.</code></pre>
 <p>To retrieve a “.bib” format for <strong>LaTeX</strong> documents, you can use the following command:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">toBibtex</span>(<span class="kw">citation</span>(<span class="st">&quot;airGRteaching&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">toBibtex</span>(<span class="fu">citation</span>(<span class="st">&quot;airGRteaching&quot;</span>))</span></code></pre></div>
 <pre><code>@InProceedings{,
   author = {O. Delaigue and G. Thirel and L. Coron and P. Brigode},
   title = {{airGR} and {airGRteaching}: Two Open-Source Tools for Rainfall-Runoff Modeling and Teaching Hydrology},
@@ -628,14 +631,14 @@ To see these entries in BibTeX format, use &#39;print(&lt;citation&gt;, bibtex=T
   title = {{airGRteaching}: Teaching Hydrological Modelling with {GR} ({Shiny} Interface Included)},
   author = {O. Delaigue and L. Coron and P. Brigode},
   journal = {R News},
-  year = {2020},
-  note = {R package version 0.2.9.25},
+  year = {2021},
+  note = {R package version 0.2.10.112},
   url = {https://CRAN.R-project.org/package=airGRteaching},
   doi = {10.15454/W0SSKT},
 }</code></pre>
 </div>
-<div id="known-places-where-airgrteaching-is-used" class="section level2">
-<h2><span class="header-section-number">3.2</span> Known places where airGRteaching is used</h2>
+<div id="known-places-where-airgrteaching-is-used" class="section level2" number="3.2">
+<h2 number="3.2"><span class="header-section-number">3.2</span> Known places where airGRteaching is used</h2>
 <ul>
 <li><a href="http://www2.agroparistech.fr/Presentation-of-AgroParisTech.html">AgroParisTech</a>, Paris, France</li>
 <li><a href="https://www.centrale-marseille.fr/en">École centrale de Marseille</a>, Marseille, France</li>
