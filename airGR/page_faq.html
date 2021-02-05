@@ -352,7 +352,7 @@ div.tocify {
 						<li><a href="page_2.2_param_mcmc.html">Parameter estimation within a Bayesian MCMC framework</a></li>
 						<li><a href="page_3_param_sets_GR4J.html">Generalist parameter sets for the GR4J model</a></li>
 						<li><a href="page_4_cemaneige_hysteresis.html">Using satellite snow cover area data for calibrating and improving CemaNeige</a></li>
-						<li><a href="page_5_sd_model.html">SSimulating a reservoir with semi-distributed GR4J model</a></li>
+						<li><a href="page_5_sd_model.html">Simulating a reservoir with semi-distributed GR4J model</a></li>
 					</ul>
 				</li>
 				<li class="Download">
@@ -365,7 +365,15 @@ div.tocify {
 				<li><a href="NEWS.html">News</a></li>
 				<li><a href="page_publications.html">Publications</a></li>
 				<li><a href="page_faq.html">FAQ</a></li>
-				<li><a tabindex="-1" href="https://hydroGR.github.io/airGRteaching/" onclick="window.open(this.href); return false;">airGRteaching website</a></li>
+				<li class="Download">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">airGR Galaxy<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrdatassim/-/tree/dev">airGRdatassim R-package</a></li>
+						<li><a href="https://sunshine.irstea.fr/app/airGRmaps">airGRmaps web app</a></li>
+						<li><a href="https://hydroGR.github.io/airGRteaching/">airGRteaching R-package</a></li>
+						<li><a href="https://sunshine.irstea.fr/app/airGRteaching">airGRteaching web app</a></li>
+					</ul>
+				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<a href='https://www.inrae.fr/en/' onclick="window.open(this.href); return false;", title="inrae.fr"><img src='fig/logo_inrae_CMJN_square.svg' style='width:45px;height:45px;'></a>
@@ -424,60 +432,82 @@ div.tocify {
 </div>
 
 
-<div id="specific-questions-relative-to-airgr" class="section level2">
-<h2>Specific questions relative to airGR</h2>
-<div id="is-there-any-flood-forecasting-model-in-airgr" class="section level3">
-<h3>Is there any flood forecasting model in airGR?</h3>
-<p>All the RR models included in <strong><font color="#00a3a6">airGR</font></strong> are set up to work in a simulation mode. However, provided that users have meteorological forecast data and arrange their code to do so, hydrological forecasting can be performed with the <strong><font color="#00a3a6">airGR</font></strong> RR models (especially the hourly and daily models).</p>
+<div id="is-there-any-flood-forecasting-model-in-airgr" class="section level4">
+<h4>Is there any flood forecasting model in airGR?</h4>
+<ul>
+<li>All the RR models included in <strong><font color="#00a3a6">airGR</font></strong> are set up to work in a simulation mode. However, provided that users have meteorological forecast data and arrange their code to do so, hydrological forecasting can be performed with the <strong><font color="#00a3a6">airGR</font></strong> RR models (especially the hourly and daily models).</li>
+</ul>
 </div>
-<div id="what-about-inundation-modelling-can-airgr-do-that" class="section level3">
-<h3>What about inundation modelling? Can airGR do that?</h3>
-<p>No. We have some research ongoing work on it but nothing in <strong><font color="#00a3a6">airGR</font></strong> yet.</p>
+<div id="what-about-inundation-modelling-can-airgr-do-that" class="section level4">
+<h4>What about inundation modelling? Can airGR do that?</h4>
+<ul>
+<li>No. We have some research ongoing work on it but nothing in <strong><font color="#00a3a6">airGR</font></strong> yet.</li>
+</ul>
 </div>
-<div id="is-grp-in-airgr" class="section level3">
-<h3>Is GRP in airGR?</h3>
-<p><a href="https://webgr.inrae.fr/en/models/hydrological-forecasting-model-grp/">GRP</a> is the operational flood forecasting model used by many flood forecasting centres in France. It is not included in <strong><font color="#00a3a6">airGR</font></strong> (see previous question) but is available upon request and after signing an agreement, both for research and real-time use, when contacting the responsible team.</p>
+<div id="is-grp-in-airgr" class="section level4">
+<h4>Is GRP in airGR?</h4>
+<ul>
+<li><a href="https://webgr.inrae.fr/en/models/hydrological-forecasting-model-grp/">GRP</a> is the operational flood forecasting model used by many flood forecasting centres in France. It is not included in <strong><font color="#00a3a6">airGR</font></strong> (see previous question) but is available upon request and after signing an agreement, both for research and real-time use, when contacting the responsible team.</li>
+</ul>
 </div>
-<div id="is-otamin-in-airgr" class="section level3">
-<h3>Is OTAMIN in airGR?</h3>
-<p><a href="https://webgr.inrae.fr/en/software/otamin/">OTAMIN</a> is a forecast uncertainty tool that is not included in <strong><font color="#00a3a6">airGR</font></strong>. See the webpage for further information.</p>
+<div id="is-otamin-in-airgr" class="section level4">
+<h4>Is OTAMIN in airGR?</h4>
+<ul>
+<li><a href="https://webgr.inrae.fr/en/software/otamin/">OTAMIN</a> is a forecast uncertainty tool that is not included in <strong><font color="#00a3a6">airGR</font></strong>. See the webpage for further information.</li>
+</ul>
 </div>
-<div id="can-we-perform-flow-forecasting-with-airgr" class="section level3">
-<h3>Can we perform flow forecasting with airGR?</h3>
-<p>Yes, with some data manipulation, such a work has already been done in the past. However we did not include a specific function for this in <strong><font color="#00a3a6">airGR</font></strong>.</p>
+<div id="can-we-perform-flow-forecasting-with-airgr" class="section level4">
+<h4>Can we perform flow forecasting with airGR?</h4>
+<ul>
+<li>Yes, with some data manipulation, such a work has already been done in the past. However we did not include a specific function for this in <strong><font color="#00a3a6">airGR</font></strong>.</li>
+</ul>
 </div>
-<div id="can-we-perform-data-assimilation-of-any-kind-in-airgr" class="section level3">
-<h3>Can we perform data assimilation of any kind in airGR?</h3>
-<p>No data assimilation scheme or framework is implemented in <strong><font color="#00a3a6">airGR</font></strong>. However, the <strong><font color="#00a3a6">airGR</font></strong> RR models can be plugged with data assimilation algorithms present in other R packages (see for instance the R packages <a href="https://CRAN.R-project.org/package=FKF">FKF</a>, <a href="https://CRAN.R-project.org/package=KFAS">KFAS</a>, <a href="https://CRAN.R-project.org/package=miscFuncs">miscFuncs</a>, <a href="https://CRAN.R-project.org/package=KFKSDS">KFKSDS</a>, <a href="https://CRAN.R-project.org/package=nimble">nimble</a>, <a href="https://CRAN.R-project.org/package=DatAssim">DatAssim</a>, which we never tested but seem to be plausible solutions).</p>
+<div id="can-we-perform-data-assimilation-of-any-kind-in-airgr" class="section level4">
+<h4>Can we perform data assimilation of any kind in airGR?</h4>
+<ul>
+<li>A data assimilation scheme or framework is implemented in <a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrdatassim/-/tree/dev">airGRdatassim</a> package. In addition, the <strong><font color="#00a3a6">airGR</font></strong> RR models can be plugged with data assimilation algorithms present in other R packages (see for instance the R packages <a href="https://CRAN.R-project.org/package=FKF">FKF</a>, <a href="https://CRAN.R-project.org/package=KFAS">KFAS</a>, <a href="https://CRAN.R-project.org/package=miscFuncs">miscFuncs</a>, <a href="https://CRAN.R-project.org/package=KFKSDS">KFKSDS</a>, <a href="https://CRAN.R-project.org/package=nimble">nimble</a>, <a href="https://CRAN.R-project.org/package=DatAssim">DatAssim</a>, which we never tested but seem to be plausible solutions).</li>
+</ul>
 </div>
-<div id="can-we-perform-automatic-calibration-of-the-gr-models-parameters" class="section level3">
-<h3>Can we perform automatic calibration of the GR models parameters?</h3>
-<p>Yes, in <strong><font color="#00a3a6">airGR</font></strong> you can use the <code>Calibration_Michel()</code> function, which implements the in-house algorithm of the team. Our algorithm is a mix between a global method and a local method. The first step of the algorithm is to screen the parameters space. The second step is a local steepest descent gradient method. The calibration can be tuned (which parameter not to calibrate, definition of complex calibration periods, etc.).</p>
+<div id="can-we-perform-automatic-calibration-of-the-gr-models-parameters" class="section level4">
+<h4>Can we perform automatic calibration of the GR models parameters?</h4>
+<ul>
+<li>Yes, in <strong><font color="#00a3a6">airGR</font></strong> you can use the <code>Calibration_Michel()</code> function, which implements the in-house algorithm of the team. Our algorithm is a mix between a global method and a local method. The first step of the algorithm is to screen the parameters space. The second step is a local steepest descent gradient method. The calibration can be tuned (which parameter not to calibrate, definition of complex calibration periods, etc.).</li>
+</ul>
 </div>
-<div id="how-to-assess-that-my-calibrated-parameters-are-robust" class="section level3">
-<h3>How to assess that my calibrated parameters are robust?</h3>
-<p>The robustness (i.e. ability of simulating good discharge on diverse conditions) can be done by simply running the model on a different period, using the optimised parameters.</p>
+<div id="how-to-assess-that-my-calibrated-parameters-are-robust" class="section level4">
+<h4>How to assess that my calibrated parameters are robust?</h4>
+<ul>
+<li>The robustness (i.e. ability of simulating good discharge on diverse conditions) can be done by simply running the model on a different period, using the optimised parameters.</li>
+</ul>
 </div>
-<div id="can-we-perform-climate-change-impact-studies-with-airgr" class="section level3">
-<h3>Can we perform climate change impact studies with airGR?</h3>
-<p>Yes of course! What you are trying to do is very similar to a calibration/control exercise as described in the <a href="page_1_get_started.html">Get Started</a> article. You calibrate on a historical period and you simulate the future conditions using the parameters obtained from the previously mentioned calibration. Please note that when analysing your future conditions, you must compare them to simulations made by the model forced by present time GCM/RCM output, not directly to discharge observations, as otherwise you would mix in your analysis the bias of the hydrological model, the bias of the GCM/RCM data and the actual impact of climate change. But this is very common in CC studies so I guess you know all of this.</p>
+<div id="can-we-perform-climate-change-impact-studies-with-airgr" class="section level4">
+<h4>Can we perform climate change impact studies with airGR?</h4>
+<ul>
+<li>Yes of course! What you are trying to do is very similar to a calibration/control exercise as described in the <a href="page_1_get_started.html">Get Started</a> article. You calibrate on a historical period and you simulate the future conditions using the parameters obtained from the previously mentioned calibration. Please note that when analysing your future conditions, you must compare them to simulations made by the model forced by present time GCM/RCM output, not directly to discharge observations, as otherwise you would mix in your analysis the bias of the hydrological model, the bias of the GCM/RCM data and the actual impact of climate change. But this is very common in CC studies so I guess you know all of this.</li>
+</ul>
 </div>
-<div id="i-prefer-to-use-a-mcmc-based-or-a-particle-swarm-optimization-algorithm.-are-these-methods-implemented-in-airgr" class="section level3">
-<h3>I prefer to use a MCMC-based or a particle swarm optimization algorithm. Are these methods implemented in airGR?</h3>
-<p>No, but as these algorithms exist in other packages, they can easily be plugged to <strong><font color="#00a3a6">airGR</font></strong>. Please read the <a href="page_2.1_param_optim.html">Plugging in new calibration algorithms</a> and the <a href="page_2.2_param_mcmc.html">Bayesian MCMC framework</a> articles to access other global or MCMC-based methods. Detailed examples of how to link the functions are given.</p>
+<div id="i-prefer-to-use-a-mcmc-based-or-a-particle-swarm-optimization-algorithm.-are-these-methods-implemented-in-airgr" class="section level4">
+<h4>I prefer to use a MCMC-based or a particle swarm optimization algorithm. Are these methods implemented in airGR?</h4>
+<ul>
+<li>No, but as these algorithms exist in other packages, they can easily be plugged to <strong><font color="#00a3a6">airGR</font></strong>. Please read the <a href="page_2.1_param_optim.html">Plugging in new calibration algorithms</a> and the <a href="page_2.2_param_mcmc.html">Bayesian MCMC framework</a> articles to access other global or MCMC-based methods. Detailed examples of how to link the functions are given.</li>
+</ul>
 </div>
-<div id="i-dont-have-enough-discharge-data-to-calibrate-gr4j.-do-you-have-any-solution-for-me" class="section level3">
-<h3>I don’t have enough discharge data to calibrate GR4J. Do you have any solution for me?</h3>
-<p>A set of generalist parameters for GR4J is provided in the <code>Param_Sets_GR4J</code> object. This set of parameters can be loaded with the following R command: <code>data(Param_Sets_GR4J)</code>. The <a href="page_3_param_sets_GR4J.html">Generalist parameter sets</a> article explains how to use this list. This set of parameters is quite general and showed to perform better than automatic calibration when very few data are available. Good performance is not warranted, but it is better than nothing. We do not have such a list for the other RR models.</p>
+<div id="i-dont-have-enough-discharge-data-to-calibrate-gr4j.-do-you-have-any-solution-for-me" class="section level4">
+<h4>I don’t have enough discharge data to calibrate GR4J. Do you have any solution for me?</h4>
+<ul>
+<li>A set of generalist parameters for GR4J is provided in the <code>Param_Sets_GR4J</code> object. This set of parameters can be loaded with the following R command: <code>data(Param_Sets_GR4J)</code>. The <a href="page_3_param_sets_GR4J.html">Generalist parameter sets</a> article explains how to use this list. This set of parameters is quite general and showed to perform better than automatic calibration when very few data are available. Good performance is not warranted, but it is better than nothing. We do not have such a list for the other RR models.</li>
+</ul>
 </div>
-<div id="the-streamflows-simulated-by-the-model-are-very-lowhigh-for-the-first-time-steps.-what-am-i-doing-wrong" class="section level3">
-<h3>The streamflows simulated by the model are very low/high for the first time steps. What am I doing wrong?</h3>
-<p>If not the case already, please define a long enough warm-up period. It allows the model reservoirs to initialise to more plausible values than the default ones.</p>
-</div>
+<div id="the-streamflows-simulated-by-the-model-are-very-lowhigh-for-the-first-time-steps.-what-am-i-doing-wrong" class="section level4">
+<h4>The streamflows simulated by the model are very low/high for the first time steps. What am I doing wrong?</h4>
+<ul>
+<li>If not the case already, please define a long enough warm-up period. It allows the model reservoirs to initialise to more plausible values than the default ones.</li>
+</ul>
 </div>
 
 <footer>
-<p>Developed by INRAE&nbsp;<a href="https://webgr.inrae.fr/en">Catchment Hydrology Research Group</a>&nbsp;- Antony, France.</p>
+  <div style="float:left"><img src="fig/logo_republique_francaise_CMJN.svg" alt="airGR logo" height=50px style="margin-top:-20px" /></div>
+  <div style="float:right">Developed by INRAE&nbsp;<a href="https://webgr.inrae.fr/en">Catchment Hydrology Research Group</a>&nbsp;&#x2013; Antony, France</div>
 </footer>
 
 
