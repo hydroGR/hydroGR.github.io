@@ -57,7 +57,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -428,6 +427,7 @@ div.tocify {
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">airGR Galaxy<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="https://CRAN.R-project.org/package=airGRdatassim">airGRdatassim R-package</a></li>
+						<li><a href="https://airgriwrm.g-eau.fr/">airGRiwrm R-package</a></li>
 						<li><a href="https://sunshine.irstea.fr/app/airGRmaps">airGRmaps web app</a></li>
 						<li><a href="https://hydroGR.github.io/airGRteaching/">airGRteaching R-package</a></li>
 						<li><a href="https://sunshine.irstea.fr/app/airGRteaching">airGRteaching web app</a></li>
@@ -509,13 +509,13 @@ div.tocify {
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(L0123001)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(BasinObs, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>##      DatesR                 P              T               E            Qls             Qmm        
-##  Min.   :1984-01-01   Min.   : 0.0   Min.   :-18.7   Min.   :0.0   Min.   :   70   Min.   : 0.017  
-##  1st Qu.:1991-04-02   1st Qu.: 0.0   1st Qu.:  4.1   1st Qu.:0.6   1st Qu.: 1640   1st Qu.: 0.394  
-##  Median :1998-07-02   Median : 0.3   Median :  9.1   Median :1.4   Median : 4050   Median : 0.977  
-##  Mean   :1998-07-02   Mean   : 2.9   Mean   :  9.1   Mean   :1.8   Mean   : 6130   Mean   : 1.473  
-##  3rd Qu.:2005-10-01   3rd Qu.: 3.6   3rd Qu.: 14.5   3rd Qu.:2.9   3rd Qu.: 7850   3rd Qu.: 1.884  
-##  Max.   :2012-12-31   Max.   :66.8   Max.   : 28.4   Max.   :5.5   Max.   :99500   Max.   :23.880  
+<pre><code>##      DatesR                 P              T               E            Qls             Qmm     
+##  Min.   :1984-01-01   Min.   : 0.0   Min.   :-18.7   Min.   :0.0   Min.   :   70   Min.   : 0   
+##  1st Qu.:1991-04-02   1st Qu.: 0.0   1st Qu.:  4.1   1st Qu.:0.6   1st Qu.: 1640   1st Qu.: 0   
+##  Median :1998-07-02   Median : 0.3   Median :  9.1   Median :1.4   Median : 4050   Median : 1   
+##  Mean   :1998-07-02   Mean   : 2.9   Mean   :  9.2   Mean   :1.8   Mean   : 6130   Mean   : 1   
+##  3rd Qu.:2005-10-01   3rd Qu.: 3.6   3rd Qu.: 14.5   3rd Qu.:2.9   3rd Qu.: 7850   3rd Qu.: 2   
+##  Max.   :2012-12-31   Max.   :66.8   Max.   : 28.4   Max.   :5.5   Max.   :99500   Max.   :24   
 ##                                                                    NA&#39;s   :772     NA&#39;s   :802</code></pre>
 <p>The usual functions (e.g. <code>read.table()</code>) can be used to load real-case data sets.</p>
 </div>
@@ -577,7 +577,7 @@ div.tocify {
 ##  $ IniResLevels    : num [1:4] 0.3 0.5 NA NA
 ##  $ Outputs_Cal     : chr &quot;Qsim&quot;
 ##  $ Outputs_Sim     : chr [1:20] &quot;DatesR&quot; &quot;PotEvap&quot; &quot;Precip&quot; &quot;Prod&quot; ...
-##  - attr(*, &quot;class&quot;)= chr [1:3] &quot;RunOptions&quot; &quot;GR&quot; &quot;daily&quot;</code></pre>
+##  - attr(*, &quot;class&quot;)= chr [1:3] &quot;RunOptions&quot; &quot;daily&quot; &quot;GR&quot;</code></pre>
 <p>The <code>CreateRunOptions()</code> function returns warnings if the default initialization options are used:</p>
 <ul>
 <li><code>IniStates</code> and <code>IniResLevels</code> are automatically set to initialize all the model states at 0, except for the production and routing stores, which are initialized at respectively 30 % and 50 % of their capacity</li>
@@ -660,7 +660,7 @@ div.tocify {
 ##       Crit. NSE[Q]       = 0.7988</code></pre>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Param <span class="ot">&lt;-</span> OutputsCalib<span class="sc">$</span>ParamFinalR</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>Param</span></code></pre></div>
-<pre><code>## [1] 257.237556   1.012237  88.234673   2.207958</code></pre>
+<pre><code>## [1] 257.24   1.01  88.23   2.21</code></pre>
 <p>The <code>Calibration_Michel()</code> function is the only one implemented in the <strong><font color="#00a3a6">airGR</font></strong> package to calibrate the model, but the user can implement its own calibration function.</p>
 <p>The <code>Calibration_Michel()</code> function returns a vector with the parameters of the chosen model, which means that the number of values can differ depending on the model that is used. It is possible to use the <code>Calibration_Michel()</code> function with user-implemented hydrological models.</p>
 </div>

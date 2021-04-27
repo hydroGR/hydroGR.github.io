@@ -333,6 +333,7 @@ div.tocify {
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">airGR Galaxy<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="https://CRAN.R-project.org/package=airGRdatassim">airGRdatassim R-package</a></li>
+						<li><a href="https://airgriwrm.g-eau.fr/">airGRiwrm R-package</a></li>
 						<li><a href="https://sunshine.irstea.fr/app/airGRmaps">airGRmaps web app</a></li>
 						<li><a href="https://hydroGR.github.io/airGRteaching/">airGRteaching R-package</a></li>
 						<li><a href="https://sunshine.irstea.fr/app/airGRteaching">airGRteaching web app</a></li>
@@ -396,21 +397,65 @@ div.tocify {
 </div>
 
 
-<div id="release-notes-2021-01-29" class="section level3">
-<h3>1.6.10.4 Release Notes (2021-01-29)</h3>
+<div id="release-notes-2021-04-27" class="section level3">
+<h3>1.6.12 Release Notes (2021-04-27)</h3>
 <div id="new-features" class="section level4">
 <h4>New features</h4>
 <ul>
-<li>Added a section ‘param_optim’ vignette to explain how to manage with multiobjective optimization using the ‘caRamel’ package. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/61">#61</a>)</li>
+<li><code>CreateInputsModel()</code> gains a <code>QupstrUnit</code> argument in order to manage the unit of the flow in the <code>Qupstream</code> argument in case of the use of a semi-distributed version of a hydrological model. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/110">#110</a>)</li>
+<li><code>RunModel_Lag()</code> gains a <code>QcontribDown</code> argument containing the time series of the runoff contribution of the downstream sub-basin in case of the use of a semi-distributed version of a hydrological model. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/109">#109</a>)</li>
+</ul>
+</div>
+<div id="bug-fixes" class="section level4">
+<h4>Bug fixes</h4>
+<ul>
+<li>Fixed bug in <code>RunModel</code>. The <code>RunModel_Lag()</code> can now be passed to the <code>FUN_MOD</code> argument. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/108">#108</a>)</li>
+<li>Fixed bug in <code>RunModel_Lag()</code>. The function no longer returns two values for a single time step run. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/102">#102</a>)</li>
+<li>Fixed bug in <code>RunModel_Lag()</code>. The <code>StateEnd</code> value is now correct when there are more than a single upstream basin. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/103">#103</a>)</li>
+<li>Fixed bug in <code>RunModel_Lag()</code>. The <code>StateEnd</code> value is now correct when the upstream flow unit is mm/time step. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/104">#104</a>)</li>
+<li>Fixed bug in <code>RunModel_CemaNeigeGR5H()</code>. The solid precipitation are now taken into account in the GR5H model. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/105">#105</a>)</li>
+<li>Fixed bug in <code>RunModel_CemaNeige()</code> and <code>CreateInputsModel()</code>. <code>RunModel_CemaNeige()</code> now runs at the hourly time step. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/106">#106</a>)</li>
+<li>Fixed the ‘param_optim’ vignette. The starting points used for the multi-start approach are now in the transformed space.(<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/101">#101</a>)</li>
 </ul>
 </div>
 <div id="major-user-visible-changes" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
-<li><code>Imax()</code> now returns an error message when <code>IndPeriod_Run</code> doesn’t select 24 hours by day, instead of <code>numeric(0)</code>. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/92">#92</a>)</li>
+<li><code>LengthHydro</code> must now be set in kilometers (not anymore in meters) in the <code>CreateInputsModel()</code> function. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/112">#112</a>)</li>
+<li><code>TransfoParam_GR5H()</code> now use the same transformation as <code>TransfoParam_GR4H()</code> for the X1 parameter. The previous transformation set by Ficchì seems unnecessary as it provokes irrealistically high X1 values. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/50">#50</a>)</li>
 </ul>
 </div>
 <div id="minor-user-visible-changes" class="section level4">
+<h4>Minor user-visible changes</h4>
+<ul>
+<li>The <code>RunModel*()</code> functions now run faster. The computation times are significantly shorter for long times series with many time steps (e.g. hourly times series), due to a better management of the missing values in and out the Fortran codes. Only simulation computation times have been improved (it is largely invisible to the user for calibration computation times). (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/113">#113</a>)</li>
+<li>The external calibration algorithms used in ‘param_optim’ and ‘param_mcmc’ vignettes now run faster. The <code>RunModel_*()</code> functions used during the parameter estimation process now run faster because the outputs contain only the simulated flows (see the <code>Outputs_Sim</code> argument in the <code>CreateRunOptions()</code> help page).</li>
+</ul>
+</div>
+<div id="version-control-and-issue-tracking" class="section level4">
+<h4>Version control and issue tracking</h4>
+<ul>
+<li>The CI pipelines now fail when the checks return a warning message (and not just an error message). (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/86">#86</a>)</li>
+<li>The reverse dependencies packages (e.g. the ‘airGRteaching’ or the ‘airGRdatassim’) are now checked by the CI pipelines. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/86">#86</a>)</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="release-notes-2021-01-29" class="section level3">
+<h3>1.6.10.4 Release Notes (2021-01-29)</h3>
+<div id="new-features-1" class="section level4">
+<h4>New features</h4>
+<ul>
+<li>Added a section ‘param_optim’ vignette to explain how to manage with multiobjective optimization using the ‘caRamel’ package. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/61">#61</a>)</li>
+</ul>
+</div>
+<div id="major-user-visible-changes-1" class="section level4">
+<h4>Major user-visible changes</h4>
+<ul>
+<li><code>Imax()</code> now returns an error message when <code>IndPeriod_Run</code> doesn’t select 24 hours by day, instead of <code>numeric(0)</code>. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/92">#92</a>)</li>
+</ul>
+</div>
+<div id="minor-user-visible-changes-1" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Fixed warning returned by GCC Fortran when compiling <code>frun_GR5H.f90</code>. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/93">#93</a>)</li>
@@ -426,7 +471,7 @@ div.tocify {
 </div>
 <div id="release-notes-2021-01-18" class="section level3">
 <h3>1.6.9.27 Release Notes (2021-01-18)</h3>
-<div id="new-features-1" class="section level4">
+<div id="new-features-2" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>Added <code>SeriesAggreg</code> S3 method with functions for <code>InputsModel</code>, <code>OutputsModel</code>, <code>list</code>, <code>data.frame</code> class objects. This new version of the <code>SeriesAggreg()</code> function also allows to compute regimes. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/25">#25</a>)</li>
@@ -446,15 +491,15 @@ div.tocify {
 <li>The deprecated <code>RunSnowModule</code> argument has been removed from the <code>CreateRunOptions()</code> function. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/23">#23</a>)</li>
 </ul>
 </div>
-<div id="bug-fixes" class="section level4">
+<div id="bug-fixes-1" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
-<li><code>TimeLag</code> of the <code>SeriesAggreg()</code> function now runs when <code>TimeLag &gt;= 3600</code>. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/41">#41</a>)</li>
-<li><code>SeriesAggreg()</code> now runs when the time series contain some columns entirely filled with missing values. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/43">#43</a>)</li>
+<li>Fixed bug in<code>SeriesAggreg()</code>. The function now runs when <code>TimeLag &gt;= 3600</code>. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/41">#41</a>)</li>
+<li>Fixed bug in<code>SeriesAggreg()</code>. The function now runs when the time series contain some columns entirely filled with missing values. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/43">#43</a>)</li>
 <li>Fixed bug in <code>RunModel_GR1A()</code>. Reversed PotEvap and Precip outputs are now reordered (in the previous versions PotEvap contained the precipitation values and Precip contained the evapotranspiration values, the Qsim values were already correct). (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/65">#65</a>)</li>
 </ul>
 </div>
-<div id="major-user-visible-changes-1" class="section level4">
+<div id="major-user-visible-changes-2" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li>Added output to <code>RunModel_GR2M()</code> function (Ps). (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/51">#51</a>)</li>
@@ -463,7 +508,7 @@ div.tocify {
 <li>The <code>ConvertFun</code> argument of the <code>SeriesAggreg()</code> function can now be set to names of aggregation functions that return value of length 1 (not only <code>"sum"</code> or <code>"mean"</code>, but e.g. <code>"min"</code>, <code>"max"</code>, <code>"Q95"</code>). (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/82">#82</a>)</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-1" class="section level4">
+<div id="minor-user-visible-changes-2" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>The <code>.FortranOutputs()</code> function is no longer exported in the namespace.</li>
@@ -474,9 +519,10 @@ div.tocify {
 <li>Added the diagram of GR5H in the <code>RunModel_GR5H()</code> documentation. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/49">#49</a>)</li>
 <li>The <code>Exch</code> was renames <code>AExch</code> in the <code>RunModel_GR2M()</code> output. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/87">#87</a>)</li>
 <li>Added ‘Es’ and ‘Ps’ on the GR2M diagram available in the <code>RunModel_GR2M()</code> help page. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/88">#88</a>)</li>
+<li>The <code>plot.OutputsModel()</code> function does not check anymore the time step by comparing the calculation of the difference of the last two time steps because it is already checked by the class of the <code>OutputsModel</code> object, which is therefore assumed to be necessarily valid. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/56">#56</a>)</li>
 </ul>
 </div>
-<div id="version-control-and-issue-tracking" class="section level4">
+<div id="version-control-and-issue-tracking-1" class="section level4">
 <h4>Version control and issue tracking</h4>
 <ul>
 <li>Implement automatic tests in the package. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/52">#52</a>)</li>
@@ -505,13 +551,13 @@ div.tocify {
 </div>
 <div id="release-notes-2020-01-29" class="section level3">
 <h3>1.4.3.60 Release Notes (2020-01-29)</h3>
-<div id="new-features-2" class="section level4">
+<div id="new-features-3" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>A digital object identifier (DOI) now allows to identify the manual of the ‘airGR’ package. When you use ‘airGR’ in your work, please always cite both the article and the manual. The last one allows to know the version of the package that is used in order to enhance reproducible research. The references can be displayed with the <code>citation("airGR")</code> command.</li>
 </ul>
 </div>
-<div id="bug-fixes-1" class="section level4">
+<div id="bug-fixes-2" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>Imax()</code>. The default value of the <code>TestedValues</code> argument was wrong due to a mistyped argument name in the <code>seq()</code> function.</li>
@@ -521,7 +567,7 @@ div.tocify {
 </div>
 <div id="release-notes-2020-01-21" class="section level3">
 <h3>1.4.3.52 Release Notes (2020-01-21)</h3>
-<div id="new-features-3" class="section level4">
+<div id="new-features-4" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>plot.Outputsmodel()</code> now allows to draw actual evapotranspiration when <code>which = "ActEvap"</code> or <code>which = "All"</code> (overlaid to potential evapotranspiration if already drawn). (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/2">#2</a>)</li>
@@ -529,7 +575,7 @@ div.tocify {
 <li>Added <code>Imax()</code> which allows to estimate the maximum capacity of the GR5H interception store. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/13">#13</a>)</li>
 </ul>
 </div>
-<div id="bug-fixes-2" class="section level4">
+<div id="bug-fixes-3" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>TransfoParam_GR1A()</code>. The number of model parameters was wrong (2 instead of 1) which caused an error during the GR1A model calibration. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/1">#1</a>)</li>
@@ -538,13 +584,13 @@ div.tocify {
 <li>Fixed bug in the <code>.ErrorCrit()</code> function. The Box-Cox transformation formula is now corrected when the <code>ErrorCrit*()</code> functions are used.</li>
 </ul>
 </div>
-<div id="major-user-visible-changes-2" class="section level4">
+<div id="major-user-visible-changes-3" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li>Added outputs to <code>RunModel_GR4H()</code> function (Pn, Ps, AExch1, AExch2).</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-2" class="section level4">
+<div id="minor-user-visible-changes-3" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Added the diagram of GR2M in the <code>RunModel_GR2M()</code> documentation.</li>
@@ -561,13 +607,13 @@ div.tocify {
 </div>
 <div id="release-notes-2019-09-20" class="section level3">
 <h3>1.3.2.42 Release Notes (2019-09-20)</h3>
-<div id="version-control-and-issue-tracking-1" class="section level4">
+<div id="version-control-and-issue-tracking-2" class="section level4">
 <h4>Version control and issue tracking</h4>
 <ul>
 <li>Users can now track changes (<code>https://gitlab.irstea.fr/HYCAR-Hydro/airgr</code>) and issues (<code>https://gitlab.irstea.fr/HYCAR-Hydro/airgr/issues</code>).</li>
 </ul>
 </div>
-<div id="bug-fixes-3" class="section level4">
+<div id="bug-fixes-4" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>RunModel_CemaNeige()</code>. The function now runs correctly when <code>IndPeriod_WarmUp = 0L</code> in <code>CreateRunOptions()</code> in order to completely disable the warm-up period (e.g. to perform a forecast form a given initial state).</li>
@@ -575,7 +621,7 @@ div.tocify {
 <li>Fixed bug in the <code>RunModel_CemaNeige*()</code> functions. G and Gthr end states are no more inverted in the output values.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-3" class="section level4">
+<div id="minor-user-visible-changes-4" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Spurious flows set to <code>NA</code> into the <code>BasinObs</code> time series of the <code>L0123001</code> dataset.</li>
@@ -585,7 +631,7 @@ div.tocify {
 </div>
 <div id="release-notes-2019-06-20" class="section level3">
 <h3>1.3.2.23 Release Notes (2019-06-20)</h3>
-<div id="new-features-4" class="section level4">
+<div id="new-features-5" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>CreateInputsCrit()</code> now allows power (as a numeric or as a character) and the Box-Cox transformations in the <code>transfo</code> argument.</li>
@@ -600,20 +646,20 @@ div.tocify {
 <li>The <code>PEdaily_Oudin()</code> function is deprecated and his use has been replaced by the use of <code>PE_Oudin()</code>.</li>
 </ul>
 </div>
-<div id="bug-fixes-4" class="section level4">
+<div id="bug-fixes-5" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>plot.OutputsModel()</code>. The function now runs correctly when the <code>which</code> argument contains the <code>"CorQQ"</code> value without <code>"CumFreq"</code>.</li>
 </ul>
 </div>
-<div id="major-user-visible-changes-3" class="section level4">
+<div id="major-user-visible-changes-4" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li><code>plot.OutputsModel()</code> can now draw PE or error time series if the <code>which</code> argument is set to <code>"all"</code> or <code>"PotEvap"</code> or <code>"Error"</code>.</li>
 <li><code>plot.OutputsModel()</code> now allows new values for the which argument: <code>"all"</code> corresponds to all graphs, <code>"synth"</code> corresponds to the main graphs (default value; corresponding to <code>"all"</code> in the previous versions of the package) (i.e. <code>c("Precip", "Temp", "SnowPack", "Flows", "Regime", "CumFreq", "CorQQ")</code>), <code>"ts"</code> corresponds to the time series graphs (i.e. <code>c("Precip", "PotEvap", "Temp", "SnowPack", "Flows")</code>) and “perf” corresponds to the performance graphs (i.e. <code>c("Error", "Regime", "CumFreq", "CorQQ")</code>).</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-4" class="section level4">
+<div id="minor-user-visible-changes-5" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><code>.ErrorCrit()</code> private function added to check inputs into <code>ErrorCrit_*()</code> functions. The <code>ErrorCrit_*()</code> functions were simplified accordingly.</li>
@@ -625,7 +671,7 @@ div.tocify {
 </div>
 <div id="release-notes-2019-04-03" class="section level3">
 <h3>1.2.13.16 Release Notes (2019-04-03)</h3>
-<div id="new-features-5" class="section level4">
+<div id="new-features-6" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>CreateInputsCrit()</code> now presents a <code>VarObs</code> argument in order to allow to prepare an <code>InputsCrit</code> object in order to run a criterion on other variables than observed discharges with the <code>ErrorCrit()</code> function (at the moment SCA and SWE).</li>
@@ -650,7 +696,7 @@ div.tocify {
 <li>The <code>plot_OutputsModel()</code> had been deprecated in ‘airGR’ 1.0.4 (it had been replaced by the use of <code>plot.OutputsModel()</code> or <code>plot()</code>) and is defunct now.</li>
 </ul>
 </div>
-<div id="major-user-visible-changes-4" class="section level4">
+<div id="major-user-visible-changes-5" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li><code>CreateInputsCrit()</code> now return a list of <code>InputsCrit</code> (each element is of the <code>Single</code> class) in the cases of multiple or a composite criteria.</li>
@@ -663,7 +709,7 @@ div.tocify {
 <li>It is now possible to use a character vector for all <code>FUN_*</code> arguments (in addition to function objects) in the following functions: <code>Calibration()</code>, <code>Calibration_Michel()</code>, <code>CreateCalibOptions()</code>, <code>CreateIniStates()</code>, <code>CreateIniStates()</code>, <code>CreateInputsCrit()</code>, <code>CreateInputsModel()</code>, <code>CreateRunOptions()</code>, <code>ErrorCrit()</code>, <code>RunModel()</code> and <code>TransfoParam()</code>.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-5" class="section level4">
+<div id="minor-user-visible-changes-6" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><code>ErrorCrit_*()</code> functions now return objects of class <code>ErrorCrit</code> and <code>NSE</code>, <code>KGE</code>, <code>KGE2</code> or <code>RMSE</code>.</li>
@@ -688,13 +734,13 @@ div.tocify {
 </div>
 <div id="release-notes-2018-10-10" class="section level3">
 <h3>1.0.15.2 Release Notes (2018-10-10)</h3>
-<div id="bug-fixes-5" class="section level4">
+<div id="bug-fixes-6" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>CreateRunOptions()</code>. The function now accounts correctly for leap years when no warm-up period is defined.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-6" class="section level4">
+<div id="minor-user-visible-changes-7" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><code>CreateRunOptions()</code> was cleaned up, with no effect on its outputs.</li>
@@ -710,7 +756,7 @@ div.tocify {
 </div>
 <div id="release-notes-2018-09-28" class="section level3">
 <h3>1.0.14.1 Release Notes (2018-09-28)</h3>
-<div id="new-features-6" class="section level4">
+<div id="new-features-7" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>PEdaily_Oudin()</code> now presents a <code>LatUnit</code> argument which allows to choose the unit of the latitude (radians and degrees).</li>
@@ -724,7 +770,7 @@ div.tocify {
 <li>The <code>verbose</code> argument is now deprecated in <code>CreateInputsCrit()</code> and replaced by the <code>warnings</code> argument.</li>
 </ul>
 </div>
-<div id="major-user-visible-changes-5" class="section level4">
+<div id="major-user-visible-changes-6" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li><code>Calibration_Michel()</code> is now faster during the grid-screening step when a parameter is set using <code>FixedParam</code> in <code>CreateCalibOptions()</code>.</li>
@@ -734,7 +780,7 @@ div.tocify {
 <li><code>ErrorCrit_*()</code> functions now return a warning message in the following case: there are zeroes values in <code>Qobs</code> or <code>Qsim</code>, <code>epsilon = NULL</code> and <code>transfo = log</code> or <code>inv</code>.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-7" class="section level4">
+<div id="minor-user-visible-changes-8" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Several functions of the package were cleaned up or slightly modified, with no effect on their outputs.</li>
@@ -754,13 +800,13 @@ div.tocify {
 </div>
 <div id="release-notes-2018-06-29" class="section level3">
 <h3>1.0.10.11 Release Notes (2018-06-29)</h3>
-<div id="bug-fixes-6" class="section level4">
+<div id="bug-fixes-7" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>RunModel_GR2M()</code>. The function now returns the total precipitation (P) instead of the net rainfall (P1).</li>
 </ul>
 </div>
-<div id="major-user-visible-changes-6" class="section level4">
+<div id="major-user-visible-changes-7" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li><code>RunModel_GR2M()</code> now returns more explicit precipitation outputs names.</li>
@@ -768,7 +814,7 @@ div.tocify {
 <li>The article reference is corrected.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-8" class="section level4">
+<div id="minor-user-visible-changes-9" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>The documentation and help of several functions were improved.</li>
@@ -778,7 +824,7 @@ div.tocify {
 </div>
 <div id="release-notes-2017-11-10" class="section level3">
 <h3>1.0.9.64 Release Notes (2017-11-10)</h3>
-<div id="new-features-7" class="section level4">
+<div id="new-features-8" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>An article describing the ‘airGR’ package has been published. Its reference has been added and will be displayed with <code>citation("airGR")</code>.</li>
@@ -793,7 +839,7 @@ div.tocify {
 <li>The <code>RunSnowModule</code> argument is now deprecated in <code>CreateRunOptions()</code>.</li>
 </ul>
 </div>
-<div id="bug-fixes-7" class="section level4">
+<div id="bug-fixes-8" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>RunModel_GR4H()</code>: in <code>frun_GR4H</code> Fortran subroutine, <code>St(2)</code> is now set to 0 (instead of <code>St(1)</code>) when <code>St(2) &lt; 0</code>.</li>
@@ -802,7 +848,7 @@ div.tocify {
 <li>Fixed bug in <code>plot.OutputsModel()</code> for the y-axis labelling of flows time series when <code>log_scale = TRUE</code> and <code>BasinArea</code> is used.</li>
 </ul>
 </div>
-<div id="major-user-visible-changes-7" class="section level4">
+<div id="major-user-visible-changes-8" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li><code>RunModel_GR4J()</code>, <code>RunModel_GR5J()</code> and <code>RunModel_GR6J()</code> (and <code>CemaNeige_GR*J()</code>) now return Ps, Pn and actual exchanges. See the model Fortran codes for more details about the calculation of these variables.</li>
@@ -810,7 +856,7 @@ div.tocify {
 <li><code>RunModel_GR5J</code> now returns <code>StateEnd</code> in the same order as the other models.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-9" class="section level4">
+<div id="minor-user-visible-changes-10" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><code>plot.OutputsModel()</code> now returns a warning message when the length of Qobs is different from the length of Qsim.</li>
@@ -830,13 +876,13 @@ div.tocify {
 </div>
 <div id="release-notes-2017-01-23" class="section level3">
 <h3>1.0.5.12 Release Notes (2017-01-23)</h3>
-<div id="new-features-8" class="section level4">
+<div id="new-features-9" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>DataAltiExtrapolation_Valery()</code> and <code>CreateInputsModel()</code> now present a <code>PrecipScale</code> argument which allows rescaling precipitation when it is interpolated on the elevation layers when CemaNeige is used.</li>
 </ul>
 </div>
-<div id="bug-fixes-8" class="section level4">
+<div id="bug-fixes-9" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>DataAltiExtrapolation_Valery()</code>. The elevation gradients for air temperature returned by <code>CreateInputsModel()</code> are improved.</li>
@@ -852,7 +898,7 @@ div.tocify {
 </div>
 <div id="release-notes-2017-01-18" class="section level3">
 <h3>1.0.4 Release Notes (2017-01-18)</h3>
-<div id="new-features-9" class="section level4">
+<div id="new-features-10" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>RunModel_CemaNeige()</code>, <code>RunModel_CemaNeigeGR4J()</code>, <code>RunModel_CemaNeigeGR5J()</code> and <code>RunModel_CemaNeigeGR6J()</code> now return air temperature for each elevation layer.</li>
@@ -875,13 +921,13 @@ div.tocify {
 </div>
 <div id="release-notes-2016-12-09" class="section level3">
 <h3>1.0.3 Release Notes (2016-12-09)</h3>
-<div id="new-features-10" class="section level4">
+<div id="new-features-11" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>ErrorCrit_*()</code> functions gain a <code>warnings</code> argument to replace the verbose action and the <code>verbose</code> argument now prints the criterion value(s).</li>
 </ul>
 </div>
-<div id="bug-fixes-9" class="section level4">
+<div id="bug-fixes-10" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>CreateCalibOptions()</code> when <code>StartParamList</code> or <code>StartParamDistrib</code> arguments are used.</li>
@@ -898,7 +944,7 @@ div.tocify {
 </div>
 <div id="release-notes-2016-11-03" class="section level3">
 <h3>1.0.2 Release Notes (2016-11-03)</h3>
-<div id="new-features-11" class="section level4">
+<div id="new-features-12" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>SeriesAggreg()</code> gains a <code>TimeLag</code> argument that corresponds to a numeric value indicating a time lag (in seconds) for the time series aggregation (useful to aggregate hourly time series to the daily time step for instance). In addition, the function now accepts input dates in both <code>POSIXt</code> formats (<code>POSIXct</code> and <code>POSIXlt</code>). The output is in <code>POSIXct</code> format.</li>
@@ -913,19 +959,19 @@ div.tocify {
 <li><code>CreateCalibOptions()</code> loses the <code>StartParam</code> argument that was not used.</li>
 </ul>
 </div>
-<div id="bug-fixes-10" class="section level4">
+<div id="bug-fixes-11" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>The value <code>sort</code> for the <code>transfo</code> argument of <code>CreateInputsCrit()</code> was not taken into account. It is now fixed.</li>
 </ul>
 </div>
-<div id="major-user-visible-changes-8" class="section level4">
+<div id="major-user-visible-changes-9" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li>The <code>RunModel_GR6J()</code> and <code>RunModel_CemaNeigeGR6J()</code> models were modified back to versions previous to 1.0.1 to prevent from unwanted efficiency criteria deterioration related to the calibration with <code>Calibration_Michel()</code>. The actual model codes were not modified but the <code>TransfoParam_GR6J()</code> and <code>CreateCalibOptions()</code> functions were modified regarding the X5 parameter. It is strongly advised to use airGR 1.0.2 for the <code>RunModel_GR6J()</code> and <code>RunModel_CemaNeigeGR6J()</code> functions if you are using <code>Calibration_Michel()</code>, as they are much more efficient. In case you were using your own calibration algorithm, you will not notice any difference.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-10" class="section level4">
+<div id="minor-user-visible-changes-11" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><code>CreateInputsModel()</code> and <code>DataAltiExtrapolation_Valery()</code> functions now allow both <code>POSIXt</code> formats (<code>POSIXct</code> and <code>POSIXlt</code>).</li>
@@ -943,7 +989,7 @@ div.tocify {
 <li>The silent mode is now defined by the <code>verbose = TRUE</code> argument (formerly <code>quiet = FALSE</code>) in the following functions: <code>Calibration()</code>, <code>Calibration_Michel()</code>, <code>CreateInputsModel()</code>, <code>CreateRunOptions()</code>, <code>DataAltiExtrapolation_Valery()</code>, <code>ErrorCrit()</code>, <code>ErrorCrit_KGE()</code>, <code>ErrorCrit_KGE2()</code>, <code>ErrorCrit_NSE()</code>, <code>ErrorCrit_RMSE()</code>, <code>plot_OutputsModel()</code>, <code>SeriesAggreg()</code>.</li>
 </ul>
 </div>
-<div id="major-user-visible-changes-9" class="section level4">
+<div id="major-user-visible-changes-10" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li>The GR5J model has been modified: previously, two unit hydrographs were used, now only one is remaining. As a consequence, simulations from the GR5J (<code>RunModel_GR5J()</code> function) and CemaNeige (<code>RunModel_CemaNeigeGR5J()</code> function) models will be different.</li>
@@ -951,7 +997,7 @@ div.tocify {
 <li>The quantiles of the parameters have been recalculated with the new transformations (<code>CreateCalibOptions()</code> function). Since these quantiles constitute the starting point of the calibration algorithm, calibration results will be different.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-11" class="section level4">
+<div id="minor-user-visible-changes-12" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>The Fortran model core codes have been modified:
@@ -967,14 +1013,14 @@ div.tocify {
 </div>
 <div id="release-notes-2015-08-21" class="section level3">
 <h3>0.8.1.2 Release Notes (2015-08-21)</h3>
-<div id="bug-fixes-11" class="section level4">
+<div id="bug-fixes-12" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>CreateInputsModel()</code> that was related to the handling of missing values.</li>
 <li>Fixed bug in <code>CreateRunOptions()</code> that prevented the correct use of the <code>IniResLevels</code> argument (to manually set the filling rate of the production and routing stores).</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-12" class="section level4">
+<div id="minor-user-visible-changes-13" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Removal of an unnecessary warning when <code>IndPeriod_WarmUp = 0</code>.</li>
@@ -990,27 +1036,27 @@ div.tocify {
 </div>
 <div id="release-notes-2015-04-15" class="section level3">
 <h3>0.8.0.2 Release Notes (2015-04-15)</h3>
-<div id="new-features-12" class="section level4">
+<div id="new-features-13" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>Three new hydrological models: <code>RunModel_GR4H() function for</code> GR4H (hourly), <code>RunModel_GR2M()</code> function for GR2M (monthly) and <code>RunModel_GR1A()</code> function for GR1A (yearly).</li>
 <li>New function <code>SeriesAggreg()</code> to easily aggreg timesteps.</li>
 </ul>
 </div>
-<div id="bug-fixes-12" class="section level4">
+<div id="bug-fixes-13" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>ErrorCrit_RMSE()</code> which led to incorrect calibration (the criterion was maximised instead of minimised).</li>
 </ul>
 </div>
-<div id="major-user-visible-changes-10" class="section level4">
+<div id="major-user-visible-changes-11" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li>Update of the functions <code>CreateRunOptions()</code>, <code>CreateCalibOptions()</code> and <code>plot_OutputsModel()</code> to handle the new models.</li>
 <li>Modification of CemaNeige Fortran code to add an update of Gratio after the SnowPack update (no impact on snow simulation).</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-13" class="section level4">
+<div id="minor-user-visible-changes-14" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Improvement of the <code>plot_OutputsModel()</code> function to allow a selection among available plots.</li>
@@ -1023,7 +1069,7 @@ div.tocify {
 </div>
 <div id="release-notes-2014-11-01" class="section level3">
 <h3>0.7.4 Release Notes (2014-11-01)</h3>
-<div id="new-features-13" class="section level4">
+<div id="new-features-14" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>New argument in many functions (<code>quiet = TRUE</code> or <code>FALSE</code>) to choose if the warnings should be suppressed or not.</li>
@@ -1035,14 +1081,14 @@ div.tocify {
 <li>The <code>CalibrationAlgo_*()</code> functions were renamed into <code>Calibration_*()</code>.</li>
 </ul>
 </div>
-<div id="bug-fixes-13" class="section level4">
+<div id="bug-fixes-14" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>CreateCalibOptions()</code> to handle models with only one parameter.</li>
 <li>Fixed bug in <code>Calibration_HBAN()</code>. The function was not working properly with models having only one parameter.</li>
 </ul>
 </div>
-<div id="major-user-visible-changes-11" class="section level4">
+<div id="major-user-visible-changes-12" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li>CemaNeige users must now specify one <code>MeanAnSolidPrecip</code> for each elevation layer. The <code>CreateRunOptions()</code> function is impacted.</li>
@@ -1052,7 +1098,7 @@ div.tocify {
 <li>Improved documentation and examples.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-14" class="section level4">
+<div id="minor-user-visible-changes-15" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Improvements allowing the arrival of new models.</li>
@@ -1066,7 +1112,7 @@ div.tocify {
 </div>
 <div id="release-notes-2014-02-12" class="section level3">
 <h3>0.6.2 Release Notes (2014-02-12)</h3>
-<div id="new-features-14" class="section level4">
+<div id="new-features-15" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>Additional functions for results plotting (the ‘zoo’ package is required for some of them).</li>
@@ -1080,7 +1126,7 @@ div.tocify {
 <li><code>EfficiencyCrit()</code> have been replaced by <code>ErrorCrit()</code> to avoid misunderstanding (by default, the algorithms minimise the error criterion).</li>
 </ul>
 </div>
-<div id="bug-fixes-14" class="section level4">
+<div id="bug-fixes-15" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>RC11 bug correction: the automatic selection of the warm-up period was not working properly when no data was available from warm-up (i.e. when the user had set the run to start at the very first index).</li>
@@ -1092,13 +1138,13 @@ div.tocify {
 <li>RC5 differs from previous releases in the way the data are read and stored (in a list instead of individual vectors). The package is similar, only the examples of Main and the files in MyScriptBlocks have changed. All basin data are now stored inside a list named <code>BasinData</code>. This will greatly ease the future use of Rdata files (instead of txt files) as storage format for the time series of observation.</li>
 </ul>
 </div>
-<div id="major-user-visible-changes-12" class="section level4">
+<div id="major-user-visible-changes-13" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li>The definition of the generic function is now made in a much simpler way (e.g. see <code>DefineFunctions_Model()</code> or <code>DefineFunctions_ErrorCrit()</code>).</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-15" class="section level4">
+<div id="minor-user-visible-changes-16" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Code improvements to reduce the computation time.</li>
@@ -1118,7 +1164,7 @@ div.tocify {
 <li>The <code>Fsol</code> arguments are replaced by <code>FracSolidPrecip</code> to ease understanding.</li>
 </ul>
 </div>
-<div id="major-user-visible-changes-13" class="section level4">
+<div id="major-user-visible-changes-14" class="section level4">
 <h4>Major user-visible changes</h4>
 <ul>
 <li>R &lt;= 2.15 in not supported by default.</li>
@@ -1127,7 +1173,7 @@ div.tocify {
 <li>Name of the calibration criterion provided in <code>OutputsAlgo()</code>.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-16" class="section level4">
+<div id="minor-user-visible-changes-17" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Missing values in Fortran are now -999.999 instead of -9.999.</li>
@@ -1137,13 +1183,13 @@ div.tocify {
 </div>
 <div id="release-notes-2014-01-27" class="section level3">
 <h3>0.5.1 Release Notes (2014-01-27)</h3>
-<div id="new-features-15" class="section level4">
+<div id="new-features-16" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>New <code>EfficiencyCrit_NSE_sqrtQ()</code> function to compute NSE criterion on sqrt flows.</li>
 </ul>
 </div>
-<div id="bug-fixes-15" class="section level4">
+<div id="bug-fixes-16" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Incorrect arguments in the call to <code>RunModelAndCrit</code> from <code>CalibrationAlgo_optim_stats</code> and <code>CalibrationAlgo_nlminb_stats</code>.</li>
