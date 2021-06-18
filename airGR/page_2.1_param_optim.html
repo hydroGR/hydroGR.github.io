@@ -14,7 +14,7 @@
 
 <title>Plugging in new calibration algorithms in airGR</title>
 
-<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -657,7 +657,7 @@ div.tocify {
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;KGE&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;KGE [1/Q]&quot;</span>) <span class="sc">+</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="page_2.1_param_optim_files/figure-html/unnamed-chunk-19-1.png" width="576" /></p>
-<p>The pameter sets can be viewed in the parameter space, illustrating different populations.</p>
+<p>The parameter sets can be viewed in the parameter space, illustrating different populations.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>param_optMO <span class="ot">&lt;-</span> <span class="fu">apply</span>(optMO<span class="sc">$</span>parameters, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  airGR<span class="sc">::</span><span class="fu">TransfoParam_GR4J</span>(x, <span class="at">Direction =</span> <span class="st">&quot;TR&quot;</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  })</span>
@@ -727,6 +727,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
