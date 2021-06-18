@@ -411,7 +411,7 @@ div.tocify {
 						<li><a href="page_2.2_param_mcmc.html">Parameter estimation within a Bayesian MCMC framework</a></li>
 						<li><a href="page_3_param_sets_GR4J.html">Generalist parameter sets for the GR4J model</a></li>
 						<li><a href="page_4_cemaneige_hysteresis.html">Using satellite snow cover area data for calibrating and improving CemaNeige</a></li>
-						<li><a href="page_5_sd_model.html">Simulating a reservoir with semi-distributed GR4J model</a></li>
+						<li><a href="page_5_sd_model.html">Simulated vs observed upstream flows in calibration of semi-distributed GR4J model</a></li>
 					</ul>
 				</li>
 				<li class="Download">
@@ -567,8 +567,10 @@ div.tocify {
 </ul>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>RunOptions <span class="ot">&lt;-</span> <span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J,</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">InputsModel =</span> InputsModel, <span class="at">IndPeriod_Run =</span> Ind_Run,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">IniStates =</span> <span class="cn">NULL</span>, <span class="at">IniResLevels =</span> <span class="cn">NULL</span>, <span class="at">IndPeriod_WarmUp =</span> <span class="cn">NULL</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(RunOptions)</span></code></pre></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">IniStates =</span> <span class="cn">NULL</span>, <span class="at">IniResLevels =</span> <span class="cn">NULL</span>, <span class="at">IndPeriod_WarmUp =</span> <span class="cn">NULL</span>)</span></code></pre></div>
+<pre><code>## Warning in CreateRunOptions(FUN_MOD = RunModel_GR4J, InputsModel = InputsModel, : model warm up period not defined: default configuration used
+##   the year preceding the run period is used</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(RunOptions)</span></code></pre></div>
 <pre><code>## List of 6
 ##  $ IndPeriod_WarmUp: int [1:365] 1828 1829 1830 1831 1832 1833 1834 1835 1836 1837 ...
 ##  $ IndPeriod_Run   : int [1:3652] 2193 2194 2195 2196 2197 2198 2199 2200 2201 2202 ...
@@ -595,9 +597,9 @@ div.tocify {
 </ul>
 <p>Missing values (<code>NA</code>) are <strong>allowed</strong> for observed discharge.</p>
 <p>It is possible to compute a composite criterion (e.g. the average between NSE computed on discharge and NSE computed on log of discharge). In this case, users have to provide lists to the following arguments (some of the are optional): <code>FUN_CRIT</code>, <code>Obs</code>, <code>VarObs</code>, <code>BoolCrit</code>, <code>transfo</code>, <code>Weights.</code></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>InputsCrit <span class="ot">&lt;-</span> <span class="fu">CreateInputsCrit</span>(<span class="at">FUN_CRIT =</span> ErrorCrit_NSE, <span class="at">InputsModel =</span> InputsModel, </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">RunOptions =</span> RunOptions, <span class="at">VarObs =</span> <span class="st">&quot;Q&quot;</span>, <span class="at">Obs =</span> BasinObs<span class="sc">$</span>Qmm[Ind_Run])</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(InputsCrit)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>InputsCrit <span class="ot">&lt;-</span> <span class="fu">CreateInputsCrit</span>(<span class="at">FUN_CRIT =</span> ErrorCrit_NSE, <span class="at">InputsModel =</span> InputsModel, </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">RunOptions =</span> RunOptions, <span class="at">VarObs =</span> <span class="st">&quot;Q&quot;</span>, <span class="at">Obs =</span> BasinObs<span class="sc">$</span>Qmm[Ind_Run])</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(InputsCrit)</span></code></pre></div>
 <pre><code>## List of 8
 ##  $ FUN_CRIT: chr &quot;ErrorCrit_NSE&quot;
 ##  $ Obs     : num [1:3652] 1.99 1.8 2.86 2.4 3.31 ...
@@ -616,8 +618,8 @@ div.tocify {
 <li><code>FUN_MOD</code>: the name of the model function</li>
 <li><code>FUN_CALIB</code>: the name of the calibration algorithm</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>CalibOptions <span class="ot">&lt;-</span> <span class="fu">CreateCalibOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">FUN_CALIB =</span> Calibration_Michel)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(CalibOptions)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>CalibOptions <span class="ot">&lt;-</span> <span class="fu">CreateCalibOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">FUN_CALIB =</span> Calibration_Michel)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(CalibOptions)</span></code></pre></div>
 <pre><code>## List of 4
 ##  $ FixedParam       : logi [1:4] NA NA NA NA
 ##  $ SearchRanges     : num [1:2, 1:4] 4.59e-05 2.18e+04 -1.09e+04 1.09e+04 4.59e-05 ...
@@ -646,9 +648,9 @@ div.tocify {
 <li>a screening of the parameters space is performed using either a rough predefined grid or a user-defined list of parameter sets</li>
 <li>a simple steepest descent local search algorithm is performed from the best set of parameters found at the first step</li>
 </ol>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>OutputsCalib <span class="ot">&lt;-</span> <span class="fu">Calibration_Michel</span>(<span class="at">InputsModel =</span> InputsModel, <span class="at">RunOptions =</span> RunOptions,</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">InputsCrit =</span> InputsCrit, <span class="at">CalibOptions =</span> CalibOptions,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">FUN_MOD =</span> RunModel_GR4J)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>OutputsCalib <span class="ot">&lt;-</span> <span class="fu">Calibration_Michel</span>(<span class="at">InputsModel =</span> InputsModel, <span class="at">RunOptions =</span> RunOptions,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">InputsCrit =</span> InputsCrit, <span class="at">CalibOptions =</span> CalibOptions,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">FUN_MOD =</span> RunModel_GR4J)</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (81 runs)
 ##       Param =  247.151,   -0.020,   83.096,    2.384
@@ -657,8 +659,8 @@ div.tocify {
 ##   Calibration completed (21 iterations, 234 runs)
 ##       Param =  257.238,    1.012,   88.235,    2.208
 ##       Crit. NSE[Q]       = 0.7988</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Param <span class="ot">&lt;-</span> OutputsCalib<span class="sc">$</span>ParamFinalR</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>Param</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Param <span class="ot">&lt;-</span> OutputsCalib<span class="sc">$</span>ParamFinalR</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>Param</span></code></pre></div>
 <pre><code>## [1] 257.237556   1.012237  88.234673   2.207958</code></pre>
 <p>The <code>Calibration_Michel()</code> function is the only one implemented in the <strong><font color="#00a3a6">airGR</font></strong> package to calibrate the model, but the user can implement its own calibration function.</p>
 <p>The <code>Calibration_Michel()</code> function returns a vector with the parameters of the chosen model, which means that the number of values can differ depending on the model that is used. It is possible to use the <code>Calibration_Michel()</code> function with user-implemented hydrological models.</p>
@@ -673,8 +675,8 @@ div.tocify {
 <div id="simulation-run" class="section level2" number="6.1">
 <h2 number="6.1"><span class="header-section-number">6.1</span> Simulation run</h2>
 <p>To run a model, the user has to use the <code>RunModel*()</code> functions (<code>InputsModel</code>, <code>RunOptions</code> and parameters). All the data needed have already been prepared in the previous steps defined in this guide.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>OutputsModel <span class="ot">&lt;-</span> <span class="fu">RunModel_GR4J</span>(<span class="at">InputsModel =</span> InputsModel, <span class="at">RunOptions =</span> RunOptions, <span class="at">Param =</span> Param)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(OutputsModel)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>OutputsModel <span class="ot">&lt;-</span> <span class="fu">RunModel_GR4J</span>(<span class="at">InputsModel =</span> InputsModel, <span class="at">RunOptions =</span> RunOptions, <span class="at">Param =</span> Param)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(OutputsModel)</span></code></pre></div>
 <pre><code>## List of 20
 ##  $ DatesR  : POSIXlt[1:3652], format: &quot;1990-01-01&quot; &quot;1990-01-02&quot; &quot;1990-01-03&quot; ...
 ##  $ PotEvap : num [1:3652] 0.3 0.4 0.4 0.3 0.1 0.1 0.1 0.2 0.2 0.3 ...
@@ -721,16 +723,16 @@ div.tocify {
 <li>cumulative frequency plot for simulated discharge (and for observed discharge if provided)</li>
 <li>correlation plot between simulated and observed discharge (if observed discharge provided)</li>
 </ul>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(OutputsModel, <span class="at">Qobs =</span> BasinObs<span class="sc">$</span>Qmm[Ind_Run])</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(OutputsModel, <span class="at">Qobs =</span> BasinObs<span class="sc">$</span>Qmm[Ind_Run])</span></code></pre></div>
 <p><img src="page_1_get_started_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>Moreover, if the CemaNeige model is used, the air temperature and the simulated snowpack water equivalent time series are plotted.</p>
 </div>
 <div id="efficiency-criterion" class="section level2" number="6.3">
 <h2 number="6.3"><span class="header-section-number">6.3</span> Efficiency criterion</h2>
 <p>To evaluate the efficiency of the model, it is possible to use the same criterion as defined at the calibration step or to use another criterion.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>OutputsCrit <span class="ot">&lt;-</span> <span class="fu">ErrorCrit_NSE</span>(<span class="at">InputsCrit =</span> InputsCrit, <span class="at">OutputsModel =</span> OutputsModel)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>OutputsCrit <span class="ot">&lt;-</span> <span class="fu">ErrorCrit_NSE</span>(<span class="at">InputsCrit =</span> InputsCrit, <span class="at">OutputsModel =</span> OutputsModel)</span></code></pre></div>
 <pre><code>## Crit. NSE[Q] = 0.7988</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(OutputsCrit)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(OutputsCrit)</span></code></pre></div>
 <pre><code>## List of 5
 ##  $ CritValue      : num 0.799
 ##  $ CritName       : chr &quot;NSE[Q]&quot;
@@ -738,12 +740,12 @@ div.tocify {
 ##  $ Multiplier     : num -1
 ##  $ Ind_notcomputed: int [1:57] 2405 2406 2407 2408 2409 2410 2411 2412 2413 2414 ...
 ##  - attr(*, &quot;class&quot;)= chr [1:2] &quot;NSE&quot; &quot;ErrorCrit&quot;</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>OutputsCrit <span class="ot">&lt;-</span> <span class="fu">ErrorCrit_KGE</span>(<span class="at">InputsCrit =</span> InputsCrit, <span class="at">OutputsModel =</span> OutputsModel)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>OutputsCrit <span class="ot">&lt;-</span> <span class="fu">ErrorCrit_KGE</span>(<span class="at">InputsCrit =</span> InputsCrit, <span class="at">OutputsModel =</span> OutputsModel)</span></code></pre></div>
 <pre><code>## Crit. KGE[Q] = 0.7854</code></pre>
 <pre><code>##  SubCrit. KGE[Q] cor(sim, obs, &quot;pearson&quot;) = 0.8985 
 ##  SubCrit. KGE[Q] sd(sim)/sd(obs)          = 0.8161 
 ##  SubCrit. KGE[Q] mean(sim)/mean(obs)      = 1.0437</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(OutputsCrit)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(OutputsCrit)</span></code></pre></div>
 <pre><code>## List of 7
 ##  $ CritValue      : num 0.785
 ##  $ CritName       : chr &quot;KGE[Q]&quot;
