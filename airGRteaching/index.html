@@ -13,7 +13,7 @@
 
 <title>airGRteaching: Teaching Hydrological Modelling with GR</title>
 
-<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -493,7 +493,7 @@ The latest version of the <b>htmlwidgets</b> package has been fixed and is now a
 
 
 <h1 class="title toc-ignore">airGRteaching: Teaching Hydrological Modelling with GR</h1>
-<h4 class="date">Update: 2021-06-16</h4>
+<h4 class="date">Update: 2021-07-22</h4>
 
 </div>
 
@@ -617,6 +617,7 @@ To see these entries in BibTeX format, use &#39;print(&lt;citation&gt;, bibtex=T
 <h2 number="3.2"><span class="header-section-number">3.2</span> Known places where airGRteaching is used</h2>
 <ul>
 <li><a href="http://www2.agroparistech.fr/Presentation-of-AgroParisTech.html">AgroParisTech</a>, Paris, France</li>
+<li><a href="https://univ-avignon.fr/english-version/">Avignon University</a>, Avignon, France</li>
 <li><a href="https://www.centrale-marseille.fr/en">École centrale de Marseille</a>, Marseille, France</li>
 <li><a href="http://www.enpc.fr/en/welcome-school">École des Ponts ParisTech</a>, Champs-sur-Marne, France</li>
 <li><a href="https://www.polytechnique.edu/">École polytechnique</a>, Palaiseau, France</li>
@@ -684,6 +685,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
