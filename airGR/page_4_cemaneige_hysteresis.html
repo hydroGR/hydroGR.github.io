@@ -516,9 +516,9 @@ div.tocify {
 
 
 <div id="introduction" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> Introduction</h1>
+<h1><span class="header-section-number">1</span> Introduction</h1>
 <div id="scope" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> Scope</h2>
+<h2><span class="header-section-number">1.1</span> Scope</h2>
 <p>Rainfall-runoff models that include a snow accumulation and melt module are still often calibrated using only discharge observations. This can result in poor snow modeling as the swnow module parameters can distorted in order to allow skilful discharge simulation.</p>
 <p>After the work of <span class="citation">Riboust et al. (2019)</span>, we propose now in <strong><font color="#00a3a6">airGR</font></strong> an improved version of the degree-day CemaNeige snow and accumulation module. This new version is based on a more accurate representation of the relationship that exists at the basin scale between the Snow Water Equivalent (SWE) and the Snow Cover Area (SCA). To do so, a linear SWE-SCA hysteresis, which represents the fact that snow accumulation is rather homogeneous on the basin and snow melt is more heterogeneous, was implemented.</p>
 <p>This new CemaNeige version has two more parameters to calibrate. It also presents the advantage of allowing using satellite snow data to constrain the calibration in addition to discharge. <span class="citation">Riboust et al. (2019)</span> show that while the simulated discharge is not significantly improved, the snow simulation is much improved. In addition, they show that the model is more robust (i.e. transferable in time) in terms of discharge, which has many implications for climate change impact studies.</p>
@@ -526,16 +526,16 @@ div.tocify {
 <p>In this article, we show how to use and calibrate this new CemaNeige version.</p>
 </div>
 <div id="data-preparation" class="section level2" number="1.2">
-<h2 number="1.2"><span class="header-section-number">1.2</span> Data preparation</h2>
+<h2><span class="header-section-number">1.2</span> Data preparation</h2>
 <p>We load an example data set from the package. Please note that this data set includes MODIS data that was pre-calculated for 5 elevation bands and for which days with few data (more than 40 % cloud coverage) were assigned as missing values.</p>
 </div>
 <div id="loading-catchment-data" class="section level2" number="1.3">
-<h2 number="1.3"><span class="header-section-number">1.3</span> loading catchment data</h2>
+<h2><span class="header-section-number">1.3</span> loading catchment data</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(X0310010)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(BasinObs)</span></code></pre></div>
 </div>
 <div id="object-model-preparation" class="section level2" number="1.4">
-<h2 number="1.4"><span class="header-section-number">1.4</span> Object model preparation</h2>
+<h2><span class="header-section-number">1.4</span> Object model preparation</h2>
 <p>We assume that the R global environment contains data and functions from the <a href="https://hydrogr.github.io/airGR/page_1_get_started.html">Get Started</a> article.</p>
 <p>The calibration period has been defined from 2000-09-01 to 2005-08-31, and the validation period from 2005-09-01 to 2010-07-31. CemaNeige will be used in coupling with GR4J in this article.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## preparation of the InputsModel object</span></span>
@@ -560,7 +560,7 @@ div.tocify {
 </div>
 </div>
 <div id="calibration-and-evaluation-of-the-new-cemaneige-module" class="section level1" number="2">
-<h1 number="2"><span class="header-section-number">2</span> Calibration and evaluation of the new CemaNeige module</h1>
+<h1><span class="header-section-number">2</span> Calibration and evaluation of the new CemaNeige module</h1>
 <p>In order to use the Linear Hysteresis, a new argument (<code>IsHyst</code>) is added in the <code>CreateRunOptions()</code> and <code>CreateCalibOptions()</code> functions and has to be set to <code>TRUE</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## preparation of the RunOptions object for the calibration period</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>RunOptions_Cal <span class="ot">&lt;-</span> <span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_CemaNeigeGR4J,</span>
@@ -681,7 +681,7 @@ div.tocify {
 ##  - attr(*, &quot;class&quot;)= chr [1:2] &quot;Compo&quot; &quot;ErrorCrit&quot;</code></pre>
 </div>
 <div id="comparison-with-the-performance-of-the-initial-cemaneige-version" class="section level1" number="3">
-<h1 number="3"><span class="header-section-number">3</span> Comparison with the performance of the initial CemaNeige version</h1>
+<h1><span class="header-section-number">3</span> Comparison with the performance of the initial CemaNeige version</h1>
 <p>Here we use the same InputsModel object and calibration and validation periods. However, we have to redefine the way we run the model (<code>RunOptions</code> argument), calibrate and assess it (<code>InputsCrit</code> argument). The objective function is only based on KGE’(Q). Note how we set the <code>IsHyst</code> argument to <code>FALSE</code> in the <code>CreateRunOptions()</code> and the <code>CreateCalibOptions()</code> functions.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## preparation of RunOptions object</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>RunOptions_Cal_NoHyst <span class="ot">&lt;-</span> <span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_CemaNeigeGR4J,</span>

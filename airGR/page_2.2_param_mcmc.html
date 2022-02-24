@@ -494,9 +494,9 @@ div.tocify {
 
 
 <div id="introduction" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> Introduction</h1>
+<h1><span class="header-section-number">1</span> Introduction</h1>
 <div id="scope" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> Scope</h2>
+<h2><span class="header-section-number">1.1</span> Scope</h2>
 <p>In this article, we give an example of parameter estimation within a Bayesian MCMC approach.</p>
 <p>We use the <strong>GR4J</strong> model and we assume that the R global environment contains data and functions from the <a href="page_1_get_started.html">Get Started</a> article.</p>
 <p><!-- 
@@ -511,7 +511,7 @@ div.tocify {
 <p>Please note that this page is only for illustration purposes and does not provide any guidance about which parameter inference strategy is recommended for the family of the GR models.</p>
 </div>
 <div id="standard-least-squares-sls-bayesian-inference" class="section level2" number="1.2">
-<h2 number="1.2"><span class="header-section-number">1.2</span> Standard Least Squares (SLS) Bayesian inference</h2>
+<h2><span class="header-section-number">1.2</span> Standard Least Squares (SLS) Bayesian inference</h2>
 <p>We show how to use the DRAM algorithm for SLS Bayesian inference, with the <code>modMCMC()</code> function of the <a href="https://cran.r-project.org/package=FME">FME</a> package. First, we need to define a function that returns twice the opposite of the log-likelihood for a given parameter set.</p>
 <p>Nota: in the <code>LogLikeGR4J()</code> function, the computation of the log-likelihood is simplified in order to ensure a good computing performance. It corresponds to a translation of the two following lines.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Likelihood <span class="ot">&lt;-</span> <span class="fu">sum</span>((ObsY <span class="sc">-</span> ModY)<span class="sc">^</span><span class="dv">2</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">^</span>(<span class="sc">-</span><span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(ObsY)) <span class="sc">/</span> <span class="dv">2</span>)</span>
@@ -534,9 +534,9 @@ div.tocify {
 </div>
 </div>
 <div id="mcmc-algorithm-for-bayesian-inference" class="section level1" number="2">
-<h1 number="2"><span class="header-section-number">2</span> MCMC algorithm for Bayesian inference</h1>
+<h1><span class="header-section-number">2</span> MCMC algorithm for Bayesian inference</h1>
 <div id="estimation-of-the-best-fit-parameters-as-a-starting-point" class="section level2" number="2.1">
-<h2 number="2.1"><span class="header-section-number">2.1</span> Estimation of the best-fit parameters as a starting point</h2>
+<h2><span class="header-section-number">2.1</span> Estimation of the best-fit parameters as a starting point</h2>
 <p>We start by using the PORT optimization routine to estimate the best-fit parameters.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>optPORT <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">nlminb</span>(<span class="at">start =</span> <span class="fu">c</span>(<span class="fl">4.1</span>, <span class="fl">3.9</span>, <span class="sc">-</span><span class="fl">0.9</span>, <span class="sc">-</span><span class="fl">8.7</span>), </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">objective =</span> LogLikeGR4J,</span>
@@ -545,7 +545,7 @@ div.tocify {
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>iniParPORT <span class="ot">&lt;-</span> optPORT<span class="sc">$</span>par</span></code></pre></div>
 </div>
 <div id="running-3-chains-for-convergence-assessment" class="section level2" number="2.2">
-<h2 number="2.2"><span class="header-section-number">2.2</span> Running 3 chains for convergence assessment</h2>
+<h2><span class="header-section-number">2.2</span> Running 3 chains for convergence assessment</h2>
 <p>We run 3 chains with different initial values to assess the convergence of the Markov chains. The number of iterations is fixed to 2000 with a burning length of 0.</p>
 <p>Nota: in this example, there are relatively few iterations (2000), in order to limit the running time of this page. In addition, the burning length has been set to zero in order to show the convergence process but, in a true exercise, it is better to define more iterations (5000) and to burn the first iterations.</p>
 <p>With the DRAM algorithm, the covariance of the proposal is updated every 100 runs and delayed rejection is applied.</p>
@@ -571,7 +571,7 @@ div.tocify {
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 </div>
 <div id="mcmc-diagnostics-and-visualisation-tools" class="section level2" number="2.3">
-<h2 number="2.3"><span class="header-section-number">2.3</span> MCMC diagnostics and visualisation tools</h2>
+<h2><span class="header-section-number">2.3</span> MCMC diagnostics and visualisation tools</h2>
 <p>There are several diagnostics that can be used to check the convergence of the chains. The R package <a href="https://cran.r-project.org/package=coda">coda</a> provides several diagnostic tests.</p>
 <p>Among others, the Gelman and Rubin’s convergence can be used. A value close to 1 suggests acceptable convergence. The result will be better with more iterations than 2000. As we kept the iterations during the convergence process, we have to set the <code>autoburnin</code> argument to <code>TRUE</code> in order to consider only the second half of the series.</p>
 <p>Note that we rescale model parameter sets of the GR4J model from the transformed space to the real space.</p>
@@ -587,7 +587,7 @@ div.tocify {
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ggmcmc<span class="sc">::</span><span class="fu">ggs_traceplot</span>(parDRAM)</span></code></pre></div>
 <p><img src="page_2.2_param_mcmc_files/figure-html/unnamed-chunk-12-1.png" width="576" /></p>
 <p>The posterior density for each parameter can then be visualised:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>burnParDRAM <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(parDRAM, Iteration <span class="sc">&gt;</span> <span class="dv">1000</span>) <span class="co"># to keep only the second half of the series</span></span>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>burnParDRAM <span class="ot">&lt;-</span> parDRAM[parDRAM<span class="sc">$</span>Iteration <span class="sc">&gt;</span> <span class="dv">1000</span>, ] <span class="co"># to keep only the second half of the series</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ggmcmc<span class="sc">::</span><span class="fu">ggs_density</span>(burnParDRAM)</span></code></pre></div>
 <p><img src="page_2.2_param_mcmc_files/figure-html/unnamed-chunk-13-1.png" width="576" /></p>
 <p>Finally, a paired plot can be useful to look at the correlation between parameters. Highly correlated parameters can be seen as an indication for a structural deficit of the model used.</p>
@@ -595,7 +595,7 @@ div.tocify {
 <p><img src="page_2.2_param_mcmc_files/figure-html/unnamed-chunk-14-1.png" width="576" /></p>
 </div>
 <div id="exploring-further-possibilities" class="section level2" number="2.4">
-<h2 number="2.4"><span class="header-section-number">2.4</span> Exploring further possibilities</h2>
+<h2><span class="header-section-number">2.4</span> Exploring further possibilities</h2>
 <p>We only presented one MCMC algorithm and one parameter inference setting. Nonetheless, other approaches can be explored within the same framework.</p>
 <p>One can for example use different data transformations to deal with the limitations of the Gaussian error model.</p>
 <!-- Another extension is to infer the parameters of more advanced error model in addition of the **GR4J** model parameters.  -->

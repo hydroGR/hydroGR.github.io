@@ -516,16 +516,16 @@ div.tocify {
 
 
 <div id="introduction" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> Introduction</h1>
+<h1><span class="header-section-number">1</span> Introduction</h1>
 <div id="scope" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> Scope</h2>
+<h2><span class="header-section-number">1.1</span> Scope</h2>
 <p>In the <strong><font color="#00a3a6">airGR</font></strong> package, the classical way to calibrate a model is to use the Michel’s algorithm (see the <code>Calibration_Michel()</code> function).</p>
 <p>The Michel’s algorithm combines a global and a local approach. A screening is first performed either based on a rough predefined grid (considering various initial values for each parameter) or from a list of initial parameter sets. The best set identified in this screening is then used as a starting point for the steepest descent local search algorithm.</p>
 <p>In some specific situations, for example if the calibration period is too short and by consequence non representative of the catchment behaviour, a local calibration algorithm can give poor results.</p>
 <p>In this article, we show a method using a known parameter set that can be used as an alternative for the grid-screening calibration procedure, and we well compare to two methods using the <code>Calibration_Michel()</code> function. The generalist parameters sets introduced here are taken from <span class="citation">Andréassian et al. (2014)</span>.</p>
 </div>
 <div id="data-preparation" class="section level2" number="1.2">
-<h2 number="1.2"><span class="header-section-number">1.2</span> Data preparation</h2>
+<h2><span class="header-section-number">1.2</span> Data preparation</h2>
 <p>We load an example data set from the package and the GR4J parameter sets.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## loading catchment data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(L0123001)</span>
@@ -547,7 +547,7 @@ div.tocify {
 ##  Max.   :4006   Max.   :  0.8   Max.   :318   Max.   :3.47</code></pre>
 </div>
 <div id="object-model-preparation" class="section level2" number="1.3">
-<h2 number="1.3"><span class="header-section-number">1.3</span> Object model preparation</h2>
+<h2><span class="header-section-number">1.3</span> Object model preparation</h2>
 <p>We assume that the R global environment contains data and functions from the <a href="page_1_get_started.html">Get Started</a> article.</p>
 <p>The calibration period has been defined from <strong>1990-01-01</strong> to <strong>1990-02-28</strong>, and the validation period from <strong>1990-03-01</strong> to <strong>1999-12-31</strong>.</p>
 <p>As a consequence, in this example the calibration period is very short, less than 6 months.</p>
@@ -563,7 +563,7 @@ div.tocify {
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="do">## preparation of the RunOptions object for the calibration period</span></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>RunOptions_Cal <span class="ot">&lt;-</span> <span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J,</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                               <span class="at">InputsModel =</span> InputsModel, <span class="at">IndPeriod_Run =</span> Ind_Cal)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">InputsModel =</span> InputsModel, <span class="at">IndPeriod_Run =</span> Ind_Cal)</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="do">## efficiency criterion: Nash-Sutcliffe Efficiency</span></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>InputsCrit_Cal  <span class="ot">&lt;-</span> <span class="fu">CreateInputsCrit</span>(<span class="at">FUN_CRIT =</span> ErrorCrit_NSE, <span class="at">InputsModel =</span> InputsModel, </span>
@@ -582,11 +582,11 @@ div.tocify {
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="do">## efficiency criterion (Nash-Sutcliffe Efficiency) on the validation period</span></span>
 <span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>InputsCrit_Val  <span class="ot">&lt;-</span> <span class="fu">CreateInputsCrit</span>(<span class="at">FUN_CRIT =</span> ErrorCrit_NSE, <span class="at">InputsModel =</span> InputsModel, </span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>                                <span class="at">RunOptions =</span> RunOptions_Val, <span class="at">Obs =</span> BasinObs<span class="sc">$</span>Qmm[Ind_Val])</span></code></pre></div>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">RunOptions =</span> RunOptions_Val, <span class="at">Obs =</span> BasinObs<span class="sc">$</span>Qmm[Ind_Val])</span></code></pre></div>
 </div>
 </div>
 <div id="calibration-of-the-gr4j-model-with-the-generalist-parameter-sets" class="section level1" number="2">
-<h1 number="2"><span class="header-section-number">2</span> Calibration of the GR4J model with the generalist parameter sets</h1>
+<h1><span class="header-section-number">2</span> Calibration of the GR4J model with the generalist parameter sets</h1>
 <p>It is recommended to use the generalist parameter sets when the calibration period is less than 6 months.</p>
 <p>As shown in <span class="citation">Andréassian et al. (2014, fig. 4)</span>, a recommended way to use the <code>Param_Sets_GR4J</code> <code>data.frame</code> is to run the GR4J model with each parameter set and to select the best one according to an objective function (here we use the Nash-Sutcliffe Efficiency criterion).</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>OutputsCrit_Loop <span class="ot">&lt;-</span> <span class="fu">apply</span>(Param_Sets_GR4J, <span class="dv">1</span>, <span class="cf">function</span>(iParam) {</span>
@@ -606,11 +606,11 @@ div.tocify {
 <p>Now we can compute the Nash-Sutcliffe Efficiency criterion on the validation period. A quite good value (0.777) is found.</p>
 </div>
 <div id="calibration-of-the-gr4j-model-with-the-built-in-calibration_michel-function" class="section level1" number="3">
-<h1 number="3"><span class="header-section-number">3</span> Calibration of the GR4J model with the built-in <code>Calibration_Michel()</code> function</h1>
+<h1><span class="header-section-number">3</span> Calibration of the GR4J model with the built-in Calibration_Michel function</h1>
 <p>As seen above, the Michel’s calibration algorithm is based on a local search procedure.</p>
 <p>It is <strong>not recommanded</strong> to use the <code>Calibration_Michel()</code> function when the <strong>calibration period is less than 6 month</strong>. We will show below its application on the same short period for two configurations of the grid-screening step to demonstrate that it is less efficient than the generalist parameters sets calibration.</p>
 <div id="gr4j-parameter-distributions-quantiles-used-in-the-grid-screening-step" class="section level2" number="3.1">
-<h2 number="3.1"><span class="header-section-number">3.1</span> GR4J parameter distributions quantiles used in the grid-screening step</h2>
+<h2><span class="header-section-number">3.1</span> GR4J parameter distributions quantiles used in the grid-screening step</h2>
 <p>By default, the predefined grid used by the <code>Calibration_Michel()</code> function contains parameters quantiles computed after recursive calibrations on 1200 basins (from Australia, France and USA).</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>CalibOptions <span class="ot">&lt;-</span> <span class="fu">CreateCalibOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">FUN_CALIB =</span> Calibration_Michel)</span></code></pre></div>
 <p>The parameter set corresponding to the best criterion is the following:</p>
@@ -619,7 +619,7 @@ div.tocify {
 <p>The Nash-Sutcliffe Efficiency criterion computed on the calibration period is better (0.495) than with the generalist parameter sets, but the one computed on the validation period is lower (0.57). This shows that the generalist parameter sets give more robust model in this case.</p>
 </div>
 <div id="gr4j-parameter-sets-used-in-the-grid-screening-step" class="section level2" number="3.2">
-<h2 number="3.2"><span class="header-section-number">3.2</span> GR4J parameter sets used in the grid-screening step</h2>
+<h2><span class="header-section-number">3.2</span> GR4J parameter sets used in the grid-screening step</h2>
 <p>It is also possible to give to the <code>CreateCalibOptions()</code> function a matrix of parameter sets used for the grid-screening calibration procedure. So, it possible is to use by this way the GR4J generalist parameter sets.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>CalibOptions <span class="ot">&lt;-</span> <span class="fu">CreateCalibOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">FUN_CALIB =</span> Calibration_Michel,</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">StartParamList =</span> Param_Sets_GR4J)</span></code></pre></div>

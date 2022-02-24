@@ -494,14 +494,14 @@ div.tocify {
 
 
 <div id="introduction" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> Introduction</h1>
+<h1><span class="header-section-number">1</span> Introduction</h1>
 <div id="scope" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> Scope</h2>
+<h2><span class="header-section-number">1.1</span> Scope</h2>
 <p>The Michel’s calibration strategy (<code>Calibration_Michel()</code> function) is the calibration algorithm proposed in <strong><font color="#00a3a6">airGR</font></strong>. However, other optimization methods can be used in combination with <strong><font color="#00a3a6">airGR</font></strong>. We show here how to use different R packages to perform parameter estimation.</p>
 <p>In this article, we use the <strong>GR4J</strong> model to illustrate the different optimization strategies. In particular, we assume that the R global environment contains input climate data, observed discharge and functions from the <a href="page_1_get_started.html">Get Started</a> article, as shown below. Please note that the calibration period is defined in the <code>CreateRunOptions()</code> function .</p>
-<p><!-- 
- 
-  --></p>
+<!-- ```{r, warning=FALSE, fig.keep='none', results='hide', fig.height=10, fig.width=10, eval=TRUE, echo=FALSE, message=FALSE} -->
+<!-- example("Calibration_Michel", echo = FALSE, ask = FALSE) -->
+<!-- ``` -->
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;Calibration_Michel&quot;</span>)</span></code></pre></div>
 <p>In order for the <code>RunModel_*()</code> functions to run faster during the parameter estimation process, it is recommended that the outputs contain only the simulated flows (see the <code>Outputs_Sim</code> argument in the <code>CreateRunOptions()</code> help page).</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>RunOptions <span class="ot">&lt;-</span> airGR<span class="sc">::</span><span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">InputsModel =</span> InputsModel,</span>
@@ -511,7 +511,7 @@ div.tocify {
 <p>Please note that this article is only for illustration purposes and does not provide any guidance about which optimization strategies is recommended for the family of the <strong>GR</strong> models.</p>
 </div>
 <div id="definition-of-the-necessary-function" class="section level2" number="1.2">
-<h2 number="1.2"><span class="header-section-number">1.2</span> Definition of the necessary function</h2>
+<h2><span class="header-section-number">1.2</span> Definition of the necessary function</h2>
 <p>Parameter estimation can be performed by defining a function that takes a parameter set as input and returns the value of the performance criterion. There are two important steps: the transformation of parameters to real space and the computation of the value of the performance criterion. Here we choose to minimize the root mean square error.</p>
 <p>The change of the repository from the “real” parameter space to a “transformed” space ensures homogeneity of displacement in the different dimensions of the parameter space during the step-by-step procedure of the calibration algorithm of the model.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>OptimGR4J <span class="ot">&lt;-</span> <span class="cf">function</span>(ParamOptim) {</span>
@@ -534,7 +534,7 @@ div.tocify {
 </div>
 </div>
 <div id="local-optimization" class="section level1" number="2">
-<h1 number="2"><span class="header-section-number">2</span> Local optimization</h1>
+<h1><span class="header-section-number">2</span> Local optimization</h1>
 <p>We start with a local optimization strategy by using the PORT routines (using the <code>nlminb()</code> of the <code>stats</code> package) and by setting a starting point in the transformed parameter space:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>startGR4J <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.1</span>, <span class="fl">3.9</span>, <span class="sc">-</span><span class="fl">0.9</span>, <span class="sc">-</span><span class="fl">8.7</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>optPORT <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">nlminb</span>(<span class="at">start =</span> startGR4J, </span>
@@ -569,7 +569,7 @@ div.tocify {
 <p>The existence of several local minima illustrates the importance of defining an appropriate starting point or of using a multi-start strategy or a global optimization strategy.</p>
 </div>
 <div id="global-optimization" class="section level1" number="3">
-<h1 number="3"><span class="header-section-number">3</span> Global optimization</h1>
+<h1><span class="header-section-number">3</span> Global optimization</h1>
 <p>Global optimization is most often used when facing a complex response surface, with multiple local mimina. Here we use the following R implementation of some popular strategies:</p>
 <ul>
 <li><a href="https://cran.r-project.org/package=DEoptim">DEoptim: differential evolution</a></li>
@@ -577,26 +577,26 @@ div.tocify {
 <li><a href="https://cran.r-project.org/package=Rmalschains">Rmalschains: memetic algorithms</a></li>
 </ul>
 <div id="differential-evolution" class="section level2" number="3.1">
-<h2 number="3.1"><span class="header-section-number">3.1</span> Differential Evolution</h2>
+<h2><span class="header-section-number">3.1</span> Differential Evolution</h2>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>optDE <span class="ot">&lt;-</span> DEoptim<span class="sc">::</span><span class="fu">DEoptim</span>(<span class="at">fn =</span> OptimGR4J,</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">lower =</span> lowerGR4J, <span class="at">upper =</span> upperGR4J,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">control =</span> DEoptim<span class="sc">::</span><span class="fu">DEoptim.control</span>(<span class="at">NP =</span> <span class="dv">40</span>, <span class="at">trace =</span> <span class="dv">10</span>))</span></code></pre></div>
 </div>
 <div id="particle-swarm" class="section level2" number="3.2">
-<h2 number="3.2"><span class="header-section-number">3.2</span> Particle Swarm</h2>
+<h2><span class="header-section-number">3.2</span> Particle Swarm</h2>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>optPSO <span class="ot">&lt;-</span> hydroPSO<span class="sc">::</span><span class="fu">hydroPSO</span>(<span class="at">fn =</span> OptimGR4J,</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">lower =</span> lowerGR4J, <span class="at">upper =</span> upperGR4J,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">control =</span> <span class="fu">list</span>(<span class="at">write2disk =</span> <span class="cn">FALSE</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
 </div>
 <div id="ma-ls-chains" class="section level2" number="3.3">
-<h2 number="3.3"><span class="header-section-number">3.3</span> MA-LS-Chains</h2>
+<h2><span class="header-section-number">3.3</span> MA-LS-Chains</h2>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>optMALS <span class="ot">&lt;-</span> Rmalschains<span class="sc">::</span><span class="fu">malschains</span>(<span class="at">fn =</span> OptimGR4J,</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">lower =</span> lowerGR4J, <span class="at">upper =</span> upperGR4J, </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">maxEvals =</span> <span class="dv">2000</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="results" class="section level1" number="4">
-<h1 number="4"><span class="header-section-number">4</span> Results</h1>
+<h1><span class="header-section-number">4</span> Results</h1>
 <p>As it can be seen in the table below, the four additional optimization strategies tested lead to very close optima.</p>
 <pre><code>##    Algo      X1    X2     X3    X4
 ## 1 airGR 257.238 1.012 88.235 2.208
@@ -607,10 +607,13 @@ div.tocify {
 <!-- This is an expected result because the response surface for quadratic performance criteria of the **GR4J** model is generally sufficiently well defined in the transformed parameter space to allow using a local optimization strategy instead of a more time consuming global optimization strategy. -->
 </div>
 <div id="multiobjective-optimization" class="section level1" number="5">
-<h1 number="5"><span class="header-section-number">5</span> Multiobjective optimization</h1>
-<p>Multiobjective optimization is used to explore possible trade-offs between different performances criteria. Here we use the following R implementation of an efficient strategy: * <a href="https://cran.r-project.org/package=caRamel">caRamel: Automatic Calibration by Evolutionary Multi Objective Algorithm</a></p>
+<h1><span class="header-section-number">5</span> Multiobjective optimization</h1>
+<p>Multiobjective optimization is used to explore possible trade-offs between different performances criteria. Here we use the following R implementation of an efficient strategy:</p>
+<ul>
+<li><a href="https://cran.r-project.org/package=caRamel">caRamel: Automatic Calibration by Evolutionary Multi Objective Algorithm</a></li>
+</ul>
 <p>Motivated by using the rainfall-runoff model for low flow simulation, we explore the trade-offs between the KGE values obtained without any data transformation and with the inverse transformation.</p>
-<p>First, the OptimGR4J function previously used is modified to return two values.</p>
+<p>First, the <code>OptimGR4J()</code> function previously used is modified to return two values.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>InputsCrit_inv <span class="ot">&lt;-</span> InputsCrit</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>InputsCrit_inv<span class="sc">$</span>transfo <span class="ot">&lt;-</span> <span class="st">&quot;inv&quot;</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -636,7 +639,7 @@ div.tocify {
 <span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(OutputsCrit1<span class="sc">$</span>CritValue, OutputsCrit2<span class="sc">$</span>CritValue))</span>
 <span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <div id="caramel" class="section level2" number="5.1">
-<h2 number="5.1"><span class="header-section-number">5.1</span> caRamel</h2>
+<h2><span class="header-section-number">5.1</span> caRamel</h2>
 <p>caRamel is a multiobjective evolutionary algorithm combining the MEAS algorithm and the NGSA-II algorithm.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>algo <span class="ot">&lt;-</span> <span class="st">&quot;caRamel&quot;</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>optMO <span class="ot">&lt;-</span> caRamel<span class="sc">::</span><span class="fu">caRamel</span>(<span class="at">nobj =</span> <span class="dv">2</span>,</span>
@@ -656,13 +659,13 @@ div.tocify {
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.9</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.9</span>)) <span class="sc">+</span> </span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;KGE&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;KGE [1/Q]&quot;</span>) <span class="sc">+</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="page_2.1_param_optim_files/figure-html/unnamed-chunk-19-1.png" width="576" /></p>
+<p><img src="page_2.1_param_optim_files/figure-html/unnamed-chunk-18-1.png" width="576" /></p>
 <p>The parameter sets can be viewed in the parameter space, illustrating different populations.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>param_optMO <span class="ot">&lt;-</span> <span class="fu">apply</span>(optMO<span class="sc">$</span>parameters, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  airGR<span class="sc">::</span><span class="fu">TransfoParam_GR4J</span>(x, <span class="at">Direction =</span> <span class="st">&quot;TR&quot;</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  })</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>GGally<span class="sc">::</span><span class="fu">ggpairs</span>(<span class="fu">data.frame</span>(<span class="fu">t</span>(param_optMO)), <span class="at">diag =</span> <span class="cn">NULL</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="page_2.1_param_optim_files/figure-html/unnamed-chunk-20-1.png" width="576" /></p>
+<p><img src="page_2.1_param_optim_files/figure-html/unnamed-chunk-19-1.png" width="576" /></p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>RunOptions<span class="sc">$</span>Outputs_Sim <span class="ot">&lt;-</span> <span class="st">&quot;Qsim&quot;</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>run_optMO <span class="ot">&lt;-</span> <span class="fu">apply</span>(optMO<span class="sc">$</span>parameters, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  airGR<span class="sc">::</span><span class="fu">RunModel_GR4J</span>(<span class="at">InputsModel =</span> InputsModel,</span>
@@ -681,7 +684,7 @@ div.tocify {
 <span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Discharge [mm/d]&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Date&quot;</span>) <span class="sc">+</span></span>
 <span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_sqrt</span>() <span class="sc">+</span></span>
 <span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="page_2.1_param_optim_files/figure-html/unnamed-chunk-21-1.png" width="1152" /></p>
+<p><img src="page_2.1_param_optim_files/figure-html/unnamed-chunk-20-1.png" width="1152" /></p>
 </div>
 </div>
 

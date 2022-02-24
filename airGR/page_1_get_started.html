@@ -495,7 +495,7 @@ div.tocify {
 
 <p>This section aims at introducing to the use of <strong><font color="#00a3a6">airGR</font></strong> through a description of the main steps needed to make hydrological simulations.</p>
 <div id="loading-data" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> Loading data</h1>
+<h1><span class="header-section-number">1</span> Loading data</h1>
 <p>In the following example, we use a data sample contained in the package. For real applications, the user has to import its data into <strong>R</strong> and to prepare it with an adequate data.frame format as described below.</p>
 <p>First, it is necessary to load the <strong><font color="#00a3a6">airGR</font></strong> package:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(airGR)</span></code></pre></div>
@@ -521,7 +521,7 @@ div.tocify {
 <p>The usual functions (e.g. <code>read.table()</code>) can be used to load real-case data sets.</p>
 </div>
 <div id="preparation-of-functions-inputs" class="section level1" number="2">
-<h1 number="2"><span class="header-section-number">2</span> Preparation of functions inputs</h1>
+<h1><span class="header-section-number">2</span> Preparation of functions inputs</h1>
 <p>To run a model, the functions of the <strong><font color="#00a3a6">airGR</font></strong> package (e.g. the models, calibration and criteria calculation functions) require data and options with specific formats.</p>
 <p>To facilitate the use of the package, there are several functions dedicated to the creation of these objects:</p>
 <ul>
@@ -531,7 +531,7 @@ div.tocify {
 <li><code>CreateCalibOptions()</code>: prepares the options for the hydrological model calibration algorithm (choice of parameters to optimize, predefined values for uncalibrated parameters, etc.)</li>
 </ul>
 <div id="inputsmodel-object" class="section level2" number="2.1">
-<h2 number="2.1"><span class="header-section-number">2.1</span> InputsModel object</h2>
+<h2><span class="header-section-number">2.1</span> InputsModel object</h2>
 <p>To run a GR hydrological model or CemaNeige, the user has to prepare the input data with the <code>CreateInputsModel()</code> function. As arguments, this function needs the function name corresponding to the model the user wants to run, a vector of dates, a vector of precipitation and a vector of potential evapotranspiration.</p>
 <p>In the example below, we already have the potential evapotranspiration. If the user does not have these data, it is possible to compute it with the <a href="http://dx.doi.org/10.1016/j.jhydrol.2004.08.026">Oudin’s formula</a> with the <code>PE_Oudin()</code> function (this function only needs Julian days, daily average air temperature and latitude).</p>
 <p>Missing values (<code>NA</code>) of precipitation (or potential evapotranspiration) are <strong>not allowed</strong>.</p>
@@ -545,7 +545,7 @@ div.tocify {
 ##  - attr(*, &quot;class&quot;)= chr [1:3] &quot;InputsModel&quot; &quot;daily&quot; &quot;GR&quot;</code></pre>
 </div>
 <div id="runoptions-object" class="section level2" number="2.2">
-<h2 number="2.2"><span class="header-section-number">2.2</span> RunOptions object</h2>
+<h2><span class="header-section-number">2.2</span> RunOptions object</h2>
 <p>The <code>CreateRunOptions()</code> function allows to prepare the options required to the <code>RunModel*()</code> functions, which are the actual models functions.</p>
 <p>The user must at least define the following arguments:</p>
 <ul>
@@ -571,13 +571,30 @@ div.tocify {
 <pre><code>## Warning in CreateRunOptions(FUN_MOD = RunModel_GR4J, InputsModel = InputsModel, : model warm up period not defined: default configuration used
 ##   the year preceding the run period is used</code></pre>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(RunOptions)</span></code></pre></div>
-<pre><code>## List of 6
+<pre><code>## List of 8
 ##  $ IndPeriod_WarmUp: int [1:365] 1828 1829 1830 1831 1832 1833 1834 1835 1836 1837 ...
 ##  $ IndPeriod_Run   : int [1:3652] 2193 2194 2195 2196 2197 2198 2199 2200 2201 2202 ...
 ##  $ IniStates       : num [1:67] 0 0 0 0 0 0 0 0 0 0 ...
 ##  $ IniResLevels    : num [1:4] 0.3 0.5 NA NA
-##  $ Outputs_Cal     : chr &quot;Qsim&quot;
-##  $ Outputs_Sim     : chr [1:20] &quot;DatesR&quot; &quot;PotEvap&quot; &quot;Precip&quot; &quot;Prod&quot; ...
+##  $ Outputs_Cal     : chr [1:2] &quot;Qsim&quot; &quot;Param&quot;
+##  $ Outputs_Sim     : Named chr [1:22] &quot;DatesR&quot; &quot;PotEvap&quot; &quot;Precip&quot; &quot;Prod&quot; ...
+##   ..- attr(*, &quot;names&quot;)= chr [1:22] &quot;&quot; &quot;GR1&quot; &quot;GR2&quot; &quot;GR3&quot; ...
+##  $ FortranOutputs  :List of 2
+##   ..$ GR: chr [1:18] &quot;PotEvap&quot; &quot;Precip&quot; &quot;Prod&quot; &quot;Pn&quot; ...
+##   ..$ CN: NULL
+##  $ FeatFUN_MOD     :List of 12
+##   ..$ CodeMod     : chr &quot;GR4J&quot;
+##   ..$ NameMod     : chr &quot;GR4J&quot;
+##   ..$ NbParam     : int 4
+##   ..$ TimeUnit    : chr &quot;daily&quot;
+##   ..$ Id          : logi NA
+##   ..$ Class       : chr [1:2] &quot;daily&quot; &quot;GR&quot;
+##   ..$ Pkg         : chr &quot;airGR&quot;
+##   ..$ NameFunMod  : chr &quot;RunModel_GR4J&quot;
+##   ..$ TimeStep    : num 86400
+##   ..$ TimeStepMean: int 86400
+##   ..$ CodeModHydro: chr &quot;GR4J&quot;
+##   ..$ IsSD        : logi FALSE
 ##  - attr(*, &quot;class&quot;)= chr [1:3] &quot;RunOptions&quot; &quot;daily&quot; &quot;GR&quot;</code></pre>
 <p>The <code>CreateRunOptions()</code> function returns warnings if the default initialization options are used:</p>
 <ul>
@@ -586,7 +603,7 @@ div.tocify {
 </ul>
 </div>
 <div id="inputscrit-object" class="section level2" number="2.3">
-<h2 number="2.3"><span class="header-section-number">2.3</span> InputsCrit object</h2>
+<h2><span class="header-section-number">2.3</span> InputsCrit object</h2>
 <p>The <code>CreateInputsCrit()</code> function allows to prepare the input in order to calculate a criterion. It is possible to define the following arguments:</p>
 <ul>
 <li><code>FUN_CRIT</code>: the name of the error criterion function (the available functions are introduced later on)</li>
@@ -601,7 +618,8 @@ div.tocify {
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">RunOptions =</span> RunOptions, <span class="at">VarObs =</span> <span class="st">&quot;Q&quot;</span>, <span class="at">Obs =</span> BasinObs<span class="sc">$</span>Qmm[Ind_Run])</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(InputsCrit)</span></code></pre></div>
 <pre><code>## List of 8
-##  $ FUN_CRIT: chr &quot;ErrorCrit_NSE&quot;
+##  $ FUN_CRIT:function (InputsCrit, OutputsModel, warnings = TRUE, verbose = TRUE)  
+##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;FUN_CRIT&quot; &quot;function&quot;
 ##  $ Obs     : num [1:3652] 1.99 1.8 2.86 2.4 3.31 ...
 ##  $ VarObs  : chr &quot;Q&quot;
 ##  $ BoolCrit: logi [1:3652] TRUE TRUE TRUE TRUE TRUE TRUE ...
@@ -612,7 +630,7 @@ div.tocify {
 ##  - attr(*, &quot;class&quot;)= chr [1:2] &quot;Single&quot; &quot;InputsCrit&quot;</code></pre>
 </div>
 <div id="caliboptions-object" class="section level2" number="2.4">
-<h2 number="2.4"><span class="header-section-number">2.4</span> CalibOptions object</h2>
+<h2><span class="header-section-number">2.4</span> CalibOptions object</h2>
 <p>Before using the automatic calibration tool, the user needs to prepare the calibration options with the <code>CreateCalibOptions()</code> function. For that, it is necessary to define the following arguments:</p>
 <ul>
 <li><code>FUN_MOD</code>: the name of the model function</li>
@@ -625,11 +643,11 @@ div.tocify {
 ##  $ SearchRanges     : num [1:2, 1:4] 4.59e-05 2.18e+04 -1.09e+04 1.09e+04 4.59e-05 ...
 ##  $ FUN_TRANSFO      :function (ParamIn, Direction)  
 ##  $ StartParamDistrib: num [1:3, 1:4] 169.017 247.151 432.681 -2.376 -0.649 ...
-##  - attr(*, &quot;class&quot;)= chr [1:3] &quot;CalibOptions&quot; &quot;GR4J&quot; &quot;HBAN&quot;</code></pre>
+##  - attr(*, &quot;class&quot;)= chr [1:4] &quot;CalibOptions&quot; &quot;daily&quot; &quot;GR&quot; &quot;HBAN&quot;</code></pre>
 </div>
 </div>
 <div id="criteria" class="section level1" number="3">
-<h1 number="3"><span class="header-section-number">3</span> Criteria</h1>
+<h1><span class="header-section-number">3</span> Criteria</h1>
 <p>The evaluation of the quality of a simulation is estimated through the calculation of criteria. These criteria can be used both as objective-functions during the calibration of the model, or as a measure for evaluating its performance on a control period.</p>
 <p>The package offers the possibility to use different criteria:</p>
 <ul>
@@ -641,7 +659,7 @@ div.tocify {
 <p>It is also possible to create user-defined criteria. For doing that, it is only necessary to define the function in <strong>R</strong> following the same syntax as the criteria functions included in <strong><font color="#00a3a6">airGR</font></strong>.</p>
 </div>
 <div id="calibration" class="section level1" number="4">
-<h1 number="4"><span class="header-section-number">4</span> Calibration</h1>
+<h1><span class="header-section-number">4</span> Calibration</h1>
 <p>The objective of the calibration algorithm is to identify the model parameters: by comparing the model outputs with observed data, this algorithm determines the combination of parameters that represents the best the behavior of the watershed.</p>
 <p>In the <strong><font color="#00a3a6">airGR</font></strong> package, a function called <code>Calibration_Michel()</code> is implemented. This functions allows running a calibration with the package models. The calibration algorithm optimizes the error criterion selected as objective-function. This algorithm works in two steps:</p>
 <ol style="list-style-type: decimal">
@@ -666,38 +684,41 @@ div.tocify {
 <p>The <code>Calibration_Michel()</code> function returns a vector with the parameters of the chosen model, which means that the number of values can differ depending on the model that is used. It is possible to use the <code>Calibration_Michel()</code> function with user-implemented hydrological models.</p>
 </div>
 <div id="control" class="section level1" number="5">
-<h1 number="5"><span class="header-section-number">5</span> Control</h1>
+<h1><span class="header-section-number">5</span> Control</h1>
 <p>This step assesses the predictive capacity of the model. Control is defined as the estimation of the accuracy of the model on data sets that are not used in its construction, and in particular its calibration. The classical way to perform a control is to keep data from a period separated from the calibration period. If possible, this control period should correspond to climatic situations that differ from those of the calibration period in order to better point out the qualities and weaknesses of the model. This exercise is necessary for assessing the robustness of the model, that is to say its ability to keep stable performances outside of the calibration conditions.</p>
 <p>Performing a model control with <strong><font color="#00a3a6">airGR</font></strong> is similar to running a simulation (see below), followed by the computation of one or several performance criteria.</p>
 </div>
 <div id="simulation" class="section level1" number="6">
-<h1 number="6"><span class="header-section-number">6</span> Simulation</h1>
+<h1><span class="header-section-number">6</span> Simulation</h1>
 <div id="simulation-run" class="section level2" number="6.1">
-<h2 number="6.1"><span class="header-section-number">6.1</span> Simulation run</h2>
+<h2><span class="header-section-number">6.1</span> Simulation run</h2>
 <p>To run a model, the user has to use the <code>RunModel*()</code> functions (<code>InputsModel</code>, <code>RunOptions</code> and parameters). All the data needed have already been prepared in the previous steps defined in this guide.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>OutputsModel <span class="ot">&lt;-</span> <span class="fu">RunModel_GR4J</span>(<span class="at">InputsModel =</span> InputsModel, <span class="at">RunOptions =</span> RunOptions, <span class="at">Param =</span> Param)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(OutputsModel)</span></code></pre></div>
-<pre><code>## List of 20
-##  $ DatesR  : POSIXlt[1:3652], format: &quot;1990-01-01&quot; &quot;1990-01-02&quot; &quot;1990-01-03&quot; ...
-##  $ PotEvap : num [1:3652] 0.3 0.4 0.4 0.3 0.1 0.1 0.1 0.2 0.2 0.3 ...
-##  $ Precip  : num [1:3652] 0 9.3 3.2 7.3 0 0 0 0 0.1 0.2 ...
-##  $ Prod    : num [1:3652] 196 199 199 201 200 ...
-##  $ Pn      : num [1:3652] 0 8.9 2.8 7 0 0 0 0 0 0 ...
-##  $ Ps      : num [1:3652] 0 3.65 1.12 2.75 0 ...
-##  $ AE      : num [1:3652] 0.2833 0.4 0.4 0.3 0.0952 ...
-##  $ Perc    : num [1:3652] 0.645 0.696 0.703 0.74 0.725 ...
-##  $ PR      : num [1:3652] 0.645 5.946 2.383 4.992 0.725 ...
-##  $ Q9      : num [1:3652] 1.78 1.52 3.86 3.17 3.45 ...
-##  $ Q1      : num [1:3652] 0.2 0.195 0.271 0.387 0.365 ...
-##  $ Rout    : num [1:3652] 53.9 53.6 55.3 56.1 56.9 ...
-##  $ Exch    : num [1:3652] 0.181 0.18 0.177 0.197 0.207 ...
-##  $ AExch1  : num [1:3652] 0.181 0.18 0.177 0.197 0.207 ...
-##  $ AExch2  : num [1:3652] 0.181 0.18 0.177 0.197 0.207 ...
-##  $ AExch   : num [1:3652] 0.362 0.36 0.353 0.393 0.414 ...
-##  $ QR      : num [1:3652] 2.05 1.99 2.36 2.55 2.78 ...
-##  $ QD      : num [1:3652] 0.381 0.375 0.447 0.584 0.572 ...
-##  $ Qsim    : num [1:3652] 2.43 2.37 2.8 3.14 3.35 ...
-##  $ StateEnd:List of 3
+<pre><code>## List of 21
+##  $ DatesR    : POSIXlt[1:3652], format: &quot;1990-01-01&quot; &quot;1990-01-02&quot; &quot;1990-01-03&quot; ...
+##  $ PotEvap   : num [1:3652] 0.3 0.4 0.4 0.3 0.1 0.1 0.1 0.2 0.2 0.3 ...
+##  $ Precip    : num [1:3652] 0 9.3 3.2 7.3 0 0 0 0 0.1 0.2 ...
+##  $ Prod      : num [1:3652] 196 199 199 201 200 ...
+##  $ Pn        : num [1:3652] 0 8.9 2.8 7 0 0 0 0 0 0 ...
+##  $ Ps        : num [1:3652] 0 3.65 1.12 2.75 0 ...
+##  $ AE        : num [1:3652] 0.2833 0.4 0.4 0.3 0.0952 ...
+##  $ Perc      : num [1:3652] 0.645 0.696 0.703 0.74 0.725 ...
+##  $ PR        : num [1:3652] 0.645 5.946 2.383 4.992 0.725 ...
+##  $ Q9        : num [1:3652] 1.78 1.52 3.86 3.17 3.45 ...
+##  $ Q1        : num [1:3652] 0.2 0.195 0.271 0.387 0.365 ...
+##  $ Rout      : num [1:3652] 53.9 53.6 55.3 56.1 56.9 ...
+##  $ Exch      : num [1:3652] 0.181 0.18 0.177 0.197 0.207 ...
+##  $ AExch1    : num [1:3652] 0.181 0.18 0.177 0.197 0.207 ...
+##  $ AExch2    : num [1:3652] 0.181 0.18 0.177 0.197 0.207 ...
+##  $ AExch     : num [1:3652] 0.362 0.36 0.353 0.393 0.414 ...
+##  $ QR        : num [1:3652] 2.05 1.99 2.36 2.55 2.78 ...
+##  $ QD        : num [1:3652] 0.381 0.375 0.447 0.584 0.572 ...
+##  $ Qsim      : num [1:3652] 2.43 2.37 2.8 3.14 3.35 ...
+##  $ RunOptions:List of 2
+##   ..$ WarmUpQsim: num [1:365] 0.779 0.815 0.807 0.731 0.675 ...
+##   ..$ Param     : num [1:4] 257.24 1.01 88.23 2.21
+##  $ StateEnd  :List of 3
 ##   ..$ Store          :List of 4
 ##   .. ..$ Prod: num 189
 ##   .. ..$ Rout: num 48.9
@@ -711,11 +732,11 @@ div.tocify {
 ##   .. ..$ eTG    : num NA
 ##   .. ..$ Gthr   : num NA
 ##   .. ..$ Glocmax: num NA
-##   ..- attr(*, &quot;class&quot;)= chr [1:3] &quot;IniStates&quot; &quot;GR&quot; &quot;daily&quot;
+##   ..- attr(*, &quot;class&quot;)= chr [1:3] &quot;IniStates&quot; &quot;daily&quot; &quot;GR&quot;
 ##  - attr(*, &quot;class&quot;)= chr [1:3] &quot;OutputsModel&quot; &quot;daily&quot; &quot;GR&quot;</code></pre>
 </div>
 <div id="results-preview" class="section level2" number="6.2">
-<h2 number="6.2"><span class="header-section-number">6.2</span> Results preview</h2>
+<h2><span class="header-section-number">6.2</span> Results preview</h2>
 <p>Although it is possible for the user to design its own graphics from the outputs of the <code>RunModel*()</code> functions, the <strong><font color="#00a3a6">airGR</font></strong> package offers the possibility to make use of the <code>plot()</code> function. This function returns a dashboard of results including various graphs (depending on the model used):</p>
 <ul>
 <li>time series of total precipitation and simulated discharge (and observed discharge if provided)</li>
@@ -728,7 +749,7 @@ div.tocify {
 <p>Moreover, if the CemaNeige model is used, the air temperature and the simulated snowpack water equivalent time series are plotted.</p>
 </div>
 <div id="efficiency-criterion" class="section level2" number="6.3">
-<h2 number="6.3"><span class="header-section-number">6.3</span> Efficiency criterion</h2>
+<h2><span class="header-section-number">6.3</span> Efficiency criterion</h2>
 <p>To evaluate the efficiency of the model, it is possible to use the same criterion as defined at the calibration step or to use another criterion.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>OutputsCrit <span class="ot">&lt;-</span> <span class="fu">ErrorCrit_NSE</span>(<span class="at">InputsCrit =</span> InputsCrit, <span class="at">OutputsModel =</span> OutputsModel)</span></code></pre></div>
 <pre><code>## Crit. NSE[Q] = 0.7988</code></pre>
@@ -757,7 +778,7 @@ div.tocify {
 ##  - attr(*, &quot;class&quot;)= chr [1:2] &quot;KGE&quot; &quot;ErrorCrit&quot;</code></pre>
 </div>
 <div id="features-diagram" class="section level2" number="6.4">
-<h2 number="6.4"><span class="header-section-number">6.4</span> Features diagram</h2>
+<h2><span class="header-section-number">6.4</span> Features diagram</h2>
 <p>The figure below presents the implementation flow of the airGR functions. <br><br> <img src="fig/airGR_features_diagram.svg" alt="airGR features diagram" width=75% /></p>
 </div>
 </div>
