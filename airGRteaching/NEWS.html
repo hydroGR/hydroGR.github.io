@@ -13,8 +13,8 @@
 
 <title>Release History of the airGRteaching Package</title>
 
-<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -404,16 +404,46 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 </div>
 
 
+<div id="release-notes-2022-02-03" class="section level3">
+<h3>0.2.13 Release Notes (2022-02-03)</h3>
+<div id="bug-fixes" class="section level4">
+<h4>Bug fixes</h4>
+<ul>
+<li>bug fixed in <code>PrepGR()</code> and by consequence in <code>ShinyGR()</code> when the dataset given to the <code>ObsDF</code> argument is a <code>tibble</code> object. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/49">#49</a>)</li>
+</ul>
+</div>
+<div id="user-visible-changes" class="section level4">
+<h4>User-visible changes</h4>
+<ul>
+<li>in order to avoid duplicated warning messages, the use of the <code>.onAttach()</code> command has been removed from the <code>ShinyGR()</code> function, because it is already call from the <code>dyplot()</code> function which is use in <code>ShinyGR()</code>. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/50">#50</a>)</li>
+<li>the ‘Model diagram’ plot exported from the GUI launched by <code>ShinyGR()</code> has been resized to avoid to wide title when the the parameter values are large. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/54">#54</a>)</li>
+<li>the deprecated icon names from ‘Font Awesome’ have been updated to avoid warning messages when the <code>ShinyGR()</code> function is used. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/51">#51</a>)</li>
+</ul>
+</div>
+<div id="version-control-and-issue-tracking" class="section level4">
+<h4>Version control and issue tracking</h4>
+<ul>
+<li>the CI/CD runner now uses a R docker image. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/55">#55</a>)</li>
+</ul>
+</div>
+<div id="cran-compatibility-updates" class="section level4">
+<h4>CRAN-compatibility updates</h4>
+<ul>
+<li>The <code>FUN_CRIT</code> deprecated argument (since ‘airGR’ 1.2.13.16) has been removed from the use of <code>Calibration()</code> call by the <code>CalGR()</code> function. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/56">#56</a>)</li>
+</ul>
+<hr />
+</div>
+</div>
 <div id="release-notes-2021-08-06" class="section level3">
 <h3>0.2.12 Release Notes (2021-08-06)</h3>
-<div id="bug-fixes" class="section level4">
+<div id="bug-fixes-1" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed in the GUI launched by <code>ShinyGR()</code>, it is possible to the export the GR2M model diagram PNG file again. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/40">#40</a>)</li>
 <li>bug fixed in <code>SimGR()</code> which can now simulate a period with no observed flow. Previously, it could only be run in this case when the observed flow was missing from the output of <code>PrepGR()</code> on the whole period and not just on a subperiod. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/43">#43</a>)</li>
 </ul>
 </div>
-<div id="user-visible-changes" class="section level4">
+<div id="user-visible-changes-1" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>displaying a message when the package is attached from RStudio and also when the GUI is launched by <code>ShinyGR()</code> in order to warn users about GUI instability problems. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/46">#46</a>)</li>
@@ -422,7 +452,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <li>replace the use of <code>class()</code> by <code>inherits()</code> in order to test the classes of inputs in all functions. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/45">#45</a>)</li>
 </ul>
 </div>
-<div id="version-control-and-issue-tracking" class="section level4">
+<div id="version-control-and-issue-tracking-1" class="section level4">
 <h4>Version control and issue tracking</h4>
 <ul>
 <li>automatic tests implemented in the package. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/44">#44</a>)</li>
@@ -432,13 +462,13 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 </div>
 <div id="release-notes-2021-06-07" class="section level3">
 <h3>0.2.11 Release Notes (2021-06-07)</h3>
-<div id="bug-fixes-1" class="section level4">
+<div id="bug-fixes-2" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed in <code>ShinyGR()</code> when the date column of <code>ObsDF</code> has another name as ‘DatesR’. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/38">#38</a>)</li>
 </ul>
 </div>
-<div id="user-visible-changes-1" class="section level4">
+<div id="user-visible-changes-2" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>the <code>as.data.frame</code> S3 methods have been set for classes <code>PrepGR</code>, <code>CalGR</code> and <code>SimGR</code>. (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/39">#39</a>)</li>
@@ -455,26 +485,26 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <li>GUI, launched by the <code>ShinyGR()</code> function, can now run on monthly time series, using the GR2M model (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/14">#14</a>)</li>
 </ul>
 </div>
-<div id="bug-fixes-2" class="section level4">
+<div id="bug-fixes-3" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed in <code>plot.PrepGR()</code> when all <code>Qobs</code> are missing. The function now displays an empty plot for the observed discharges (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/35">#35</a>)</li>
 </ul>
 </div>
-<div id="user-visible-changes-2" class="section level4">
+<div id="user-visible-changes-3" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><code>theme</code> agument of the <code>ShinyGR()</code> function now uses partial matching (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/12">#12</a>)</li>
 <li><code>as.data.frame.airGRt()</code>, <code>plot</code>, <code>plot.PrepGR()</code>, <code>plot.CalGR()</code> and <code>plot.SimGR()</code> functions are no longer exported by the namespace (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/30">#30</a>)</li>
 </ul>
 </div>
-<div id="version-control-and-issue-tracking-1" class="section level4">
+<div id="version-control-and-issue-tracking-2" class="section level4">
 <h4>Version control and issue tracking</h4>
 <ul>
 <li>implement automatic tests in the package (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/29">#29</a>)</li>
 </ul>
 </div>
-<div id="cran-compatibility-updates" class="section level4">
+<div id="cran-compatibility-updates-1" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>now depends on R &gt;= 3.6.0 in order to be sure to have the packages ‘shiny’ &gt;= 1.1.0 and ‘htmlwidgets’ &gt;= 1.5.3 available (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/5">#5</a>)</li>
@@ -492,19 +522,19 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <li>GUI, launched by the <code>ShinyGR()</code> function, now displays a new tab panel that shows a summary sheets of basin if the name of the dataset contains the code station (8 characters : 1 letter and 7 numbers) of the Banque Hydro French database (so it is available only for the dataset of this database) (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/10">#10</a>)</li>
 </ul>
 </div>
-<div id="version-control-and-issue-tracking-2" class="section level4">
+<div id="version-control-and-issue-tracking-3" class="section level4">
 <h4>Version control and issue tracking</h4>
 <ul>
 <li>users can now track <a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching">changes</a> and <a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues">issues</a></li>
 </ul>
 </div>
-<div id="user-visible-changes-3" class="section level4">
+<div id="user-visible-changes-4" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>the <code>theme</code> agument of the <code>ShinyGR()</code> function now works even if a wrong character case is used</li>
 </ul>
 </div>
-<div id="cran-compatibility-updates-1" class="section level4">
+<div id="cran-compatibility-updates-2" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>when the package is attached or when the <code>dyplot()</code> and the <code>ShinyGR()</code> function are used, a message warns the users if they use a version of ‘htmlwidgets’ &lt; 1.5.2.9000. The latest version of this package, available on GitHub, avoids troubles with the use of dynamic graphics of the ‘dygraphs’ package (called by the <code>dyplot*()</code> and the <code>ShinyGR()</code> functions) (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/5">#5</a>)</li>
@@ -528,13 +558,13 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <li><code>CalGR</code> argument is now deprecated in the <code>SimGR()</code> function. It has been replaced by the use of the <code>Param</code> argument which can be set by an object of the class <code>CalGR</code> or by a vector of parameters</li>
 </ul>
 </div>
-<div id="bug-fixes-3" class="section level4">
+<div id="bug-fixes-4" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><code>ShinyGR()</code> now runs when independent arguments (<code>DatesR</code>, <code>Precip</code>, etc.) are used instead of the <code>ObsDF</code> argument</li>
 </ul>
 </div>
-<div id="user-visible-changes-4" class="section level4">
+<div id="user-visible-changes-5" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>it is now possible to use the GR4H and GR5H hourly models with or without CemaNeige. For that, in the <code>PrepGR()</code>, the <code>HydroModel</code> argument could be set to <code>"GR4H"</code> or <code>"GR5H"</code>. In the GUI, launched by <code>ShinyGR()</code> function, nothing changed, only the daily models are available. So, now airGRteaching depends on the version of ‘airGR’ &gt;= 1.4.3.52) (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/7">#7</a>)</li>
@@ -546,7 +576,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <li>there is now only one help page for all <code>plot.*()</code> functions (use <code>?plot</code> to call it)</li>
 </ul>
 </div>
-<div id="cran-compatibility-updates-2" class="section level4">
+<div id="cran-compatibility-updates-3" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>when the package is loaded, a message warns the users if they use a version of ‘htmlwidgets’ &lt; 1.5.1.9000. The latest version of this package, available on GitHub, avoids troubles with the use of dynamic graphics of the ‘dygraphs’ package (called by the <code>dyplot*()</code> and the <code>ShinyGR()</code> functions) (<a href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/5">#5</a>)</li>
@@ -556,13 +586,13 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 </div>
 <div id="release-notes-2019-05-02" class="section level3">
 <h3>0.2.6.29 Release Notes (2019-05-02)</h3>
-<div id="bug-fixes-4" class="section level4">
+<div id="bug-fixes-5" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><code>ShinyGR()</code> can export the csv table again. It was broken due to modifications to the version 1.2.13.16 of the ‘airGR’ package</li>
 </ul>
 </div>
-<div id="user-visible-changes-5" class="section level4">
+<div id="user-visible-changes-6" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>it is now possible to export the diagram plot of the model from the <code>ShinyGR()</code> interface</li>
@@ -572,7 +602,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 </div>
 <div id="release-notes-2019-04-23" class="section level3">
 <h3>0.2.6.27 Release Notes (2019-04-23)</h3>
-<div id="bug-fixes-5" class="section level4">
+<div id="bug-fixes-6" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><code>ShinyGR()</code> may now run for any timezone</li>
@@ -581,7 +611,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <li><code>ShinyGR()</code> takes into account the fact the prevuous Qsim is sometimes to long of one value (temporary patch)</li>
 </ul>
 </div>
-<div id="user-visible-changes-6" class="section level4">
+<div id="user-visible-changes-7" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>the WarmUp element returned by <code>CalGR()</code> and <code>SimGR()</code> now presents a timezone defined as UTC</li>
@@ -591,7 +621,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 </div>
 <div id="release-notes-2019-04-03" class="section level3">
 <h3>0.2.6.14 Release Notes (2019-04-03)</h3>
-<div id="user-visible-changes-7" class="section level4">
+<div id="user-visible-changes-8" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>the CemaNeige model is now allowed when the model diagram is drawn in <code>ShinyGR()</code></li>
@@ -599,7 +629,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <li>time format of “Period” and “Event” sliders of the <code>ShinyGR()</code> function is now <code>"%Y-%m-%d"</code> with the latest versions of the ‘shiny’ package (like it was with th old versions)</li>
 </ul>
 </div>
-<div id="cran-compatibility-updates-3" class="section level4">
+<div id="cran-compatibility-updates-4" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>now depends on the latest version (1.2.13.16) of the ‘airGR’ package: <code>CalGR()</code>, <code>SimGR()</code> and <code>ShinyGR()</code> have been updated</li>
@@ -610,14 +640,14 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 </div>
 <div id="release-notes-2018-08-08" class="section level3">
 <h3>0.2.3.2 Release Notes (2018-08-08)</h3>
-<div id="user-visible-changes-8" class="section level4">
+<div id="user-visible-changes-9" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>the article reference is updated</li>
 <li><code>.DiagramGR()</code> no longer returns errors when inputs are not yet available in <code>ShinyGR()</code></li>
 </ul>
 </div>
-<div id="cran-compatibility-updates-4" class="section level4">
+<div id="cran-compatibility-updates-5" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>now depends on the latest version (1.1.1.6) of the ‘dygraphs’ package from CRAN (embeded ‘dygraphs’ functions have been removed)</li>
@@ -627,13 +657,13 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 </div>
 <div id="release-notes-2018-03-21" class="section level3">
 <h3>0.2.2.2 Release Notes (2018-03-21)</h3>
-<div id="bug-fixes-6" class="section level4">
+<div id="bug-fixes-7" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed in <code>ShinyGR()</code>, the criteria values are now right on Unix system</li>
 </ul>
 </div>
-<div id="user-visible-changes-9" class="section level4">
+<div id="user-visible-changes-10" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>vignette added</li>
@@ -643,7 +673,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 </div>
 <div id="release-notes-2018-03-16" class="section level3">
 <h3>0.2.0.9 Release Notes (2018-03-16)</h3>
-<div id="cran-compatibility-updates-5" class="section level4">
+<div id="cran-compatibility-updates-6" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>embeding ‘dygraphs’ functions to avoid user to install the last version of this package from GitHub (import of devtools not necessary)</li>
@@ -653,7 +683,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 </div>
 <div id="release-notes-2018-02-01" class="section level3">
 <h3>0.1.11.26 Release Notes (2018-02-01)</h3>
-<div id="bug-fixes-7" class="section level4">
+<div id="bug-fixes-8" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed in <code>ShinyGR()</code> when C1 (or C2) is modified after calibration; the calibration button is now reset</li>
@@ -666,7 +696,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <li><code>ObsBV</code> argument has been renamed <code>ObsDF</code> in <code>PrepGR()</code> and <code>ShinyGR()</code> functions</li>
 </ul>
 </div>
-<div id="user-visible-changes-10" class="section level4">
+<div id="user-visible-changes-11" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>update and homogenization of the unit of time abbreviation in <code>.TypeModelGR()</code> and <code>ShinyGR()</code></li>
@@ -687,7 +717,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 </div>
 <div id="release-notes-2018-01-30-1" class="section level3">
 <h3>0.1.9.29 Release Notes (2018-01-30)</h3>
-<div id="bug-fixes-8" class="section level4">
+<div id="bug-fixes-9" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>missing exchange added on exp. store when plotting GR6J model diagram in <code>ShinyGR()</code></li>
@@ -698,7 +728,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <li>bug fixed to disable calibration when there is no Qobs in <code>ShinyGR()</code></li>
 </ul>
 </div>
-<div id="user-visible-changes-11" class="section level4">
+<div id="user-visible-changes-12" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>it is now possible to draw the model diagram in <code>ShinyGR()</code> using the GR6J model</li>
@@ -712,7 +742,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 </div>
 <div id="release-notes-2017-11-29" class="section level3">
 <h3>0.1.8.14 Release Notes (2017-11-29)</h3>
-<div id="bug-fixes-9" class="section level4">
+<div id="bug-fixes-10" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><code>ObsGR()</code> function now returns an error if the time zone is not defined as <code>"UTC"</code></li>
@@ -721,7 +751,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <li>Psol et Pliq bars are reversed in <code>dyplot.default()</code></li>
 </ul>
 </div>
-<div id="user-visible-changes-12" class="section level4">
+<div id="user-visible-changes-13" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>new reactive to prepare data for plotting in the <code>ShinyGR()</code> interface</li>
@@ -731,7 +761,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 </div>
 <div id="release-notes-2017-10-05" class="section level3">
 <h3>0.1.7.6 Release Notes (2017-10-05)</h3>
-<div id="user-visible-changes-13" class="section level4">
+<div id="user-visible-changes-14" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><code>SimGR()</code> now runs only once to compute all <code>ErrorCrit</code></li>
@@ -749,14 +779,14 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <li><code>dyplot()</code> now allows to draw an additional time series of flow</li>
 </ul>
 </div>
-<div id="bug-fixes-10" class="section level4">
+<div id="bug-fixes-11" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed when zooming after changing snow model on plot to see the last simulation in <code>ShinyGR()</code></li>
 <li><code>dyplot()</code> now plots Pliq and Psol when CemaNeige is used (<code>dyStackedBarGroup()</code> instead of the plotter argument)</li>
 </ul>
 </div>
-<div id="user-visible-changes-14" class="section level4">
+<div id="user-visible-changes-15" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>disable and enable buttons in <code>ShinyGR()</code> interface (using the ‘shinyjs’ package)</li>
@@ -774,7 +804,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <li>in <code>ShinyGR()</code>, <code>TypeModel</code> inputIds renamed into <code>HydroModel</code></li>
 </ul>
 </div>
-<div id="bug-fixes-11" class="section level4">
+<div id="bug-fixes-12" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>period slider is linked to the ‘dygraphs’ selected period</li>
@@ -786,13 +816,13 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <li>deprecated <code>Param</code> arguments in <code>ShinyGR()</code></li>
 </ul>
 </div>
-<div id="user-visible-changes-15" class="section level4">
+<div id="user-visible-changes-16" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>the size of the “Model performance” plot is now adapted if CemaNeige is used or not</li>
 </ul>
 </div>
-<div id="cran-compatibility-updates-6" class="section level4">
+<div id="cran-compatibility-updates-7" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li><code>dyplot()</code> updated to be compatible with ‘dygraphs’ &gt;= 1.1.1.4 (available only on GitHub)</li>
@@ -808,7 +838,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <li><code>ShinyGR()</code> now use ‘dygraphs’ devices (except for model perf.)</li>
 </ul>
 </div>
-<div id="user-visible-changes-16" class="section level4">
+<div id="user-visible-changes-17" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li><code>dyplot.default()</code> now draws precipitation as a true bar plot and not a step plot</li>
@@ -825,7 +855,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <li>it is now possible to choose the objective function to calibrate the model</li>
 </ul>
 </div>
-<div id="bug-fixes-12" class="section level4">
+<div id="bug-fixes-13" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>NA values can be drawn by <code>dyplot*()</code> functions</li>
@@ -847,13 +877,13 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <li>the <code>shiny.SimGR()</code> function has been renamed into <code>ShinyGR()</code></li>
 </ul>
 </div>
-<div id="bug-fixes-13" class="section level4">
+<div id="bug-fixes-14" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed in <code>ShinyGR()</code> to plot state variables with GRJ</li>
 </ul>
 </div>
-<div id="user-visible-changes-17" class="section level4">
+<div id="user-visible-changes-18" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>the <code>shiny.SimGR()</code> function has been renamed into <code>ShinyGR()</code></li>
@@ -863,14 +893,14 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 </div>
 <div id="release-notes-2017-03-21" class="section level3">
 <h3>0.1.1.20 Release Notes (2017-03-21)</h3>
-<div id="user-visible-changes-18" class="section level4">
+<div id="user-visible-changes-19" class="section level4">
 <h4>User-visible changes</h4>
 <ul>
 <li>in <code>shiny.SimGR()</code> if the model diagram is plotted, the animation can be run only from the Event slider and no more from the “Period” slider</li>
 <li><code>SimGR()</code> now also returns the <code>OptionsCrit</code> value</li>
 </ul>
 </div>
-<div id="cran-compatibility-updates-7" class="section level4">
+<div id="cran-compatibility-updates-8" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>the package now depends on ‘airGR’ version 1.0.5.22</li>
@@ -893,7 +923,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <li><code>TypeModelGR()</code> is now a private function</li>
 </ul>
 </div>
-<div id="bug-fixes-14" class="section level4">
+<div id="bug-fixes-15" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed, it is now possible to run <code>CalGR()</code> with <code>verbose = FALSE</code></li>
