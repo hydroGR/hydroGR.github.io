@@ -14,7 +14,7 @@
 
 <title>Simulated vs observed upstream flows in calibration of semi-distributed GR4J model</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -43,6 +43,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -189,6 +190,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -451,9 +455,9 @@ div.tocify {
 					<ul class="dropdown-menu">
 						<li><a href="https://CRAN.R-project.org/package=airGRdatassim">airGRdatassim R-package</a></li>
 						<li><a href="https://airgriwrm.g-eau.fr/">airGRiwrm R-package</a></li>
-						<li><a href="https://sunshine.irstea.fr/app/airGRmaps">airGRmaps web app</a></li>
+						<li><a href="https://sunshine.inrae.fr/app/airGRmaps">airGRmaps web app</a></li>
 						<li><a href="https://hydroGR.github.io/airGRteaching/">airGRteaching R-package</a></li>
-						<li><a href="https://sunshine.irstea.fr/app/airGRteaching">airGRteaching web app</a></li>
+						<li><a href="https://sunshine.inrae.fr/app/airGRteaching">airGRteaching web app</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -509,7 +513,8 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Simulated vs observed upstream flows in calibration of semi-distributed GR4J model</h1>
+<h1 class="title toc-ignore">Simulated vs observed upstream flows in
+calibration of semi-distributed GR4J model</h1>
 <h4 class="author">David Dorchies</h4>
 
 </div>
@@ -519,28 +524,48 @@ div.tocify {
 <h1><span class="header-section-number">1</span> Introduction</h1>
 <div id="scope" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Scope</h2>
-<p>The <strong><font color="#00a3a6">airGR</font></strong> package implements semi-distributed model capabilities using a lag model between subcatchments. It allows to chain together several lumped models as well as integrating anthropogenic influence such as reservoirs or withdrawals.</p>
-<p><code>RunModel_Lag</code> documentation gives an example of simulating the influence of a reservoir in a lumped model. Try <code>example(RunModel_Lag)</code> to get it.</p>
-<p>In this article, we show how to calibrate 2 sub-catchments in series with a semi-distributed model consisting of 2 GR4J models. For doing this we compare 3 strategies for calibrating the downstream subcatchment:</p>
+<p>The <strong><font color="#00a3a6">airGR</font></strong> package
+implements semi-distributed model capabilities using a lag model between
+subcatchments. It allows to chain together several lumped models as well
+as integrating anthropogenic influence such as reservoirs or
+withdrawals.</p>
+<p><code>RunModel_Lag</code> documentation gives an example of
+simulating the influence of a reservoir in a lumped model. Try
+<code>example(RunModel_Lag)</code> to get it.</p>
+<p>In this article, we show how to calibrate 2 sub-catchments in series
+with a semi-distributed model consisting of 2 GR4J models. For doing
+this we compare 3 strategies for calibrating the downstream
+subcatchment:</p>
 <ul>
 <li>using upstream observed flows</li>
 <li>using upstream simulated flows</li>
-<li>using upstream simulated flows and parameter regularisation <span class="citation">(de Lavenne et al. 2019)</span></li>
+<li>using upstream simulated flows and parameter regularisation <span
+class="citation">(de Lavenne et al. 2019)</span></li>
 </ul>
-<p>We finally compare these calibrations with a theoretical set of parameters. This comparison is based on the Kling-Gupta Efficiency computed on the root-squared discharges as performance criterion.</p>
+<p>We finally compare these calibrations with a theoretical set of
+parameters. This comparison is based on the Kling-Gupta Efficiency
+computed on the root-squared discharges as performance criterion.</p>
 </div>
 <div id="model-description" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Model description</h2>
-<p>We use an example data set from the package that unfortunately contains data for only one catchment.</p>
+<h2><span class="header-section-number">1.2</span> Model
+description</h2>
+<p>We use an example data set from the package that unfortunately
+contains data for only one catchment.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## loading catchment data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(L0123001)</span></code></pre></div>
-<p>Let’s imagine that this catchment of 360 km² is divided into 2 subcatchments:</p>
+<p>Let’s imagine that this catchment of 360 km² is divided into 2
+subcatchments:</p>
 <ul>
 <li>An upstream subcatchment of 180 km²</li>
 <li>100 km downstream another subcatchment of 180 km²</li>
 </ul>
-<p>We consider that meteorological data are homogeneous on the whole catchment, so we use the same pluviometry <code>BasinObs$P</code> and the same evapotranspiration <code>BasinObs$E</code> for the 2 subcatchments.</p>
-<p>For the observed flow at the downstream outlet, we generate it with the assumption that the upstream flow arrives at downstream with a constant delay of 2 days.</p>
+<p>We consider that meteorological data are homogeneous on the whole
+catchment, so we use the same pluviometry <code>BasinObs$P</code> and
+the same evapotranspiration <code>BasinObs$E</code> for the 2
+subcatchments.</p>
+<p>For the observed flow at the downstream outlet, we generate it with
+the assumption that the upstream flow arrives at downstream with a
+constant delay of 2 days.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>QObsDown <span class="ot">&lt;-</span> (BasinObs<span class="sc">$</span>Qmm <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, BasinObs<span class="sc">$</span>Qmm[<span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(BasinObs<span class="sc">$</span>Qmm)<span class="sc">-</span><span class="dv">2</span>)])) <span class="sc">/</span> <span class="dv">2</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">5</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">cbind</span>(<span class="at">QObsUp =</span> BasinObs<span class="sc">$</span>Qmm, QObsDown))</span></code></pre></div>
@@ -553,15 +578,20 @@ div.tocify {
 ##  Max.   :23.88   Max.   :19.80  
 ##  NA&#39;s   :802     NA&#39;s   :820</code></pre>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p>With a delay of 2 days between the 2 gauging stations, the theoretical Velocity parameter should be equal to:</p>
+<p>With a delay of 2 days between the 2 gauging stations, the
+theoretical Velocity parameter should be equal to:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Velocity <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fl">1e3</span> <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="dv">86400</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Velocity: &quot;</span>, <span class="fu">format</span>(Velocity), <span class="st">&quot;m/s&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Velocity:  0.579 m/s&quot;</code></pre>
 </div>
 </div>
-<div id="calibration-of-the-upstream-subcatchment" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Calibration of the upstream subcatchment</h1>
-<p>The operations are exactly the same as the ones for a GR4J lumped model. So we do exactly the same operations as in the <a href="V01_get_started.html">Get Started</a> vignette.</p>
+<div id="calibration-of-the-upstream-subcatchment"
+class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Calibration of the
+upstream subcatchment</h1>
+<p>The operations are exactly the same as the ones for a GR4J lumped
+model. So we do exactly the same operations as in the <a
+href="V01_get_started.html">Get Started</a> vignette.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>InputsModelUp <span class="ot">&lt;-</span> <span class="fu">CreateInputsModel</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">DatesR =</span> BasinObs<span class="sc">$</span>DatesR,</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">Precip =</span> BasinObs<span class="sc">$</span>P, <span class="at">PotEvap =</span> BasinObs<span class="sc">$</span>E)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Ind_Run <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">which</span>(<span class="fu">format</span>(BasinObs<span class="sc">$</span>DatesR, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>) <span class="sc">==</span> <span class="st">&quot;1990-01-01&quot;</span>),</span>
@@ -593,14 +623,23 @@ div.tocify {
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>OutputsModelUp <span class="ot">&lt;-</span> <span class="fu">RunModel_GR4J</span>(<span class="at">InputsModel =</span> InputsModelUp, <span class="at">RunOptions =</span> RunOptionsUp,</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">Param =</span> OutputsCalibUp<span class="sc">$</span>ParamFinalR)</span></code></pre></div>
 </div>
-<div id="calibration-of-the-downstream-subcatchment-with-upstream-flow-observations" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Calibration of the downstream subcatchment with upstream flow observations</h1>
+<div
+id="calibration-of-the-downstream-subcatchment-with-upstream-flow-observations"
+class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Calibration of the
+downstream subcatchment with upstream flow observations</h1>
 </div>
-<div id="calibration-of-the-downstream-subcatchment" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Calibration of the downstream subcatchment</h1>
-<div id="creation-of-the-inputsmodel-objects" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Creation of the InputsModel objects</h2>
-<p>We need to create <code>InputsModel</code> objects completed with upstream information with upstream observed flow for the calibration of first case and upstream simulated flows for the other cases:</p>
+<div id="calibration-of-the-downstream-subcatchment"
+class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Calibration of the
+downstream subcatchment</h1>
+<div id="creation-of-the-inputsmodel-objects" class="section level2"
+number="4.1">
+<h2><span class="header-section-number">4.1</span> Creation of the
+InputsModel objects</h2>
+<p>We need to create <code>InputsModel</code> objects completed with
+upstream information with upstream observed flow for the calibration of
+first case and upstream simulated flows for the other cases:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>InputsModelDown1 <span class="ot">&lt;-</span> <span class="fu">CreateInputsModel</span>(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">DatesR =</span> BasinObs<span class="sc">$</span>DatesR,</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Precip =</span> BasinObs<span class="sc">$</span>P, <span class="at">PotEvap =</span> BasinObs<span class="sc">$</span>E,</span>
@@ -610,7 +649,9 @@ div.tocify {
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Warning in CreateInputsModel(FUN_MOD = RunModel_GR4J, DatesR = BasinObs$DatesR, : &#39;Qupstream&#39; contains NA
 ## values: model outputs will contain NAs</code></pre>
-<p>For using upstream simulated flows, we should concatenate a vector with the simulated flows for the entire period of simulation (warm-up + run):</p>
+<p>For using upstream simulated flows, we should concatenate a vector
+with the simulated flows for the entire period of simulation (warm-up +
+run):</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Qsim_upstream <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(BasinObs<span class="sc">$</span>DatesR))</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulated flow during warm-up period (365 days before run period)</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>Qsim_upstream[Ind_Run[<span class="fu">seq_len</span>(<span class="dv">365</span>)] <span class="sc">-</span> <span class="dv">365</span>] <span class="ot">&lt;-</span> OutputsModelUp<span class="sc">$</span>RunOptions<span class="sc">$</span>WarmUpQsim</span>
@@ -627,9 +668,12 @@ div.tocify {
 <pre><code>## Warning in CreateInputsModel(FUN_MOD = RunModel_GR4J, DatesR = BasinObs$DatesR, : &#39;Qupstream&#39; contains NA
 ## values: model outputs will contain NAs</code></pre>
 </div>
-<div id="calibration-with-upstream-flow-observations" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Calibration with upstream flow observations</h2>
-<p>We calibrate the combination of Lag model for upstream flow transfer and GR4J model for the runoff of the downstream subcatchment:</p>
+<div id="calibration-with-upstream-flow-observations"
+class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Calibration with
+upstream flow observations</h2>
+<p>We calibrate the combination of Lag model for upstream flow transfer
+and GR4J model for the runoff of the downstream subcatchment:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>RunOptionsDown <span class="ot">&lt;-</span> <span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J,</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">InputsModel =</span> InputsModelDown1,</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">IndPeriod_WarmUp =</span> <span class="cn">NULL</span>, <span class="at">IndPeriod_Run =</span> Ind_Run,</span>
@@ -656,7 +700,8 @@ div.tocify {
 ##   Calibration completed (58 iterations, 812 runs)
 ##       Param =    2.933,  143.296,    0.272,   31.953,    5.443
 ##       Crit. KGE[sqrt(Q)] = 0.9635</code></pre>
-<p><code>RunModel</code> is run in order to automatically combine GR4J and Lag models.</p>
+<p><code>RunModel</code> is run in order to automatically combine GR4J
+and Lag models.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>OutputsModelDown1 <span class="ot">&lt;-</span> <span class="fu">RunModel</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">RunOptions =</span> RunOptionsDown,</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Param =</span> OutputsCalibDown1<span class="sc">$</span>ParamFinalR,</span>
@@ -668,9 +713,13 @@ div.tocify {
 ##  SubCrit. KGE[sqrt(Q)] sd(sim)/sd(obs)          = 0.9832 
 ##  SubCrit. KGE[sqrt(Q)] mean(sim)/mean(obs)      = 1.0028</code></pre>
 </div>
-<div id="calibration-with-upstream-simulated-flow" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> Calibration with upstream simulated flow</h2>
-<p>We calibrate the model with the <code>InputsModel</code> object previously created for substituting the observed upstream flow with the simulated one:</p>
+<div id="calibration-with-upstream-simulated-flow"
+class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Calibration with
+upstream simulated flow</h2>
+<p>We calibrate the model with the <code>InputsModel</code> object
+previously created for substituting the observed upstream flow with the
+simulated one:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>OutputsCalibDown2 <span class="ot">&lt;-</span> <span class="fu">Calibration_Michel</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">RunOptions =</span> RunOptionsDown,</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">InputsCrit =</span> InputsCritDown,</span>
@@ -686,18 +735,25 @@ div.tocify {
 ##       Crit. KGE[sqrt(Q)] = 0.9031</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ParamDown2 <span class="ot">&lt;-</span> OutputsCalibDown2<span class="sc">$</span>ParamFinalR</span></code></pre></div>
 </div>
-<div id="calibration-with-upstream-simulated-flow-and-parameter-regularisation" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> Calibration with upstream simulated flow and parameter regularisation</h2>
-<p>The regularisation follow the method proposed by <span class="citation">de Lavenne et al. (2019)</span>.</p>
-<p>As a priori parameter set, we use the calibrated parameter set of the upstream catchment and the theoretical velocity:</p>
+<div
+id="calibration-with-upstream-simulated-flow-and-parameter-regularisation"
+class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Calibration with
+upstream simulated flow and parameter regularisation</h2>
+<p>The regularisation follow the method proposed by <span
+class="citation">de Lavenne et al. (2019)</span>.</p>
+<p>As a priori parameter set, we use the calibrated parameter set of the
+upstream catchment and the theoretical velocity:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ParamDownTheo <span class="ot">&lt;-</span> <span class="fu">c</span>(Velocity, OutputsCalibUp<span class="sc">$</span>ParamFinalR)</span></code></pre></div>
-<p>The Lavenne criterion is initialised with the a priori parameter set and the value of the KGE of the upstream basin.</p>
+<p>The Lavenne criterion is initialised with the a priori parameter set
+and the value of the KGE of the upstream basin.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>IC_Lavenne <span class="ot">&lt;-</span> <span class="fu">CreateInputsCrit_Lavenne</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">RunOptions =</span> RunOptionsDown,</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">Obs =</span> QObsDown[Ind_Run],</span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">AprParamR =</span> ParamDownTheo,</span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">AprCrit =</span> OutputsCalibUp<span class="sc">$</span>CritFinal)</span></code></pre></div>
-<p>The Lavenne criterion is used instead of the KGE for calibration with regularisation</p>
+<p>The Lavenne criterion is used instead of the KGE for calibration with
+regularisation</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>OutputsCalibDown3 <span class="ot">&lt;-</span> <span class="fu">Calibration_Michel</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">RunOptions =</span> RunOptionsDown,</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">InputsCrit =</span> IC_Lavenne,</span>
@@ -726,8 +782,10 @@ div.tocify {
 </div>
 <div id="discussion" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Discussion</h1>
-<div id="identification-of-velocity-parameter" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Identification of Velocity parameter</h2>
+<div id="identification-of-velocity-parameter" class="section level2"
+number="5.1">
+<h2><span class="header-section-number">5.1</span> Identification of
+Velocity parameter</h2>
 <p>Both calibrations overestimate this parameter:</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>mVelocity <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(Velocity,</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                      OutputsCalibDown1<span class="sc">$</span>ParamFinalR[<span class="dv">1</span>],</span>
@@ -741,6 +799,10 @@ div.tocify {
 <span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>                                    <span class="fu">c</span>(<span class="st">&quot;Velocity parameter&quot;</span>)))</span>
 <span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(mVelocity)</span></code></pre></div>
 <table>
+<colgroup>
+<col width="73%" />
+<col width="26%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left"></th>
@@ -761,15 +823,19 @@ div.tocify {
 <td align="right">1.500</td>
 </tr>
 <tr class="even">
-<td align="left">calibrated with sim upstream flow and regularisation</td>
+<td align="left">calibrated with sim upstream flow and
+regularisation</td>
 <td align="right">0.520</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="value-of-the-performance-criteria-with-theoretical-calibration" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> Value of the performance criteria with theoretical calibration</h2>
-<p>Theoretically, the parameters of the downstream GR4J model should be the same as the upstream one with the velocity as extra parameter:</p>
+<div id="value-of-the-performance-criteria-with-theoretical-calibration"
+class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Value of the
+performance criteria with theoretical calibration</h2>
+<p>Theoretically, the parameters of the downstream GR4J model should be
+the same as the upstream one with the velocity as extra parameter:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>OutputsModelDownTheo <span class="ot">&lt;-</span> <span class="fu">RunModel</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">RunOptions =</span> RunOptionsDown,</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">Param =</span> ParamDownTheo,</span>
@@ -780,8 +846,11 @@ div.tocify {
 ##  SubCrit. KGE[sqrt(Q)] sd(sim)/sd(obs)          = 0.9562 
 ##  SubCrit. KGE[sqrt(Q)] mean(sim)/mean(obs)      = 1.0121</code></pre>
 </div>
-<div id="parameters-and-performance-of-each-subcatchment-for-all-calibrations" class="section level2" number="5.3">
-<h2><span class="header-section-number">5.3</span> Parameters and performance of each subcatchment for all calibrations</h2>
+<div
+id="parameters-and-performance-of-each-subcatchment-for-all-calibrations"
+class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Parameters and
+performance of each subcatchment for all calibrations</h2>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>comp <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>, OutputsCalibUp<span class="sc">$</span>ParamFinalR,</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">rep</span>(OutputsCalibDown1<span class="sc">$</span>ParamFinalR, <span class="dv">2</span>),</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>                 OutputsCalibDown2<span class="sc">$</span>ParamFinalR,</span>
@@ -820,7 +889,7 @@ div.tocify {
 <th align="right">X2</th>
 <th align="right">X3</th>
 <th align="right">X4</th>
-<th align="right">KGE(vQ)</th>
+<th align="right">KGE(√Q)</th>
 </tr>
 </thead>
 <tbody>
@@ -861,7 +930,8 @@ div.tocify {
 <td align="right">0.903</td>
 </tr>
 <tr class="odd">
-<td align="left">Calibration 3 with simulated upstream flow and regularisation</td>
+<td align="left">Calibration 3 with simulated upstream flow and
+regularisation</td>
 <td align="right">0.520</td>
 <td align="right">150</td>
 <td align="right">0.443</td>
@@ -880,14 +950,28 @@ div.tocify {
 </tr>
 </tbody>
 </table>
-<p>Even if calibration with observed upstream flows gives an improved performance criteria, in validation using simulated upstream flows the result is quite similar as the performance obtained with the calibration with upstream simulated flows. The theoretical set of parameters give also an equivalent performance but still underperforming the calibration 2 one. Regularisation allows to get similar performance as the one for calibration with simulated flows but with the big advantage of having parameters closer to the theoretical ones (Especially for the velocity parameter).</p>
+<p>Even if calibration with observed upstream flows gives an improved
+performance criteria, in validation using simulated upstream flows the
+result is quite similar as the performance obtained with the calibration
+with upstream simulated flows. The theoretical set of parameters give
+also an equivalent performance but still underperforming the calibration
+2 one. Regularisation allows to get similar performance as the one for
+calibration with simulated flows but with the big advantage of having
+parameters closer to the theoretical ones (Especially for the velocity
+parameter).</p>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="unnumbered">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-delavenne_regularization_2019" class="csl-entry">
-Lavenne, Alban de, Vazken Andréassian, Guillaume Thirel, Maria-Helena Ramos, and Charles Perrin. 2019. <span>“A <span>Regularization Approach</span> to <span>Improve</span> the <span>Sequential Calibration</span> of a <span>Semidistributed Hydrological Model</span>.”</span> <em>Water Resources Research</em> 55 (11): 8821–39. <a href="https://doi.org/10.1029/2018WR024266">https://doi.org/10.1029/2018WR024266</a>.
+Lavenne, Alban de, Vazken Andréassian, Guillaume Thirel, Maria-Helena
+Ramos, and Charles Perrin. 2019. <span>“A <span>Regularization
+Approach</span> to <span>Improve</span> the <span>Sequential
+Calibration</span> of a <span>Semidistributed Hydrological
+Model</span>.”</span> <em>Water Resources Research</em> 55 (11):
+8821–39. <a
+href="https://doi.org/10.1029/2018WR024266">https://doi.org/10.1029/2018WR024266</a>.
 </div>
 </div>
 </div>

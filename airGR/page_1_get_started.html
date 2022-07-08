@@ -14,7 +14,7 @@
 
 <title>How to run airGR models</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -43,6 +43,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -167,6 +168,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -429,9 +433,9 @@ div.tocify {
 					<ul class="dropdown-menu">
 						<li><a href="https://CRAN.R-project.org/package=airGRdatassim">airGRdatassim R-package</a></li>
 						<li><a href="https://airgriwrm.g-eau.fr/">airGRiwrm R-package</a></li>
-						<li><a href="https://sunshine.irstea.fr/app/airGRmaps">airGRmaps web app</a></li>
+						<li><a href="https://sunshine.inrae.fr/app/airGRmaps">airGRmaps web app</a></li>
 						<li><a href="https://hydroGR.github.io/airGRteaching/">airGRteaching R-package</a></li>
-						<li><a href="https://sunshine.irstea.fr/app/airGRteaching">airGRteaching web app</a></li>
+						<li><a href="https://sunshine.inrae.fr/app/airGRteaching">airGRteaching web app</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -488,23 +492,35 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">How to run airGR models</h1>
-<h4 class="author">Guillaume Thirel, Olivier Delaigue, Laurent Coron</h4>
+<h4 class="author">Guillaume Thirel, Olivier Delaigue, Laurent
+Coron</h4>
 
 </div>
 
 
-<p>This section aims at introducing to the use of <strong><font color="#00a3a6">airGR</font></strong> through a description of the main steps needed to make hydrological simulations.</p>
+<p>This section aims at introducing to the use of
+<strong><font color="#00a3a6">airGR</font></strong> through a
+description of the main steps needed to make hydrological
+simulations.</p>
 <div id="loading-data" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Loading data</h1>
-<p>In the following example, we use a data sample contained in the package. For real applications, the user has to import its data into <strong>R</strong> and to prepare it with an adequate data.frame format as described below.</p>
-<p>First, it is necessary to load the <strong><font color="#00a3a6">airGR</font></strong> package:</p>
+<p>In the following example, we use a data sample contained in the
+package. For real applications, the user has to import its data into
+<strong>R</strong> and to prepare it with an adequate data.frame format
+as described below.</p>
+<p>First, it is necessary to load the
+<strong><font color="#00a3a6">airGR</font></strong> package:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(airGR)</span></code></pre></div>
-<p>Below is presented an example of a <code>data.frame</code> of daily hydrometeorological observations time series for a fictional catchment included in the <strong><font color="#00a3a6">airGR</font></strong> package that contains:</p>
+<p>Below is presented an example of a <code>data.frame</code> of daily
+hydrometeorological observations time series for a fictional catchment
+included in the <strong><font color="#00a3a6">airGR</font></strong>
+package that contains:</p>
 <ul>
 <li><em>DatesR</em>: dates in the POSIXt format</li>
 <li><em>P</em>: average precipitation [mm/day]</li>
 <li><em>T</em>: catchment average air temperature [℃]</li>
-<li><em>E</em>: catchment average potential evapotranspiration [mm/day]</li>
+<li><em>E</em>: catchment average potential evapotranspiration
+[mm/day]</li>
 <li><em>Qls</em>: outlet discharge [l/s]</li>
 <li><em>Qmm</em>: outlet discharge [mm/day]</li>
 </ul>
@@ -518,23 +534,48 @@ div.tocify {
 ##  3rd Qu.:2005-10-01   3rd Qu.: 3.6   3rd Qu.: 14.5   3rd Qu.:2.9   3rd Qu.: 7850   3rd Qu.: 1.884  
 ##  Max.   :2012-12-31   Max.   :66.8   Max.   : 28.4   Max.   :5.5   Max.   :99500   Max.   :23.880  
 ##                                                                    NA&#39;s   :772     NA&#39;s   :802</code></pre>
-<p>The usual functions (e.g. <code>read.table()</code>) can be used to load real-case data sets.</p>
+<p>The usual functions (e.g. <code>read.table()</code>) can be used to
+load real-case data sets.</p>
 </div>
-<div id="preparation-of-functions-inputs" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Preparation of functions inputs</h1>
-<p>To run a model, the functions of the <strong><font color="#00a3a6">airGR</font></strong> package (e.g. the models, calibration and criteria calculation functions) require data and options with specific formats.</p>
-<p>To facilitate the use of the package, there are several functions dedicated to the creation of these objects:</p>
+<div id="preparation-of-functions-inputs" class="section level1"
+number="2">
+<h1><span class="header-section-number">2</span> Preparation of
+functions inputs</h1>
+<p>To run a model, the functions of the
+<strong><font color="#00a3a6">airGR</font></strong> package (e.g. the
+models, calibration and criteria calculation functions) require data and
+options with specific formats.</p>
+<p>To facilitate the use of the package, there are several functions
+dedicated to the creation of these objects:</p>
 <ul>
-<li><code>CreateInputsModel()</code>: prepares the inputs for the different hydrological models (times series of dates, precipitation, observed discharge, etc.)</li>
-<li><code>CreateRunOptions()</code>: prepares the options for the hydrological model run (warm up period, calibration period, etc.)</li>
-<li><code>CreateInputsCrit()</code>: prepares the options in order to compute the efficiency criterion (choice of the criterion, choice of the transformation on discharge: “log,” “sqrt,” etc.)</li>
-<li><code>CreateCalibOptions()</code>: prepares the options for the hydrological model calibration algorithm (choice of parameters to optimize, predefined values for uncalibrated parameters, etc.)</li>
+<li><code>CreateInputsModel()</code>: prepares the inputs for the
+different hydrological models (times series of dates, precipitation,
+observed discharge, etc.)</li>
+<li><code>CreateRunOptions()</code>: prepares the options for the
+hydrological model run (warm up period, calibration period, etc.)</li>
+<li><code>CreateInputsCrit()</code>: prepares the options in order to
+compute the efficiency criterion (choice of the criterion, choice of the
+transformation on discharge: “log”, “sqrt”, etc.)</li>
+<li><code>CreateCalibOptions()</code>: prepares the options for the
+hydrological model calibration algorithm (choice of parameters to
+optimize, predefined values for uncalibrated parameters, etc.)</li>
 </ul>
 <div id="inputsmodel-object" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> InputsModel object</h2>
-<p>To run a GR hydrological model or CemaNeige, the user has to prepare the input data with the <code>CreateInputsModel()</code> function. As arguments, this function needs the function name corresponding to the model the user wants to run, a vector of dates, a vector of precipitation and a vector of potential evapotranspiration.</p>
-<p>In the example below, we already have the potential evapotranspiration. If the user does not have these data, it is possible to compute it with the <a href="http://dx.doi.org/10.1016/j.jhydrol.2004.08.026">Oudin’s formula</a> with the <code>PE_Oudin()</code> function (this function only needs Julian days, daily average air temperature and latitude).</p>
-<p>Missing values (<code>NA</code>) of precipitation (or potential evapotranspiration) are <strong>not allowed</strong>.</p>
+<h2><span class="header-section-number">2.1</span> InputsModel
+object</h2>
+<p>To run a GR hydrological model or CemaNeige, the user has to prepare
+the input data with the <code>CreateInputsModel()</code> function. As
+arguments, this function needs the function name corresponding to the
+model the user wants to run, a vector of dates, a vector of
+precipitation and a vector of potential evapotranspiration.</p>
+<p>In the example below, we already have the potential
+evapotranspiration. If the user does not have these data, it is possible
+to compute it with the <a
+href="http://dx.doi.org/10.1016/j.jhydrol.2004.08.026">Oudin’s
+formula</a> with the <code>PE_Oudin()</code> function (this function
+only needs Julian days, daily average air temperature and latitude).</p>
+<p>Missing values (<code>NA</code>) of precipitation (or potential
+evapotranspiration) are <strong>not allowed</strong>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>InputsModel <span class="ot">&lt;-</span> <span class="fu">CreateInputsModel</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">DatesR =</span> BasinObs<span class="sc">$</span>DatesR,</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">Precip =</span> BasinObs<span class="sc">$</span>P, <span class="at">PotEvap =</span> BasinObs<span class="sc">$</span>E)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(InputsModel)</span></code></pre></div>
@@ -545,25 +586,47 @@ div.tocify {
 ##  - attr(*, &quot;class&quot;)= chr [1:3] &quot;InputsModel&quot; &quot;daily&quot; &quot;GR&quot;</code></pre>
 </div>
 <div id="runoptions-object" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> RunOptions object</h2>
-<p>The <code>CreateRunOptions()</code> function allows to prepare the options required to the <code>RunModel*()</code> functions, which are the actual models functions.</p>
+<h2><span class="header-section-number">2.2</span> RunOptions
+object</h2>
+<p>The <code>CreateRunOptions()</code> function allows to prepare the
+options required to the <code>RunModel*()</code> functions, which are
+the actual models functions.</p>
 <p>The user must at least define the following arguments:</p>
 <ul>
 <li><code>FUN_MOD</code>: the name of the model function to run</li>
 <li><code>InputsModel</code>: the associated input data</li>
-<li><code>IndPeriod_Run</code>: the period on which the model is run</li>
+<li><code>IndPeriod_Run</code>: the period on which the model is
+run</li>
 </ul>
-<p>To select a period for which the user wants to run the model, select the corresponding indexes for different time periods (not the POSIXt dates), as follows:</p>
+<p>To select a period for which the user wants to run the model, select
+the corresponding indexes for different time periods (not the POSIXt
+dates), as follows:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Ind_Run <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">which</span>(<span class="fu">format</span>(BasinObs<span class="sc">$</span>DatesR, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>) <span class="sc">==</span> <span class="st">&quot;1990-01-01&quot;</span>), </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>               <span class="fu">which</span>(<span class="fu">format</span>(BasinObs<span class="sc">$</span>DatesR, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>) <span class="sc">==</span> <span class="st">&quot;1999-12-31&quot;</span>))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Ind_Run)</span></code></pre></div>
 <pre><code>##  int [1:3652] 2193 2194 2195 2196 2197 2198 2199 2200 2201 2202 ...</code></pre>
-<p>The initialization of hydrological models is of the utmost importance. Indeed, an inaccurate initialization causes poor quality discharge simulations during the earliest stages of the running period. For example, in the GR models, by default, the production and the routing store levels store level are respectively set to 30 % and 50 % of their capacity, which may be far from their ideal value. Two solutions are offered to accurately initialize the GR models in <strong><font color="#00a3a6">airGR</font></strong>: manually predefining the initial states (e.g. from a previous run) or running the models during a warm up period before the actual running period. It is generally advised to set up this warm up period to be equal or superior to one year.</p>
-<p>As a consequence, it is possible to define in <code>CreateRunOptions()</code> the following arguments:</p>
+<p>The initialization of hydrological models is of the utmost
+importance. Indeed, an inaccurate initialization causes poor quality
+discharge simulations during the earliest stages of the running period.
+For example, in the GR models, by default, the production and the
+routing store levels store level are respectively set to 30 % and 50 %
+of their capacity, which may be far from their ideal value. Two
+solutions are offered to accurately initialize the GR models in
+<strong><font color="#00a3a6">airGR</font></strong>: manually
+predefining the initial states (e.g. from a previous run) or running the
+models during a warm up period before the actual running period. It is
+generally advised to set up this warm up period to be equal or superior
+to one year.</p>
+<p>As a consequence, it is possible to define in
+<code>CreateRunOptions()</code> the following arguments:</p>
 <ul>
-<li><code>IniStates</code>: the initial states of the 2 unit hydrographs (20 + 40 = 60 units)</li>
-<li><code>IniResLevels</code>: the initial levels of the production and routing stores</li>
-<li><code>IndPeriod_WarmUp</code>: the warm up period used to run the model, to be defined in the same format as <code>IndPeriod_Run</code></li>
+<li><code>IniStates</code>: the initial states of the 2 unit hydrographs
+(20 + 40 = 60 units)</li>
+<li><code>IniResLevels</code>: the initial levels of the production and
+routing stores</li>
+<li><code>IndPeriod_WarmUp</code>: the warm up period used to run the
+model, to be defined in the same format as
+<code>IndPeriod_Run</code></li>
 </ul>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>RunOptions <span class="ot">&lt;-</span> <span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J,</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">InputsModel =</span> InputsModel, <span class="at">IndPeriod_Run =</span> Ind_Run,</span>
@@ -596,24 +659,45 @@ div.tocify {
 ##   ..$ CodeModHydro: chr &quot;GR4J&quot;
 ##   ..$ IsSD        : logi FALSE
 ##  - attr(*, &quot;class&quot;)= chr [1:3] &quot;RunOptions&quot; &quot;daily&quot; &quot;GR&quot;</code></pre>
-<p>The <code>CreateRunOptions()</code> function returns warnings if the default initialization options are used:</p>
+<p>The <code>CreateRunOptions()</code> function returns warnings if the
+default initialization options are used:</p>
 <ul>
-<li><code>IniStates</code> and <code>IniResLevels</code> are automatically set to initialize all the model states at 0, except for the production and routing stores, which are initialized at respectively 30 % and 50 % of their capacity</li>
-<li><code>IndPeriod_WarmUp</code> default setting ensures a one-year warm up using the time steps preceding the <code>IndPeriod_Run</code>, if available</li>
+<li><code>IniStates</code> and <code>IniResLevels</code> are
+automatically set to initialize all the model states at 0, except for
+the production and routing stores, which are initialized at respectively
+30 % and 50 % of their capacity</li>
+<li><code>IndPeriod_WarmUp</code> default setting ensures a one-year
+warm up using the time steps preceding the <code>IndPeriod_Run</code>,
+if available</li>
 </ul>
 </div>
 <div id="inputscrit-object" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> InputsCrit object</h2>
-<p>The <code>CreateInputsCrit()</code> function allows to prepare the input in order to calculate a criterion. It is possible to define the following arguments:</p>
+<h2><span class="header-section-number">2.3</span> InputsCrit
+object</h2>
+<p>The <code>CreateInputsCrit()</code> function allows to prepare the
+input in order to calculate a criterion. It is possible to define the
+following arguments:</p>
 <ul>
-<li><code>FUN_CRIT</code>: the name of the error criterion function (the available functions are introduced later on)</li>
-<li><code>InputsModel</code>: the inputs of the hydrological model previously prepared by the <code>CreateInputsModel()</code> function</li>
-<li><code>RunOptions</code>: the options of the hydrological model previously prepared by the <code>CreateRunOptions()</code> function</li>
-<li><code>VarObs</code>: the name of the considered variable (by default <code>"Q"</code> for the discharge)</li>
-<li><code>Obs</code>: the observed variable time serie (e.g. the discharge expressed in <em>mm/time step</em>)</li>
+<li><code>FUN_CRIT</code>: the name of the error criterion function (the
+available functions are introduced later on)</li>
+<li><code>InputsModel</code>: the inputs of the hydrological model
+previously prepared by the <code>CreateInputsModel()</code>
+function</li>
+<li><code>RunOptions</code>: the options of the hydrological model
+previously prepared by the <code>CreateRunOptions()</code> function</li>
+<li><code>VarObs</code>: the name of the considered variable (by default
+<code>"Q"</code> for the discharge)</li>
+<li><code>Obs</code>: the observed variable time serie (e.g. the
+discharge expressed in <em>mm/time step</em>)</li>
 </ul>
-<p>Missing values (<code>NA</code>) are <strong>allowed</strong> for observed discharge.</p>
-<p>It is possible to compute a composite criterion (e.g. the average between NSE computed on discharge and NSE computed on log of discharge). In this case, users have to provide lists to the following arguments (some of the are optional): <code>FUN_CRIT</code>, <code>Obs</code>, <code>VarObs</code>, <code>BoolCrit</code>, <code>transfo</code>, <code>Weights.</code></p>
+<p>Missing values (<code>NA</code>) are <strong>allowed</strong> for
+observed discharge.</p>
+<p>It is possible to compute a composite criterion (e.g. the average
+between NSE computed on discharge and NSE computed on log of discharge).
+In this case, users have to provide lists to the following arguments
+(some of the are optional): <code>FUN_CRIT</code>, <code>Obs</code>,
+<code>VarObs</code>, <code>BoolCrit</code>, <code>transfo</code>,
+<code>Weights.</code></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>InputsCrit <span class="ot">&lt;-</span> <span class="fu">CreateInputsCrit</span>(<span class="at">FUN_CRIT =</span> ErrorCrit_NSE, <span class="at">InputsModel =</span> InputsModel, </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">RunOptions =</span> RunOptions, <span class="at">VarObs =</span> <span class="st">&quot;Q&quot;</span>, <span class="at">Obs =</span> BasinObs<span class="sc">$</span>Qmm[Ind_Run])</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(InputsCrit)</span></code></pre></div>
@@ -630,8 +714,12 @@ div.tocify {
 ##  - attr(*, &quot;class&quot;)= chr [1:2] &quot;Single&quot; &quot;InputsCrit&quot;</code></pre>
 </div>
 <div id="caliboptions-object" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> CalibOptions object</h2>
-<p>Before using the automatic calibration tool, the user needs to prepare the calibration options with the <code>CreateCalibOptions()</code> function. For that, it is necessary to define the following arguments:</p>
+<h2><span class="header-section-number">2.4</span> CalibOptions
+object</h2>
+<p>Before using the automatic calibration tool, the user needs to
+prepare the calibration options with the
+<code>CreateCalibOptions()</code> function. For that, it is necessary to
+define the following arguments:</p>
 <ul>
 <li><code>FUN_MOD</code>: the name of the model function</li>
 <li><code>FUN_CALIB</code>: the name of the calibration algorithm</li>
@@ -648,23 +736,41 @@ div.tocify {
 </div>
 <div id="criteria" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Criteria</h1>
-<p>The evaluation of the quality of a simulation is estimated through the calculation of criteria. These criteria can be used both as objective-functions during the calibration of the model, or as a measure for evaluating its performance on a control period.</p>
+<p>The evaluation of the quality of a simulation is estimated through
+the calculation of criteria. These criteria can be used both as
+objective-functions during the calibration of the model, or as a measure
+for evaluating its performance on a control period.</p>
 <p>The package offers the possibility to use different criteria:</p>
 <ul>
 <li><code>ErrorCrit_RMSE()</code>: Root mean square error (RMSE)</li>
-<li><code>ErrorCrit_NSE()</code>: Nash-Sutcliffe model efficiency coefficient (NSE)</li>
-<li><code>ErrorCrit_KGE()</code>: Kling-Gupta efficiency criterion (KGE)</li>
-<li><code>ErrorCrit_KGE2()</code>: modified Kling-Gupta efficiency criterion (KGE’)</li>
+<li><code>ErrorCrit_NSE()</code>: Nash-Sutcliffe model efficiency
+coefficient (NSE)</li>
+<li><code>ErrorCrit_KGE()</code>: Kling-Gupta efficiency criterion
+(KGE)</li>
+<li><code>ErrorCrit_KGE2()</code>: modified Kling-Gupta efficiency
+criterion (KGE’)</li>
 </ul>
-<p>It is also possible to create user-defined criteria. For doing that, it is only necessary to define the function in <strong>R</strong> following the same syntax as the criteria functions included in <strong><font color="#00a3a6">airGR</font></strong>.</p>
+<p>It is also possible to create user-defined criteria. For doing that,
+it is only necessary to define the function in <strong>R</strong>
+following the same syntax as the criteria functions included in
+<strong><font color="#00a3a6">airGR</font></strong>.</p>
 </div>
 <div id="calibration" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Calibration</h1>
-<p>The objective of the calibration algorithm is to identify the model parameters: by comparing the model outputs with observed data, this algorithm determines the combination of parameters that represents the best the behavior of the watershed.</p>
-<p>In the <strong><font color="#00a3a6">airGR</font></strong> package, a function called <code>Calibration_Michel()</code> is implemented. This functions allows running a calibration with the package models. The calibration algorithm optimizes the error criterion selected as objective-function. This algorithm works in two steps:</p>
+<p>The objective of the calibration algorithm is to identify the model
+parameters: by comparing the model outputs with observed data, this
+algorithm determines the combination of parameters that represents the
+best the behavior of the watershed.</p>
+<p>In the <strong><font color="#00a3a6">airGR</font></strong> package, a
+function called <code>Calibration_Michel()</code> is implemented. This
+functions allows running a calibration with the package models. The
+calibration algorithm optimizes the error criterion selected as
+objective-function. This algorithm works in two steps:</p>
 <ol style="list-style-type: decimal">
-<li>a screening of the parameters space is performed using either a rough predefined grid or a user-defined list of parameter sets</li>
-<li>a simple steepest descent local search algorithm is performed from the best set of parameters found at the first step</li>
+<li>a screening of the parameters space is performed using either a
+rough predefined grid or a user-defined list of parameter sets</li>
+<li>a simple steepest descent local search algorithm is performed from
+the best set of parameters found at the first step</li>
 </ol>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>OutputsCalib <span class="ot">&lt;-</span> <span class="fu">Calibration_Michel</span>(<span class="at">InputsModel =</span> InputsModel, <span class="at">RunOptions =</span> RunOptions,</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">InputsCrit =</span> InputsCrit, <span class="at">CalibOptions =</span> CalibOptions,</span>
@@ -680,19 +786,41 @@ div.tocify {
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Param <span class="ot">&lt;-</span> OutputsCalib<span class="sc">$</span>ParamFinalR</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>Param</span></code></pre></div>
 <pre><code>## [1] 257.237556   1.012237  88.234673   2.207958</code></pre>
-<p>The <code>Calibration_Michel()</code> function is the only one implemented in the <strong><font color="#00a3a6">airGR</font></strong> package to calibrate the model, but the user can implement its own calibration function.</p>
-<p>The <code>Calibration_Michel()</code> function returns a vector with the parameters of the chosen model, which means that the number of values can differ depending on the model that is used. It is possible to use the <code>Calibration_Michel()</code> function with user-implemented hydrological models.</p>
+<p>The <code>Calibration_Michel()</code> function is the only one
+implemented in the <strong><font color="#00a3a6">airGR</font></strong>
+package to calibrate the model, but the user can implement its own
+calibration function.</p>
+<p>The <code>Calibration_Michel()</code> function returns a vector with
+the parameters of the chosen model, which means that the number of
+values can differ depending on the model that is used. It is possible to
+use the <code>Calibration_Michel()</code> function with user-implemented
+hydrological models.</p>
 </div>
 <div id="control" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Control</h1>
-<p>This step assesses the predictive capacity of the model. Control is defined as the estimation of the accuracy of the model on data sets that are not used in its construction, and in particular its calibration. The classical way to perform a control is to keep data from a period separated from the calibration period. If possible, this control period should correspond to climatic situations that differ from those of the calibration period in order to better point out the qualities and weaknesses of the model. This exercise is necessary for assessing the robustness of the model, that is to say its ability to keep stable performances outside of the calibration conditions.</p>
-<p>Performing a model control with <strong><font color="#00a3a6">airGR</font></strong> is similar to running a simulation (see below), followed by the computation of one or several performance criteria.</p>
+<p>This step assesses the predictive capacity of the model. Control is
+defined as the estimation of the accuracy of the model on data sets that
+are not used in its construction, and in particular its calibration. The
+classical way to perform a control is to keep data from a period
+separated from the calibration period. If possible, this control period
+should correspond to climatic situations that differ from those of the
+calibration period in order to better point out the qualities and
+weaknesses of the model. This exercise is necessary for assessing the
+robustness of the model, that is to say its ability to keep stable
+performances outside of the calibration conditions.</p>
+<p>Performing a model control with
+<strong><font color="#00a3a6">airGR</font></strong> is similar to
+running a simulation (see below), followed by the computation of one or
+several performance criteria.</p>
 </div>
 <div id="simulation" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Simulation</h1>
 <div id="simulation-run" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Simulation run</h2>
-<p>To run a model, the user has to use the <code>RunModel*()</code> functions (<code>InputsModel</code>, <code>RunOptions</code> and parameters). All the data needed have already been prepared in the previous steps defined in this guide.</p>
+<p>To run a model, the user has to use the <code>RunModel*()</code>
+functions (<code>InputsModel</code>, <code>RunOptions</code> and
+parameters). All the data needed have already been prepared in the
+previous steps defined in this guide.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>OutputsModel <span class="ot">&lt;-</span> <span class="fu">RunModel_GR4J</span>(<span class="at">InputsModel =</span> InputsModel, <span class="at">RunOptions =</span> RunOptions, <span class="at">Param =</span> Param)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(OutputsModel)</span></code></pre></div>
 <pre><code>## List of 21
@@ -737,20 +865,34 @@ div.tocify {
 </div>
 <div id="results-preview" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Results preview</h2>
-<p>Although it is possible for the user to design its own graphics from the outputs of the <code>RunModel*()</code> functions, the <strong><font color="#00a3a6">airGR</font></strong> package offers the possibility to make use of the <code>plot()</code> function. This function returns a dashboard of results including various graphs (depending on the model used):</p>
+<p>Although it is possible for the user to design its own graphics from
+the outputs of the <code>RunModel*()</code> functions, the
+<strong><font color="#00a3a6">airGR</font></strong> package offers the
+possibility to make use of the <code>plot()</code> function. This
+function returns a dashboard of results including various graphs
+(depending on the model used):</p>
 <ul>
-<li>time series of total precipitation and simulated discharge (and observed discharge if provided)</li>
-<li>interannual average daily simulated discharge (and daily observed discharge if provided) and interannual average monthly precipitation</li>
-<li>cumulative frequency plot for simulated discharge (and for observed discharge if provided)</li>
-<li>correlation plot between simulated and observed discharge (if observed discharge provided)</li>
+<li>time series of total precipitation and simulated discharge (and
+observed discharge if provided)</li>
+<li>interannual average daily simulated discharge (and daily observed
+discharge if provided) and interannual average monthly
+precipitation</li>
+<li>cumulative frequency plot for simulated discharge (and for observed
+discharge if provided)</li>
+<li>correlation plot between simulated and observed discharge (if
+observed discharge provided)</li>
 </ul>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(OutputsModel, <span class="at">Qobs =</span> BasinObs<span class="sc">$</span>Qmm[Ind_Run])</span></code></pre></div>
 <p><img src="page_1_get_started_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<p>Moreover, if the CemaNeige model is used, the air temperature and the simulated snowpack water equivalent time series are plotted.</p>
+<p>Moreover, if the CemaNeige model is used, the air temperature and the
+simulated snowpack water equivalent time series are plotted.</p>
 </div>
 <div id="efficiency-criterion" class="section level2" number="6.3">
-<h2><span class="header-section-number">6.3</span> Efficiency criterion</h2>
-<p>To evaluate the efficiency of the model, it is possible to use the same criterion as defined at the calibration step or to use another criterion.</p>
+<h2><span class="header-section-number">6.3</span> Efficiency
+criterion</h2>
+<p>To evaluate the efficiency of the model, it is possible to use the
+same criterion as defined at the calibration step or to use another
+criterion.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>OutputsCrit <span class="ot">&lt;-</span> <span class="fu">ErrorCrit_NSE</span>(<span class="at">InputsCrit =</span> InputsCrit, <span class="at">OutputsModel =</span> OutputsModel)</span></code></pre></div>
 <pre><code>## Crit. NSE[Q] = 0.7988</code></pre>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(OutputsCrit)</span></code></pre></div>
@@ -779,7 +921,9 @@ div.tocify {
 </div>
 <div id="features-diagram" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> Features diagram</h2>
-<p>The figure below presents the implementation flow of the airGR functions. <br><br> <img src="fig/airGR_features_diagram.svg" alt="airGR features diagram" width=75% /></p>
+<p>The figure below presents the implementation flow of the airGR
+functions. <br><br>
+<img src="fig/airGR_features_diagram.svg" alt="airGR features diagram" width=75% /></p>
 </div>
 </div>
 

@@ -14,7 +14,7 @@
 
 <title>Using satellite snow cover area data for calibrating and improving CemaNeige</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -43,6 +43,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -189,6 +190,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -451,9 +455,9 @@ div.tocify {
 					<ul class="dropdown-menu">
 						<li><a href="https://CRAN.R-project.org/package=airGRdatassim">airGRdatassim R-package</a></li>
 						<li><a href="https://airgriwrm.g-eau.fr/">airGRiwrm R-package</a></li>
-						<li><a href="https://sunshine.irstea.fr/app/airGRmaps">airGRmaps web app</a></li>
+						<li><a href="https://sunshine.inrae.fr/app/airGRmaps">airGRmaps web app</a></li>
 						<li><a href="https://hydroGR.github.io/airGRteaching/">airGRteaching R-package</a></li>
-						<li><a href="https://sunshine.irstea.fr/app/airGRteaching">airGRteaching web app</a></li>
+						<li><a href="https://sunshine.inrae.fr/app/airGRteaching">airGRteaching web app</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -509,7 +513,8 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Using satellite snow cover area data for calibrating and improving CemaNeige</h1>
+<h1 class="title toc-ignore">Using satellite snow cover area data for
+calibrating and improving CemaNeige</h1>
 <h4 class="author">Guillaume Thirel, Olivier Delaigue</h4>
 
 </div>
@@ -519,25 +524,58 @@ div.tocify {
 <h1><span class="header-section-number">1</span> Introduction</h1>
 <div id="scope" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Scope</h2>
-<p>Rainfall-runoff models that include a snow accumulation and melt module are still often calibrated using only discharge observations. This can result in poor snow modeling as the swnow module parameters can distorted in order to allow skilful discharge simulation.</p>
-<p>After the work of <span class="citation">Riboust et al. (2019)</span>, we propose now in <strong><font color="#00a3a6">airGR</font></strong> an improved version of the degree-day CemaNeige snow and accumulation module. This new version is based on a more accurate representation of the relationship that exists at the basin scale between the Snow Water Equivalent (SWE) and the Snow Cover Area (SCA). To do so, a linear SWE-SCA hysteresis, which represents the fact that snow accumulation is rather homogeneous on the basin and snow melt is more heterogeneous, was implemented.</p>
-<p>This new CemaNeige version has two more parameters to calibrate. It also presents the advantage of allowing using satellite snow data to constrain the calibration in addition to discharge. <span class="citation">Riboust et al. (2019)</span> show that while the simulated discharge is not significantly improved, the snow simulation is much improved. In addition, they show that the model is more robust (i.e. transferable in time) in terms of discharge, which has many implications for climate change impact studies.</p>
-<p>The configuration that was identified as optimal by <span class="citation">Riboust et al. (2019)</span> includes a CemaNeige module run on 5 elevation bands and an objective function determine by a composite function of KGE’ calculated on discharge (75 % weight) and KGE’ calculated on each elevation band (5 % for each).</p>
-<p>In this article, we show how to use and calibrate this new CemaNeige version.</p>
+<p>Rainfall-runoff models that include a snow accumulation and melt
+module are still often calibrated using only discharge observations.
+This can result in poor snow modeling as the swnow module parameters can
+distorted in order to allow skilful discharge simulation.</p>
+<p>After the work of <span class="citation">Riboust et al.
+(2019)</span>, we propose now in
+<strong><font color="#00a3a6">airGR</font></strong> an improved version
+of the degree-day CemaNeige snow and accumulation module. This new
+version is based on a more accurate representation of the relationship
+that exists at the basin scale between the Snow Water Equivalent (SWE)
+and the Snow Cover Area (SCA). To do so, a linear SWE-SCA hysteresis,
+which represents the fact that snow accumulation is rather homogeneous
+on the basin and snow melt is more heterogeneous, was implemented.</p>
+<p>This new CemaNeige version has two more parameters to calibrate. It
+also presents the advantage of allowing using satellite snow data to
+constrain the calibration in addition to discharge. <span
+class="citation">Riboust et al. (2019)</span> show that while the
+simulated discharge is not significantly improved, the snow simulation
+is much improved. In addition, they show that the model is more robust
+(i.e. transferable in time) in terms of discharge, which has many
+implications for climate change impact studies.</p>
+<p>The configuration that was identified as optimal by <span
+class="citation">Riboust et al. (2019)</span> includes a CemaNeige
+module run on 5 elevation bands and an objective function determine by a
+composite function of KGE’ calculated on discharge (75 % weight) and
+KGE’ calculated on each elevation band (5 % for each).</p>
+<p>In this article, we show how to use and calibrate this new CemaNeige
+version.</p>
 </div>
 <div id="data-preparation" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Data preparation</h2>
-<p>We load an example data set from the package. Please note that this data set includes MODIS data that was pre-calculated for 5 elevation bands and for which days with few data (more than 40 % cloud coverage) were assigned as missing values.</p>
+<p>We load an example data set from the package. Please note that this
+data set includes MODIS data that was pre-calculated for 5 elevation
+bands and for which days with few data (more than 40 % cloud coverage)
+were assigned as missing values.</p>
 </div>
 <div id="loading-catchment-data" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> loading catchment data</h2>
+<h2><span class="header-section-number">1.3</span> loading catchment
+data</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(X0310010)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(BasinObs)</span></code></pre></div>
 </div>
 <div id="object-model-preparation" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Object model preparation</h2>
-<p>We assume that the R global environment contains data and functions from the <a href="https://hydrogr.github.io/airGR/page_1_get_started.html">Get Started</a> article.</p>
-<p>The calibration period has been defined from 2000-09-01 to 2005-08-31, and the validation period from 2005-09-01 to 2010-07-31. CemaNeige will be used in coupling with GR4J in this article.</p>
+<h2><span class="header-section-number">1.4</span> Object model
+preparation</h2>
+<p>We assume that the R global environment contains data and functions
+from the <a
+href="https://hydrogr.github.io/airGR/page_1_get_started.html">Get
+Started</a> article.</p>
+<p>The calibration period has been defined from 2000-09-01 to
+2005-08-31, and the validation period from 2005-09-01 to 2010-07-31.
+CemaNeige will be used in coupling with GR4J in this article.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## preparation of the InputsModel object</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>InputsModel <span class="ot">&lt;-</span> <span class="fu">CreateInputsModel</span>(<span class="at">FUN_MOD =</span> RunModel_CemaNeigeGR4J,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">DatesR =</span> BasinObs<span class="sc">$</span>DatesR, <span class="at">Precip =</span> BasinObs<span class="sc">$</span>P,</span>
@@ -559,9 +597,14 @@ div.tocify {
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>               <span class="fu">which</span>(<span class="fu">format</span>(BasinObs<span class="sc">$</span>DatesR, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>) <span class="sc">==</span> <span class="st">&quot;2010-07-31&quot;</span>))</span></code></pre></div>
 </div>
 </div>
-<div id="calibration-and-evaluation-of-the-new-cemaneige-module" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Calibration and evaluation of the new CemaNeige module</h1>
-<p>In order to use the Linear Hysteresis, a new argument (<code>IsHyst</code>) is added in the <code>CreateRunOptions()</code> and <code>CreateCalibOptions()</code> functions and has to be set to <code>TRUE</code>.</p>
+<div id="calibration-and-evaluation-of-the-new-cemaneige-module"
+class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Calibration and
+evaluation of the new CemaNeige module</h1>
+<p>In order to use the Linear Hysteresis, a new argument
+(<code>IsHyst</code>) is added in the <code>CreateRunOptions()</code>
+and <code>CreateCalibOptions()</code> functions and has to be set to
+<code>TRUE</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## preparation of the RunOptions object for the calibration period</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>RunOptions_Cal <span class="ot">&lt;-</span> <span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_CemaNeigeGR4J,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">InputsModel =</span> InputsModel, <span class="at">IndPeriod_Run =</span> Ind_Cal,</span>
@@ -576,7 +619,12 @@ div.tocify {
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>CalibOptions <span class="ot">&lt;-</span> <span class="fu">CreateCalibOptions</span>(<span class="at">FUN_MOD =</span> RunModel_CemaNeigeGR4J,</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">FUN_CALIB =</span> Calibration_Michel,</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">IsHyst =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p>In order to calibrate and assess the model performance, we will follow the recommendations of <span class="citation">Riboust et al. (2019)</span>. This is now possible in <strong><font color="#00a3a6">airGR</font></strong> with the added functionality that permits calculating composite criteria by combining different metrics.</p>
+<p>In order to calibrate and assess the model performance, we will
+follow the recommendations of <span class="citation">Riboust et al.
+(2019)</span>. This is now possible in
+<strong><font color="#00a3a6">airGR</font></strong> with the added
+functionality that permits calculating composite criteria by combining
+different metrics.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## efficiency criterion: 75 % KGE&#39;(Q) + 5 % KGE&#39;(SCA) on each of the 5 layers</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>InputsCrit_Cal  <span class="ot">&lt;-</span> <span class="fu">CreateInputsCrit</span>(<span class="at">FUN_CRIT =</span> <span class="fu">rep</span>(<span class="st">&quot;ErrorCrit_KGE2&quot;</span>, <span class="dv">6</span>),</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">InputsModel =</span> InputsModel, <span class="at">RunOptions =</span> RunOptions_Cal,</span>
@@ -613,7 +661,8 @@ div.tocify {
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="do">## evaluation </span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>OutputsCrit_Cal <span class="ot">&lt;-</span> <span class="fu">ErrorCrit</span>(<span class="at">InputsCrit =</span> InputsCrit_Cal, <span class="at">OutputsModel =</span> OutputsModel_Cal)</span></code></pre></div>
-<p>Find below the performance of the model over the calibration period.</p>
+<p>Find below the performance of the model over the calibration
+period.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(OutputsCrit_Cal, <span class="at">max.level =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## List of 7
 ##  $ CritValue      : num 0.899
@@ -650,7 +699,8 @@ div.tocify {
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="do">## evaluation </span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>OutputsCrit_Val <span class="ot">&lt;-</span> <span class="fu">ErrorCrit</span>(<span class="at">InputsCrit =</span> InputsCrit_Val, <span class="at">OutputsModel =</span> OutputsModel_Val)</span></code></pre></div>
-<p>Find below the performance of the model over the validation period.</p>
+<p>Find below the performance of the model over the validation
+period.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(OutputsCrit_Val, <span class="at">max.level =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## List of 7
 ##  $ CritValue      : num 0.903
@@ -680,9 +730,18 @@ div.tocify {
 ##   .. ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;KGE2&quot; &quot;ErrorCrit&quot;
 ##  - attr(*, &quot;class&quot;)= chr [1:2] &quot;Compo&quot; &quot;ErrorCrit&quot;</code></pre>
 </div>
-<div id="comparison-with-the-performance-of-the-initial-cemaneige-version" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Comparison with the performance of the initial CemaNeige version</h1>
-<p>Here we use the same InputsModel object and calibration and validation periods. However, we have to redefine the way we run the model (<code>RunOptions</code> argument), calibrate and assess it (<code>InputsCrit</code> argument). The objective function is only based on KGE’(Q). Note how we set the <code>IsHyst</code> argument to <code>FALSE</code> in the <code>CreateRunOptions()</code> and the <code>CreateCalibOptions()</code> functions.</p>
+<div
+id="comparison-with-the-performance-of-the-initial-cemaneige-version"
+class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Comparison with the
+performance of the initial CemaNeige version</h1>
+<p>Here we use the same InputsModel object and calibration and
+validation periods. However, we have to redefine the way we run the
+model (<code>RunOptions</code> argument), calibrate and assess it
+(<code>InputsCrit</code> argument). The objective function is only based
+on KGE’(Q). Note how we set the <code>IsHyst</code> argument to
+<code>FALSE</code> in the <code>CreateRunOptions()</code> and the
+<code>CreateCalibOptions()</code> functions.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## preparation of RunOptions object</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>RunOptions_Cal_NoHyst <span class="ot">&lt;-</span> <span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_CemaNeigeGR4J,</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">InputsModel =</span> InputsModel,</span>
@@ -719,13 +778,16 @@ div.tocify {
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>OutputsModel_Val_NoHyst <span class="ot">&lt;-</span> <span class="fu">RunModel_CemaNeigeGR4J</span>(<span class="at">InputsModel =</span> InputsModel,</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">RunOptions =</span> RunOptions_Val_NoHyst, </span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">Param =</span> OutputsCalib_NoHyst<span class="sc">$</span>ParamFinalR)</span></code></pre></div>
-<p>In order to assess the model performance over the two periods, we will use the InputsCrit objects prepared before, which allow assessing also the performance in terms of snow simulation.</p>
+<p>In order to assess the model performance over the two periods, we
+will use the InputsCrit objects prepared before, which allow assessing
+also the performance in terms of snow simulation.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>OutputsCrit_Cal_NoHyst <span class="ot">&lt;-</span> <span class="fu">ErrorCrit</span>(<span class="at">InputsCrit =</span> InputsCrit_Cal,</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">OutputsModel =</span> OutputsModel_Cal_NoHyst)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>OutputsCrit_Val_NoHyst <span class="ot">&lt;-</span> <span class="fu">ErrorCrit</span>(<span class="at">InputsCrit =</span> InputsCrit_Val,</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">OutputsModel =</span> OutputsModel_Val_NoHyst)</span></code></pre></div>
-<p>We can check the performance over the calibration and the validation period.</p>
+<p>We can check the performance over the calibration and the validation
+period.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(OutputsCrit_Cal_NoHyst, <span class="at">max.level =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## List of 7
 ##  $ CritValue      : num 0.836
@@ -782,13 +844,27 @@ div.tocify {
 ##   ..$ IC6:List of 7
 ##   .. ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;KGE2&quot; &quot;ErrorCrit&quot;
 ##  - attr(*, &quot;class&quot;)= chr [1:2] &quot;Compo&quot; &quot;ErrorCrit&quot;</code></pre>
-<p>We can see above that the performance of the initial model is slightly better than the new one over the calibration period in terms of discharge, but also that the new version calibrated using SCA provides better performance in terms of snow. However, over the validation period, we see that the discharge simulated by the new version brings better performance (in addition to improved SCA also). This shows the interests of the combined use of a linear hysteresis and of SCA data for calibration in CemaNeige.</p>
+<p>We can see above that the performance of the initial model is
+slightly better than the new one over the calibration period in terms of
+discharge, but also that the new version calibrated using SCA provides
+better performance in terms of snow. However, over the validation
+period, we see that the discharge simulated by the new version brings
+better performance (in addition to improved SCA also). This shows the
+interests of the combined use of a linear hysteresis and of SCA data for
+calibration in CemaNeige.</p>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="unnumbered">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-riboust_revisiting_2019" class="csl-entry">
-Riboust, Philippe, Guillaume Thirel, Nicolas Le Moine, and Pierre Ribstein. 2019. <span>“Revisiting a <span>Simple</span> <span>Degree</span>-<span>Day</span> <span>Model</span> for <span>Integrating</span> <span>Satellite</span> <span>Data</span>: <span>Implementation</span> of <span>Swe</span>-<span>Sca</span> <span>Hystereses</span>.”</span> <em>Journal of Hydrology and Hydromechanics</em> 67 (1): 70–81. <a href="https://doi.org/10.2478/johh-2018-0004">https://doi.org/10.2478/johh-2018-0004</a>.
+Riboust, Philippe, Guillaume Thirel, Nicolas Le Moine, and Pierre
+Ribstein. 2019. <span>“Revisiting a <span>Simple</span>
+<span>Degree</span>-<span>Day</span> <span>Model</span> for
+<span>Integrating</span> <span>Satellite</span> <span>Data</span>:
+<span>Implementation</span> of <span>Swe</span>-<span>Sca</span>
+<span>Hystereses</span>.”</span> <em>Journal of Hydrology and
+Hydromechanics</em> 67 (1): 70–81. <a
+href="https://doi.org/10.2478/johh-2018-0004">https://doi.org/10.2478/johh-2018-0004</a>.
 </div>
 </div>
 </div>
