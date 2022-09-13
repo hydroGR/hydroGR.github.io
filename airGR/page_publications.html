@@ -13,7 +13,7 @@
 
 <title>Publications</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -133,11 +133,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -595,11 +599,6 @@ href="https://doi.org/10.1016/j.envsoft.2022.105315">10.1016/j.envsoft.2022.1053
 hydrological models: Model calibration and performance assessment.
 Journal of Hydrology 600, 126674. doi: <a
 href="https://doi.org/10.1016/j.jhydrol.2021.126674">10.1016/j.jhydrol.2021.126674</a></li>
-<li>Althoff D., Rodrigues L.N. &amp; Bazame H.C. (2021). Uncertainty
-quantification for hydrological models based on neural networks: the
-dropout ensemble. Stochastic Environmental Research and Risk Assessment.
-doi: <a
-href="https://doi.org/10.1007/s00477-021-01980-8">10.1007/s00477-021-01980-8</a></li>
 <li>Ayzel G., Kurochkina L., Abramov D. &amp; Zhuravlev S. (2021).
 Development of a Regional Gridded Runoff Dataset Using Long Short-Term
 Memory (LSTM) Networks. Hydrology 8, 6. doi: <a
@@ -622,6 +621,17 @@ Tournebize J. (2022). Variational Data Assimilation to Improve
 Subsurface Drainage Model Parameters. Journal of Hydrology, 128006. doi:
 <a
 href="https://doi.org/10.1016/j.jhydrol.2022.128006">10.1016/j.jhydrol.2022.128006</a></li>
+<li>Clayer F., Jackson-Blake L., Mercado D., Shikhani M., French A.,
+Moore T., et al. (2022). Inertia and seasonal climate prediction as
+sources of skill in lake temperature, discharge and ice-off forecasting
+tools. Hydrology and Earth System Sciences Discussions 2022, 1–25. doi:
+<a
+href="https://doi.org/10.5194/hess-2022-312">0.5194/hess-2022-312</a></li>
+<li>Colleoni F., Garambois P.-A., Javelle P., Jay-Allemand M. &amp;
+Arnaud P. (2022). Adjoint-based spatially distributed calibration of a
+grid GR-based parsimonious hydrological model over 312 French catchments
+with SMASH platform. EGUsphere 2022, 1–37. doi: <a
+href="https://doi.org/10.5194/egusphere-2022-506">10.5194/egusphere-2022-506</a></li>
 <li>Ghimire U., Agarwal A., Shrestha N.K., Daggupati P., Srinivasan G.
 &amp; Than H.H. (2020). Applicability of Lumped Hydrological Models in a
 Data-Constrained River Basin of Asia. Journal of Hydrologic Engineering
@@ -635,6 +645,12 @@ href="https://doi.org/10.1016/j.envsoft.2021.104983">10.1016/j.envsoft.2021.1049
 hydrological models for flow estimation in ungauged catchments in
 Ireland. Journal of Hydrology: Regional Studies 36, 100859. doi: <a
 href="https://doi.org/10.1016/j.ejrh.2021.100859">10.1016/j.ejrh.2021.100859</a></li>
+<li>Hah D., Quilty J.M. &amp; Sikorska-Senoner A.E. (2022). Ensemble and
+stochastic conceptual data-driven approaches for improving streamflow
+simulations: Exploring different hydrological and data-driven models and
+a diagnostic tool. Environmental Modelling &amp; Software, 105474. doi:
+<a
+href="https://doi.org/10.1016/j.envsoft.2022.105474">10.1016/j.envsoft.2022.105474</a></li>
 <li>Hao Y., Sun F., Wang H., Liu W., Shen Y.-J., Li Z., et al. (2022).
 Understanding climate-induced changes of snow hydrological processes in
 the Kaidu River Basin through the CemaNeige-GR6J model. CATENA 212,
@@ -652,20 +668,27 @@ start. Agricultural Water Management, 107318. doi: <a
 href="https://doi.org/10.1016/j.agwat.2021.107318">10.1016/j.agwat.2021.107318</a></li>
 <li>Horton P., Schaefli B. &amp; Kauzlaric M. (2021). Why do we have so
 many different hydrological models? A review based on the case of
-Switzerland. WIREs Water, e1574. <a href="doi:%5B10.1002/wat2.1574"
-class="uri">doi:[10.1002/wat2.1574</a>](<a
-href="https://doi.org/10.1002/wat2.1574"
-class="uri">https://doi.org/10.1002/wat2.1574</a>)</li>
+Switzerland. WIREs Water, e1574. doi: <a
+href="https://doi.org/10.1002/wat2.1574">10.1002/wat2.1574</a></li>
 <li>Hunter J., Thyer M., McInerney D. &amp; Kavetski D. (2021).
 Achieving high-quality probabilistic predictions from hydrological
 models calibrated with a wide range of objective functions. Journal of
 Hydrology 603, 126578. doi: <a
 href="https://doi.org/10.1016/j.jhydrol.2021.126578">10.1016/j.jhydrol.2021.126578</a></li>
+<li>Lemoine A., Ramos M.-H. &amp; Andréassian V. (2022). climate change
+impacts on the management of hydropower reservoirs using guide curves.
+LHB 0, 2101393. doi: <a
+href="https://doi.org/10.1080/27678490.2022.2101393">10.1080/27678490.2022.2101393</a></li>
 <li>McDowell R.W., Simpson Z.P., Ausseil A.G., Etheridge Z. &amp; Law R.
 (2021). The implications of lag times between nitrate leaching losses
 and riverine loads for water quality policy. Scientific Reports 11,
 16450. doi: <a
 href="https://doi.org/10.1038/s41598-021-95302-1">10.1038/s41598-021-95302-1</a></li>
+<li>Manikanta V. &amp; Vema V.K. (2022). Formulation of Wavelet Based
+Multi-Scale Multi-Objective Performance Evaluation (WMMPE) Metric for
+Improved Calibration of Hydrological Models. Water Resources Research
+58, e2020WR029355. doi: <a
+href="https://doi.org/10.1029/2020WR029355">10.1029/2020WR029355</a></li>
 <li>Mercado-Bettín D., Clayer F., Shikhani M., Moore T.N., Frías M.D.,
 Jackson-Blake L., et al. (2021). Forecasting water temperature in lakes
 and reservoirs using seasonal climate prediction. Water Research,
@@ -701,7 +724,7 @@ href="https://doi.org/10.1029/2020WR028390">10.1029/2020WR028390</a></li>
 &amp; Kollet S. (2022). How uncertain are precipitation and peakflow
 estimates for the July 2021 flooding event? Natural Hazards and Earth
 System Sciences Discussions 2022, 1–28. doi: <a
-href="10.5194/nhess-2022-111">https://doi.org/10.5194/nhess-2022-111</a></li>
+href="https://doi.org/10.5194/nhess-2022-111">10.5194/nhess-2022-111</a></li>
 <li>Saadi M., Oudin L. &amp; Ribstein P. (2021). Physically consistent
 conceptual rainfall–runoff model for urbanized catchments. Journal of
 Hydrology 599, 126394. doi: <a
@@ -728,16 +751,19 @@ genetic algorithm-artificial neural network (GR6J-WGANN)
 conceptual-data-driven model approaches for daily rainfall–runoff
 modelling. Neural Computing and Applications. doi: <a
 href="https://doi.org/10.1007/s00521-022-07372-5">10.1007/s00521-022-07372-5</a></li>
+<li>Shannon J., Kolka R., Van Grinsven M. &amp; Liu F. (2022). Joint
+impacts of future climate conditions and invasive species on black ash
+forested wetlands. Frontiers in Forests and Global Change 5, 957526.
+doi: <a
+href="https://doi.org/10.3389/ffgc.2022.957526">10.3389/ffgc.2022.957526</a></li>
 <li>Soper J.J., Guzman C.D., Kumpel E. &amp; Tobiason J.E. (2021).
 Long-term analysis of road salt loading and transport in a rural
 drinking water reservoir watershed. Journal of Hydrology 603, 127005.
 doi: <a
 href="https://doi.org/10.1016/j.jhydrol.2021.127005">10.1016/j.jhydrol.2021.127005</a></li>
 <li>Tyralis H. &amp; Papacharalampous G. (2021). Quantile-Based
-Hydrological Modelling. Water 13. <a href="doi:%5B10.3390/w13233420"
-class="uri">doi:[10.3390/w13233420</a>](<a
-href="https://doi.org/10.3390/w13233420"
-class="uri">https://doi.org/10.3390/w13233420</a>)</li>
+Hydrological Modelling. Water 13. doi: <a
+href="https://doi.org/10.3390/w13233420">10.3390/w13233420</a></li>
 <li>Wang H., Cao L. &amp; Feng R. (2021). Hydrological Similarity-Based
 Parameter Regionalization under Different Climate and Underlying
 Surfaces in Ungauged Basins. Water 13. doi: <a
@@ -766,6 +792,15 @@ href="https://doi.org/10.1029/2020WR027442">10.1029/2020WR027442</a></li>
 <div id="section-7" class="section level3">
 <h3>2022</h3>
 <ul>
+<li>Althoff D., Rodrigues L.N. &amp; Bazame H.C. (2021). Uncertainty
+quantification for hydrological models based on neural networks: the
+dropout ensemble. Stochastic Environmental Research and Risk Assessment
+35, 1051–1067. doi: <a
+href="https://doi.org/10.1007/s00477-021-01980-8">10.1007/s00477-021-01980-8</a></li>
+<li>Astagneau P.C., Bourgin F., Andréassian V. &amp; Perrin C. (2022).
+Catchment response to intense rainfall: Evaluating modelling hypotheses.
+Hydrological Processes 36, e14676. doi: <a
+href="https://doi.org/10.1002/hyp.14676">10.1002/hyp.14676</a></li>
 <li>Jackson-Blake L.A., Clayer F., de Eyto E., French A.S., Frías M.D.,
 Mercado-Bettín D., et al. (2022). Opportunities for seasonal forecasting
 to support water management outside the tropics. Hydrology and Earth
@@ -780,6 +815,11 @@ href="https://doi.org/10.3390/w14040552">10.3390/w14040552</a></li>
 Changes in Seasonal and Low Flows with Climate Change for Irish
 Catchments. Water 14. doi: <a
 href="10.3390/w14101556">https://doi.org/10.3390/w14101556</a></li>
+<li>Nasreen S., Součková M., Vargas Godoy M.R., Singh U., Markonis Y.,
+Kumar R., et al. (2022). A 500-year annual runoff reconstruction for 14
+selected European catchments. Earth System Science Data 14, 4035–4056.
+doi: <a
+href="https://doi.org/10.5194/essd-14-4035-2022">10.5194/essd-14-4035-2022</a></li>
 <li>Pelletier A. &amp; Andréassian V. (2022). On constraining a lumped
 hydrological model with both piezometry and streamflow: results of a
 large sample evaluation. Hydrology and Earth System Sciences 26,
@@ -789,6 +829,11 @@ href="10.5194/hess-26-2733-2022">10.5194/hess-26-2733-2022</a></li>
 Investigating hydrological model versatility to simulate extreme flood
 events. Hydrological Sciences Journal 67, 628–645. doi: <a
 href="https://doi.org/10.1080/02626667.2022.2030864">10.1080/02626667.2022.2030864</a></li>
+<li>Pujol L., Garambois P.-A. &amp; Monnier J. (2022). Multi-dimensional
+hydrological–hydraulic model with variational data assimilation for
+river networks and floodplains. Geoscientific Model Development 15,
+6085–6113. doi: <a
+href="https://doi.org/10.5194/gmd-15-6085-2022">10.5194/gmd-15-6085-2022</a></li>
 <li>Trinugroho M.W. &amp; Prima Nugroho A. (2022). Pemodelan limpasan
 air hujan menggunakan GR2M berbasis R di hilir daerah aliran sungai
 Cimanuk. Buletin Hasil Penelitian Agroklimat dan Hidrologi 18, 14–21.
@@ -806,11 +851,8 @@ Model: Rainfall-Runoff Modeling in Awash River Basin, Ethiopia. Water
 href="https://doi.org/10.3390/w13060800">10.3390/w13060800</a></li>
 <li>Arabzadeh R., Aberi P., Hesarkazzazi S., Hajibabaei M., Rauch W.,
 Nikmehr S., et al. (2021). WRSS: An Object-Oriented R Package for
-Large-Scale Water Resources Operation. Water 13. <a
-href="doi:%5B10.3390/w13213037"
-class="uri">doi:[10.3390/w13213037</a>](<a
-href="https://doi.org/10.3390/w13213037"
-class="uri">https://doi.org/10.3390/w13213037</a>)</li>
+Large-Scale Water Resources Operation. Water 13. doi: <a
+href="https://doi.org/10.3390/w13213037">10.3390/w13213037</a></li>
 <li>Astagneau P.C., Bourgin F., Andréassian V. &amp; Perrin C. (2021).
 When does a parsimonious model fail to simulate floods? Learning from
 the seasonality of model bias. Hydrological Sciences Journal 66,
@@ -1286,6 +1328,18 @@ href="https://doi.org/10.1061/9780784482339.029">10.1061/9780784482339.029</a></
 <div id="phd-theses" class="section level2">
 <h2>PhD theses</h2>
 <div id="section-18" class="section level3">
+<h3>2022</h3>
+<ul>
+<li>Hora T. (2022). Addressing groundwater over-extraction in India:
+assessments, monitoring methods and interventions. <a
+href="http://hdl.handle.net/10012/18585">UWSpace</a></li>
+<li>Pujol L. (2022). Optimal synergy of multi-source data and
+hydraulic-hydrological models for the cartographic modeling of complex
+hydrosystems. Université de Strasbourg. <a
+href="https://hal.archives-ouvertes.fr/ENGEES/tel-03760662v1">HAL</a></li>
+</ul>
+</div>
+<div id="section-19" class="section level3">
 <h3>2021</h3>
 <ul>
 <li>Lemoine A. (2021). Indicateurs d’impacts des changements
@@ -1301,7 +1355,7 @@ face à des conditions climatiques variables. Sorbonne Université. <a
 href="https://webgr.inrae.fr/wp-content/uploads/2021/08/thesis_Royer-GaspardPaul_FR.pdf">PDF</a></li>
 </ul>
 </div>
-<div id="section-19" class="section level3">
+<div id="section-20" class="section level3">
 <h3>2020</h3>
 <ul>
 <li>Cassagnole M. (2020). Analyse du lien entre la qualité des
@@ -1317,7 +1371,7 @@ Université. <a
 href="https://tel.archives-ouvertes.fr/tel-03250292/">HAL</a></li>
 </ul>
 </div>
-<div id="section-20" class="section level3">
+<div id="section-21" class="section level3">
 <h3>2019</h3>
 <ul>
 <li>Devers A. (2019). Towards a 150-year hydrometeorological reanalysis
@@ -1326,7 +1380,7 @@ Université Grenoble Alpes. <a
 href="https://tel.archives-ouvertes.fr/tel-02506254">HAL</a></li>
 </ul>
 </div>
-<div id="section-21" class="section level3">
+<div id="section-22" class="section level3">
 <h3>2018</h3>
 <ul>
 <li>Bellier J. (2018). Prévisions hydrologiques probabilistes dans un
@@ -1346,7 +1400,7 @@ modèles pluie-débit. AgroParisTech. <a
 href="https://webgr.inrae.fr/wp-content/uploads/2020/01/thesis_SantosLeonard_FR.pdf">PDF</a></li>
 </ul>
 </div>
-<div id="section-22" class="section level3">
+<div id="section-23" class="section level3">
 <h3>2017</h3>
 <ul>
 <li>Ficchi A. (2017). An adaptive hydrological model for multiple
@@ -1355,7 +1409,7 @@ Université Pierre et Marie Curie, Paris 6. <a
 href="https://hal.archives-ouvertes.fr/tel-01619102v1">HAL</a></li>
 </ul>
 </div>
-<div id="section-23" class="section level3">
+<div id="section-24" class="section level3">
 <h3>2016</h3>
 <ul>
 <li>Caillouet L. (2016). Reconstruction hydrométéorologique des étiages
@@ -1373,7 +1427,15 @@ href="https://hal.archives-ouvertes.fr/tel-01529196v1">HAL</a></li>
 </div>
 <div id="msc-reports" class="section level2">
 <h2>MSc reports</h2>
-<div id="section-24" class="section level3">
+<div id="section-25" class="section level3">
+<h3>2022</h3>
+<ul>
+<li>Hah K. W. (2022). Improved Streamflow Simulation through Ensemble
+and Stochastic Conceptual Data-driven Approaches. <a
+href="http://hdl.handle.net/10012/18570">UWSpace</a></li>
+</ul>
+</div>
+<div id="section-26" class="section level3">
 <h3>2021</h3>
 <ul>
 <li>Kourakos V. (2021). Refining the working hypotheses of parameter
@@ -1393,7 +1455,7 @@ using remote sensing timeseries. University of Würzburg. <a
 href="https://elib.dlr.de/185429/1/Manuskript_Masterarbeit_Witt.pdf">PDF</a></li>
 </ul>
 </div>
-<div id="section-25" class="section level3">
+<div id="section-27" class="section level3">
 <h3>2020</h3>
 <ul>
 <li>Fayet L. (2020). Impact du changement climatique sur la variabilité
@@ -1414,7 +1476,7 @@ Basin. Pan African University. <a
 href="http://repository.pauwes-cop.net/bitstream/handle/1/414/MASTER%20THESIS-VLAVONOU%20ZANNOU.pdf?sequence=1&amp;isAllowed=y">PDF</a></li>
 </ul>
 </div>
-<div id="section-26" class="section level3">
+<div id="section-28" class="section level3">
 <h3>2019</h3>
 <ul>
 <li>Astagneau, P. (2019). Comparison of hydrological modelling R
@@ -1442,7 +1504,7 @@ hydrologického modelovania. Technická univerzita Ostrava. <a
 href="https://dspace.vsb.cz/bitstream/handle/10084/137295/SLE0066_HGF_N3654_3608T002_2019.pdf?sequence=1">PDF</a></li>
 </ul>
 </div>
-<div id="section-27" class="section level3">
+<div id="section-29" class="section level3">
 <h3>2018</h3>
 <ul>
 <li>Garnier S. (2018). Évaluation de la qualité des prévisions
@@ -1455,7 +1517,7 @@ simulations. PolyTech’ Nice-Sophia. <a
 href="https://webgr.inrae.fr/wp-content/uploads/2020/01/msreport_HuangPeng_EN.pdf">PDF</a></li>
 </ul>
 </div>
-<div id="section-28" class="section level3">
+<div id="section-30" class="section level3">
 <h3>2017</h3>
 <ul>
 <li>Bildstein, A. (2017). Tests exploratoires pour la mise en place de
@@ -1479,7 +1541,7 @@ Pierre et Marie Curie, Paris 6. <a
 href="https://webgr.inrae.fr/wp-content/uploads/2019/04/msreport_PeredoDaniela_FR.pdf">PDF</a></li>
 </ul>
 </div>
-<div id="section-29" class="section level3">
+<div id="section-31" class="section level3">
 <h3>2016</h3>
 <ul>
 <li>Haddadi I. (2016). Les tests statistiques de significativité
@@ -1499,7 +1561,7 @@ href="https://webgr.inrae.fr/wp-content/uploads/2020/01/msreport_GossetCindy_FR.
 </div>
 <div id="conferences-1" class="section level2">
 <h2>Conferences</h2>
-<div id="section-30" class="section level3">
+<div id="section-32" class="section level3">
 <h3>2022</h3>
 <ul>
 <li>Poncet N., Lucas-Picher P., Tramblay Y. &amp; Thirel G. (2022). Does
@@ -1519,7 +1581,7 @@ Scientific Assembly. Montpellier, France. <a
 href="https://meetingorganizer.copernicus.org/IAHS2022/IAHS2022-490.html">Abstract</a></li>
 </ul>
 </div>
-<div id="section-31" class="section level3">
+<div id="section-33" class="section level3">
 <h3>2021</h3>
 <ul>
 <li>Dorchies D., Delaigue O. &amp; Thirel G. (2021). Prise en compte des
@@ -1553,7 +1615,7 @@ href="https://www.researchgate.net/profile/Georgia-Papacharalampous/publication/
 slideshow</a></li>
 </ul>
 </div>
-<div id="section-32" class="section level3">
+<div id="section-34" class="section level3">
 <h3>2019</h3>
 <ul>
 <li>Barria Sandoval I., Barria P., Carrasco J. &amp; Casassa G. (2019).
@@ -1579,7 +1641,7 @@ href="https://www.researchgate.net/profile/Hristos-Tyralis/publication/332530756
 slideshow</a></li>
 </ul>
 </div>
-<div id="section-33" class="section level3">
+<div id="section-35" class="section level3">
 <h3>2018</h3>
 <ul>
 <li>Kodja D.J., Akognongbé A.J.S., Amoussou E., Mahé G., Expédit V.,
