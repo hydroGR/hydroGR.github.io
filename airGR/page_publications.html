@@ -13,7 +13,7 @@
 
 <title>Publications</title>
 
-<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -170,8 +170,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -179,16 +179,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -340,6 +333,7 @@ div.tocify {
 				<li class="Download">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">airGR Galaxy<span class="caret"></span></a>
 					<ul class="dropdown-menu">
+						<li><a href="https://CRAN.R-project.org/package=airGRdatasets">airGRdatasets R-package</a></li>
 						<li><a href="https://CRAN.R-project.org/package=airGRdatassim">airGRdatassim R-package</a></li>
 						<li><a href="https://airgriwrm.g-eau.fr/">airGRiwrm R-package</a></li>
 						<li><a href="https://sunshine.inrae.fr/app/airGRmaps">airGRmaps web app</a></li>
@@ -591,6 +585,10 @@ poster</a></li>
 disaggregation of daily rainfall measurements using regional reanalysis
 for hydrological applications. Journal of Hydrology, 127867. doi: <a
 href="https://doi.org/10.1016/j.jhydrol.2022.127867">10.1016/j.jhydrol.2022.127867</a></li>
+<li>Alp H., Demirel M.C. &amp; Aşıkoğlu Ö.L. (2022). Effect of Model
+Structure and Calibration Algorithm on Discharge Simulation in Acısu
+Basin, Turkey. Climate 10, 1-17. . doi<a
+href="https://doi.rg/10.20944/preprints202211.0559.v1">10.20944/preprints202211.0559.v1</a></li>
 <li>Althoff D., Rodrigues L.N. &amp; Silva D.D. da (2022). Predicting
 runoff series in ungauged basins of the Brazilian Cerrado biome.
 Environmental Modelling &amp; Software 149, 105315. <a
@@ -603,11 +601,6 @@ href="https://doi.org/10.1016/j.jhydrol.2021.126674">10.1016/j.jhydrol.2021.1266
 Development of a Regional Gridded Runoff Dataset Using Long Short-Term
 Memory (LSTM) Networks. Hydrology 8, 6. doi: <a
 href="https://doi.org/10.3390/hydrology8010006">10.3390/hydrology8010006</a></li>
-<li>Ayzel G., Kurochkina L. &amp; Zhuravlev S. (2020). The influence of
-regional hydrometric data incorporation on the accuracy of gridded
-reconstruction of monthly runoff. Hydrological Sciences Journal, 1–12.
-doi: <a
-href="https://doi.org/10.1080/02626667.2020.1762886">10.1080/02626667.2020.1762886</a></li>
 <li>Bérubé S., Brissette F. &amp; Arsenault R. (2022). Optimal
 Hydrological Model Calibration Strategy for Climate Change Impact
 Studies. Journal of Hydrologic Engineering 27, 04021053. <a
@@ -632,11 +625,6 @@ Arnaud P. (2022). Adjoint-based spatially distributed calibration of a
 grid GR-based parsimonious hydrological model over 312 French catchments
 with SMASH platform. EGUsphere 2022, 1–37. doi: <a
 href="https://doi.org/10.5194/egusphere-2022-506">10.5194/egusphere-2022-506</a></li>
-<li>Ghimire U., Agarwal A., Shrestha N.K., Daggupati P., Srinivasan G.
-&amp; Than H.H. (2020). Applicability of Lumped Hydrological Models in a
-Data-Constrained River Basin of Asia. Journal of Hydrologic Engineering
-25, 05020018. doi: <a
-href="https://doi.org/10.1061/(ASCE)HE.1943-5584.0001950">10.1061/(ASCE)HE.1943-5584.0001950</a></li>
 <li>Gnann S.J., Coxon G., Woods R.A., Howden N.J.K. &amp; McMillan H.K.
 (2021). TOSSH: A Toolbox for Streamflow Signatures in Hydrology.
 Environmental Modelling &amp; Software 138, 104983. doi: <a
@@ -656,11 +644,6 @@ Understanding climate-induced changes of snow hydrological processes in
 the Kaidu River Basin through the CemaNeige-GR6J model. CATENA 212,
 106082. doi<a
 href="https://doi.org/10.1016/j.catena.2022.106082">10.1016/j.catena.2022.106082</a></li>
-<li>Hashemi R., Brigode P., Garambois P.-A. &amp; Javelle P. (2021). How
-can regime characteristics of catchments help in training of local and
-regional LSTM-based runoff models? Hydrology and Earth System Sciences
-Discussions 2021, 1–33. doi: <a
-href="https://doi.org/10.5194/hess-2021-511">10.5194/hess-2021-511</a></li>
 <li>Henine H., Jeantet A., Chaumont C., Chelil S., Lauvernet C. &amp;
 Tournebize J. (2021). Coupling of a subsurface drainage model with a
 soil reservoir model to simulate drainage discharge and drain flow
@@ -689,16 +672,15 @@ Multi-Scale Multi-Objective Performance Evaluation (WMMPE) Metric for
 Improved Calibration of Hydrological Models. Water Resources Research
 58, e2020WR029355. doi: <a
 href="https://doi.org/10.1029/2020WR029355">10.1029/2020WR029355</a></li>
+<li>Marti B.S., Zhumabaev A. &amp; Siegfried T. (2022). A comprehensive
+open-source course for teaching applied hydrological modelling in
+Central Asia. EGUsphere 2022, 1–18. doi: <a
+href="https://doi.org/10.5194/egusphere-2022-966">10.5194/egusphere-2022-966</a></li>
 <li>Mercado-Bettín D., Clayer F., Shikhani M., Moore T.N., Frías M.D.,
 Jackson-Blake L., et al. (2021). Forecasting water temperature in lakes
 and reservoirs using seasonal climate prediction. Water Research,
 117286. doi: <a
 href="https://doi.org/10.1016/j.watres.2021.117286">10.1016/j.watres.2021.117286</a></li>
-<li>Nguyen H., Mehrotra R. &amp; Sharma A. (2020). Assessment of Climate
-Change Impacts on Reservoir Storage Reliability, Resilience, and
-Vulnerability Using a Multivariate Frequency Bias Correction Approach.
-Water Resources Research 56. doi: <a
-href="https://doi.org/10.1029/2019WR026022">10.1029/2019WR026022</a></li>
 <li>Ollivier C., Olioso A., Carrière S.D., Boulet G., Chalikakis K.,
 Chanzy A., et al. (2021). An evapotranspiration model driven by remote
 sensing data for assessing groundwater resource in karst watershed.
@@ -720,6 +702,10 @@ Data Assimilation for Streamflow Forecasting: Assessing the Sensitivity
 to Uncertainties and Updated Variables of a Conceptual Hydrological
 Model at Basin Scale. Water Resources Research 57. doi: <a
 href="https://doi.org/10.1029/2020WR028390">10.1029/2020WR028390</a></li>
+<li>Rodrigues A., Rodrigues L.N., Marques G.F. &amp; Villa P.M. (2022).
+Research paper: Water Resources Management Small reservoir water
+dynamics modeling. . doi: <a
+href="https://doi.org/10.21203/rs.3.rs-2277944/v1">10.21203/rs.3.rs-2277944/v1</a></li>
 <li>Saadi M., Furusho-Percot C., Belleflamme A., Chen J.-Y., Trömel S.
 &amp; Kollet S. (2022). How uncertain are precipitation and peakflow
 estimates for the July 2021 flooding event? Natural Hazards and Earth
@@ -729,18 +715,14 @@ href="https://doi.org/10.5194/nhess-2022-111">10.5194/nhess-2022-111</a></li>
 conceptual rainfall–runoff model for urbanized catchments. Journal of
 Hydrology 599, 126394. doi: <a
 href="https://doi.org/10.1016/j.jhydrol.2021.126394">10.1016/j.jhydrol.2021.126394</a></li>
-<li>Schmidt-Walter P., Trotsiuk V., Meusburger K., Zacios M. &amp;
-Meesenburg H. (2020). Advancing simulations of water fluxes, soil
-moisture and drought stress by using the LWF-Brook90 hydrological model
-in R. Agricultural and Forest Meteorology, 108023. doi: <a
-href="https://doi.org/10.1016/j.agrformet.2020.108023">10.1016/j.agrformet.2020.108023</a></li>
 <li>Schürz C. &amp; Schulz K. (2022). Reply to STOTEN 802 (2022) 149713:
 The fallacy in the use of the “best-fit” solution in hydrologic
 modeling. Science of The Total Environment 821, 153402. doi: <a
 href="https://doi.org/10.1016/j.scitotenv.2022.153402">10.1016/j.scitotenv.2022.153402</a></li>
 <li>Sezen C. &amp; Partal T. (2022). Two integrated
 conceptual–wavelet-based data-driven model approaches for daily
-rainfall–runoff modelling. Journal of Hydroinformatics. doi: <a
+rainfall–runoff modelling. Journal of Hydroinformatics, jh2022171. doi:
+<a
 href="https://doi.org/10.2166/hydro.2022.171">10.2166/hydro.2022.171</a></li>
 <li>Sezen C. &amp; Partal T. (2022). The utilisation of conceptual and
 data-driven models for hydrological modelling in semi-arid and humid
@@ -773,20 +755,11 @@ href="https://doi.org/10.3390/w13182508">10.3390/w13182508</a></li>
 for hydrological modelling in data-scarce regions: A case study of
 Kenya. Journal of Hydrology: Regional Studies 41, 101105. doi: <a
 href="https://doi.org/10.1016/j.ejrh.2022.101105">10.1016/j.ejrh.2022.101105</a></li>
-<li>Wijayarathne D.B. &amp; Coulibaly P. (2020). Identification of
-hydrological models for operational flood forecasting in St. John’s,
-Newfoundland, Canada. Journal of Hydrology: Regional Studies 27, 100646.
-doi: <a
-href="https://doi.org/10.1016/j.ejrh.2019.100646">j.ejrh.2019.100646</a></li>
 <li>Yahiaoui S., Chibane B., Pistre S., Bentchakal M. &amp; Ali-Rahmani
 S.-E. (2022). Rainfall-runoff modeling using airGR and airGRteaching:
 application to a catchment in Northeast Algeria. Modeling Earth Systems
 and Environment. doi: <a
 href="https://doi.org/10.1007/s40808-022-01444-0">10.1007/s40808-022-01444-0</a></li>
-<li>Zhong R., Zhao T. &amp; Chen X. (2020). Hydrological model
-calibration for dammed basins using satellite altimetry information.
-Water Resources Research. doi: <a
-href="https://doi.org/10.1029/2020WR027442">10.1029/2020WR027442</a></li>
 </ul>
 </div>
 <div id="section-7" class="section level3">
@@ -801,6 +774,11 @@ href="https://doi.org/10.1007/s00477-021-01980-8">10.1007/s00477-021-01980-8</a>
 Catchment response to intense rainfall: Evaluating modelling hypotheses.
 Hydrological Processes 36, e14676. doi: <a
 href="https://doi.org/10.1002/hyp.14676">10.1002/hyp.14676</a></li>
+<li>Hashemi R., Brigode P., Garambois P.-A. &amp; Javelle P. (2022). How
+can we benefit from regime information to make more effective use of
+long short-term memory (LSTM) runoff models? Hydrology and Earth System
+Sciences 26, 5793–5816. doi: <a
+href="https://doi.org/10.5194/hess-26-5793-2022">10.5194/hess-26-5793-2022</a></li>
 <li>Jackson-Blake L.A., Clayer F., de Eyto E., French A.S., Frías M.D.,
 Mercado-Bettín D., et al. (2022). Opportunities for seasonal forecasting
 to support water management outside the tropics. Hydrology and Earth
@@ -946,6 +924,11 @@ Optimization of Rainfall-runoff Model GR4J using Particle Swarm
 Optimization on Planting Calendar. International Journal on Advanced
 Science, Engineering and Information Technology 10, 2575. doi: <a
 href="https://doi.org/10.18517/ijaseit.10.6.9110">10.18517/ijaseit.10.6.9110</a></li>
+<li>Ayzel G., Kurochkina L. &amp; Zhuravlev S. (2020). The influence of
+regional hydrometric data incorporation on the accuracy of gridded
+reconstruction of monthly runoff. Hydrological Sciences Journal, 1–12.
+doi: <a
+href="https://doi.org/10.1080/02626667.2020.1762886">10.1080/02626667.2020.1762886</a></li>
 <li>Bezak N., Cerović L. &amp; Šraj M. (2020). Impact of the Mean Daily
 Air Temperature Calculation on the Rainfall-Runoff Modelling. Water 12,
 3175. doi: <a
@@ -963,6 +946,11 @@ analysis of flood risk in urban and periurban areas: A case study in the
 metropolitan region of Buenos Aires, Argentina. Heliyon 6, e04517. doi:
 <a
 href="https://doi.org/10.1016/j.heliyon.2020.e04517">10.1016/j.heliyon.2020.e04517</a></li>
+<li>Ghimire U., Agarwal A., Shrestha N.K., Daggupati P., Srinivasan G.
+&amp; Than H.H. (2020). Applicability of Lumped Hydrological Models in a
+Data-Constrained River Basin of Asia. Journal of Hydrologic Engineering
+25, 05020018. doi: <a
+href="https://doi.org/10.1061/(ASCE)HE.1943-5584.0001950">10.1061/(ASCE)HE.1943-5584.0001950</a></li>
 <li>Monteil C., Zaoui F., Le Moine N. &amp; Hendrickx F. (2020).
 Multi-objective calibration by combination of stochastic and
 gradient-like parameter generation rules – the caRamel algorithm.
@@ -973,6 +961,11 @@ informative content in the study area when regionalising rainfall-runoff
 model parameters: the role of nested catchments and gauging station
 density. Hydrology and Earth System Sciences 24, 5149–5171. doi: <a
 href="10.5194/hess-24-5149-2020">10.5194/hess-24-5149-2020</a></li>
+<li>Nguyen H., Mehrotra R. &amp; Sharma A. (2020). Assessment of Climate
+Change Impacts on Reservoir Storage Reliability, Resilience, and
+Vulnerability Using a Multivariate Frequency Bias Correction Approach.
+Water Resources Research 56. doi: <a
+href="https://doi.org/10.1029/2019WR026022">10.1029/2019WR026022</a></li>
 <li>O’Connor P., Murphy C., Matthews T. &amp; Wilby R.L. (2020).
 Reconstructed monthly river flows for Irish catchments 1766–2016.
 Geoscience Data Journal, gdj3.107. doi: <a
@@ -991,14 +984,28 @@ href="https://doi.org/10.1051/lhb/2020032">10.1051/lhb/2020032</a></li>
 impartial parametrisation for an imperfect method. Hydrology and Earth
 System Sciences 24, 1171–1187. doi: <a
 href="https://doi.org/10.5194/hess-24-1171-2020">10.5194/hess-24-1171-2020</a></li>
+<li>Schmidt-Walter P., Trotsiuk V., Meusburger K., Zacios M. &amp;
+Meesenburg H. (2020). Advancing simulations of water fluxes, soil
+moisture and drought stress by using the LWF-Brook90 hydrological model
+in R. Agricultural and Forest Meteorology, 108023. doi: <a
+href="https://doi.org/10.1016/j.agrformet.2020.108023">10.1016/j.agrformet.2020.108023</a></li>
 <li>Sezen C., Šraj M., Medved A. &amp; Bezak N. (2020). Investigation of
 Rain-On-Snow Floods under Climate Change. Applied Sciences 10, 1242.
 doi: <a
 href="https://doi.org/10.3390/app10041242">10.3390/app10041242</a></li>
+<li>Wijayarathne D.B. &amp; Coulibaly P. (2020). Identification of
+hydrological models for operational flood forecasting in St. John’s,
+Newfoundland, Canada. Journal of Hydrology: Regional Studies 27, 100646.
+doi: <a
+href="https://doi.org/10.1016/j.ejrh.2019.100646">j.ejrh.2019.100646</a></li>
 <li>Yang W., Yang H. &amp; Yang D. (2020). Classifying floods by
 quantifying driver contributions in the Eastern Monsoon Region of China.
 Journal of Hydrology 585, 124767. doi: <a
 href="https://doi.org/10.1016/j.jhydrol.2020.124767">10.1016/j.jhydrol.2020.124767</a></li>
+<li>Zhong R., Zhao T. &amp; Chen X. (2020). Hydrological model
+calibration for dammed basins using satellite altimetry information.
+Water Resources Research. doi: <a
+href="https://doi.org/10.1029/2020WR027442">10.1029/2020WR027442</a></li>
 </ul>
 </div>
 <div id="section-10" class="section level3">
@@ -1346,6 +1353,10 @@ href="https://hal.archives-ouvertes.fr/ENGEES/tel-03760662v1">HAL</a></li>
 hydroclimatiques sur la gestion des réservoirs hydroélectriques.
 Sorbonne Université. <a
 href="https://tel.archives-ouvertes.fr/tel-03416740v1">HAL</a></li>
+<li>Pelletier A. (2021). Nappes et rivières : la piézométrie peut-elle
+améliorer la modélisation des étiages des cours d’eau ? Sorbonne
+Université. <a
+href="https://tel.archives-ouvertes.fr/tel-03783485/">HAL</a></li>
 <li>Peredo D. (2021). Quels gains d’une modélisation hydrologique
 adaptée et d’une approche d’ensemble pour la prévision des crues rapides
 ? Sorbonne Université. <a
@@ -1430,9 +1441,17 @@ href="https://hal.archives-ouvertes.fr/tel-01529196v1">HAL</a></li>
 <div id="section-25" class="section level3">
 <h3>2022</h3>
 <ul>
+<li>Araya Reydet D.A. (2022). Evaluación de la metodología ESP para la
+generación de pronósticos de caudales de deshielo en cuencas de Chile
+Central. Universidad de Chile. <a
+href="file:///E:/telechargement/Evaluacion-de-la-metodologia-ESP-para-la-generacion-de-pronosticos-de-caudales-1.pdf">PDF</a></li>
 <li>Hah K. W. (2022). Improved Streamflow Simulation through Ensemble
 and Stochastic Conceptual Data-driven Approaches. <a
 href="http://hdl.handle.net/10012/18570">UWSpace</a></li>
+<li>Lindao V.G.S. (2022). Evaluación de la oferta hídrica bajo
+escenarios de cambio climático en la microcuenca del río Colonso,
+Ecuador. Universidad Regional Amazónica Ikiam. <a
+href="https://repositorio.ikiam.edu.ec/xmlui/handle/RD_IKIAM/627">Dspace</a></li>
 </ul>
 </div>
 <div id="section-26" class="section level3">
@@ -1691,6 +1710,15 @@ href="https://doi.org/10.1061/9780784482339.029">10.1061/9780784482339.029</a></
 href="https://doi.org/10.5281/zenodo.3266285">10.5281/zenodo.3266285</a></li>
 </ul>
 </div>
+</div>
+<div id="technical-reports" class="section level1">
+<h1>Technical reports</h1>
+<ul>
+<li>Grandry M., Degré A. &amp; Gailliez S. (2020). HydroTrend 2. Analyse
+de l’évolution de l’amplitude et de la fréquence des débits de crue en
+Région Wallonne. ULiège - Gembloux Agro-Bio Tech. <a
+href="https://hdl.handle.net/2268/248011">ORBi</a></li>
+</ul>
 </div>
 
 <footer>
