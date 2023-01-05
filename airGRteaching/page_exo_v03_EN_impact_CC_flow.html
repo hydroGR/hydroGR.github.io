@@ -8,7 +8,6 @@
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="author" content="Pierre Brigode &amp; Olivier Delaigue" />
 
@@ -16,6 +15,25 @@
 <title>Impact of climate change on streamflow regime</title>
 
 <script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -67,39 +85,38 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  background-color: #f8f8f8; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
 
 </style>
 <script>
@@ -156,8 +173,229 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="C:\PROGRA~1\R\R-42~1.0\library\RMARKD~1\RMARKD~1\TEMPLA~1\HTML_V~1\RESOUR~1\vignette.css" type="text/css" />
+<link rel="stylesheet" href="styles.css" type="text/css" />
 
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
 
 
 
@@ -166,18 +404,156 @@ div.csl-indent {
 <body>
 
 
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<!-- NOTE: add "navbar-inverse" class for an alternate navbar background -->
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.html">airGRteaching</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="page_1_get_started_airGRteaching.html">Get Started</a></li>
+                <li class="Download">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Exercises<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-header">Introduction    </li>
+                        <li><a href="page_exo_v00_teaching_hydrology.html"    >Teaching hydrology with airGRteaching        </a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">English versions</li>
+                        <li><a href="page_exo_v01_EN_flow_reconstruction.html">1. Streamflow reconstruction                               </a></li>
+						<li><a href="page_exo_v02_EN_flow_forecasting.html"   >2. Low-flow forecasting                                    </a></li>
+						<li><a href="page_exo_v03_EN_impact_CC_flow.html"     >3. Impact of climate change on streamflow regime           </a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">French versions</li>
+						<li><a href="page_exo_v01_FR_flow_reconstruction.html">1. Reconstitution de débits                                </a></li>
+						<li><a href="page_exo_v02_FR_flow_forecasting.html"   >2. Prévision de bas débits                                 </a></li>
+						<li><a href="page_exo_v03_FR_impact_CC_flow.html"     >3. Impact du changement climatique sur le régime des débits</a></li>
+					</ul>
+				</li>
+				<li class="Download">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a tabindex="-1" href="https://CRAN.R-project.org/package=airGRteaching" onclick="window.open(this.href); return false;">Package</a></li>
+						<li><a tabindex="-1" href="https://CRAN.R-project.org/package=airGRteaching/airGRteaching.pdf" onclick="window.open(this.href); return false;">Manual</a></li>
+					</ul>
+				</li>
+				<li><a href="NEWS.html">News</a></li>
+				<li><a href="page_publications.html">Publications</a></li>				
+				<li><a href="page_faq.html">FAQ</a></li>
+				<li class="Download">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">airGR Galaxy<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="https://hydroGR.github.io/airGR/">airGR R-package</a></li>
+						<li><a href="https://CRAN.R-project.org/package=airGRdatasets">airGRdatasets R-package</a></li>
+						<li><a href="https://CRAN.R-project.org/package=airGRdatassim">airGRdatassim R-package</a></li>
+						<li><a href="https://airgriwrm.g-eau.fr/">airGRiwrm R-package</a></li>
+						<li><a href="https://sunshine.inrae.fr/app/airGRmaps">airGRmaps web app</a></li>
+					</ul>
+				</li>
+				<li><a tabindex="-1" href="https://sunshine.inrae.fr/app/airGRteaching" onclick="window.open(this.href); return false;">GUI Demo</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<a href='http://www.inrae.fr/en/' onclick="window.open(this.href); return false;", title="inrae.fr"><img src='fig/logo_inrae_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.inrae.fr/en/' onclick="window.open(this.href); return false;", title="webgr.inrae.fr"><img src='fig/logo_inrae_hydro_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.inrae.fr/software/airgrteaching/' onclick="window.open(this.href); return false;", title="aiGRteaching"><img src='fig/logo_airGRteaching_CMJN_square.png' style='width:45px;height:45px;'></a>
+				<a href='https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/' onclick="window.open(this.href); return false;", title="GitLab"><img src='fig/logo_gitlab_CMJN_square.svg' style='width:45px;height:45px;'></a>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div><!--/.container -->
+</div><!--/.navbar -->
+<p style ="margin-top: 15px;">
+<a href="https://CRAN.R-project.org/package=airGRteaching"><img src="https://www.r-pkg.org/badges/version-ago/airGRteaching" /></a>
+<a href="https://www.rdocumentation.org/packages/airGRteaching"><img src="http://cranlogs.r-pkg.org/badges/grand-total/airGRteaching?color=orange" /></a>
+<a href="https://www.r-project.org/Licenses/GPL-2">
+<svg xmlns="http://www.w3.org/2000/svg" width="095" height="020">
+  <linearGradient id="b" x2="0" y2="100%">
+    <stop offset="0" stop-opacity=".1" stop-color="#bbb"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <mask id="a">
+    <rect width="095" height="020" rx="3" fill="#fff" />
+  </mask>
+  <g mask="url(#a)">
+    <path fill="#555"    d="M00 0h055v20H00z"/>
+    <path fill="#00a3a6" d="M55 0h040v20H55z"/>
+    <path fill="url(#b)" d="M00 0h095v20H00z"/>
+  </g>
+  <g fill="#fff" text-anchor="middle"
+     font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
+    <text x="028" y="015" fill="#010101" fill-opacity=".3">
+      License
+    </text>
+    <text x="028" y="014">
+      License
+    </text>
+    <text x="075" y="015" fill="#010101" fill-opacity=".3">
+      GPL 2
+    </text>
+    <text x="075" y="014">
+      GPL 2
+    </text>
+  </g>
+</svg>
+</a>
+<a href="https://doi.org/10.29007/qsqj"><img src="https://img.shields.io/badge/doi-10.29007/qsqj-purple.svg" /></a>
+<a href="https://doi.org/10.15454/W0SSKT"><img src="https://img.shields.io/badge/doi-10.15454/W0SSKT-purple.svg" /></a>
+
+<!--
+<div class="htmlwigetsWarning" style="background-color:#0B9DA0;color:white;padding:10px;">
+<b>
+Warning:
+</b>
+<br>
+The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometimes unstable on latest versions of <b>RStudio</b>
+<br>
+<b>It is better to launch the GUI from the Rgui or from R into a terminal</b>
+<br>
+</div>
+
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">mirror &lt;-<span class="st"> &quot;https://cran.r-project.org/src/contrib/Archive/htmlwidgets&quot;</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">install.packages</span>(<span class="dt">pkgs =</span> <span class="kw">file.path</span>(mirror, <span class="st">&quot;htmlwidgets_1.3.tar.gz&quot;</span>),</a>
+<a class="sourceLine" id="cb2-3" title="3">                 <span class="dt">repos =</span> <span class="ot">NULL</span>, <span class="dt">type =</span> <span class="st">&quot;source&quot;</span>)</a></code></pre></div>
+</div>
+-->
+</p>
+
+
+<div id="header">
+
 
 
 <h1 class="title toc-ignore">Impact of climate change on streamflow
 regime</h1>
 <h4 class="author">Pierre Brigode &amp; Olivier Delaigue</h4>
 
+</div>
 
 
-<div id="objective" class="section level1">
-<h1>Objective</h1>
-<div id="context" class="section level2">
-<h2>Context</h2>
+<div id="objective" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Objective</h1>
+<div id="context" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Context</h2>
 <p>The new report of the Intergovernmental Panel on Climate Change (<a
 href="https://www.ipcc.ch/">IPCC</a>) has just been released, announcing
 the latest global climate trends simulated by the latest versions of
@@ -384,13 +760,15 @@ period.</caption>
 </table>
 <p><img src="figure/v03_fig_presentation-1.png" width="98%" /></p>
 </div>
-<div id="instructions" class="section level2">
-<h2>Instructions</h2>
+<div id="instructions" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Instructions</h2>
 <p>The purpose of this section is to explain certain expected tasks and
 to describe the calibration and simulation conditions (parameter
 calibration period, warm-up periods, calibration criterion, etc.).</p>
-<div id="calculation-of-the-streamflow-regime" class="section level3">
-<h3>Calculation of the streamflow regime</h3>
+<div id="calculation-of-the-streamflow-regime" class="section level3"
+number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Calculation of the
+streamflow regime</h3>
 <p>The streamflow regime corresponds to the average variation of
 streamflows over the course of a year. Here, it is described by the
 series of 12 mean monthly streamflows, estimated over all available
@@ -404,8 +782,10 @@ to quantify possible seasonal changes of the streamflows, either in
 terms of amplitude or temporal dynamics (for example related to snow
 melt evolution).</p>
 </div>
-<div id="generation-of-future-climate-series" class="section level3">
-<h3>Generation of future climate series</h3>
+<div id="generation-of-future-climate-series" class="section level3"
+number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Generation of
+future climate series</h3>
 <p>Here, we do not have monthly climate series for the future period, so
 it is necessary to make strong assumptions to simulate the future regime
 of the studied catchment. A pragmatic approach suggested in this
@@ -428,8 +808,10 @@ developed by <span class="citation">Oudin et al. (2005)</span>, thanks
 to the dedicated <code>PE_Oudin()</code> function of the
 <strong><font color="#0BA6AA">airGR</font></strong> package.</p>
 </div>
-<div id="rainfall-runoff-model-and-snow-module" class="section level3">
-<h3>Rainfall-runoff model and snow module</h3>
+<div id="rainfall-runoff-model-and-snow-module" class="section level3"
+number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Rainfall-runoff
+model and snow module</h3>
 <p>You will use here the GR4J model <span class="citation">(Perrin,
 Michel, and Andréassian 2003)</span> associated with the CemaNeige snow
 module <span class="citation">(Valéry, Andréassian, and Perrin
@@ -456,14 +838,17 @@ function. A rainfall-runoff simulation can be performed with the
 <code>SimGR()</code> function, and a parameter calibration using the
 <code>CalGR()</code>.</p>
 </div>
-<div id="calibration-and-warm-up-period" class="section level3">
-<h3>Calibration (and warm-up) period</h3>
+<div id="calibration-and-warm-up-period" class="section level3"
+number="1.2.4">
+<h3><span class="header-section-number">1.2.4</span> Calibration (and
+warm-up) period</h3>
 <p>In this exercise, the warm-up period will start on 1 janvier 1999 and
 end on 31 août 2000, and the calibration period will start on 1
 septembre 2000 and end on 29 juin 2009.</p>
 </div>
-<div id="calibration-criterion" class="section level3">
-<h3>Calibration criterion</h3>
+<div id="calibration-criterion" class="section level3" number="1.2.5">
+<h3><span class="header-section-number">1.2.5</span> Calibration
+criterion</h3>
 <p>The calibration criterion to be considered in this exercise is the
 Nash and Sutcliffe criterion <span class="citation">(Nash and Sutcliffe
 1970)</span>, noted <span class="math inline">\(NSE\)</span> hereafter
@@ -497,8 +882,9 @@ criterion have to be set as arguments of the <code>CalGR()</code>
 function.</p>
 </div>
 <div id="automatic-parameter-calibration-of-the-model"
-class="section level3">
-<h3>Automatic parameter calibration of the model</h3>
+class="section level3" number="1.2.6">
+<h3><span class="header-section-number">1.2.6</span> Automatic parameter
+calibration of the model</h3>
 <p>The automatic parameter calibration aims at using an automatic
 algorithm to search in the parameter space for an optimum of the chosen
 objective function. It will automatically generate sets of parameters,
@@ -510,8 +896,8 @@ perform rainfall-runoff simulations for present and future climate
 periods.</p>
 </div>
 </div>
-<div id="data-available" class="section level2">
-<h2>Data available</h2>
+<div id="data-available" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Data available</h2>
 <p>The data set available to the rainfall-runoff modelling consists
 of:</p>
 <ul>
@@ -532,10 +918,13 @@ fellow climatologists presented in the introduction.</p>
 </div>
 </div>
 <div id="command-lines-for-the-production-of-simulations"
-class="section level1">
-<h1>Command lines for the production of simulations</h1>
-<div id="loading-and-formatting-of-data" class="section level2">
-<h2>Loading and formatting of data</h2>
+class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Command lines for the
+production of simulations</h1>
+<div id="loading-and-formatting-of-data" class="section level2"
+number="2.1">
+<h2><span class="header-section-number">2.1</span> Loading and
+formatting of data</h2>
 <p>The following command lines are used to read the data required to
 calibrate the GR4J rainfall-runoff model and to define the working
 periods (warm-up period, calibration period and simulation period):</p>
@@ -563,8 +952,9 @@ periods (warm-up period, calibration period and simulation period):</p>
 <p><img src="figure/v03_fig_hypso-1.png" width="66%" /></p>
 </div>
 <div id="automatic-calibration-of-gr4j-and-cemaneige"
-class="section level2">
-<h2>Automatic calibration of GR4J and CemaNeige</h2>
+class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Automatic calibration
+of GR4J and CemaNeige</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data processing for GR4J</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>prep_hist <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_obs<span class="sc">$</span>Date,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Precip     =</span> ts_obs<span class="sc">$</span>Ptot,</span>
@@ -604,9 +994,9 @@ class="section level2">
 </div>
 <div
 id="calculation-of-the-observed-and-simulated-regimes-over-the-present-time"
-class="section level2">
-<h2>Calculation of the observed and simulated regimes over the present
-time</h2>
+class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Calculation of the
+observed and simulated regimes over the present time</h2>
 <p>The following command lines allow the calculation of observed and
 simulated streamflow regimes at daily and monthly time steps.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daily regimes</span></span>
@@ -643,8 +1033,9 @@ CemaNeige) to reproduce the regime of the studied catchment.</p>
 <p><img src="figure/v03_fig_regime-1.png" width="98%" /></p>
 </div>
 <div id="generation-of-climate-series-for-the-future-period"
-class="section level2">
-<h2>Generation of climate series for the future period</h2>
+class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Generation of climate
+series for the future period</h2>
 <p>The following command lines allow the generation of climate series
 (PE, T and P) over the “future climate” period by using the series
 observed over the “present climate” period and transforming them from
@@ -717,8 +1108,9 @@ the climate changes estimated by climatologists.</p>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Lat =</span> lat, <span class="at">LatUnit =</span> <span class="st">&quot;deg&quot;</span>)</span></code></pre></div>
 </div>
 <div id="rainfall-runoff-simulation-for-the-future-period"
-class="section level2">
-<h2>Rainfall-runoff simulation for the future period</h2>
+class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Rainfall-runoff
+simulation for the future period</h2>
 <p>The following command lines allow us to perform a rainfall-runoff
 simulation of the “future climate” period from the climate series
 generated in the previous section.</p>
@@ -757,8 +1149,9 @@ generated in the previous section.</p>
 </div>
 <div
 id="simulated-streamflow-regime-calculations-over-the-future-period"
-class="section level2">
-<h2>Simulated streamflow regime calculations over the future period</h2>
+class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Simulated streamflow
+regime calculations over the future period</h2>
 <p>The following command lines are used to calculate the simulated
 streamflow regime over the future climate period.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daily regimes</span></span>
@@ -888,10 +1281,75 @@ href="https://doi.org/10.1016/j.jhydrol.2014.04.058">https://doi.org/10.1016/j.j
 </div>
 </div>
 
+<footer>
+  <div style="float:left"><img src="fig/logo_republique_francaise_CMJN.svg" alt="airGR logo" height=50px style="margin-top:-20px" /></div>
+  <div style="float:right">Developed by INRAE&nbsp;<a href="https://webgr.inrae.fr/en">Catchment Hydrology Research Group</a>&nbsp;&#x2013; Antony, France</div>
+</footer>
 
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
