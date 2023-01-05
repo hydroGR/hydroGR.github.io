@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Pierre Brigode &amp; Olivier Delaigue" />
+
+
+<title>Reconstitution de débits</title>
+
+<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<!-- NOTE: add "navbar-inverse" class for an alternate navbar background -->
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.html">airGRteaching</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="page_1_get_started_airGRteaching.html">Get Started</a></li>
+                <li class="Download">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Exercises<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-header">Introduction    </li>
+                        <li><a href="page_exo_v00_teaching_hydrology.html"    >Teaching hydrology with airGRteaching        </a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">English versions</li>
+                        <li><a href="page_exo_v01_EN_flow_reconstruction.html">1. Streamflow reconstruction                               </a></li>
+						<li><a href="page_exo_v02_EN_flow_forecasting.html"   >2. Low-flow forecasting                                    </a></li>
+						<li><a href="page_exo_v03_EN_impact_CC_flow.html"     >3. Impact of climate change on streamflow regime           </a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">French versions</li>
+						<li><a href="page_exo_v01_FR_flow_reconstruction.html">1. Reconstitution de débits                                </a></li>
+						<li><a href="page_exo_v02_FR_flow_forecasting.html"   >2. Prévision de bas débits                                 </a></li>
+						<li><a href="page_exo_v03_FR_impact_CC_flow.html"     >3. Impact du changement climatique sur le régime des débits</a></li>
+					</ul>
+				</li>
+				<li class="Download">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a tabindex="-1" href="https://CRAN.R-project.org/package=airGRteaching" onclick="window.open(this.href); return false;">Package</a></li>
+						<li><a tabindex="-1" href="https://CRAN.R-project.org/package=airGRteaching/airGRteaching.pdf" onclick="window.open(this.href); return false;">Manual</a></li>
+					</ul>
+				</li>
+				<li><a href="NEWS.html">News</a></li>
+				<li><a href="page_publications.html">Publications</a></li>				
+				<li><a href="page_faq.html">FAQ</a></li>
+				<li class="Download">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">airGR Galaxy<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="https://hydroGR.github.io/airGR/">airGR R-package</a></li>
+						<li><a href="https://CRAN.R-project.org/package=airGRdatasets">airGRdatasets R-package</a></li>
+						<li><a href="https://CRAN.R-project.org/package=airGRdatassim">airGRdatassim R-package</a></li>
+						<li><a href="https://airgriwrm.g-eau.fr/">airGRiwrm R-package</a></li>
+						<li><a href="https://sunshine.inrae.fr/app/airGRmaps">airGRmaps web app</a></li>
+					</ul>
+				</li>
+				<li><a tabindex="-1" href="https://sunshine.inrae.fr/app/airGRteaching" onclick="window.open(this.href); return false;">GUI Demo</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<a href='http://www.inrae.fr/en/' onclick="window.open(this.href); return false;", title="inrae.fr"><img src='fig/logo_inrae_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.inrae.fr/en/' onclick="window.open(this.href); return false;", title="webgr.inrae.fr"><img src='fig/logo_inrae_hydro_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.inrae.fr/software/airgrteaching/' onclick="window.open(this.href); return false;", title="aiGRteaching"><img src='fig/logo_airGRteaching_CMJN_square.png' style='width:45px;height:45px;'></a>
+				<a href='https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/' onclick="window.open(this.href); return false;", title="GitLab"><img src='fig/logo_gitlab_CMJN_square.svg' style='width:45px;height:45px;'></a>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div><!--/.container -->
+</div><!--/.navbar -->
+<p style ="margin-top: 15px;">
+<a href="https://CRAN.R-project.org/package=airGRteaching"><img src="https://www.r-pkg.org/badges/version-ago/airGRteaching" /></a>
+<a href="https://www.rdocumentation.org/packages/airGRteaching"><img src="http://cranlogs.r-pkg.org/badges/grand-total/airGRteaching?color=orange" /></a>
+<a href="https://www.r-project.org/Licenses/GPL-2">
+<svg xmlns="http://www.w3.org/2000/svg" width="095" height="020">
+  <linearGradient id="b" x2="0" y2="100%">
+    <stop offset="0" stop-opacity=".1" stop-color="#bbb"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <mask id="a">
+    <rect width="095" height="020" rx="3" fill="#fff" />
+  </mask>
+  <g mask="url(#a)">
+    <path fill="#555"    d="M00 0h055v20H00z"/>
+    <path fill="#00a3a6" d="M55 0h040v20H55z"/>
+    <path fill="url(#b)" d="M00 0h095v20H00z"/>
+  </g>
+  <g fill="#fff" text-anchor="middle"
+     font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
+    <text x="028" y="015" fill="#010101" fill-opacity=".3">
+      License
+    </text>
+    <text x="028" y="014">
+      License
+    </text>
+    <text x="075" y="015" fill="#010101" fill-opacity=".3">
+      GPL 2
+    </text>
+    <text x="075" y="014">
+      GPL 2
+    </text>
+  </g>
+</svg>
+</a>
+<a href="https://doi.org/10.29007/qsqj"><img src="https://img.shields.io/badge/doi-10.29007/qsqj-purple.svg" /></a>
+<a href="https://doi.org/10.15454/W0SSKT"><img src="https://img.shields.io/badge/doi-10.15454/W0SSKT-purple.svg" /></a>
+
+<!--
+<div class="htmlwigetsWarning" style="background-color:#0B9DA0;color:white;padding:10px;">
+<b>
+Warning:
+</b>
+<br>
+The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometimes unstable on latest versions of <b>RStudio</b>
+<br>
+<b>It is better to launch the GUI from the Rgui or from R into a terminal</b>
+<br>
+</div>
+
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">mirror &lt;-<span class="st"> &quot;https://cran.r-project.org/src/contrib/Archive/htmlwidgets&quot;</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">install.packages</span>(<span class="dt">pkgs =</span> <span class="kw">file.path</span>(mirror, <span class="st">&quot;htmlwidgets_1.3.tar.gz&quot;</span>),</a>
+<a class="sourceLine" id="cb2-3" title="3">                 <span class="dt">repos =</span> <span class="ot">NULL</span>, <span class="dt">type =</span> <span class="st">&quot;source&quot;</span>)</a></code></pre></div>
+</div>
+-->
+</p>
+
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Reconstitution de débits</h1>
+<h4 class="author">Pierre Brigode &amp; Olivier Delaigue</h4>
+
+</div>
+
+
+<div id="énoncé" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Énoncé</h1>
+<div id="contexte" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Contexte</h2>
+<p>Le bassin versant Esteron at Broc [La Clave] est un bassin de 442 km²
+pour lequel les débits mesurés sont disponibles de 1999 à 2018, mais
+avec quelques lacunes (notamment durant l’année 2014).</p>
+<p>L’exercice consiste à utiliser les données hydro-climatiques
+disponibles sur le bassin versant de et un modèle pluie-débit pour
+reconstituer les données manquantes par simulation hydrologique
+(cf. figure suivante). On doit pour cela s’assurer au préalable, par une
+procédure de calage-évaluation, que le modèle est d’un niveau de
+performance suffisant pour réaliser cet exercice de reconstitution.</p>
+<p>Ce travail sera réalisé en quatre étapes :</p>
+<ol style="list-style-type: decimal">
+<li>Calage manuel du modèle pluie-débit (sur la période dite de
+“calage”)</li>
+<li>Calage automatique du modèle pluie-débit (sur la période dite de
+“calage”).</li>
+<li>Evaluation des jeux de paramètres obtenus (sur la période dite d’
+“évaluation”).</li>
+<li>Reconstitution hydrologique par modélisation pluie-débit (sur la
+période dite de “simulation”).</li>
+</ol>
+<p><img src="figure/v01_fig_presentation-1.png" width="98%" /></p>
+</div>
+<div id="consignes" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Consignes</h2>
+<p>Cette section vise à définir les conditions de calage et de
+simulation du modèle hydrologique (période de calage des paramètres,
+périodes d’initialisation du modèle, critère de calage, etc.).</p>
+<div id="modèle-pluie-débit" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Modèle
+pluie-débit</h3>
+<p>Vous utiliserez le modèle GR2M <span class="citation">(Mouelhi et al.
+2006)</span>. Il s’agit d’un modèle pluie-débit conceptuel et global,
+fonctionnant au pas de temps mensuel et possédant deux paramètres. Il
+nécessite en entrée des séries temporelles continues de précipitations
+et d’évapotranspirations potentielles (ETP) mensuelles.</p>
+<p>Ce modèle est utilisable facilement grâce au package
+<strong><font color="#0BA6AA">airGRteaching</font></strong> <span
+class="citation">(Delaigue, Coron, and Brigode 2022; Delaigue et al.
+2018)</span>, développé pour le <a
+href="https://cran.r-project.org/">logiciel R</a> par l’<a
+href="https://webgr.inrae.fr/">équipe Hydrologie des bassins versants de
+l’unité de recherche HYCAR</a> (<a
+href="https://www.inrae.fr/">INRAE</a>, France).</p>
+<p>Les séries temporelles de précipitations, d’ETP et de débits peuvent
+être facilement mises en forme grâce à la fonction
+<code>PrepGR()</code>. On peut réaliser une simulation pluie-débit grâce
+à la fonction <code>SimGR()</code> et un calage des paramètres grâce à
+la fonction <code>CalGR()</code>.</p>
+</div>
+<div id="période-de-calage-et-dinitialisation" class="section level3"
+number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Période de calage
+(et d’initialisation)</h3>
+<p>GR2M, comme de nombreux modèles pluie-débit conceptuels, est
+constitué de réservoirs, dont les niveaux initiaux en début de
+simulation sont inconnus et ne peuvent pas être estimés par mesure. On
+doit donc choisir ces niveaux initiaux de manière arbitraire (ou en se
+basant sur un a priori). Cela peut induire des erreurs fortes du modèle,
+dans le cas où les conditions initiales estimées s’écartent de ce
+qu’elles devraient être en fonction des conditions climatiques
+antérieures. Pour limiter ces erreurs, une période d’initialisation
+(également appelée période de mise en route, ou de en anglais) est
+généralement considérée. Cette période, précédant la période de
+simulation, est utilisée pour permettre d’avoir des niveaux dans les
+réservoirs idnépendant de ces conditions initiales. Elle doit donc être
+plus longue que la mémoire du bassin aux conditions climatiques
+antérieures. Sur beaucoup de bassins versants, cette mémoire des
+conditions antérieures n’excède pas une année, mais sur d’autres
+présentant un comportement pluri-annuel, par exemple du fait de nappes,
+il peut être nécessaire de considérer plusieurs années pour
+l’initialisation du modèle. Durant cette période d’initialisation, les
+erreurs du modèle ne sont pas utilisées dans le calcul des critères de
+performance. Cela signifie qu’il n’est pas nécessaire de disposer de
+données de débit observé sur la période d’initialisation, mais seulement
+de données climatiques.</p>
+<p>Dans cet exercice, une période de 24 mois sera considérée, et
+débutera en janvier 2003 et s’achèvera en décembre 2004. Le pas de temps
+suivant (janvier 2005) constituera le premier pas de temps du calage du
+modèle.</p>
+<p>La période à considérer pour caler les paramètres de GR2M sur le
+bassin versant débute de ce fait en janvier 2005 et s’achèvera en
+décembre 2010.</p>
+</div>
+<div id="critère-de-calage" class="section level3" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Critère de
+calage</h3>
+<p>Le critère de calage considéré dans cet exercice est le critère de
+Nash et Sutcliffe <span class="citation">(Nash and Sutcliffe
+1970)</span>, noté <span class="math inline">\(NSE\)</span> par la suite
+(cf. équation suivante). Ce critère est largement utilisé en
+modélisation hydrologique.</p>
+<p>Le critère NSE, borné entre <span
+class="math inline">\(-\infty\)</span> et <span
+class="math inline">\(1\)</span>, permet de quantifier la performance
+d’un modèle de manière relative, en comparant une série de débits
+simulés avec un modèle dit “naïf”, ici la moyenne des débits observés
+(i.e. une série de débits constituée en chaque pas de temps par la
+moyenne des débits observés). Ainsi, une valeur de NSE égale à 1
+signifie une concordance parfaite entre les séries de débits observés et
+simulés (ce qui n’est jamais le cas), alors qu’une valeur de NSE
+inférieure à 0 signifie que la simulation considérée est moins
+performante que la simulation du modèle “naïf”. Le calcul de <span
+class="math inline">\(NSE\)</span> est détaillé dans l’équation
+suivante, dans laquelle <span class="math inline">\(Q_{obs,t}\)</span>
+est le débit observé au pas de temps <span
+class="math inline">\(t\)</span>, <span
+class="math inline">\(Q_{sim,t}\)</span> est le débit simulé au pas de
+temps <span class="math inline">\(t\)</span>, <span
+class="math inline">\(\overline{Q_{obs}}\)</span> est la moyenne des
+débits observés, et <span class="math inline">\(n\)</span> est le nombre
+d’observations :</p>
+<p><span class="math display">\[\begin{equation}
+NSE =
+1-\frac{\sum_{t=1}^{n}(Q_{obs,t}-Q_{sim,t})^{2}}{\sum_{t=1}^{n}(Q_{obs,t}-\overline{Q_{obs}})^{2}}
+\end{equation}\]</span></p>
+<p>Les différents éléments nécessaires pour le calcul du critère de
+calage doivent être renseignés en argument de la fonction
+<code>CalGR()</code>.</p>
+</div>
+<div id="estimation-manuelle-des-paramètres-de-gr2m"
+class="section level3" number="1.2.4">
+<h3><span class="header-section-number">1.2.4</span> Estimation manuelle
+des paramètres de GR2M</h3>
+<p>Cette tâche, pouvant être fastidieuse (mais très formatrice) et
+nécessitant une expertise certaine, est à réaliser en testant plusieurs
+jeux de paramètres de GR2M et en analysant la qualité des simulations
+produites sur la période de calage. Dans cet exercice, un maximum de 10
+jeux de paramètres du modèle seront à tester. Le premier jeu de
+paramètres à tester est constitué des valeurs médianes des paramètres de
+GR2M, définies par <span class="citation">Mouelhi et al. (2006)</span>
+après de nombreux calages du modèle sur différents bassins versants. Ces
+valeurs ainsi que les bornes de variations associées sont égales à :</p>
+<ul>
+<li>X1 : 380 [mm] (140 [mm] <span class="math inline">\(\leq\)</span> X1
+<span class="math inline">\(\leq\)</span> 2640 [mm]) ;</li>
+<li>X2 : 0.92 [-] (0.21 [-] <span class="math inline">\(\leq\)</span> X2
+<span class="math inline">\(\leq\)</span> 1.31 [-]).</li>
+</ul>
+</div>
+<div id="calage-automatique-des-paramètres-de-gr2m"
+class="section level3" number="1.2.5">
+<h3><span class="header-section-number">1.2.5</span> Calage automatique
+des paramètres de GR2M</h3>
+<p>L’estimation automatique de paramètres vise à utiliser un algorithme
+de recherche dans l’espace des paramètres. Cet algorithme va générer
+automatiquement des jeux de paramètres, les tester, et en générer
+d’autres en fonction des performances de ceux d’ores et déjà testés,
+jusqu’à converger vers un optimum. L’algorithme développé par <span
+class="citation">Michel (1991)</span> sera utilisé dans cet
+exercice.</p>
+</div>
+<div id="période-dévaluation" class="section level3" number="1.2.6">
+<h3><span class="header-section-number">1.2.6</span> Période
+d’évaluation</h3>
+<p>La période d’évaluation (ou de contrôle) est une période sur laquelle
+on applique un modèle préalablement calé sur une autre période. Il
+s’agit d’un mode d’utilisation classique d’un modèle, que l’on confronte
+à des situations inconnues. L’indépendance de la période d’évaluation
+par rapport à celle de calage permet de garantir que le modèle ne
+bénéficie pas d’information déjà connue. L’objectif de ce test est
+d’évaluer si le modèle est capable dans de nouvelles conditions
+climatiques, de maintenir le même niveau de performance (donc d’erreur)
+que celui rencontré en calage. Si oui, on peut estimer que les
+paramètres du modèle dépendent peu des conditions de la période de
+calage et donc que le modèle est transposable à des conditions
+différentes (on dit qu’il est robuste). Si non, il faut rechercher les
+causes de cette baisse de performance.</p>
+<p>Sur cette période d’évaluation, on peut évaluer les performances du
+modèle avec le même critère que celui utilisé pour le calage, mais on
+peut aussi compléter l’analyse avec d’autres critères.</p>
+<p>Dans cet exercice, la période d’évaluation débutera en janvier 2011,
+s’achèvera en décembre 2018, et sera précédée par une période
+d’initilisation débutant en janvier 2009 et s’achevant en décembre
+2010.</p>
+</div>
+<div id="période-de-simulation" class="section level3" number="1.2.7">
+<h3><span class="header-section-number">1.2.7</span> Période de
+simulation</h3>
+<p>La simulation finale vise, pour cet exercice, à reconstituer les
+débits du bassin versant Esteron at Broc [La Clave] pour les mois sans
+mesures. Afin d’avoir une seule simulation couvrant l’ensemble de la
+période étudiée, cette simulation débutera en janvier 2001 et s’achèvera
+en décembre 2018, avec une période d’initialisation de 24 mois débutant
+en janvier 1999 et s’achevant en décembre 2000.</p>
+</div>
+</div>
+<div id="données-disponibles" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Données
+disponibles</h2>
+<p>Les données disponibles pour la modélisation pluie-débit sont les
+suivantes :</p>
+<ul>
+<li>une chronique journalière de précipitations totales (liquides +
+solides) [mm/jour] (<code>Ptot</code>);</li>
+<li>une chronique journalière d’ETP calculée grâce à la formule d’<span
+class="citation">Oudin et al. (2005, mm/jour)</span>
+(<code>Evap</code>);</li>
+<li>une chronique journalière de débits exprimés en lame d’eau [mm/jour]
+(<code>Qmmd</code>).</li>
+</ul>
+<p>Les séries temporelles journalières peuvent être agrégées au pas de
+temps mensuel grâce à la fonction <code>SeriesAggreg()</code>.</p>
+</div>
+</div>
+<div id="éléments-de-correction" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Éléments de
+correction</h1>
+<div id="chargement-et-mise-en-forme-des-données" class="section level2"
+number="2.1">
+<h2><span class="header-section-number">2.1</span> Chargement et mise en
+forme des données</h2>
+<p>Les lignes de codes présentées ci-après permettent de lire les
+données nécessaires au calage du modèle pluie-débit GR2M et de définir
+les périodes temporelles de travail (période d’initialisation, période
+de calage et période d’évaluation) :</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Catchment data loading</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(airGRdatasets)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;Y643401001&quot;</span>, <span class="at">package =</span> <span class="st">&quot;airGRdatasets&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Catchment metadata</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Y643401001<span class="sc">$</span>Meta)</span></code></pre></div>
+<pre><code>## List of 4
+##  $ Code:List of 2
+##   ..$ H3: chr &quot;Y643401001&quot;
+##   ..$ H2: chr &quot;Y6434010&quot;
+##  $ Name: chr &quot;the Esteron at Broc [La Clave]&quot;
+##  $ Coor:List of 2
+##   ..$ X: num 7.16
+##   ..$ Y: num 43.8
+##  $ Area: num 442</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Observed daily time series</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ts_obs_d <span class="ot">&lt;-</span> Y643401001<span class="sc">$</span>TS</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the time series</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ts_obs_d)</span></code></pre></div>
+<pre><code>##       Date                 Ptot              Temp            Evap            Qls              Qmmd       
+##  Min.   :1999-01-01   Min.   :  0.000   Min.   :-7.20   Min.   :0.000   Min.   :   790   Min.   : 0.154  
+##  1st Qu.:2004-01-01   1st Qu.:  0.000   1st Qu.: 5.20   1st Qu.:0.600   1st Qu.:  1830   1st Qu.: 0.357  
+##  Median :2008-12-31   Median :  0.000   Median :10.40   Median :1.700   Median :  3100   Median : 0.605  
+##  Mean   :2008-12-31   Mean   :  2.934   Mean   :10.69   Mean   :1.989   Mean   :  6302   Mean   : 1.231  
+##  3rd Qu.:2013-12-31   3rd Qu.:  1.200   3rd Qu.:16.30   3rd Qu.:3.300   3rd Qu.:  6970   3rd Qu.: 1.361  
+##  Max.   :2018-12-31   Max.   :146.300   Max.   :27.20   Max.   :5.300   Max.   :167000   Max.   :32.611  
+##                                                                         NA&#39;s   :136      NA&#39;s   :136</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calibration period</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>per_cal_wup <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2003-01-01&quot;</span>, <span class="st">&quot;2004-12-01&quot;</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>per_cal_run <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2005-01-01&quot;</span>, <span class="st">&quot;2010-12-01&quot;</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluation period </span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>per_eva_wup <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2009-01-01&quot;</span>, <span class="st">&quot;2010-12-01&quot;</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>per_eva_run <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2011-01-01&quot;</span>, <span class="st">&quot;2018-12-01&quot;</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation period</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>per_sim_wup <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2000-12-01&quot;</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>per_sim_run <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2001-01-01&quot;</span>, <span class="st">&quot;2018-12-01&quot;</span>)</span></code></pre></div>
+</div>
+<div id="préparation-des-données-pour-gr2m" class="section level2"
+number="2.2">
+<h2><span class="header-section-number">2.2</span> Préparation des
+données pour GR2M</h2>
+<p>Les lignes de codes présentées ci-après visent à préparer les données
+disponibles pour leur utilisation par GR2M, grâce à aux fonctions
+<code>SeriesAggreg()</code> et <code>PrepGR()</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Monthly aggregation of observed daily time series</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ts_obs_m <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(ts_obs_d[, <span class="fu">c</span>(<span class="st">&quot;Date&quot;</span>, <span class="st">&quot;Ptot&quot;</span>, <span class="st">&quot;Evap&quot;</span>, <span class="st">&quot;Qmmd&quot;</span>, <span class="st">&quot;Temp&quot;</span>)],</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Format =</span> <span class="st">&quot;%Y%m&quot;</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ConvertFun =</span> <span class="fu">c</span>(<span class="st">&quot;sum&quot;</span>, <span class="st">&quot;sum&quot;</span>, <span class="st">&quot;sum&quot;</span>, <span class="st">&quot;mean&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data processing for GR2M</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>prep <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_obs_m<span class="sc">$</span>Date,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">Precip     =</span> ts_obs_m<span class="sc">$</span>Ptot,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">PotEvap    =</span> ts_obs_m<span class="sc">$</span>Evap, </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">Qobs       =</span> ts_obs_m<span class="sc">$</span>Qmmd,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">HydroModel =</span> <span class="st">&quot;GR2M&quot;</span>, </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">CemaNeige  =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+<div id="calage-manuel" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Calage manuel</h2>
+<p>Les lignes de code présentées ci-après illustrent les étapes
+nécessaires pour réaliser une simulation pluie-débit à partir d’un jeu
+de paramètres donné (ici le jeu constitué des valeurs par défault de
+GR2M) et pour calculer le critère NSE associé à cette simulation.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameter set to test</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>i_param_gr2m <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">X1 =</span> <span class="dv">380</span>, <span class="at">X2 =</span> <span class="fl">0.92</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation over the calibration period</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>i_sim_manu <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Param   =</span> i_param_gr2m,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">EffCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">WupPer  =</span> per_cal_wup, </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">SimPer  =</span> per_cal_run,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Crit. NSE[Q] = 0.8129</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calibration criterion</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">GetCrit</span>(i_sim_manu)</span></code></pre></div>
+<pre><code>##    NSE[Q] 
+## 0.8129469</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graphical assessment of the calibration performance</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(i_sim_manu)</span></code></pre></div>
+<p><img src="figure/v01_fig_cal_manu_gr2m-1.png" width="98%" /></p>
+<p>Le premier jeu de paramères testé (valeurs de GR2M par défaut) permet
+d’obtenir un critère NSE de 0.813, ce qui est une bonne performance
+générale. La figure précédente permet, quant à elle, de comparer la
+simulation obtenue avec les débits observés.</p>
+<p>À vous de jouer désormais ! Le jeu consiste à tester différentes
+valeurs des paramètres de GR2M, de réaliser une simulation et de
+calculer le critère NSE pour chaque jeu testé afin d’identifier le jeu
+semblant être optimal. L’analyse des hydrogrammes simulés, couplée à la
+comparaison de valeurs de NSE, permettra de “guider” la modification des
+valeurs des paramètres. Pour ce faire, vous pouvez intégrer le code
+précédent dans une boucle. À chaque itération, vous testez un nouveau
+jeu de paramètres et calculez le critère correspondant. Vous pouvez
+ainsi trouver le “meilleur” jeu de paramètres.</p>
+</div>
+<div id="calage-automatique" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Calage
+automatique</h2>
+<p>Les lignes de codes présentées ci-après permettent de caler le modèle
+GR2M sur la période dite de “calage”.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calibration</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>cal_auto <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">WupPer  =</span> per_cal_wup, </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">CalPer  =</span> per_cal_run,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
+##   Screening completed (9 runs)
+##       Param =  347.234,    0.907
+##       Crit. NSE[Q]       = 0.8019
+## Steepest-descent local search in progress
+##   Calibration completed (15 iterations, 64 runs)
+##       Param =  645.484,    0.932
+##       Crit. NSE[Q]       = 0.8557</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graphical assessment of the calibration performance</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cal_auto)</span></code></pre></div>
+<p><img src="figure/v01_fig_cal_auto_gr2m-1.png" width="98%" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get parameter values</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>param_cal <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_auto)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>param_cal</span></code></pre></div>
+<pre><code>## [1] 645.4837   0.9325</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get criterion value</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">GetCrit</span>(cal_auto)</span></code></pre></div>
+<pre><code>##    NSE[Q] 
+## 0.8556588</code></pre>
+<p>Les deux paramètres et la valeur du critère de calage (<span
+class="math inline">\(NSE\)</span>) obtenus après la procédure de calage
+automatique sont :</p>
+<ul>
+<li>X1 = 645 [mm]</li>
+<li>X2 = 0.932 [-]</li>
+<li><span class="math inline">\(NSE\)</span> = 0.856 [-]</li>
+</ul>
+<p>Les performances obtenues en calage sont jugées bonnes, avec un
+critère <span class="math inline">\(NSE\)</span> égal à 0.856.</p>
+<p>Les lignes de codes présentées ci-après permettent de stocker dans un
+même tableau les débits observés et les débits simulés avec le jeu de
+paramètres obtenu par calage automatique, afin de les comparer.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series on the calibration period</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ts_cal <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(cal_auto)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series on the entire period</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>ts_cal_all <span class="ot">&lt;-</span> <span class="fu">merge</span>(<span class="at">x =</span> ts_obs_m[, <span class="st">&quot;Date&quot;</span>, <span class="at">drop =</span> <span class="cn">FALSE</span>], <span class="at">y =</span> ts_cal, </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">by.x =</span> <span class="st">&quot;Date&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Dates&quot;</span>, </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>La figure suivante représente les séries de débits observés et
+simulés sur la période de calage.</p>
+<p><img src="figure/v01_fig_cal-1.png" width="98%" /></p>
+</div>
+<div id="evaluation" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Evaluation</h2>
+<p>Les lignes de codes présentées ci-après permettent d’utiliser le jeu
+de paramètres obtenus par calage automatique pour réaliser une
+simulation sur la période d’évaluation (2011-2018) et de calculer le
+score <span class="math inline">\(NSE\)</span> associé à cette
+simulation. Ce score constitue la performance en “contrôle” du
+modèle.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation over the evaluation period</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>eva <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">Param   =</span> param_cal,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">WupPer  =</span> per_eva_wup, </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">SimPer  =</span> per_eva_run,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">EffCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the criterion value</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="fu">GetCrit</span>(eva)</span></code></pre></div>
+<pre><code>##    NSE[Q] 
+## 0.8641404</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ts_eva <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(eva)</span></code></pre></div>
+<p>La performance obtenue par le modèle en évaluation est de 0.864.</p>
+<p>La figure suivante représente les séries de débits observés et
+simulés sur la période d’évaluation.</p>
+<p><img src="figure/v01_fig_eval-1.png" width="98%" /></p>
+</div>
+<div id="reconstitution" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Reconstitution</h2>
+<p>Les lignes de codes présentées ci-après permettent d’utiliser les
+paramètres obtenus par calage automatique pour simuler le débit sur
+l’ensemble de la période étudiée.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation over the entire period</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">Param   =</span> param_cal,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">WupPer  =</span> per_sim_wup, </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">SimPer  =</span> per_sim_run,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">EffCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the criterion value</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">GetCrit</span>(sim)</span></code></pre></div>
+<pre><code>##   NSE[Q] 
+## 0.844102</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ts_sim <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sim)</span></code></pre></div>
+<p>Les résultats de la simulation finale sont illustrés sur la figure
+suivante.</p>
+<p><img src="figure/v01_fig_sim-1.png" width="98%" /></p>
+</div>
+</div>
+<div id="références" class="section level1 unnumbered">
+<h1 class="unnumbered">Références</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-airGRteaching_man" class="csl-entry">
+Delaigue, O., L. Coron, and P. Brigode. 2022. <em><span
+class="nocase">airGRteaching</span>: Teaching Hydrological Modelling
+with <span>GR</span> (<span>Shiny</span> Interface Included)</em>. <em>R
+News</em>. <a
+href="https://doi.org/10.15454/W0SSKT">https://doi.org/10.15454/W0SSKT</a>.
+</div>
+<div id="ref-airGRteaching_pcd" class="csl-entry">
+Delaigue, O., G. Thirel, L. Coron, and P. Brigode. 2018. <span>“<span
+class="nocase">airGR</span> and <span
+class="nocase">airGRteaching</span>: Two Open-Source Tools for
+Rainfall-Runoff Modeling and Teaching Hydrology.”</span> In <em>HIC
+2018. 13th International Conference on Hydroinformatics</em>, edited by
+Goffredo La Loggia, Gabriele Freni, Valeria Puleo, and Mauro De Marchis,
+3:541–48. EPiC Series in Engineering. EasyChair. <a
+href="https://doi.org/10.29007/qsqj">https://doi.org/10.29007/qsqj</a>.
+</div>
+<div id="ref-michel_hydrologie_1991" class="csl-entry">
+Michel, C. 1991. <em>Hydrologie Appliquée Aux Petits Bassins
+Ruraux</em>. Cemagref, Antony.
+</div>
+<div id="ref-mouelhi_stepwise_2006" class="csl-entry">
+Mouelhi, S., C. Michel, C. Perrin, and V. Andréassian. 2006.
+<span>“Stepwise Development of a Two-Parameter Monthly Water Balance
+Model.”</span> <em>Journal of Hydrology</em> 318 (1–4): 200–214. <a
+href="https://doi.org/10.1016/j.jhydrol.2005.06.014">https://doi.org/10.1016/j.jhydrol.2005.06.014</a>.
+</div>
+<div id="ref-nash_river_1970" class="csl-entry">
+Nash, J. E., and J. V. Sutcliffe. 1970. <span>“River Flow Forecasting
+Through Conceptual Models Part <span>I</span> – <span>A</span>
+Discussion of Principles.”</span> <em>Journal of Hydrology</em> 10 (3):
+282–90. <a
+href="https://doi.org/10.1016/0022-1694(70)90255-6">https://doi.org/10.1016/0022-1694(70)90255-6</a>.
+</div>
+<div id="ref-oudin_which_2005" class="csl-entry">
+Oudin, L., F. Hervieu, C. Michel, C. Perrin, V. Andréassian, F. Anctil,
+and C. Loumagne. 2005. <span>“Which Potential Evapotranspiration Input
+for a Lumped Rainfall–Runoff Model?: <span>Part</span>
+2-<span>Towards</span> a Simple and Efficient Potential
+Evapotranspiration Model for Rainfall–Runoff Modelling.”</span>
+<em>Journal of Hydrology</em> 303 (1–4): 290–306. <a
+href="https://doi.org/10.1016/j.jhydrol.2004.08.026">https://doi.org/10.1016/j.jhydrol.2004.08.026</a>.
+</div>
+</div>
+</div>
+
+<footer>
+  <div style="float:left"><img src="fig/logo_republique_francaise_CMJN.svg" alt="airGR logo" height=50px style="margin-top:-20px" /></div>
+  <div style="float:right">Developed by INRAE&nbsp;<a href="https://webgr.inrae.fr/en">Catchment Hydrology Research Group</a>&nbsp;&#x2013; Antony, France</div>
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

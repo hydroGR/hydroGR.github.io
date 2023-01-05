@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Pierre Brigode &amp; Olivier Delaigue" />
+
+
+<title>Impact du changement climatique sur le régime des débits</title>
+
+<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<!-- NOTE: add "navbar-inverse" class for an alternate navbar background -->
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.html">airGRteaching</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="page_1_get_started_airGRteaching.html">Get Started</a></li>
+                <li class="Download">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Exercises<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-header">Introduction    </li>
+                        <li><a href="page_exo_v00_teaching_hydrology.html"    >Teaching hydrology with airGRteaching        </a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">English versions</li>
+                        <li><a href="page_exo_v01_EN_flow_reconstruction.html">1. Streamflow reconstruction                               </a></li>
+						<li><a href="page_exo_v02_EN_flow_forecasting.html"   >2. Low-flow forecasting                                    </a></li>
+						<li><a href="page_exo_v03_EN_impact_CC_flow.html"     >3. Impact of climate change on streamflow regime           </a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">French versions</li>
+						<li><a href="page_exo_v01_FR_flow_reconstruction.html">1. Reconstitution de débits                                </a></li>
+						<li><a href="page_exo_v02_FR_flow_forecasting.html"   >2. Prévision de bas débits                                 </a></li>
+						<li><a href="page_exo_v03_FR_impact_CC_flow.html"     >3. Impact du changement climatique sur le régime des débits</a></li>
+					</ul>
+				</li>
+				<li class="Download">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a tabindex="-1" href="https://CRAN.R-project.org/package=airGRteaching" onclick="window.open(this.href); return false;">Package</a></li>
+						<li><a tabindex="-1" href="https://CRAN.R-project.org/package=airGRteaching/airGRteaching.pdf" onclick="window.open(this.href); return false;">Manual</a></li>
+					</ul>
+				</li>
+				<li><a href="NEWS.html">News</a></li>
+				<li><a href="page_publications.html">Publications</a></li>				
+				<li><a href="page_faq.html">FAQ</a></li>
+				<li class="Download">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">airGR Galaxy<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="https://hydroGR.github.io/airGR/">airGR R-package</a></li>
+						<li><a href="https://CRAN.R-project.org/package=airGRdatasets">airGRdatasets R-package</a></li>
+						<li><a href="https://CRAN.R-project.org/package=airGRdatassim">airGRdatassim R-package</a></li>
+						<li><a href="https://airgriwrm.g-eau.fr/">airGRiwrm R-package</a></li>
+						<li><a href="https://sunshine.inrae.fr/app/airGRmaps">airGRmaps web app</a></li>
+					</ul>
+				</li>
+				<li><a tabindex="-1" href="https://sunshine.inrae.fr/app/airGRteaching" onclick="window.open(this.href); return false;">GUI Demo</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<a href='http://www.inrae.fr/en/' onclick="window.open(this.href); return false;", title="inrae.fr"><img src='fig/logo_inrae_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.inrae.fr/en/' onclick="window.open(this.href); return false;", title="webgr.inrae.fr"><img src='fig/logo_inrae_hydro_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.inrae.fr/software/airgrteaching/' onclick="window.open(this.href); return false;", title="aiGRteaching"><img src='fig/logo_airGRteaching_CMJN_square.png' style='width:45px;height:45px;'></a>
+				<a href='https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/' onclick="window.open(this.href); return false;", title="GitLab"><img src='fig/logo_gitlab_CMJN_square.svg' style='width:45px;height:45px;'></a>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div><!--/.container -->
+</div><!--/.navbar -->
+<p style ="margin-top: 15px;">
+<a href="https://CRAN.R-project.org/package=airGRteaching"><img src="https://www.r-pkg.org/badges/version-ago/airGRteaching" /></a>
+<a href="https://www.rdocumentation.org/packages/airGRteaching"><img src="http://cranlogs.r-pkg.org/badges/grand-total/airGRteaching?color=orange" /></a>
+<a href="https://www.r-project.org/Licenses/GPL-2">
+<svg xmlns="http://www.w3.org/2000/svg" width="095" height="020">
+  <linearGradient id="b" x2="0" y2="100%">
+    <stop offset="0" stop-opacity=".1" stop-color="#bbb"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <mask id="a">
+    <rect width="095" height="020" rx="3" fill="#fff" />
+  </mask>
+  <g mask="url(#a)">
+    <path fill="#555"    d="M00 0h055v20H00z"/>
+    <path fill="#00a3a6" d="M55 0h040v20H55z"/>
+    <path fill="url(#b)" d="M00 0h095v20H00z"/>
+  </g>
+  <g fill="#fff" text-anchor="middle"
+     font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
+    <text x="028" y="015" fill="#010101" fill-opacity=".3">
+      License
+    </text>
+    <text x="028" y="014">
+      License
+    </text>
+    <text x="075" y="015" fill="#010101" fill-opacity=".3">
+      GPL 2
+    </text>
+    <text x="075" y="014">
+      GPL 2
+    </text>
+  </g>
+</svg>
+</a>
+<a href="https://doi.org/10.29007/qsqj"><img src="https://img.shields.io/badge/doi-10.29007/qsqj-purple.svg" /></a>
+<a href="https://doi.org/10.15454/W0SSKT"><img src="https://img.shields.io/badge/doi-10.15454/W0SSKT-purple.svg" /></a>
+
+<!--
+<div class="htmlwigetsWarning" style="background-color:#0B9DA0;color:white;padding:10px;">
+<b>
+Warning:
+</b>
+<br>
+The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometimes unstable on latest versions of <b>RStudio</b>
+<br>
+<b>It is better to launch the GUI from the Rgui or from R into a terminal</b>
+<br>
+</div>
+
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">mirror &lt;-<span class="st"> &quot;https://cran.r-project.org/src/contrib/Archive/htmlwidgets&quot;</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">install.packages</span>(<span class="dt">pkgs =</span> <span class="kw">file.path</span>(mirror, <span class="st">&quot;htmlwidgets_1.3.tar.gz&quot;</span>),</a>
+<a class="sourceLine" id="cb2-3" title="3">                 <span class="dt">repos =</span> <span class="ot">NULL</span>, <span class="dt">type =</span> <span class="st">&quot;source&quot;</span>)</a></code></pre></div>
+</div>
+-->
+</p>
+
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Impact du changement climatique sur le
+régime des débits</h1>
+<h4 class="author">Pierre Brigode &amp; Olivier Delaigue</h4>
+
+</div>
+
+
+<div id="énoncé" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Énoncé</h1>
+<div id="contexte" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Contexte</h2>
+<p>Le nouveau rapport du Groupe d’experts intergouvernemental sur
+l’évolution du climat (<a href="https://www.ipcc.ch/">GIEC</a>) vient
+d’être publié, annonçant les dernières tendances climatiques globales
+simulées par la dernière version de plusieurs modèles climatiques.</p>
+<p>Vos collègues climatologues ont appliqué plusieurs méthodes de
+descente d’échelle avec pour objectif de transformer les projections
+climatiques globales à large échelle proposées par le GIEC, à une
+échelle spatiale compatible avec une analyse hydrologique à l’échelle de
+votre bassin versant, Durance at Embrun [La Clapière] - DREAL PACA. Vous
+suivrez la méthodologie appliquée par <span class="citation">Sauquet et
+al. (2015)</span> dans le cadre du <a
+href="https://hal.inrae.fr/view/index/identifiant/hal-02601503">projet
+R²D²</a>, quantifiant notamment le futur de la ressource en eau de la
+Durance at Embrun [La Clapière] - DREAL PACA en 2050. Le produit final
+proposé par vos collègues climatologues est un tableau de changements
+moyens (i) de températures moyennes mensuelles et (ii) de cumuls
+mensuels de précipitation, selon trois scénarios. Ces changements ont
+été calculés en comparant une période de “climat présent” (notée CP)
+centrée autour de l’année 2000 (1990-2010) à une période de “climat
+futur” (notée CF) centrée autour de l’année 2050 (2040–2060). Ils sont
+présentés dans le tableau suivant, et révèlent une augmentation des
+températures de l’air (plus marquée en été pour les scénarios 2 et 3),
+une diminution des précipitations en été et une augmentation des
+précipitations à l’automne.</p>
+<p>Vous êtes chargé.es de quantifier l’impact de ces changements
+climatiques sur le régime des débits de Durance at Embrun [La Clapière]
+- DREAL PACA à partir des résultats de vos collègues climatologues et
+grâce à une modélisation pluie-débit (cf. figure suivante).</p>
+<p>Ce travail sera réalisé en quatre étapes :</p>
+<ol style="list-style-type: decimal">
+<li>Génération des séries climatiques futures</li>
+<li>Calage du modèle hydrologique associé à un module de neige sur la
+période historique.</li>
+<li>Simulation des débits générés par les séries climatiques
+futures</li>
+<li>Comparaison des régimes de débits “temps présent” et “temps
+futur”.</li>
+</ol>
+<table>
+<caption>Monthly mean air temperature scenarios (°C), calculated by
+comparing the present climate period with the future climate
+period.</caption>
+<colgroup>
+<col width="26%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Jan</th>
+<th align="right">Feb</th>
+<th align="right">Mar</th>
+<th align="right">Apr</th>
+<th align="right">May</th>
+<th align="right">Jun</th>
+<th align="right">Jul</th>
+<th align="right">Aug</th>
+<th align="right">Sep</th>
+<th align="right">Oct</th>
+<th align="right">Nov</th>
+<th align="right">Dec</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Temp. scenario 1</td>
+<td align="right">1.5</td>
+<td align="right">1.5</td>
+<td align="right">1.5</td>
+<td align="right">1.5</td>
+<td align="right">1.5</td>
+<td align="right">1.5</td>
+<td align="right">1.5</td>
+<td align="right">1.5</td>
+<td align="right">1.5</td>
+<td align="right">1.5</td>
+<td align="right">1.5</td>
+<td align="right">1.5</td>
+</tr>
+<tr class="even">
+<td align="left">Temp. scenario 2</td>
+<td align="right">2.5</td>
+<td align="right">2.5</td>
+<td align="right">3.0</td>
+<td align="right">3.0</td>
+<td align="right">3.5</td>
+<td align="right">4.0</td>
+<td align="right">4.0</td>
+<td align="right">3.5</td>
+<td align="right">3.0</td>
+<td align="right">3.0</td>
+<td align="right">2.5</td>
+<td align="right">2.5</td>
+</tr>
+<tr class="odd">
+<td align="left">Temp. scenario 3</td>
+<td align="right">3.5</td>
+<td align="right">3.5</td>
+<td align="right">4.0</td>
+<td align="right">4.5</td>
+<td align="right">5.0</td>
+<td align="right">6.0</td>
+<td align="right">6.0</td>
+<td align="right">5.0</td>
+<td align="right">4.5</td>
+<td align="right">4.0</td>
+<td align="right">3.5</td>
+<td align="right">3.5</td>
+</tr>
+</tbody>
+</table>
+<table style="width:100%;">
+<caption>Monthly total precipitation scenarios (%), calculated by
+comparing the present climate period with the future climate
+period.</caption>
+<colgroup>
+<col width="28%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Jan</th>
+<th align="right">Feb</th>
+<th align="right">Mar</th>
+<th align="right">Apr</th>
+<th align="right">May</th>
+<th align="right">Jun</th>
+<th align="right">Jul</th>
+<th align="right">Aug</th>
+<th align="right">Sep</th>
+<th align="right">Oct</th>
+<th align="right">Nov</th>
+<th align="right">Dec</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Precip. scenario 1</td>
+<td align="right">10</td>
+<td align="right">10</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">-5</td>
+<td align="right">-10</td>
+<td align="right">-10</td>
+<td align="right">-5</td>
+<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">10</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">Precip. scenario 2</td>
+<td align="right">15</td>
+<td align="right">15</td>
+<td align="right">7</td>
+<td align="right">0</td>
+<td align="right">-7</td>
+<td align="right">-15</td>
+<td align="right">-15</td>
+<td align="right">-7</td>
+<td align="right">0</td>
+<td align="right">7</td>
+<td align="right">25</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="left">Precip. scenario 3</td>
+<td align="right">20</td>
+<td align="right">15</td>
+<td align="right">10</td>
+<td align="right">0</td>
+<td align="right">-15</td>
+<td align="right">-30</td>
+<td align="right">-30</td>
+<td align="right">-15</td>
+<td align="right">0</td>
+<td align="right">20</td>
+<td align="right">40</td>
+<td align="right">30</td>
+</tr>
+</tbody>
+</table>
+<p><img src="figure/v03_fig_presentation-1.png" width="98%" /></p>
+</div>
+<div id="consignes" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Consignes</h2>
+<p>Cette section vise à expliciter certaines tâches attendues et à
+décrire les conditions de calage et de simulation (période de calage des
+paramètres, périodes d’initialisation des réservoirs, critère de calage,
+etc.).</p>
+<div id="calcul-du-régime-des-débits" class="section level3"
+number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Calcul du régime
+des débits</h3>
+<p>Le régime des débits correspond à leurs variations moyennes au cours
+d’une année. Ici, il est décrit par la série des 12 débits moyens
+mensuels, estimés sur l’ensemble des années disponibles. Le débit moyen
+mensuel du mois de janvier est donc calculé en faisant la moyenne des
+débits de janvier des différentes années disponibles. L’année moyenne
+ainsi constituée résume le fonctionnement hydrologique du bassin étudié
+sur une période donnée et permet de distinguer des saisons de basses
+eaux et de hautes eaux. Dans un contexte de changement climatique,
+l’analyse de l’évolution du régime permet de quantifier d’éventuels
+changements saisonniers des débits, que ce soit en termes d’amplitude ou
+de dynamique temporelle (par exemple liés à des évolutions dans la fonte
+de la neige).</p>
+</div>
+<div id="génération-des-séries-climatiques-futures"
+class="section level3" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Génération des
+séries climatiques futures</h3>
+<p>Ici, nous ne disposons pas de séries climatiques mensuelles pour la
+période future, il est donc nécessaire de faire des hypothèses fortes
+pour simuler le régime futur du bassin étudié. Une approche pragmatique
+suggérée dans cet exercice est d’appliquer les changements mensuels de
+précipitations et de températures de l’air données par les climatologues
+aux séries temporelles observées sur la période de climat présent.
+Ainsi, l’augmentation moyenne des précipitations de janvier de 10 %
+prévue par le scénario 1 est considérée comme systématique pour tous les
+mois de janvier futurs.</p>
+<p>Pour appliquer les évolutions mensuelles aux séries journalières, une
+approche consiste à interpoler au pas de temps journalier les deltas
+mensuels, en attribuant leur valeur au 15 de chaque mois. Cette approche
+permet d’estimer, pour chaque scénario et chaque variable, une valeur de
+delta pour chaque jour julien.</p>
+<p>Une série de précipitations “futures” journalières peut alors être
+constituée en multipliant les précipitations journalières observées par
+le delta estimé pour chaque jour julien.</p>
+<p>Les séries d’évapotranspiration potentielle, nécéssaires au
+fonctionnement du modèle hydrologique utilisé, seront estimées à partir
+de la formule développée par <span class="citation">Oudin et al.
+(2005)</span>, grâce à la fonction <code>PE_Oudin()</code> du package
+<strong><font color="#0BA6AA">airGR</font></strong>).</p>
+</div>
+<div id="modèle-pluie-débit-et-module-de-neige" class="section level3"
+number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Modèle pluie-débit
+et module de neige</h3>
+<p>Vous utiliserez ici le modèle GR4J <span class="citation">(Perrin,
+Michel, and Andréassian 2003)</span> associé au module de neige
+CemaNeige <span class="citation">(Valéry, Andréassian, and Perrin
+2014)</span>.</p>
+<p>GR4J est un modèle pluie-débit conceptuel et global, fonctionnant au
+pas de temps journalier et possédant 4 paramètres. Il nécessite en
+entrée des séries temporelles continues de précipitations et
+d’évapotranspirations potentielles (ETP) journalières.</p>
+<p>Le module d’accumulation et de fonte de la neige CemaNeige fonctionne
+également au pas de temps journalier, et necéssite en entrée une
+distribution de l’altitude du bassin versant étudié, ainsi que de séries
+temporelles décrivant la température de l’air au sein du bassin
+versant.</p>
+<p>Ces modèles sont utilisables facilement grâce au package
+<strong><font color="#0BA6AA">airGRteaching</font></strong> <span
+class="citation">(Delaigue, Coron, and Brigode 2022; Delaigue et al.
+2018)</span>, développé pour le <a
+href="https://cran.r-project.org/">logiciel R</a> par l’<a
+href="https://webgr.inrae.fr/">équipe Hydrologie des bassins versants de
+l’unité de recherche HYCAR</a> (<a
+href="https://www.inrae.fr/">INRAE</a>, France).</p>
+<p>Les séries temporelles de précipitations, de températures de l’air,
+d’ETP et de débits peuvent être facilement mises en forme grâce à la
+fonction <code>PrepGR()</code>. On peut réaliser une simulation
+pluie-débit grâce à la fonction <code>SimGR()</code> et un calage des
+paramètres grâce à la fonction <code>CalGR()</code>.</p>
+</div>
+<div id="période-de-calage-et-dinitialisation" class="section level3"
+number="1.2.4">
+<h3><span class="header-section-number">1.2.4</span> Période de calage
+(et d’initialisation)</h3>
+<p>Dans cet exercice, la période d’initialisation commencera le 1
+janvier 1999 et s’achèvera le 31 août 2000, et la période de calage
+commencera le 1 septembre 2000 et s’achèvera le 29 juin 2009 .</p>
+</div>
+<div id="critère-de-calage" class="section level3" number="1.2.5">
+<h3><span class="header-section-number">1.2.5</span> Critère de
+calage</h3>
+<p>Le critère de calage considéré dans cet exercice est le critère de
+Nash et Sutcliffe <span class="citation">(Nash and Sutcliffe
+1970)</span>, noté <span class="math inline">\(NSE\)</span> par la suite
+(cf. équation suivante). Ce critère est largement utilisé en
+modélisation hydrologique.</p>
+<p>Le critère NSE, borné entre <span
+class="math inline">\(-\infty\)</span> et <span
+class="math inline">\(1\)</span>, permet de quantifier la performance
+d’un modèle de manière relative, en comparant une série de débits
+simulés avec un modèle dit “naïf”, ici la moyenne des débits observés
+(i.e. une série de débits constituée en chaque pas de temps par la
+moyenne des débits observés). Ainsi, une valeur de NSE égale à 1
+signifie une concordance parfaite entre les séries de débits observés et
+simulés (ce qui n’est jamais le cas), alors qu’une valeur de NSE
+inférieure à 0 signifie que la simulation considérée est moins
+performante que la simulation du modèle “naïf”. Le calcul de <span
+class="math inline">\(NSE\)</span> est détaillé dans l’équation
+suivante, dans laquelle <span class="math inline">\(Q_{obs,t}\)</span>
+est le débit observé au pas de temps <span
+class="math inline">\(t\)</span>, <span
+class="math inline">\(Q_{sim,t}\)</span> est le débit simulé au pas de
+temps <span class="math inline">\(t\)</span>, <span
+class="math inline">\(\overline{Q_{obs}}\)</span> est la moyenne des
+débits observés, et <span class="math inline">\(n\)</span> est le nombre
+d’observations :</p>
+<p><span class="math display">\[\begin{equation}
+NSE =
+1-\frac{\sum_{t=1}^{n}(Q_{obs,t}-Q_{sim,t})^{2}}{\sum_{t=1}^{n}(Q_{obs,t}-\overline{Q_{obs}})^{2}}
+\end{equation}\]</span></p>
+<p>Les différents éléments nécessaires pour le calcul du critère de
+calage doivent être renseignés en argument de la fonction
+<code>CalGR()</code>.</p>
+</div>
+<div id="calage-automatique-des-paramètres-du-modèle"
+class="section level3" number="1.2.6">
+<h3><span class="header-section-number">1.2.6</span> Calage automatique
+des paramètres du modèle</h3>
+<p>Le calage automatique de paramètres vise à utiliser un algorithme
+automatique de recherche dans l’espace des paramètres, d’un optimum de
+la fonction objectif choisie. Il va générer automatiquement des jeux de
+paramètres, les tester, et en générer d’autres en fonction des
+performances de ceux d’ores et déjà testés. L’algorithme développé par
+<span class="citation">Michel (1991)</span> sera utilisé dans cet
+exercice.</p>
+<p>Les paramètres obtenus après calage seront ensuite utilisés pour
+réaliser les simulations pluie-débit des périodes de climat présent et
+de climat futur.</p>
+</div>
+</div>
+<div id="données-disponibles" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Données
+disponibles</h2>
+<p>Les données disponibles pour la modélisation pluie-débit sont les
+suivantes :</p>
+<ul>
+<li>une chronique journalière de précipitations totales (liquides +
+solides) [mm/jour] (<code>Ptot</code>);</li>
+<li>une chronique journalière de températures de l’air [°C]
+(<code>Temp</code>);</li>
+<li>une chronique journalière d’ETP calculée grâce à la formule d’<span
+class="citation">Oudin et al. (2005, mm/jour)</span>
+(<code>Evap</code>);</li>
+<li>une chronique journalière de débits exprimés en lame d’eau [mm/jour]
+(<code>Qmmd</code>);</li>
+<li>une distribution de l’altitude au sein du bassin versant (courbe
+hypsométrique) [m] (<code>Hypso</code>).</li>
+</ul>
+<p>Vous disposez également des tableaux des changements mensuels moyens
+estimés par vos collègues climatologues présentés en introduction.</p>
+</div>
+</div>
+<div id="éléments-de-correction" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Éléments de
+correction</h1>
+<div id="chargement-et-mise-en-forme-des-données" class="section level2"
+number="2.1">
+<h2><span class="header-section-number">2.1</span> Chargement et mise en
+forme des données</h2>
+<p>Les lignes de codes présentées ci-après permettent de lire les
+données nécessaires au calage du modèle pluie-débit GR4J et de définir
+les périodes temporelles de travail (période d’initialisation, période
+de calage et période de simulation) :</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Catchment data loading</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(airGRdatasets)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;X031001001&quot;</span>, <span class="at">package =</span> <span class="st">&quot;airGRdatasets&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Observed daily time series</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ts_obs <span class="ot">&lt;-</span> X031001001<span class="sc">$</span>TS</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Latitude of the catchment outlet</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>lat <span class="ot">&lt;-</span> X031001001<span class="sc">$</span>Meta<span class="sc">$</span>Coor<span class="sc">$</span>Y</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Catchment elevation distribution</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>hypso <span class="ot">&lt;-</span> X031001001<span class="sc">$</span>Hypso</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Warm-up period</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>per_ini <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2000-08-31&quot;</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Calibration period</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>per_cal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2000-09-01&quot;</span>, <span class="st">&quot;2009-06-29&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Elevation distribution</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> hypso,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Frequency (%)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Catchment elevation [m]&quot;</span>)</span></code></pre></div>
+<p><img src="figure/v03_fig_hypso-1.png" width="66%" /></p>
+</div>
+<div id="calage-automatique-de-gr4j-et-de-cemaneige"
+class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Calage automatique de
+GR4J et de CemaNeige</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data processing for GR4J</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>prep_hist <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_obs<span class="sc">$</span>Date,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Precip     =</span> ts_obs<span class="sc">$</span>Ptot,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">PotEvap    =</span> ts_obs<span class="sc">$</span>Evap,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">TempMean   =</span> ts_obs<span class="sc">$</span>Temp,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ZInputs    =</span> hypso[<span class="dv">51</span>],</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">HypsoData  =</span> hypso,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Qobs       =</span> ts_obs<span class="sc">$</span>Qmmd,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">HydroModel =</span> <span class="st">&quot;GR4J&quot;</span>, </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">CemaNeige  =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calibration step</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>cal_hist <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep_hist, </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                  <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                  <span class="at">WupPer  =</span> per_ini, </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">CalPer  =</span> per_cal,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
+##   Screening completed (729 runs)
+##       Param =  432.681,   -0.649,   83.096,    2.384,    0.705,    3.787
+##       Crit. NSE[Q]       = 0.7956
+## Steepest-descent local search in progress
+##   Calibration completed (41 iterations, 1196 runs)
+##       Param =  482.992,    0.601,  275.889,    1.369,    0.333,    3.942
+##       Crit. NSE[Q]       = 0.9075</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get parameter and criterion values</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>param_cal_hist <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_hist)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">GetCrit</span>(cal_hist)</span></code></pre></div>
+<pre><code>##    NSE[Q] 
+## 0.9075078</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graphical assessment</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cal_hist)</span></code></pre></div>
+<p><img src="figure/v03_fig_cal-1.png" width="98%" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ts_qhist <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(cal_hist)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ts_qhist <span class="ot">&lt;-</span> ts_qhist[, <span class="fu">c</span>(<span class="st">&quot;Dates&quot;</span>, <span class="st">&quot;Qobs&quot;</span>, <span class="st">&quot;Qsim&quot;</span>)]</span></code></pre></div>
+</div>
+<div id="calcul-des-régimes-observé-et-simulé-sur-la-période-cp"
+class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Calcul des régimes
+observé et simulé sur la période CP</h2>
+<p>Les lignes de codes présentées ci-après permettent de calculer les
+régimes observés et simulés des débits aux pas de temps journaliers et
+mensuels.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daily regimes</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>reg_hist_d <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(ts_qhist,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">Format =</span> <span class="st">&quot;%d&quot;</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">ConvertFun =</span> <span class="fu">c</span>(<span class="st">&quot;mean&quot;</span>, <span class="st">&quot;mean&quot;</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>is_feb29 <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="at">x =</span> reg_d<span class="sc">$</span>Date, <span class="at">format =</span> <span class="st">&quot;%m-%d&quot;</span>) <span class="sc">==</span> <span class="st">&quot;02-29&quot;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>reg_hist_d <span class="ot">&lt;-</span> reg_d[<span class="sc">!</span>is_feb29, ]</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Monthly regimes</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>reg_hist_m <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(ts_qhist,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                           <span class="at">Format =</span> <span class="st">&quot;%m&quot;</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>                           <span class="at">ConvertFun =</span> <span class="fu">c</span>(<span class="st">&quot;sum&quot;</span>, <span class="st">&quot;sum&quot;</span>))</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculated regimes</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>reg_hist_m</span></code></pre></div>
+<pre><code>##           Dates     Qobs      Qsim
+## 2270 2000-09-01  339.928  342.9322
+## 2545 2000-10-01  376.959  424.5159
+## 2856 2000-11-01  317.620  413.6535
+## 3165 2000-12-01  241.386  312.4544
+## 2    2001-01-01  219.614  248.8342
+## 423  2001-02-01  166.265  192.1759
+## 717  2001-03-01  291.189  286.5678
+## 1068 2001-04-01  471.406  370.3787
+## 1221 2001-05-01 1209.560 1104.5823
+## 1537 2001-06-01 1174.049 1112.9204
+## 1807 2001-07-01  554.159  509.9024
+## 2076 2001-08-01  369.625  326.5216</code></pre>
+<p>Les régimes ainsi calculés peuvent être représentés graphiquement
+(cf. figure suivante). La comparaison des deux régimes permet d’évaluer
+la capacité du modèle pluie-débit (ici GR4J et CemaNeige) à reproduire
+le régime du bassin étudié.</p>
+<p><img src="figure/v03_fig_regime-1.png" width="98%" /></p>
+</div>
+<div id="génération-des-séries-climatiques-de-la-période-future"
+class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Génération des séries
+climatiques de la période future</h2>
+<p>Les lignes de codes présentées ci-après permettent de générer des
+séries climatiques (ETP, T et P) sur la période de “climat futur” en
+utilisant les séries observées sur la période de “climat présent” et en
+les transformant à partir des changements climatiques estimés par les
+climatologues.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Delta of temperature (assigned on the 15th of each month)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>delta_temp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Month =</span> <span class="fu">sprintf</span>(<span class="st">&quot;%02i-15&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Tscen1 =</span> <span class="fu">rep</span>(<span class="fl">1.5</span>, <span class="dv">12</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Tscen2 =</span> <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="fl">2.5</span>, <span class="fl">3.0</span>, <span class="fl">3.0</span>, <span class="fl">3.5</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">3.5</span>, <span class="fl">3.0</span>, <span class="fl">3.0</span>, <span class="fl">2.5</span>, <span class="fl">2.5</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Tscen3 =</span> <span class="fu">c</span>(<span class="fl">3.5</span>, <span class="fl">3.5</span>, <span class="fl">4.0</span>, <span class="fl">4.5</span>, <span class="fl">5.0</span>, <span class="fl">6.0</span>, <span class="fl">6.0</span>, <span class="fl">5.0</span>, <span class="fl">4.5</span>, <span class="fl">4.0</span>, <span class="fl">3.5</span>, <span class="fl">3.5</span>))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Delta of precipitation (assigned on the 15th of each month)</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>delta_ptot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Month =</span> <span class="fu">sprintf</span>(<span class="st">&quot;%02i-15&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>),</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Pscen1 =</span> <span class="fu">c</span>(<span class="sc">+</span><span class="dv">10</span>, <span class="sc">+</span><span class="dv">10</span>, <span class="sc">+</span><span class="dv">05</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">05</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">05</span>, <span class="dv">0</span>, <span class="sc">+</span><span class="dv">05</span>, <span class="sc">+</span><span class="dv">10</span>, <span class="sc">+</span><span class="dv">10</span>),</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Pscen2 =</span> <span class="fu">c</span>(<span class="sc">+</span><span class="dv">15</span>, <span class="sc">+</span><span class="dv">15</span>, <span class="sc">+</span><span class="dv">07</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">07</span>, <span class="sc">-</span><span class="dv">15</span>, <span class="sc">-</span><span class="dv">15</span>, <span class="sc">-</span><span class="dv">07</span>, <span class="dv">0</span>, <span class="sc">+</span><span class="dv">07</span>, <span class="sc">+</span><span class="dv">25</span>, <span class="sc">+</span><span class="dv">20</span>),</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Pscen3 =</span> <span class="fu">c</span>(<span class="sc">+</span><span class="dv">20</span>, <span class="sc">+</span><span class="dv">15</span>, <span class="sc">+</span><span class="dv">10</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">15</span>, <span class="sc">-</span><span class="dv">30</span>, <span class="sc">-</span><span class="dv">30</span>, <span class="sc">-</span><span class="dv">15</span>, <span class="dv">0</span>, <span class="sc">+</span><span class="dv">20</span>, <span class="sc">+</span><span class="dv">40</span>, <span class="sc">+</span><span class="dv">30</span>))</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Time series with additional date information</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>ts_cc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Dates =</span> ts_obs<span class="sc">$</span>Date)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>ts_cc<span class="sc">$</span>Month <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="at">x =</span> ts_cc<span class="sc">$</span>Date, <span class="at">format =</span> <span class="st">&quot;%m-%d&quot;</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Delta of temperature and precipitation in the same table</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>delta_cc <span class="ot">&lt;-</span> <span class="fu">merge</span>(delta_temp, delta_ptot, <span class="at">by =</span> <span class="st">&quot;Month&quot;</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Merging the complete time series and the delta table</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>ts_cc <span class="ot">&lt;-</span> <span class="fu">merge</span>(ts_cc, delta_cc, <span class="at">by =</span> <span class="st">&quot;Month&quot;</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>ts_cc <span class="ot">&lt;-</span> ts_cc[<span class="fu">order</span>(ts_cc<span class="sc">$</span>Dates), ]</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Sub-setting of the time series with the dates available in the delta table</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>ts_cc_15 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(ts_cc)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Constitution of &quot;future climate&quot; time series</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>ts_clim_cc <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">grep</span>(<span class="st">&quot;scen&quot;</span>, <span class="fu">colnames</span>(ts_cc_15), <span class="at">value =</span> <span class="cn">TRUE</span>), <span class="at">FUN =</span> <span class="cf">function</span>(i) {</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Daily delta interpolation (between the 15th of each month)</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  i_interpol <span class="ot">&lt;-</span> <span class="fu">approx</span>(<span class="at">x =</span> ts_cc_15<span class="sc">$</span>Dates, <span class="at">y =</span> ts_cc_15[, i], </span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>                       <span class="at">xout =</span> ts_cc<span class="sc">$</span>Dates, <span class="at">rule =</span> <span class="dv">2</span>)<span class="sc">$</span>y</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">&quot;T&quot;</span>, i)) {</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    ts_obs<span class="sc">$</span>Temp <span class="sc">+</span> i_interpol</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    ts_obs<span class="sc">$</span>Ptot <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">+</span> i_interpol <span class="sc">/</span> <span class="dv">100</span>)</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>ts_clim_cc <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(ts_clim_cc)</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the &quot;future climate&quot; time series</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ts_clim_cc)</span></code></pre></div>
+<pre><code>##      Tscen1            Tscen2            Tscen3            Pscen1             Pscen2         
+##  Min.   :-15.200   Min.   :-14.200   Min.   :-13.200   Min.   : 0.00000   Min.   :  0.00000  
+##  1st Qu.: -0.200   1st Qu.:  1.000   1st Qu.:  2.061   1st Qu.: 0.00000   1st Qu.:  0.00000  
+##  Median :  4.800   Median :  6.333   Median :  7.567   Median : 0.09833   Median :  0.09767  
+##  Mean   :  4.812   Mean   :  6.396   Mean   :  7.731   Mean   : 2.85887   Mean   :  2.93352  
+##  3rd Qu.: 10.200   3rd Qu.: 12.200   3rd Qu.: 13.783   3rd Qu.: 2.27613   3rd Qu.:  2.30533  
+##  Max.   : 20.700   Max.   : 23.200   Max.   : 25.200   Max.   :95.56339   Max.   :104.73519  
+##      Pscen3       
+##  Min.   :  0.000  
+##  1st Qu.:  0.000  
+##  Median :  0.095  
+##  Mean   :  2.964  
+##  3rd Qu.:  2.201  
+##  Max.   :117.354</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PE calculation</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ts_clim_cc<span class="sc">$</span>Julian <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="at">x =</span> <span class="fu">format</span>(<span class="at">x =</span> ts_cc<span class="sc">$</span>Date, <span class="at">format =</span> <span class="st">&quot;%j&quot;</span>))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ts_clim_cc<span class="sc">$</span>Escen1 <span class="ot">&lt;-</span> <span class="fu">PE_Oudin</span>(<span class="at">JD =</span> ts_clim_cc<span class="sc">$</span>Julian, </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Temp =</span> ts_clim_cc<span class="sc">$</span>Tscen1, </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Lat =</span> lat, <span class="at">LatUnit =</span> <span class="st">&quot;deg&quot;</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>ts_clim_cc<span class="sc">$</span>Escen2 <span class="ot">&lt;-</span> <span class="fu">PE_Oudin</span>(<span class="at">JD =</span> ts_clim_cc<span class="sc">$</span>Julian, </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Temp =</span> ts_clim_cc<span class="sc">$</span>Tscen2, </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Lat =</span> lat, <span class="at">LatUnit =</span> <span class="st">&quot;deg&quot;</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>ts_clim_cc<span class="sc">$</span>Escen3 <span class="ot">&lt;-</span> <span class="fu">PE_Oudin</span>(<span class="at">JD =</span> ts_clim_cc<span class="sc">$</span>Julian, </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Temp =</span> ts_clim_cc<span class="sc">$</span>Tscen3, </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Lat =</span> lat, <span class="at">LatUnit =</span> <span class="st">&quot;deg&quot;</span>)</span></code></pre></div>
+</div>
+<div id="simulation-pluie-débit-sur-la-période-future"
+class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Simulation
+pluie-débit sur la période future</h2>
+<p>Les lignes de codes présentées ci-après permettent de réaliser une
+simulation pluie-débit de la période de “climat futur” à partir des
+séries climatiques générées dans la section précédente.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop on the three scenarios</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ts_qcc <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  i_col_P <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Pscen&quot;</span>, i)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  i_col_E <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Escen&quot;</span>, i)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  i_col_T <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Tscen&quot;</span>, i)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  i_col_Q <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Qscen&quot;</span>, i)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Data processing for GR4J</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  i_prep_cc <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_cc<span class="sc">$</span>Date,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Precip     =</span> ts_clim_cc[, i_col_P],</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">PotEvap    =</span> ts_clim_cc[, i_col_E],</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>                      <span class="at">TempMean   =</span> ts_clim_cc[, i_col_T],</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>                      <span class="at">ZInputs    =</span> hypso[<span class="dv">51</span>],</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>                      <span class="at">HypsoData  =</span> hypso,</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>                      <span class="at">HydroModel =</span> <span class="st">&quot;GR4J&quot;</span>, </span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>                      <span class="at">CemaNeige  =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Simulation step</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  i_sim_cc <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> i_prep_cc, </span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>                    <span class="at">WupPer  =</span> per_ini, </span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>                    <span class="at">SimPer  =</span> per_cal,</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Param   =</span> param_cal_hist,</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>                    <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Storage of observed and simulated streamflow series</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>  i_ts_cc_15 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(i_sim_cc)</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>  ts_qcc[[i_col_Q]] <span class="ot">&lt;-</span> i_ts_cc_15<span class="sc">$</span>Qsim</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine historical and future time series</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>ts_q <span class="ot">&lt;-</span> <span class="fu">cbind</span>(ts_qhist, <span class="fu">as.data.frame</span>(ts_qcc))</span></code></pre></div>
+</div>
+<div id="calculs-du-régime-simulé-sur-la-période-cf"
+class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Calculs du régime
+simulé sur la période CF</h2>
+<p>Les lignes de codes présentées ci-après permettent de calculer le
+régime des débits simulés sur la période de climat futur.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daily regimes</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>reg_cc_d <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(ts_q,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Format =</span> <span class="st">&quot;%d&quot;</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ConvertFun =</span> <span class="fu">rep</span>(<span class="st">&quot;mean&quot;</span>, <span class="dv">5</span>))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>is_feb29 <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="at">x =</span> reg_cc_d<span class="sc">$</span>Dates, <span class="at">format =</span> <span class="st">&quot;%m-%d&quot;</span>) <span class="sc">==</span> <span class="st">&quot;02-29&quot;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>reg_cc_d <span class="ot">&lt;-</span> reg_cc_d[<span class="sc">!</span>is_feb29, ]</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Monthly regimes</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>reg_cc_m <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(ts_q,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Format =</span> <span class="st">&quot;%m&quot;</span>,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ConvertFun =</span> <span class="fu">rep</span>(<span class="st">&quot;sum&quot;</span>, <span class="dv">5</span>))</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculated regimes</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>reg_cc_m</span></code></pre></div>
+<pre><code>##           Dates     Qobs      Qsim    Qscen1   Qscen2   Qscen3
+## 2270 2000-09-01  339.928  342.9322  256.0630 185.7943 129.2014
+## 2545 2000-10-01  376.959  424.5159  378.8893 311.4428 263.4452
+## 2856 2000-11-01  317.620  413.6535  488.4572 546.3996 640.1677
+## 3165 2000-12-01  241.386  312.4544  409.2737 490.5027 583.0666
+## 2    2001-01-01  219.614  248.8342  343.7781 429.3201 533.9006
+## 423  2001-02-01  166.265  192.1759  262.7620 322.5987 384.7521
+## 717  2001-03-01  291.189  286.5678  436.3709 583.8233 668.3347
+## 1068 2001-04-01  471.406  370.3787  536.1424 667.8721 704.6265
+## 1221 2001-05-01 1209.560 1104.5823 1049.0074 869.3730 644.5160
+## 1537 2001-06-01 1174.049 1112.9204  771.4922 527.6899 365.9184
+## 1807 2001-07-01  554.159  509.9024  327.4281 230.6258 165.8818
+## 2076 2001-08-01  369.625  326.5216  226.2868 159.2173 111.6768</code></pre>
+<p>Ce régime “futur” peut être comparé graphiquement avec les régimes de
+débits simulés sur la période de climat présent (cf. figure suivante).
+Cette comparaison révèle une diminution des débits, diminution
+particulièrement durant le printemps et l’été (de mai à août).</p>
+<p><img src="figure/v03_fig_regime_month_cc-1.png" width="98%" /></p>
+<p>Les évolutions sont plus marquées au pas de temps journalier
+(cf. figure suivante).</p>
+<p><img src="figure/v03_fig_regime_day_cc-1.png" width="98%" /></p>
+<p>Il est important d’analyser les résultats obtenus au regard des
+nombreuses incertitudes liées à la production de simulations d’impacts
+hydrologiques du changement climatique. Les incertitudes liées à
+l’utilisation de différents modèles climatiques et de différentes
+méthodes de descente d’échelle peuvent être très fortes. De plus,
+l’utilisation des paramètres d’un modèle hydrologique obtenu après
+calage sur un bassin versant sous un climat A pour simuler la réponse
+hydrologique à un climat B de ce même bassin versant peut également
+engendrer des incertitudes fortes <span class="citation">(e.g. Coron et
+al. 2012; Brigode, Oudin, and Perrin 2013)</span>.</p>
+</div>
+</div>
+<div id="références" class="section level1 unnumbered">
+<h1 class="unnumbered">Références</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-brigode_hydrological_2013" class="csl-entry">
+Brigode, P., L. Oudin, and C. Perrin. 2013. <span>“Hydrological Model
+Parameter Instability: <span>A</span> Source of Additional Uncertainty
+in Estimating the Hydrological Impacts of Climate Change?”</span>
+<em>Journal of Hydrology</em> 476 (0): 410–25. <a
+href="https://doi.org/10.1016/j.jhydrol.2012.11.012">https://doi.org/10.1016/j.jhydrol.2012.11.012</a>.
+</div>
+<div id="ref-coron_crash_2012" class="csl-entry">
+Coron, L., V. Andréassian, C. Perrin, J. Lerat, J. Vaze, M. Bourqui, and
+F. Hendrickx. 2012. <span>“Crash Testing Hydrological Models in
+Contrasted Climate Conditions: An Experiment on 216
+<span>Australian</span> Catchments.”</span> <em>Water Resources
+Research</em> 48: W05552. <a
+href="https://doi.org/10.1029/2011WR011721">https://doi.org/10.1029/2011WR011721</a>.
+</div>
+<div id="ref-airGRteaching_man" class="csl-entry">
+Delaigue, O., L. Coron, and P. Brigode. 2022. <em><span
+class="nocase">airGRteaching</span>: Teaching Hydrological Modelling
+with <span>GR</span> (<span>Shiny</span> Interface Included)</em>. <em>R
+News</em>. <a
+href="https://doi.org/10.15454/W0SSKT">https://doi.org/10.15454/W0SSKT</a>.
+</div>
+<div id="ref-airGRteaching_pcd" class="csl-entry">
+Delaigue, O., G. Thirel, L. Coron, and P. Brigode. 2018. <span>“<span
+class="nocase">airGR</span> and <span
+class="nocase">airGRteaching</span>: Two Open-Source Tools for
+Rainfall-Runoff Modeling and Teaching Hydrology.”</span> In <em>HIC
+2018. 13th International Conference on Hydroinformatics</em>, edited by
+Goffredo La Loggia, Gabriele Freni, Valeria Puleo, and Mauro De Marchis,
+3:541–48. EPiC Series in Engineering. EasyChair. <a
+href="https://doi.org/10.29007/qsqj">https://doi.org/10.29007/qsqj</a>.
+</div>
+<div id="ref-michel_hydrologie_1991" class="csl-entry">
+Michel, C. 1991. <em>Hydrologie Appliquée Aux Petits Bassins
+Ruraux</em>. Cemagref, Antony.
+</div>
+<div id="ref-nash_river_1970" class="csl-entry">
+Nash, J. E., and J. V. Sutcliffe. 1970. <span>“River Flow Forecasting
+Through Conceptual Models Part <span>I</span> – <span>A</span>
+Discussion of Principles.”</span> <em>Journal of Hydrology</em> 10 (3):
+282–90. <a
+href="https://doi.org/10.1016/0022-1694(70)90255-6">https://doi.org/10.1016/0022-1694(70)90255-6</a>.
+</div>
+<div id="ref-oudin_which_2005" class="csl-entry">
+Oudin, L., F. Hervieu, C. Michel, C. Perrin, V. Andréassian, F. Anctil,
+and C. Loumagne. 2005. <span>“Which Potential Evapotranspiration Input
+for a Lumped Rainfall–Runoff Model?: <span>Part</span>
+2-<span>Towards</span> a Simple and Efficient Potential
+Evapotranspiration Model for Rainfall–Runoff Modelling.”</span>
+<em>Journal of Hydrology</em> 303 (1–4): 290–306. <a
+href="https://doi.org/10.1016/j.jhydrol.2004.08.026">https://doi.org/10.1016/j.jhydrol.2004.08.026</a>.
+</div>
+<div id="ref-perrin_improvement_2003" class="csl-entry">
+Perrin, C., C. Michel, and V. Andréassian. 2003. <span>“Improvement of a
+Parsimonious Model for Streamflow Simulation.”</span> <em>Journal of
+Hydrology</em> 279 (1-4): 275–89. <a
+href="https://doi.org/10.1016/S0022-1694(03)00225-7">https://doi.org/10.1016/S0022-1694(03)00225-7</a>.
+</div>
+<div id="ref-sauquet_projet_2015" class="csl-entry">
+Sauquet, E., Y. Arama, E. Blanc Coutagne, H. Bouscasse, F. Branger, I.
+Braud, J. F. Brun, et al. 2015. <span>“Projet
+<span>R</span>²<span>D</span>² 2050. <span>Risque</span>,
+<span>Ressource</span> En Eau Et Gestion <span>Durable</span> de La
+<span>Durance</span> En 2050.”</span> Rapport de fin de contrat. <a
+href="http://cemadoc.irstea.fr/cemoa/PUB00044634">http://cemadoc.irstea.fr/cemoa/PUB00044634</a>.
+</div>
+<div id="ref-valery_as_2014" class="csl-entry">
+Valéry, A., V. Andréassian, and C. Perrin. 2014.
+<span>“<span>‘<span>As</span> Simple as Possible but Not
+Simpler’</span>: What Is Useful in a Temperature-Based Snow-Accounting
+Routine? <span>Part</span> 2 - <span>Sensitivity</span> Analysis of the
+<span>Cemaneige</span> Snow Accounting Routine on 380
+Catchments.”</span> <em>Journal of Hydrology</em> 517: 1176–87. <a
+href="https://doi.org/10.1016/j.jhydrol.2014.04.058">https://doi.org/10.1016/j.jhydrol.2014.04.058</a>.
+</div>
+</div>
+</div>
+
+<footer>
+  <div style="float:left"><img src="fig/logo_republique_francaise_CMJN.svg" alt="airGR logo" height=50px style="margin-top:-20px" /></div>
+  <div style="float:right">Developed by INRAE&nbsp;<a href="https://webgr.inrae.fr/en">Catchment Hydrology Research Group</a>&nbsp;&#x2013; Antony, France</div>
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
