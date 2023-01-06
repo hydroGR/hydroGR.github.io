@@ -433,27 +433,35 @@ models from annual to hourly time-steps are available in
 <strong><font color="#009EE0">airGRteaching</font></strong>. But its
 Shiny graphical user interface only run the monthly model (GR2M) and the
 three daily models (GR4J, GR5J and GR6J). If you want the run GR1A, GR4H
-or GR5H, you have to use the three simple functions.</li>
+or GR5H, you have to use the three simple functions
+(<code>PrepGR()</code>, <code>CalGR()</code> and
+<code>SimGR()</code>).</li>
 </ul>
 </div>
-<div id="is-the-cemaneige-model-available-in-airgrteaching"
+<div id="is-a-snow-model-available-in-airgrteaching"
 class="section level4">
-<h4>Is the CemaNeige model available in airGRteaching?</h4>
+<h4>Is a snow model available in airGRteaching?</h4>
 <ul>
-<li>Yes either with the three functions or with the Shiny interface, but
-it is automatically coupled to the hydrological models. The user cannot
-run this snow model alone.</li>
+<li>Yes the CemaNeige snow model can be run either with the three
+functions (<code>PrepGR()</code>, <code>CalGR()</code> and
+<code>SimGR()</code>) or with the graphical user interface
+(<code>ShinyGR()</code>), but it is automatically coupled to the
+hydrological models. The user cannot run this snow model alone.</li>
 </ul>
 </div>
-<div id="can-i-load-many-dataset-in-the-shiny-interface"
+<div id="can-i-load-many-datasets-in-the-graphical-user-interface"
 class="section level4">
-<h4>Can I load many dataset in the Shiny interface?</h4>
+<h4>Can I load many datasets in the graphical user interface?</h4>
 <ul>
-<li>Yes. You just have to put the different data.frame in a list. If you
-want to use different simulation period for each dataset, you just have
-to define it as a list of periods (one period is a vector of 2 values to
-define the beginning and end of the warm-up period [“YYYY-mm-dd” or
-“YYYY-mm-dd HH:MM:SS”]).</li>
+<li>Yes. You just have to put the different <code>data.frame</code> in a
+<code>list</code>. If you want to use different simulation period for
+each dataset, you just have to define it as a list of periods (one
+period is a vector of 2 values to define the beginning and end of the
+warm-up period [<code>"YYYY-mm-dd"</code> or
+<code>"YYYY-mm-dd HH:MM:SS"</code>]). We provide some example datasets
+in the <a
+href="https://CRAN.R-project.org/package=airGRdatasets">airGRdatasets</a>
+package.</li>
 </ul>
 </div>
 <div
@@ -463,21 +471,19 @@ class="section level4">
 personal computer?</h4>
 <ul>
 <li>No, you can also run the
-<strong><font color="#009EE0">airGRteaching</font></strong> Shiny GUI on
-the INRAE <a href="https://sunshine.inrae.fr/">Sunshine</a> platform,
-but you cannot use your own datasets. To log in to the website, you just
-have to use the user name and the password that you use in you own
-institution.</li>
+<strong><font color="#009EE0">airGRteaching</font></strong> GUI on the
+INRAE <a href="https://sunshine.inrae.fr/">Sunshine</a> platform, but in
+this case, you cannot use your own dataset.</li>
 </ul>
 </div>
 <div
-id="i-cant-find-exactly-the-same-results-in-the-airgrteaching-interface-when-i-perform-an-automatic-calibration-compared-to-what-i-found-in-airgr.-how-is-that-possible"
+id="i-cant-find-exactly-the-same-results-in-the-airgrteaching-gui-when-i-perform-an-automatic-calibration-compared-to-what-i-found-in-airgr.-how-is-that-possible"
 class="section level4">
-<h4>I can’t find exactly the same results in the airGRteaching interface
-when I perform an automatic calibration compared to what I found in
-airGR. How is that possible?</h4>
+<h4>I can’t find exactly the same results in the airGRteaching GUI when
+I perform an automatic calibration compared to what I found in airGR.
+How is that possible?</h4>
 <ul>
-<li>In the interface, the range of the parameters is limited. It is very
+<li>In the GUI, the range of the parameters is limited. It is very
 likely the reason why you find different parameter values.</li>
 </ul>
 </div>
