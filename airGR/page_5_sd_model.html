@@ -14,7 +14,7 @@
 
 <title>Simulated vs observed upstream flows in calibration of semi-distributed GR4J model</title>
 
-<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -91,11 +91,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #c4a000; } /* Attribute */
+code span.at { color: #204a87; } /* Attribute */
 code span.bn { color: #0000cf; } /* BaseN */
 code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #000000; } /* Constant */
+code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #8f5902; font-style: italic; } /* Comment */
 code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
 code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
@@ -104,14 +104,14 @@ code span.dv { color: #0000cf; } /* DecVal */
 code span.er { color: #a40000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #000000; } /* Function */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
 code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
 code span.ot { color: #8f5902; } /* Other */
 code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #000000; } /* SpecialChar */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
 code span.ss { color: #4e9a06; } /* SpecialString */
 code span.st { color: #4e9a06; } /* String */
 code span.va { color: #000000; } /* Variable */
@@ -556,8 +556,8 @@ computed on the root-squared discharges as performance criterion.</p>
 description</h2>
 <p>We use an example data set from the package that unfortunately
 contains data for only one catchment.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## loading catchment data</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(L0123001)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="do">## loading catchment data</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">data</span>(L0123001)</span></code></pre></div>
 <p>Let’s imagine that this catchment of 360 km² is divided into 2
 subcatchments:</p>
 <ul>
@@ -571,9 +571,9 @@ subcatchments.</p>
 <p>For the observed flow at the downstream outlet, we generate it with
 the assumption that the upstream flow arrives at downstream with a
 constant delay of 2 days.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>QObsDown <span class="ot">&lt;-</span> (BasinObs<span class="sc">$</span>Qmm <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, BasinObs<span class="sc">$</span>Qmm[<span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(BasinObs<span class="sc">$</span>Qmm)<span class="sc">-</span><span class="dv">2</span>)])) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">5</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">cbind</span>(<span class="at">QObsUp =</span> BasinObs<span class="sc">$</span>Qmm, QObsDown))</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>QObsDown <span class="ot">&lt;-</span> (BasinObs<span class="sc">$</span>Qmm <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, BasinObs<span class="sc">$</span>Qmm[<span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(BasinObs<span class="sc">$</span>Qmm)<span class="sc">-</span><span class="dv">2</span>)])) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">5</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">cbind</span>(<span class="at">QObsUp =</span> BasinObs<span class="sc">$</span>Qmm, QObsDown))</span></code></pre></div>
 <pre><code>##      QObsUp         QObsDown    
 ##  Min.   : 0.02   Min.   : 0.02  
 ##  1st Qu.: 0.39   1st Qu.: 0.41  
@@ -582,11 +582,11 @@ constant delay of 2 days.</p>
 ##  3rd Qu.: 1.88   3rd Qu.: 1.91  
 ##  Max.   :23.88   Max.   :19.80  
 ##  NA&#39;s   :802     NA&#39;s   :820</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p>With a delay of 2 days between the 2 gauging stations, the
 theoretical Velocity parameter should be equal to:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Velocity <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fl">1e3</span> <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="dv">86400</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Velocity: &quot;</span>, <span class="fu">format</span>(Velocity), <span class="st">&quot;m/s&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>Velocity <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fl">1e3</span> <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="dv">86400</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Velocity: &quot;</span>, <span class="fu">format</span>(Velocity), <span class="st">&quot;m/s&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Velocity:  0.579 m/s&quot;</code></pre>
 </div>
 </div>
@@ -597,25 +597,25 @@ upstream subcatchment</h1>
 <p>The operations are exactly the same as the ones for a GR4J lumped
 model. So we do exactly the same operations as in the <a
 href="V01_get_started.html">Get Started</a> vignette.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>InputsModelUp <span class="ot">&lt;-</span> <span class="fu">CreateInputsModel</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">DatesR =</span> BasinObs<span class="sc">$</span>DatesR,</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">Precip =</span> BasinObs<span class="sc">$</span>P, <span class="at">PotEvap =</span> BasinObs<span class="sc">$</span>E)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Ind_Run <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">which</span>(<span class="fu">format</span>(BasinObs<span class="sc">$</span>DatesR, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>) <span class="sc">==</span> <span class="st">&quot;1990-01-01&quot;</span>),</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>               <span class="fu">which</span>(<span class="fu">format</span>(BasinObs<span class="sc">$</span>DatesR, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>) <span class="sc">==</span> <span class="st">&quot;1999-12-31&quot;</span>))</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>RunOptionsUp <span class="ot">&lt;-</span> <span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">InputsModel =</span> InputsModelUp,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">IndPeriod_WarmUp =</span> <span class="cn">NULL</span>, <span class="at">IndPeriod_Run =</span> Ind_Run,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">IniStates =</span> <span class="cn">NULL</span>, <span class="at">IniResLevels =</span> <span class="cn">NULL</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>InputsModelUp <span class="ot">&lt;-</span> <span class="fu">CreateInputsModel</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">DatesR =</span> BasinObs<span class="sc">$</span>DatesR,</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>                                   <span class="at">Precip =</span> BasinObs<span class="sc">$</span>P, <span class="at">PotEvap =</span> BasinObs<span class="sc">$</span>E)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>Ind_Run <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">which</span>(<span class="fu">format</span>(BasinObs<span class="sc">$</span>DatesR, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>) <span class="sc">==</span> <span class="st">&quot;1990-01-01&quot;</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>               <span class="fu">which</span>(<span class="fu">format</span>(BasinObs<span class="sc">$</span>DatesR, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>) <span class="sc">==</span> <span class="st">&quot;1999-12-31&quot;</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>RunOptionsUp <span class="ot">&lt;-</span> <span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J,</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>                                 <span class="at">InputsModel =</span> InputsModelUp,</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>                                 <span class="at">IndPeriod_WarmUp =</span> <span class="cn">NULL</span>, <span class="at">IndPeriod_Run =</span> Ind_Run,</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>                                 <span class="at">IniStates =</span> <span class="cn">NULL</span>, <span class="at">IniResLevels =</span> <span class="cn">NULL</span>)</span></code></pre></div>
 <pre><code>## Warning in CreateRunOptions(FUN_MOD = RunModel_GR4J, InputsModel = InputsModelUp, : model warm up period not defined: default configuration used
 ##   the year preceding the run period is used</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Error criterion is KGE computed on the root-squared discharges</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>InputsCritUp <span class="ot">&lt;-</span> <span class="fu">CreateInputsCrit</span>(<span class="at">FUN_CRIT =</span> ErrorCrit_KGE, <span class="at">InputsModel =</span> InputsModelUp,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">RunOptions =</span> RunOptionsUp,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">VarObs =</span> <span class="st">&quot;Q&quot;</span>, <span class="at">Obs =</span> BasinObs<span class="sc">$</span>Qmm[Ind_Run],</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">transfo =</span> <span class="st">&quot;sqrt&quot;</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>CalibOptionsUp <span class="ot">&lt;-</span> <span class="fu">CreateCalibOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">FUN_CALIB =</span> Calibration_Michel)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>OutputsCalibUp <span class="ot">&lt;-</span> <span class="fu">Calibration_Michel</span>(<span class="at">InputsModel =</span> InputsModelUp, <span class="at">RunOptions =</span> RunOptionsUp,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">InputsCrit =</span> InputsCritUp, <span class="at">CalibOptions =</span> CalibOptionsUp,</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">FUN_MOD =</span> RunModel_GR4J)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Error criterion is KGE computed on the root-squared discharges</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>InputsCritUp <span class="ot">&lt;-</span> <span class="fu">CreateInputsCrit</span>(<span class="at">FUN_CRIT =</span> ErrorCrit_KGE, <span class="at">InputsModel =</span> InputsModelUp,</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>                                 <span class="at">RunOptions =</span> RunOptionsUp,</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>                                 <span class="at">VarObs =</span> <span class="st">&quot;Q&quot;</span>, <span class="at">Obs =</span> BasinObs<span class="sc">$</span>Qmm[Ind_Run],</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>                                 <span class="at">transfo =</span> <span class="st">&quot;sqrt&quot;</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>CalibOptionsUp <span class="ot">&lt;-</span> <span class="fu">CreateCalibOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">FUN_CALIB =</span> Calibration_Michel)</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>OutputsCalibUp <span class="ot">&lt;-</span> <span class="fu">Calibration_Michel</span>(<span class="at">InputsModel =</span> InputsModelUp, <span class="at">RunOptions =</span> RunOptionsUp,</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>                                     <span class="at">InputsCrit =</span> InputsCritUp, <span class="at">CalibOptions =</span> CalibOptionsUp,</span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>                                     <span class="at">FUN_MOD =</span> RunModel_GR4J)</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (81 runs)
 ##       Param =  169.017,   -0.020,   42.098,    2.384
@@ -625,8 +625,8 @@ href="V01_get_started.html">Get Started</a> vignette.</p>
 ##       Param =  151.411,    0.443,   59.145,    2.423
 ##       Crit. KGE[sqrt(Q)] = 0.8906</code></pre>
 <p>And see the result of the simulation:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>OutputsModelUp <span class="ot">&lt;-</span> <span class="fu">RunModel_GR4J</span>(<span class="at">InputsModel =</span> InputsModelUp, <span class="at">RunOptions =</span> RunOptionsUp,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">Param =</span> OutputsCalibUp<span class="sc">$</span>ParamFinalR)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>OutputsModelUp <span class="ot">&lt;-</span> <span class="fu">RunModel_GR4J</span>(<span class="at">InputsModel =</span> InputsModelUp, <span class="at">RunOptions =</span> RunOptionsUp,</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>                                <span class="at">Param =</span> OutputsCalibUp<span class="sc">$</span>ParamFinalR)</span></code></pre></div>
 </div>
 <div
 id="calibration-of-the-downstream-subcatchment-with-upstream-flow-observations"
@@ -645,31 +645,31 @@ InputsModel objects</h2>
 <p>We need to create <code>InputsModel</code> objects completed with
 upstream information with upstream observed flow for the calibration of
 first case and upstream simulated flows for the other cases:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>InputsModelDown1 <span class="ot">&lt;-</span> <span class="fu">CreateInputsModel</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">DatesR =</span> BasinObs<span class="sc">$</span>DatesR,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Precip =</span> BasinObs<span class="sc">$</span>P, <span class="at">PotEvap =</span> BasinObs<span class="sc">$</span>E,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Qupstream =</span> <span class="fu">matrix</span>(BasinObs<span class="sc">$</span>Qmm, <span class="at">ncol =</span> <span class="dv">1</span>), <span class="co"># upstream observed flow</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">LengthHydro =</span> <span class="dv">100</span>, <span class="co"># distance between upstream catchment outlet &amp; the downstream one [km]</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">BasinAreas =</span> <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">180</span>) <span class="co"># upstream and downstream areas [km²]</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>InputsModelDown1 <span class="ot">&lt;-</span> <span class="fu">CreateInputsModel</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  <span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">DatesR =</span> BasinObs<span class="sc">$</span>DatesR,</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  <span class="at">Precip =</span> BasinObs<span class="sc">$</span>P, <span class="at">PotEvap =</span> BasinObs<span class="sc">$</span>E,</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>  <span class="at">Qupstream =</span> <span class="fu">matrix</span>(BasinObs<span class="sc">$</span>Qmm, <span class="at">ncol =</span> <span class="dv">1</span>), <span class="co"># upstream observed flow</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>  <span class="at">LengthHydro =</span> <span class="dv">100</span>, <span class="co"># distance between upstream catchment outlet &amp; the downstream one [km]</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>  <span class="at">BasinAreas =</span> <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">180</span>) <span class="co"># upstream and downstream areas [km²]</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Warning in CreateInputsModel(FUN_MOD = RunModel_GR4J, DatesR = BasinObs$DatesR, : &#39;Qupstream&#39; contains NA
 ## values: model outputs will contain NAs</code></pre>
 <p>For using upstream simulated flows, we should concatenate a vector
 with the simulated flows for the entire period of simulation (warm-up +
 run):</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Qsim_upstream <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(BasinObs<span class="sc">$</span>DatesR))</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulated flow during warm-up period (365 days before run period)</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>Qsim_upstream[Ind_Run[<span class="fu">seq_len</span>(<span class="dv">365</span>)] <span class="sc">-</span> <span class="dv">365</span>] <span class="ot">&lt;-</span> OutputsModelUp<span class="sc">$</span>RunOptions<span class="sc">$</span>WarmUpQsim</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulated flow during run period</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>Qsim_upstream[Ind_Run] <span class="ot">&lt;-</span> OutputsModelUp<span class="sc">$</span>Qsim</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>InputsModelDown2 <span class="ot">&lt;-</span> <span class="fu">CreateInputsModel</span>(</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">DatesR =</span> BasinObs<span class="sc">$</span>DatesR,</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Precip =</span> BasinObs<span class="sc">$</span>P, <span class="at">PotEvap =</span> BasinObs<span class="sc">$</span>E,</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Qupstream =</span> <span class="fu">matrix</span>(Qsim_upstream, <span class="at">ncol =</span> <span class="dv">1</span>), <span class="co"># upstream observed flow</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">LengthHydro =</span> <span class="dv">100</span>, <span class="co"># distance between upstream catchment outlet &amp; the downstream one [km]</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">BasinAreas =</span> <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">180</span>) <span class="co"># upstream and downstream areas [km²]</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>Qsim_upstream <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(BasinObs<span class="sc">$</span>DatesR))</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="co"># Simulated flow during warm-up period (365 days before run period)</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>Qsim_upstream[Ind_Run[<span class="fu">seq_len</span>(<span class="dv">365</span>)] <span class="sc">-</span> <span class="dv">365</span>] <span class="ot">&lt;-</span> OutputsModelUp<span class="sc">$</span>RunOptions<span class="sc">$</span>WarmUpQsim</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="co"># Simulated flow during run period</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>Qsim_upstream[Ind_Run] <span class="ot">&lt;-</span> OutputsModelUp<span class="sc">$</span>Qsim</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>InputsModelDown2 <span class="ot">&lt;-</span> <span class="fu">CreateInputsModel</span>(</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>  <span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">DatesR =</span> BasinObs<span class="sc">$</span>DatesR,</span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>  <span class="at">Precip =</span> BasinObs<span class="sc">$</span>P, <span class="at">PotEvap =</span> BasinObs<span class="sc">$</span>E,</span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>  <span class="at">Qupstream =</span> <span class="fu">matrix</span>(Qsim_upstream, <span class="at">ncol =</span> <span class="dv">1</span>), <span class="co"># upstream observed flow</span></span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>  <span class="at">LengthHydro =</span> <span class="dv">100</span>, <span class="co"># distance between upstream catchment outlet &amp; the downstream one [km]</span></span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>  <span class="at">BasinAreas =</span> <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">180</span>) <span class="co"># upstream and downstream areas [km²]</span></span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Warning in CreateInputsModel(FUN_MOD = RunModel_GR4J, DatesR = BasinObs$DatesR, : &#39;Qupstream&#39; contains NA
 ## values: model outputs will contain NAs</code></pre>
 </div>
@@ -679,24 +679,24 @@ class="section level2" number="4.2">
 upstream flow observations</h2>
 <p>We calibrate the combination of Lag model for upstream flow transfer
 and GR4J model for the runoff of the downstream subcatchment:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>RunOptionsDown <span class="ot">&lt;-</span> <span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J,</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">InputsModel =</span> InputsModelDown1,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">IndPeriod_WarmUp =</span> <span class="cn">NULL</span>, <span class="at">IndPeriod_Run =</span> Ind_Run,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">IniStates =</span> <span class="cn">NULL</span>, <span class="at">IniResLevels =</span> <span class="cn">NULL</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>RunOptionsDown <span class="ot">&lt;-</span> <span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J,</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>                                   <span class="at">InputsModel =</span> InputsModelDown1,</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>                                   <span class="at">IndPeriod_WarmUp =</span> <span class="cn">NULL</span>, <span class="at">IndPeriod_Run =</span> Ind_Run,</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>                                   <span class="at">IniStates =</span> <span class="cn">NULL</span>, <span class="at">IniResLevels =</span> <span class="cn">NULL</span>)</span></code></pre></div>
 <pre><code>## Warning in CreateRunOptions(FUN_MOD = RunModel_GR4J, InputsModel = InputsModelDown1, : model warm up period not defined: default configuration used
 ##   the year preceding the run period is used</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>InputsCritDown <span class="ot">&lt;-</span> <span class="fu">CreateInputsCrit</span>(<span class="at">FUN_CRIT =</span> ErrorCrit_KGE, <span class="at">InputsModel =</span> InputsModelDown1,</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">RunOptions =</span> RunOptionsDown,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">VarObs =</span> <span class="st">&quot;Q&quot;</span>, <span class="at">Obs =</span> QObsDown[Ind_Run],</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">transfo =</span> <span class="st">&quot;sqrt&quot;</span>)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>CalibOptionsDown <span class="ot">&lt;-</span> <span class="fu">CreateCalibOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">FUN_CALIB =</span> Calibration_Michel,</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">IsSD =</span> <span class="cn">TRUE</span>) <span class="co"># specify that it&#39;s a SD model</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>OutputsCalibDown1 <span class="ot">&lt;-</span> <span class="fu">Calibration_Michel</span>(<span class="at">InputsModel =</span> InputsModelDown1,</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">RunOptions =</span> RunOptionsDown,</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">InputsCrit =</span> InputsCritDown,</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">CalibOptions =</span> CalibOptionsDown,</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">FUN_MOD =</span> RunModel_GR4J)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>InputsCritDown <span class="ot">&lt;-</span> <span class="fu">CreateInputsCrit</span>(<span class="at">FUN_CRIT =</span> ErrorCrit_KGE, <span class="at">InputsModel =</span> InputsModelDown1,</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>                                   <span class="at">RunOptions =</span> RunOptionsDown,</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>                                   <span class="at">VarObs =</span> <span class="st">&quot;Q&quot;</span>, <span class="at">Obs =</span> QObsDown[Ind_Run],</span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>                                   <span class="at">transfo =</span> <span class="st">&quot;sqrt&quot;</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>CalibOptionsDown <span class="ot">&lt;-</span> <span class="fu">CreateCalibOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J,</span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>                                       <span class="at">FUN_CALIB =</span> Calibration_Michel,</span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a>                                       <span class="at">IsSD =</span> <span class="cn">TRUE</span>) <span class="co"># specify that it&#39;s a SD model</span></span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>OutputsCalibDown1 <span class="ot">&lt;-</span> <span class="fu">Calibration_Michel</span>(<span class="at">InputsModel =</span> InputsModelDown1,</span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a>                                        <span class="at">RunOptions =</span> RunOptionsDown,</span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a>                                        <span class="at">InputsCrit =</span> InputsCritDown,</span>
+<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a>                                        <span class="at">CalibOptions =</span> CalibOptionsDown,</span>
+<span id="cb18-12"><a href="#cb18-12" tabindex="-1"></a>                                        <span class="at">FUN_MOD =</span> RunModel_GR4J)</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (243 runs)
 ##       Param =   11.250,  169.017,   -0.020,   42.098,    2.384
@@ -707,12 +707,12 @@ and GR4J model for the runoff of the downstream subcatchment:</p>
 ##       Crit. KGE[sqrt(Q)] = 0.9635</code></pre>
 <p><code>RunModel</code> is run in order to automatically combine GR4J
 and Lag models.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>OutputsModelDown1 <span class="ot">&lt;-</span> <span class="fu">RunModel</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">RunOptions =</span> RunOptionsDown,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Param =</span> OutputsCalibDown1<span class="sc">$</span>ParamFinalR,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">FUN_MOD =</span> RunModel_GR4J)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>OutputsModelDown1 <span class="ot">&lt;-</span> <span class="fu">RunModel</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>                              <span class="at">RunOptions =</span> RunOptionsDown,</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>                              <span class="at">Param =</span> OutputsCalibDown1<span class="sc">$</span>ParamFinalR,</span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>                              <span class="at">FUN_MOD =</span> RunModel_GR4J)</span></code></pre></div>
 <p>Performance of the model validation is then:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>KGE_down1 <span class="ot">&lt;-</span> <span class="fu">ErrorCrit_KGE</span>(InputsCritDown, OutputsModelDown1)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>KGE_down1 <span class="ot">&lt;-</span> <span class="fu">ErrorCrit_KGE</span>(InputsCritDown, OutputsModelDown1)</span></code></pre></div>
 <pre><code>## Crit. KGE[sqrt(Q)] = 0.8968</code></pre>
 <pre><code>##  SubCrit. KGE[sqrt(Q)] cor(sim, obs, &quot;pearson&quot;) = 0.8982 
 ##  SubCrit. KGE[sqrt(Q)] sd(sim)/sd(obs)          = 0.9832 
@@ -725,11 +725,11 @@ upstream simulated flow</h2>
 <p>We calibrate the model with the <code>InputsModel</code> object
 previously created for substituting the observed upstream flow with the
 simulated one:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>OutputsCalibDown2 <span class="ot">&lt;-</span> <span class="fu">Calibration_Michel</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">RunOptions =</span> RunOptionsDown,</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">InputsCrit =</span> InputsCritDown,</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">CalibOptions =</span> CalibOptionsDown,</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">FUN_MOD =</span> RunModel_GR4J)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>OutputsCalibDown2 <span class="ot">&lt;-</span> <span class="fu">Calibration_Michel</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>                                        <span class="at">RunOptions =</span> RunOptionsDown,</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>                                        <span class="at">InputsCrit =</span> InputsCritDown,</span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>                                        <span class="at">CalibOptions =</span> CalibOptionsDown,</span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>                                        <span class="at">FUN_MOD =</span> RunModel_GR4J)</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (243 runs)
 ##       Param =   11.250,  169.017,   -0.020,   83.096,    2.384
@@ -738,7 +738,7 @@ simulated one:</p>
 ##   Calibration completed (47 iterations, 695 runs)
 ##       Param =    1.500,  157.591,    0.325,   36.234,    6.629
 ##       Crit. KGE[sqrt(Q)] = 0.9031</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ParamDown2 <span class="ot">&lt;-</span> OutputsCalibDown2<span class="sc">$</span>ParamFinalR</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>ParamDown2 <span class="ot">&lt;-</span> OutputsCalibDown2<span class="sc">$</span>ParamFinalR</span></code></pre></div>
 </div>
 <div
 id="calibration-with-upstream-simulated-flow-and-parameter-regularisation"
@@ -749,21 +749,21 @@ upstream simulated flow and parameter regularisation</h2>
 class="citation">de Lavenne et al. (2019)</span>.</p>
 <p>As a priori parameter set, we use the calibrated parameter set of the
 upstream catchment and the theoretical velocity:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ParamDownTheo <span class="ot">&lt;-</span> <span class="fu">c</span>(Velocity, OutputsCalibUp<span class="sc">$</span>ParamFinalR)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>ParamDownTheo <span class="ot">&lt;-</span> <span class="fu">c</span>(Velocity, OutputsCalibUp<span class="sc">$</span>ParamFinalR)</span></code></pre></div>
 <p>The Lavenne criterion is initialised with the a priori parameter set
 and the value of the KGE of the upstream basin.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>IC_Lavenne <span class="ot">&lt;-</span> <span class="fu">CreateInputsCrit_Lavenne</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">RunOptions =</span> RunOptionsDown,</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">Obs =</span> QObsDown[Ind_Run],</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">AprParamR =</span> ParamDownTheo,</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">AprCrit =</span> OutputsCalibUp<span class="sc">$</span>CritFinal)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>IC_Lavenne <span class="ot">&lt;-</span> <span class="fu">CreateInputsCrit_Lavenne</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a>                                    <span class="at">RunOptions =</span> RunOptionsDown,</span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a>                                    <span class="at">Obs =</span> QObsDown[Ind_Run],</span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>                                    <span class="at">AprParamR =</span> ParamDownTheo,</span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a>                                    <span class="at">AprCrit =</span> OutputsCalibUp<span class="sc">$</span>CritFinal)</span></code></pre></div>
 <p>The Lavenne criterion is used instead of the KGE for calibration with
 regularisation</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>OutputsCalibDown3 <span class="ot">&lt;-</span> <span class="fu">Calibration_Michel</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">RunOptions =</span> RunOptionsDown,</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">InputsCrit =</span> IC_Lavenne,</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">CalibOptions =</span> CalibOptionsDown,</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">FUN_MOD =</span> RunModel_GR4J)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>OutputsCalibDown3 <span class="ot">&lt;-</span> <span class="fu">Calibration_Michel</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>                                        <span class="at">RunOptions =</span> RunOptionsDown,</span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>                                        <span class="at">InputsCrit =</span> IC_Lavenne,</span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>                                        <span class="at">CalibOptions =</span> CalibOptionsDown,</span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>                                        <span class="at">FUN_MOD =</span> RunModel_GR4J)</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (243 runs)
 ##       Param =   11.250,  169.017,   -0.020,   83.096,    2.384
@@ -774,11 +774,11 @@ regularisation</p>
 ##       Crit. Composite    = 0.9116
 ##  Formula: sum(0.86 * KGE[sqrt(Q)], 0.14 * GAPX[ParamT])</code></pre>
 <p>The KGE is then calculated for performance comparisons:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>OutputsModelDown3 <span class="ot">&lt;-</span> <span class="fu">RunModel</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">RunOptions =</span> RunOptionsDown,</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Param =</span> OutputsCalibDown3<span class="sc">$</span>ParamFinalR,</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">FUN_MOD =</span> RunModel_GR4J)</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>KGE_down3 <span class="ot">&lt;-</span> <span class="fu">ErrorCrit_KGE</span>(InputsCritDown, OutputsModelDown3)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>OutputsModelDown3 <span class="ot">&lt;-</span> <span class="fu">RunModel</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>                              <span class="at">RunOptions =</span> RunOptionsDown,</span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>                              <span class="at">Param =</span> OutputsCalibDown3<span class="sc">$</span>ParamFinalR,</span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>                              <span class="at">FUN_MOD =</span> RunModel_GR4J)</span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>KGE_down3 <span class="ot">&lt;-</span> <span class="fu">ErrorCrit_KGE</span>(InputsCritDown, OutputsModelDown3)</span></code></pre></div>
 <pre><code>## Crit. KGE[sqrt(Q)] = 0.8983</code></pre>
 <pre><code>##  SubCrit. KGE[sqrt(Q)] cor(sim, obs, &quot;pearson&quot;) = 0.9102 
 ##  SubCrit. KGE[sqrt(Q)] sd(sim)/sd(obs)          = 0.9542 
@@ -792,17 +792,17 @@ number="5.1">
 <h2><span class="header-section-number">5.1</span> Identification of
 Velocity parameter</h2>
 <p>Both calibrations overestimate this parameter:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>mVelocity <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(Velocity,</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                      OutputsCalibDown1<span class="sc">$</span>ParamFinalR[<span class="dv">1</span>],</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                      OutputsCalibDown2<span class="sc">$</span>ParamFinalR[<span class="dv">1</span>],</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>                      OutputsCalibDown3<span class="sc">$</span>ParamFinalR[<span class="dv">1</span>]),</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ncol =</span> <span class="dv">1</span>,</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;theoretical&quot;</span>,</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">&quot;calibrated with observed upstream flow&quot;</span>,</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">&quot;calibrated with simulated  upstream flow&quot;</span>,</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">&quot;calibrated with sim upstream flow and regularisation&quot;</span>),</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>                                    <span class="fu">c</span>(<span class="st">&quot;Velocity parameter&quot;</span>)))</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(mVelocity)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>mVelocity <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(Velocity,</span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>                      OutputsCalibDown1<span class="sc">$</span>ParamFinalR[<span class="dv">1</span>],</span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>                      OutputsCalibDown2<span class="sc">$</span>ParamFinalR[<span class="dv">1</span>],</span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>                      OutputsCalibDown3<span class="sc">$</span>ParamFinalR[<span class="dv">1</span>]),</span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a>                    <span class="at">ncol =</span> <span class="dv">1</span>,</span>
+<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a>                    <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;theoretical&quot;</span>,</span>
+<span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a>                                      <span class="st">&quot;calibrated with observed upstream flow&quot;</span>,</span>
+<span id="cb34-8"><a href="#cb34-8" tabindex="-1"></a>                                      <span class="st">&quot;calibrated with simulated  upstream flow&quot;</span>,</span>
+<span id="cb34-9"><a href="#cb34-9" tabindex="-1"></a>                                      <span class="st">&quot;calibrated with sim upstream flow and regularisation&quot;</span>),</span>
+<span id="cb34-10"><a href="#cb34-10" tabindex="-1"></a>                                    <span class="fu">c</span>(<span class="st">&quot;Velocity parameter&quot;</span>)))</span>
+<span id="cb34-11"><a href="#cb34-11" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(mVelocity)</span></code></pre></div>
 <table>
 <colgroup>
 <col width="73%" />
@@ -841,11 +841,11 @@ class="section level2" number="5.2">
 performance criteria with theoretical calibration</h2>
 <p>Theoretically, the parameters of the downstream GR4J model should be
 the same as the upstream one with the velocity as extra parameter:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>OutputsModelDownTheo <span class="ot">&lt;-</span> <span class="fu">RunModel</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">RunOptions =</span> RunOptionsDown,</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">Param =</span> ParamDownTheo,</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">FUN_MOD =</span> RunModel_GR4J)</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>KGE_downTheo <span class="ot">&lt;-</span> <span class="fu">ErrorCrit_KGE</span>(InputsCritDown, OutputsModelDownTheo)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a>OutputsModelDownTheo <span class="ot">&lt;-</span> <span class="fu">RunModel</span>(<span class="at">InputsModel =</span> InputsModelDown2,</span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>                                 <span class="at">RunOptions =</span> RunOptionsDown,</span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a>                                 <span class="at">Param =</span> ParamDownTheo,</span>
+<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a>                                 <span class="at">FUN_MOD =</span> RunModel_GR4J)</span>
+<span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a>KGE_downTheo <span class="ot">&lt;-</span> <span class="fu">ErrorCrit_KGE</span>(InputsCritDown, OutputsModelDownTheo)</span></code></pre></div>
 <pre><code>## Crit. KGE[sqrt(Q)] = 0.8976</code></pre>
 <pre><code>##  SubCrit. KGE[sqrt(Q)] cor(sim, obs, &quot;pearson&quot;) = 0.9082 
 ##  SubCrit. KGE[sqrt(Q)] sd(sim)/sd(obs)          = 0.9562 
@@ -856,26 +856,26 @@ id="parameters-and-performance-of-each-subcatchment-for-all-calibrations"
 class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Parameters and
 performance of each subcatchment for all calibrations</h2>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>comp <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>, OutputsCalibUp<span class="sc">$</span>ParamFinalR,</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">rep</span>(OutputsCalibDown1<span class="sc">$</span>ParamFinalR, <span class="dv">2</span>),</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>                 OutputsCalibDown2<span class="sc">$</span>ParamFinalR,</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>                 OutputsCalibDown3<span class="sc">$</span>ParamFinalR,</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>                 ParamDownTheo),</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>comp <span class="ot">&lt;-</span> <span class="fu">cbind</span>(comp, <span class="fu">c</span>(OutputsCalibUp<span class="sc">$</span>CritFinal,</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>                      OutputsCalibDown1<span class="sc">$</span>CritFinal,</span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>                      KGE_down1<span class="sc">$</span>CritValue,</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>                      OutputsCalibDown2<span class="sc">$</span>CritFinal,</span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>                      KGE_down3<span class="sc">$</span>CritValue,</span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>                      KGE_downTheo<span class="sc">$</span>CritValue))</span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(comp) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Velocity&quot;</span>, <span class="fu">paste0</span>(<span class="st">&quot;X&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>), <span class="st">&quot;KGE(√Q)&quot;</span>)</span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(comp) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Calibration of the upstream subcatchment&quot;</span>,</span>
-<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;Calibration 1 with observed upstream flow&quot;</span>,</span>
-<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;Validation 1 with simulated upstream flow&quot;</span>,</span>
-<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;Calibration 2 with simulated upstream flow&quot;</span>,</span>
-<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;Calibration 3 with simulated upstream flow and regularisation&quot;</span>,</span>
-<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;Validation theoretical set of parameters&quot;</span>)</span>
-<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(comp)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>comp <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>, OutputsCalibUp<span class="sc">$</span>ParamFinalR,</span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>                 <span class="fu">rep</span>(OutputsCalibDown1<span class="sc">$</span>ParamFinalR, <span class="dv">2</span>),</span>
+<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a>                 OutputsCalibDown2<span class="sc">$</span>ParamFinalR,</span>
+<span id="cb38-4"><a href="#cb38-4" tabindex="-1"></a>                 OutputsCalibDown3<span class="sc">$</span>ParamFinalR,</span>
+<span id="cb38-5"><a href="#cb38-5" tabindex="-1"></a>                 ParamDownTheo),</span>
+<span id="cb38-6"><a href="#cb38-6" tabindex="-1"></a>               <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb38-7"><a href="#cb38-7" tabindex="-1"></a>comp <span class="ot">&lt;-</span> <span class="fu">cbind</span>(comp, <span class="fu">c</span>(OutputsCalibUp<span class="sc">$</span>CritFinal,</span>
+<span id="cb38-8"><a href="#cb38-8" tabindex="-1"></a>                      OutputsCalibDown1<span class="sc">$</span>CritFinal,</span>
+<span id="cb38-9"><a href="#cb38-9" tabindex="-1"></a>                      KGE_down1<span class="sc">$</span>CritValue,</span>
+<span id="cb38-10"><a href="#cb38-10" tabindex="-1"></a>                      OutputsCalibDown2<span class="sc">$</span>CritFinal,</span>
+<span id="cb38-11"><a href="#cb38-11" tabindex="-1"></a>                      KGE_down3<span class="sc">$</span>CritValue,</span>
+<span id="cb38-12"><a href="#cb38-12" tabindex="-1"></a>                      KGE_downTheo<span class="sc">$</span>CritValue))</span>
+<span id="cb38-13"><a href="#cb38-13" tabindex="-1"></a><span class="fu">colnames</span>(comp) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Velocity&quot;</span>, <span class="fu">paste0</span>(<span class="st">&quot;X&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>), <span class="st">&quot;KGE(√Q)&quot;</span>)</span>
+<span id="cb38-14"><a href="#cb38-14" tabindex="-1"></a><span class="fu">rownames</span>(comp) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Calibration of the upstream subcatchment&quot;</span>,</span>
+<span id="cb38-15"><a href="#cb38-15" tabindex="-1"></a>                    <span class="st">&quot;Calibration 1 with observed upstream flow&quot;</span>,</span>
+<span id="cb38-16"><a href="#cb38-16" tabindex="-1"></a>                    <span class="st">&quot;Validation 1 with simulated upstream flow&quot;</span>,</span>
+<span id="cb38-17"><a href="#cb38-17" tabindex="-1"></a>                    <span class="st">&quot;Calibration 2 with simulated upstream flow&quot;</span>,</span>
+<span id="cb38-18"><a href="#cb38-18" tabindex="-1"></a>                    <span class="st">&quot;Calibration 3 with simulated upstream flow and regularisation&quot;</span>,</span>
+<span id="cb38-19"><a href="#cb38-19" tabindex="-1"></a>                    <span class="st">&quot;Validation theoretical set of parameters&quot;</span>)</span>
+<span id="cb38-20"><a href="#cb38-20" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(comp)</span></code></pre></div>
 <table style="width:100%;">
 <colgroup>
 <col width="62%" />

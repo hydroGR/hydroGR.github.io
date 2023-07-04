@@ -14,7 +14,7 @@
 
 <title>Plugging in new calibration algorithms in airGR</title>
 
-<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -91,11 +91,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #c4a000; } /* Attribute */
+code span.at { color: #204a87; } /* Attribute */
 code span.bn { color: #0000cf; } /* BaseN */
 code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #000000; } /* Constant */
+code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #8f5902; font-style: italic; } /* Comment */
 code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
 code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
@@ -104,14 +104,14 @@ code span.dv { color: #0000cf; } /* DecVal */
 code span.er { color: #a40000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #000000; } /* Function */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
 code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
 code span.ot { color: #8f5902; } /* Other */
 code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #000000; } /* SpecialChar */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
 code span.ss { color: #4e9a06; } /* SpecialString */
 code span.st { color: #4e9a06; } /* String */
 code span.va { color: #000000; } /* Variable */
@@ -522,15 +522,15 @@ defined in the <code>CreateRunOptions()</code> function .</p>
 <!-- ```{r, warning=FALSE, fig.keep='none', results='hide', fig.height=10, fig.width=10, eval=TRUE, echo=FALSE, message=FALSE} -->
 <!-- example("Calibration_Michel", echo = FALSE, ask = FALSE) -->
 <!-- ``` -->
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;Calibration_Michel&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;Calibration_Michel&quot;</span>)</span></code></pre></div>
 <p>In order for the <code>RunModel_*()</code> functions to run faster
 during the parameter estimation process, it is recommended that the
 outputs contain only the simulated flows (see the
 <code>Outputs_Sim</code> argument in the <code>CreateRunOptions()</code>
 help page).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>RunOptions <span class="ot">&lt;-</span> airGR<span class="sc">::</span><span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">InputsModel =</span> InputsModel,</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">IndPeriod_Run =</span> Ind_Run,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">Outputs_Sim =</span> <span class="st">&quot;Qsim&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>RunOptions <span class="ot">&lt;-</span> airGR<span class="sc">::</span><span class="fu">CreateRunOptions</span>(<span class="at">FUN_MOD =</span> RunModel_GR4J, <span class="at">InputsModel =</span> InputsModel,</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>                                      <span class="at">IndPeriod_Run =</span> Ind_Run,</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>                                      <span class="at">Outputs_Sim =</span> <span class="st">&quot;Qsim&quot;</span>)</span></code></pre></div>
 <p>Regarding the different optimization strategies presented here, we
 refer to each package for in-depth information about the description of
 the methods used.</p>
@@ -552,24 +552,24 @@ error.</p>
 “transformed” space ensures homogeneity of displacement in the different
 dimensions of the parameter space during the step-by-step procedure of
 the calibration algorithm of the model.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>OptimGR4J <span class="ot">&lt;-</span> <span class="cf">function</span>(ParamOptim) {</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Transformation of the parameter set to real space</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  RawParamOptim <span class="ot">&lt;-</span> airGR<span class="sc">::</span><span class="fu">TransfoParam_GR4J</span>(<span class="at">ParamIn =</span> ParamOptim,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">Direction =</span> <span class="st">&quot;TR&quot;</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Simulation given a parameter set</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  OutputsModel <span class="ot">&lt;-</span> airGR<span class="sc">::</span><span class="fu">RunModel_GR4J</span>(<span class="at">InputsModel =</span> InputsModel,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">RunOptions =</span> RunOptions,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Param =</span> RawParamOptim)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Computation of the value of the performance criteria</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  OutputsCrit <span class="ot">&lt;-</span> airGR<span class="sc">::</span><span class="fu">ErrorCrit_RMSE</span>(<span class="at">InputsCrit =</span> InputsCrit,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">OutputsModel =</span> OutputsModel,</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(OutputsCrit<span class="sc">$</span>CritValue)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>OptimGR4J <span class="ot">&lt;-</span> <span class="cf">function</span>(ParamOptim) {</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="do">## Transformation of the parameter set to real space</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  RawParamOptim <span class="ot">&lt;-</span> airGR<span class="sc">::</span><span class="fu">TransfoParam_GR4J</span>(<span class="at">ParamIn =</span> ParamOptim,</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                                            <span class="at">Direction =</span> <span class="st">&quot;TR&quot;</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="do">## Simulation given a parameter set</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  OutputsModel <span class="ot">&lt;-</span> airGR<span class="sc">::</span><span class="fu">RunModel_GR4J</span>(<span class="at">InputsModel =</span> InputsModel,</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>                                       <span class="at">RunOptions =</span> RunOptions,</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>                                       <span class="at">Param =</span> RawParamOptim)</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>  <span class="do">## Computation of the value of the performance criteria</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>  OutputsCrit <span class="ot">&lt;-</span> airGR<span class="sc">::</span><span class="fu">ErrorCrit_RMSE</span>(<span class="at">InputsCrit =</span> InputsCrit,</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>                                       <span class="at">OutputsModel =</span> OutputsModel,</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>                                       <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>  <span class="fu">return</span>(OutputsCrit<span class="sc">$</span>CritValue)</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>}</span></code></pre></div>
 <p>In addition, we need to define the lower and upper bounds of the four
 <strong>GR4J</strong> parameters in the transformed parameter space:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>lowerGR4J <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="sc">-</span><span class="fl">9.99</span>, <span class="at">times =</span> <span class="dv">4</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>upperGR4J <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="sc">+</span><span class="fl">9.99</span>, <span class="at">times =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>lowerGR4J <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="sc">-</span><span class="fl">9.99</span>, <span class="at">times =</span> <span class="dv">4</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>upperGR4J <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="sc">+</span><span class="fl">9.99</span>, <span class="at">times =</span> <span class="dv">4</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="local-optimization" class="section level1" number="2">
@@ -578,36 +578,36 @@ the calibration algorithm of the model.</p>
 routines (using the <code>nlminb()</code> of the <code>stats</code>
 package) and by setting a starting point in the transformed parameter
 space:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>startGR4J <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.1</span>, <span class="fl">3.9</span>, <span class="sc">-</span><span class="fl">0.9</span>, <span class="sc">-</span><span class="fl">8.7</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>optPORT <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">nlminb</span>(<span class="at">start =</span> startGR4J,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">objective =</span> OptimGR4J,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">lower =</span> lowerGR4J, <span class="at">upper =</span> upperGR4J,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">control =</span> <span class="fu">list</span>(<span class="at">trace =</span> <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>startGR4J <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.1</span>, <span class="fl">3.9</span>, <span class="sc">-</span><span class="fl">0.9</span>, <span class="sc">-</span><span class="fl">8.7</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>optPORT <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">nlminb</span>(<span class="at">start =</span> startGR4J,</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                         <span class="at">objective =</span> OptimGR4J,</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>                         <span class="at">lower =</span> lowerGR4J, <span class="at">upper =</span> upperGR4J,</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>                         <span class="at">control =</span> <span class="fu">list</span>(<span class="at">trace =</span> <span class="dv">1</span>))</span></code></pre></div>
 <p>The RMSE value reaches a local minimum value after 35 iterations.</p>
 <p>We can also try a multi-start approach to test the consistency of the
 local optimization. Here we use the same grid used for the filtering
 step of the Michel’s calibration strategy
 (<code>Calibration_Michel()</code> function). For each starting point, a
 local optimization is performed.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>startGR4JDistrib <span class="ot">&lt;-</span> <span class="fu">TransfoParam_GR4J</span>(<span class="at">ParamIn =</span> CalibOptions<span class="sc">$</span>StartParamDistrib,</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">Direction =</span> <span class="st">&quot;RT&quot;</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>startGR4J <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="fu">data.frame</span>(startGR4JDistrib))</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>optPORT_ <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  opt <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">nlminb</span>(<span class="at">start =</span> x,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">objective =</span> OptimGR4J,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">lower =</span> lowerGR4J, <span class="at">upper =</span> upperGR4J,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">control =</span> <span class="fu">list</span>(<span class="at">trace =</span> <span class="dv">1</span>))</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>listOptPORT <span class="ot">&lt;-</span> <span class="fu">apply</span>(startGR4J, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> optPORT_)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>startGR4JDistrib <span class="ot">&lt;-</span> <span class="fu">TransfoParam_GR4J</span>(<span class="at">ParamIn =</span> CalibOptions<span class="sc">$</span>StartParamDistrib,</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>                                      <span class="at">Direction =</span> <span class="st">&quot;RT&quot;</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>startGR4J <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="fu">data.frame</span>(startGR4JDistrib))</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>optPORT_ <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  opt <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">nlminb</span>(<span class="at">start =</span> x,</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>                       <span class="at">objective =</span> OptimGR4J,</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>                       <span class="at">lower =</span> lowerGR4J, <span class="at">upper =</span> upperGR4J,</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>                       <span class="at">control =</span> <span class="fu">list</span>(<span class="at">trace =</span> <span class="dv">1</span>))</span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>}</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>listOptPORT <span class="ot">&lt;-</span> <span class="fu">apply</span>(startGR4J, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> optPORT_)</span></code></pre></div>
 <p>We can then extract the best parameter sets and the value of the
 performance criteria:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>parPORT <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">sapply</span>(listOptPORT, <span class="cf">function</span>(x) x<span class="sc">$</span>par))</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>objPORT <span class="ot">&lt;-</span> <span class="fu">sapply</span>(listOptPORT, <span class="cf">function</span>(x) x<span class="sc">$</span>objective)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>resPORT <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(parPORT, <span class="at">RMSE =</span> objPORT)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>parPORT <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">sapply</span>(listOptPORT, <span class="cf">function</span>(x) x<span class="sc">$</span>par))</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>objPORT <span class="ot">&lt;-</span> <span class="fu">sapply</span>(listOptPORT, <span class="cf">function</span>(x) x<span class="sc">$</span>objective)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>resPORT <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(parPORT, <span class="at">RMSE =</span> objPORT)</span></code></pre></div>
 <p>As can be seen below, the optimum performance criterion values
 (column <em>objective</em>) can differ from the global optimum value in
 many cases, resulting in various parameter sets.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(resPORT)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">summary</span>(resPORT)</span></code></pre></div>
 <pre><code>##        X1              X2               X3                  X4                 RMSE       
 ##  Min.   :5.548   Min.   :0.1240   Min.   :-0.038062   Min.   :-8.242667   Min.   :0.7864  
 ##  1st Qu.:5.548   1st Qu.:0.1243   1st Qu.:-0.003741   1st Qu.:-8.242667   1st Qu.:0.7864  
@@ -637,25 +637,25 @@ memetic algorithms</a></li>
 <div id="differential-evolution" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Differential
 Evolution</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>optDE <span class="ot">&lt;-</span> DEoptim<span class="sc">::</span><span class="fu">DEoptim</span>(<span class="at">fn =</span> OptimGR4J,</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">lower =</span> lowerGR4J, <span class="at">upper =</span> upperGR4J,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">control =</span> DEoptim<span class="sc">::</span><span class="fu">DEoptim.control</span>(<span class="at">NP =</span> <span class="dv">40</span>, <span class="at">trace =</span> <span class="dv">10</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>optDE <span class="ot">&lt;-</span> DEoptim<span class="sc">::</span><span class="fu">DEoptim</span>(<span class="at">fn =</span> OptimGR4J,</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>                          <span class="at">lower =</span> lowerGR4J, <span class="at">upper =</span> upperGR4J,</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>                          <span class="at">control =</span> DEoptim<span class="sc">::</span><span class="fu">DEoptim.control</span>(<span class="at">NP =</span> <span class="dv">40</span>, <span class="at">trace =</span> <span class="dv">10</span>))</span></code></pre></div>
 </div>
 <div id="particle-swarm" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Particle Swarm</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>optPSO <span class="ot">&lt;-</span> hydroPSO<span class="sc">::</span><span class="fu">hydroPSO</span>(<span class="at">fn =</span> OptimGR4J,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">lower =</span> lowerGR4J, <span class="at">upper =</span> upperGR4J,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">control =</span> <span class="fu">list</span>(<span class="at">write2disk =</span> <span class="cn">FALSE</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>optPSO <span class="ot">&lt;-</span> hydroPSO<span class="sc">::</span><span class="fu">hydroPSO</span>(<span class="at">fn =</span> OptimGR4J,</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>                             <span class="at">lower =</span> lowerGR4J, <span class="at">upper =</span> upperGR4J,</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>                             <span class="at">control =</span> <span class="fu">list</span>(<span class="at">write2disk =</span> <span class="cn">FALSE</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
 </div>
 <div id="ma-ls-chains" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> MA-LS-Chains</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to install the package temporary removde from CRAN</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Rtools needed (windows : https://cran.r-project.org/bin/windows/Rtools/)</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;https://cran.r-project.org/src/contrib/Archive/Rmalschains/Rmalschains_0.2-8.tar.gz&quot;</span>, </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">repos =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="st">&quot;source&quot;</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>optMALS <span class="ot">&lt;-</span> Rmalschains<span class="sc">::</span><span class="fu">malschains</span>(<span class="at">fn =</span> OptimGR4J,</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">lower =</span> lowerGR4J, <span class="at">upper =</span> upperGR4J, </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">maxEvals =</span> <span class="dv">2000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># to install the package temporary removde from CRAN</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="co"># Rtools needed (windows : https://cran.r-project.org/bin/windows/Rtools/)</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;https://cran.r-project.org/src/contrib/Archive/Rmalschains/Rmalschains_0.2-8.tar.gz&quot;</span>, </span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>                 <span class="at">repos =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="st">&quot;source&quot;</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>optMALS <span class="ot">&lt;-</span> Rmalschains<span class="sc">::</span><span class="fu">malschains</span>(<span class="at">fn =</span> OptimGR4J,</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>                                   <span class="at">lower =</span> lowerGR4J, <span class="at">upper =</span> upperGR4J, </span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>                                   <span class="at">maxEvals =</span> <span class="dv">2000</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="results" class="section level1" number="4">
@@ -685,80 +685,80 @@ we explore the trade-offs between the KGE values obtained without any
 data transformation and with the inverse transformation.</p>
 <p>First, the <code>OptimGR4J()</code> function previously used is
 modified to return two values.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>InputsCrit_inv <span class="ot">&lt;-</span> InputsCrit</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>InputsCrit_inv<span class="sc">$</span>transfo <span class="ot">&lt;-</span> <span class="st">&quot;inv&quot;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>MOptimGR4J <span class="ot">&lt;-</span> <span class="cf">function</span>(i) {</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (algo <span class="sc">==</span> <span class="st">&quot;caRamel&quot;</span>) {</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    ParamOptim <span class="ot">&lt;-</span> x[i, ]</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Transformation of the parameter set to real space</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  RawParamOptim <span class="ot">&lt;-</span> airGR<span class="sc">::</span><span class="fu">TransfoParam_GR4J</span>(<span class="at">ParamIn =</span> ParamOptim,</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">Direction =</span> <span class="st">&quot;TR&quot;</span>)</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Simulation given a parameter set</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  OutputsModel <span class="ot">&lt;-</span> airGR<span class="sc">::</span><span class="fu">RunModel_GR4J</span>(<span class="at">InputsModel =</span> InputsModel,</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">RunOptions =</span> RunOptions,</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Param =</span> RawParamOptim)</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Computation of the value of the performance criteria</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  OutputsCrit1 <span class="ot">&lt;-</span> airGR<span class="sc">::</span><span class="fu">ErrorCrit_KGE</span>(<span class="at">InputsCrit =</span> InputsCrit,</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">OutputsModel =</span> OutputsModel,</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Computation of the value of the performance criteria</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  OutputsCrit2 <span class="ot">&lt;-</span> airGR<span class="sc">::</span><span class="fu">ErrorCrit_KGE</span>(<span class="at">InputsCrit =</span> InputsCrit_inv,</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">OutputsModel =</span> OutputsModel,</span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(OutputsCrit1<span class="sc">$</span>CritValue, OutputsCrit2<span class="sc">$</span>CritValue))</span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>InputsCrit_inv <span class="ot">&lt;-</span> InputsCrit</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>InputsCrit_inv<span class="sc">$</span>transfo <span class="ot">&lt;-</span> <span class="st">&quot;inv&quot;</span></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  </span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>MOptimGR4J <span class="ot">&lt;-</span> <span class="cf">function</span>(i) {</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>  <span class="cf">if</span> (algo <span class="sc">==</span> <span class="st">&quot;caRamel&quot;</span>) {</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>    ParamOptim <span class="ot">&lt;-</span> x[i, ]</span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>  }</span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>  <span class="do">## Transformation of the parameter set to real space</span></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>  RawParamOptim <span class="ot">&lt;-</span> airGR<span class="sc">::</span><span class="fu">TransfoParam_GR4J</span>(<span class="at">ParamIn =</span> ParamOptim,</span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>                                            <span class="at">Direction =</span> <span class="st">&quot;TR&quot;</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>  <span class="do">## Simulation given a parameter set</span></span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>  OutputsModel <span class="ot">&lt;-</span> airGR<span class="sc">::</span><span class="fu">RunModel_GR4J</span>(<span class="at">InputsModel =</span> InputsModel,</span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>                                       <span class="at">RunOptions =</span> RunOptions,</span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a>                                       <span class="at">Param =</span> RawParamOptim)</span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a>  <span class="do">## Computation of the value of the performance criteria</span></span>
+<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a>  OutputsCrit1 <span class="ot">&lt;-</span> airGR<span class="sc">::</span><span class="fu">ErrorCrit_KGE</span>(<span class="at">InputsCrit =</span> InputsCrit,</span>
+<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a>                                       <span class="at">OutputsModel =</span> OutputsModel,</span>
+<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a>                                       <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a>  <span class="do">## Computation of the value of the performance criteria</span></span>
+<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a>  OutputsCrit2 <span class="ot">&lt;-</span> airGR<span class="sc">::</span><span class="fu">ErrorCrit_KGE</span>(<span class="at">InputsCrit =</span> InputsCrit_inv,</span>
+<span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a>                                       <span class="at">OutputsModel =</span> OutputsModel,</span>
+<span id="cb15-22"><a href="#cb15-22" tabindex="-1"></a>                                       <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb15-23"><a href="#cb15-23" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(OutputsCrit1<span class="sc">$</span>CritValue, OutputsCrit2<span class="sc">$</span>CritValue))</span>
+<span id="cb15-24"><a href="#cb15-24" tabindex="-1"></a>}</span></code></pre></div>
 <div id="caramel" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> caRamel</h2>
 <p>caRamel is a multiobjective evolutionary algorithm combining the MEAS
 algorithm and the NGSA-II algorithm.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>algo <span class="ot">&lt;-</span> <span class="st">&quot;caRamel&quot;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>optMO <span class="ot">&lt;-</span> caRamel<span class="sc">::</span><span class="fu">caRamel</span>(<span class="at">nobj =</span> <span class="dv">2</span>,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">nvar =</span> <span class="dv">4</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">minmax =</span> <span class="fu">rep</span>(<span class="cn">TRUE</span>, <span class="dv">2</span>),</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">bounds =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(lowerGR4J, upperGR4J), <span class="at">ncol =</span> <span class="dv">2</span>),</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">func =</span> MOptimGR4J,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">popsize =</span> <span class="dv">100</span>,</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">archsize =</span> <span class="dv">100</span>,</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">maxrun =</span> <span class="dv">15000</span>,</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">prec =</span> <span class="fu">rep</span>(<span class="dv">1</span>.e<span class="dv">-3</span>, <span class="dv">2</span>),</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">carallel =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>                          <span class="at">graph =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>algo <span class="ot">&lt;-</span> <span class="st">&quot;caRamel&quot;</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>optMO <span class="ot">&lt;-</span> caRamel<span class="sc">::</span><span class="fu">caRamel</span>(<span class="at">nobj =</span> <span class="dv">2</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>                          <span class="at">nvar =</span> <span class="dv">4</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>                          <span class="at">minmax =</span> <span class="fu">rep</span>(<span class="cn">TRUE</span>, <span class="dv">2</span>),</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>                          <span class="at">bounds =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(lowerGR4J, upperGR4J), <span class="at">ncol =</span> <span class="dv">2</span>),</span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>                          <span class="at">func =</span> MOptimGR4J,</span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>                          <span class="at">popsize =</span> <span class="dv">100</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a>                          <span class="at">archsize =</span> <span class="dv">100</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a>                          <span class="at">maxrun =</span> <span class="dv">15000</span>,</span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a>                          <span class="at">prec =</span> <span class="fu">rep</span>(<span class="dv">1</span>.e<span class="dv">-3</span>, <span class="dv">2</span>),</span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a>                          <span class="at">carallel =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a>                          <span class="at">graph =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>The algorithm returns parameter sets that describe the pareto front,
 illustrating the trade-off between overall good performance and good
 performance for low flow.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(optMO<span class="sc">$</span>objectives[, <span class="dv">1</span>], optMO<span class="sc">$</span>objectives[, <span class="dv">2</span>])) <span class="sc">+</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.9</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.9</span>)) <span class="sc">+</span> </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;KGE&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;KGE [1/Q]&quot;</span>) <span class="sc">+</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(optMO<span class="sc">$</span>objectives[, <span class="dv">1</span>], optMO<span class="sc">$</span>objectives[, <span class="dv">2</span>])) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="fu">coord_equal</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.9</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.9</span>)) <span class="sc">+</span> </span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;KGE&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;KGE [1/Q]&quot;</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="page_2.1_param_optim_files/figure-html/unnamed-chunk-19-1.png" width="576" /></p>
 <p>The parameter sets can be viewed in the parameter space, illustrating
 different populations.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>param_optMO <span class="ot">&lt;-</span> <span class="fu">apply</span>(optMO<span class="sc">$</span>parameters, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  airGR<span class="sc">::</span><span class="fu">TransfoParam_GR4J</span>(x, <span class="at">Direction =</span> <span class="st">&quot;TR&quot;</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>GGally<span class="sc">::</span><span class="fu">ggpairs</span>(<span class="fu">data.frame</span>(<span class="fu">t</span>(param_optMO)), <span class="at">diag =</span> <span class="cn">NULL</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>param_optMO <span class="ot">&lt;-</span> <span class="fu">apply</span>(optMO<span class="sc">$</span>parameters, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>  airGR<span class="sc">::</span><span class="fu">TransfoParam_GR4J</span>(x, <span class="at">Direction =</span> <span class="st">&quot;TR&quot;</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>  })</span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>GGally<span class="sc">::</span><span class="fu">ggpairs</span>(<span class="fu">data.frame</span>(<span class="fu">t</span>(param_optMO)), <span class="at">diag =</span> <span class="cn">NULL</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="page_2.1_param_optim_files/figure-html/unnamed-chunk-20-1.png" width="576" /></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>RunOptions<span class="sc">$</span>Outputs_Sim <span class="ot">&lt;-</span> <span class="st">&quot;Qsim&quot;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>run_optMO <span class="ot">&lt;-</span> <span class="fu">apply</span>(optMO<span class="sc">$</span>parameters, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  airGR<span class="sc">::</span><span class="fu">RunModel_GR4J</span>(<span class="at">InputsModel =</span> InputsModel,</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">RunOptions =</span> RunOptions,</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">Param =</span> x)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  }<span class="sc">$</span>Qsim)</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>run_optMO <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(run_optMO)</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.POSIXct</span>(InputsModel<span class="sc">$</span>DatesR[Ind_Run]),</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> run_optMO<span class="sc">$</span>X1)) <span class="sc">+</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.POSIXct</span>(InputsModel<span class="sc">$</span>DatesR[Ind_Run]),</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> run_optMO<span class="sc">$</span>X54),</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour =</span> <span class="st">&quot;darkred&quot;</span>) <span class="sc">+</span></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_datetime</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">as.POSIXct</span>(<span class="st">&quot;1998-01-01&quot;</span>), <span class="cn">NA</span>)) <span class="sc">+</span></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Discharge [mm/d]&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Date&quot;</span>) <span class="sc">+</span></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_sqrt</span>() <span class="sc">+</span></span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>RunOptions<span class="sc">$</span>Outputs_Sim <span class="ot">&lt;-</span> <span class="st">&quot;Qsim&quot;</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>run_optMO <span class="ot">&lt;-</span> <span class="fu">apply</span>(optMO<span class="sc">$</span>parameters, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>  airGR<span class="sc">::</span><span class="fu">RunModel_GR4J</span>(<span class="at">InputsModel =</span> InputsModel,</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>                       <span class="at">RunOptions =</span> RunOptions,</span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>                       <span class="at">Param =</span> x)</span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>  }<span class="sc">$</span>Qsim)</span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a>run_optMO <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(run_optMO)</span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.POSIXct</span>(InputsModel<span class="sc">$</span>DatesR[Ind_Run]),</span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a>                <span class="at">y =</span> run_optMO<span class="sc">$</span>X1)) <span class="sc">+</span></span>
+<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.POSIXct</span>(InputsModel<span class="sc">$</span>DatesR[Ind_Run]),</span>
+<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a>                <span class="at">y =</span> run_optMO<span class="sc">$</span>X54),</span>
+<span id="cb19-14"><a href="#cb19-14" tabindex="-1"></a>            <span class="at">colour =</span> <span class="st">&quot;darkred&quot;</span>) <span class="sc">+</span></span>
+<span id="cb19-15"><a href="#cb19-15" tabindex="-1"></a>  <span class="fu">scale_x_datetime</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">as.POSIXct</span>(<span class="st">&quot;1998-01-01&quot;</span>), <span class="cn">NA</span>)) <span class="sc">+</span></span>
+<span id="cb19-16"><a href="#cb19-16" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Discharge [mm/d]&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Date&quot;</span>) <span class="sc">+</span></span>
+<span id="cb19-17"><a href="#cb19-17" tabindex="-1"></a>  <span class="fu">scale_y_sqrt</span>() <span class="sc">+</span></span>
+<span id="cb19-18"><a href="#cb19-18" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="page_2.1_param_optim_files/figure-html/unnamed-chunk-21-1.png" width="1152" /></p>
 </div>
 </div>
