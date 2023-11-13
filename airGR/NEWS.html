@@ -13,7 +13,7 @@
 
 <title>Release History of the airGR Package</title>
 
-<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -344,8 +344,8 @@ div.tocify {
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<a href='https://www.inrae.fr/en/' onclick="window.open(this.href); return false;", title="inrae.fr"><img src='fig/logo_inrae_CMJN_square.svg' style='width:45px;height:45px;'></a>
-				<a href='https://webgr.inrae.fr/en/' onclick="window.open(this.href); return false;", title="webgr.inrae.fr"><img src='fig/logo_inrae_hydro_CMJN_square.svg' style='width:45px;height:45px;'></a>
-				<a href='https://webgr.inrae.fr/en/software/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGR_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.inrae.fr/' onclick="window.open(this.href); return false;", title="webgr.inrae.fr"><img src='fig/logo_inrae_hydro_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.inrae.fr/logiciels/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGR_CMJN_square.svg' style='width:45px;height:45px;'></a>
 				<a href='https://gitlab.irstea.fr/HYCAR-Hydro/airgr/' onclick="window.open(this.href); return false;", title="GitLab"><img src='fig/logo_gitlab_CMJN_square.svg' style='width:45px;height:45px;'></a>				
 			</ul>
 		</div><!--/.nav-collapse -->
@@ -399,9 +399,51 @@ div.tocify {
 </div>
 
 
+<div id="release-notes-2023-10-25" class="section level3">
+<h3>1.7.6 Release Notes (2023-10-25)</h3>
+<div id="bug-fixes" class="section level4">
+<h4>Bug fixes</h4>
+<ul>
+<li><code>CreateCalibOptions()</code> now uses parameter screening for
+<code>RunModel_Lag()</code> which are now expressed in the transformed
+space instead of the parameter space. (<a
+href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/156">#156</a>)</li>
+<li><code>RunModel_CemaNeige*()</code> now takes into account the case
+when <code>dG = 0</code>. (<a
+href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/178">#178</a>)</li>
+</ul>
+</div>
+<div id="minor-user-visible-changes" class="section level4">
+<h4>Minor user-visible changes</h4>
+<ul>
+<li><code>Calibration_Michel()</code> now runs faster as the
+<code>ProposeCandidatesGrid()</code> was improved to create the propose
+candidates grid. (<a
+href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/157">#157</a>)</li>
+<li><code>TransfoParamGR5J()</code> now returns the correct error
+message when the number of parameters is incorrect. (<a
+href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/168">#168</a>)</li>
+</ul>
+</div>
+<div id="cran-compatibility-updates" class="section level4">
+<h4>CRAN-compatibility updates</h4>
+<ul>
+<li><code>frun_*</code> Fortran subroutine does not use anymore the
+‘DLLEXPORT’ command. (<a
+href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/180">#180</a>)</li>
+<li>The ‘Rmalschains’ package is back on CRAN and it is again suggested
+(cf. the ‘param_optim’ vignette). (<a
+href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/175">#175</a>)</li>
+<li>The ‘hydroPSO’ package is no longer suggested (but the code linked
+to its use and is always present in the ‘param_optim’ vignette). (<a
+href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/182">#182</a>)</li>
+</ul>
+<hr />
+</div>
+</div>
 <div id="release-notes-2023-04-11" class="section level3">
 <h3>1.7.4 Release Notes (2023-04-11)</h3>
-<div id="cran-compatibility-updates" class="section level4">
+<div id="cran-compatibility-updates-1" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>The ‘Rmalschains’ package is no longer suggested (but the code
@@ -461,7 +503,7 @@ the <code>ErrorCrit()</code> function. (<a
 href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/81">#81</a>)</li>
 </ul>
 </div>
-<div id="bug-fixes" class="section level4">
+<div id="bug-fixes-1" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><code>SeriesAggreg()</code> now correctly reorders regime time
@@ -487,7 +529,7 @@ href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/145">#144</a>)</li>
 href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/132">#132</a>)</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes" class="section level4">
+<div id="minor-user-visible-changes-1" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><code>PE_Oudin()</code> can use inconsistent time series. It allows
@@ -549,7 +591,7 @@ a hydrological model. (<a
 href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/109">#109</a>)</li>
 </ul>
 </div>
-<div id="bug-fixes-1" class="section level4">
+<div id="bug-fixes-2" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>RunModel</code>. The <code>RunModel_Lag()</code>
@@ -590,7 +632,7 @@ irrealistically high X1 values. (<a
 href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/50">#50</a>)</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-1" class="section level4">
+<div id="minor-user-visible-changes-2" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>The <code>RunModel*()</code> functions now run faster. The
@@ -646,7 +688,7 @@ href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/61">#61</a>)</li>
 href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/92">#92</a>)</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-2" class="section level4">
+<div id="minor-user-visible-changes-3" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Fixed warning returned by GCC Fortran when compiling
@@ -654,7 +696,7 @@ href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/92">#92</a>)</li>
 href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/93">#93</a>)</li>
 </ul>
 </div>
-<div id="cran-compatibility-updates-1" class="section level4">
+<div id="cran-compatibility-updates-2" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>Coerce <code>character</code> dates into <code>POSIXlt</code> in
@@ -714,7 +756,7 @@ from the <code>CreateRunOptions()</code> function. (<a
 href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/23">#23</a>)</li>
 </ul>
 </div>
-<div id="bug-fixes-2" class="section level4">
+<div id="bug-fixes-3" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in<code>SeriesAggreg()</code>. The function now runs when
@@ -752,7 +794,7 @@ aggregation functions that return value of length 1 (not only
 href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/82">#82</a>)</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-3" class="section level4">
+<div id="minor-user-visible-changes-4" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>The <code>.FortranOutputs()</code> function is no longer exported in
@@ -795,7 +837,7 @@ href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/56">#56</a>)</li>
 href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/52">#52</a>)</li>
 </ul>
 </div>
-<div id="cran-compatibility-updates-2" class="section level4">
+<div id="cran-compatibility-updates-3" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>‘airGR’ now depends on R &gt;= 3.1.0 because of the use of the
@@ -812,7 +854,7 @@ href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/74">#74</a>)</li>
 </div>
 <div id="release-notes-2020-02-28" class="section level3">
 <h3>1.4.3.65 Release Notes (2020-02-28)</h3>
-<div id="cran-compatibility-updates-3" class="section level4">
+<div id="cran-compatibility-updates-4" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>The run period is reduced in the example of the <code>Imax()</code>
@@ -836,7 +878,7 @@ research. The references can be displayed with the
 <code>citation("airGR")</code> command.</li>
 </ul>
 </div>
-<div id="bug-fixes-3" class="section level4">
+<div id="bug-fixes-4" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>Imax()</code>. The default value of the
@@ -866,7 +908,7 @@ capacity of the GR5H interception store. (<a
 href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/13">#13</a>)</li>
 </ul>
 </div>
-<div id="bug-fixes-4" class="section level4">
+<div id="bug-fixes-5" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>TransfoParam_GR1A()</code>. The number of model
@@ -895,7 +937,7 @@ transformation formula is now corrected when the
 AExch1, AExch2).</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-4" class="section level4">
+<div id="minor-user-visible-changes-5" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Added the diagram of GR2M in the <code>RunModel_GR2M()</code>
@@ -904,7 +946,7 @@ documentation.</li>
 href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/18">#18</a>)</li>
 </ul>
 </div>
-<div id="cran-compatibility-updates-4" class="section level4">
+<div id="cran-compatibility-updates-5" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>Cleaning of the Fortran codes (comment formatting).</li>
@@ -922,7 +964,7 @@ href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/18">#18</a>)</li>
 (<code>https://gitlab.irstea.fr/HYCAR-Hydro/airgr/issues</code>).</li>
 </ul>
 </div>
-<div id="bug-fixes-5" class="section level4">
+<div id="bug-fixes-6" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>RunModel_CemaNeige()</code>. The function now
@@ -937,7 +979,7 @@ hysteresis.</li>
 Gthr end states are no more inverted in the output values.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-5" class="section level4">
+<div id="minor-user-visible-changes-6" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Spurious flows set to <code>NA</code> into the <code>BasinObs</code>
@@ -971,7 +1013,7 @@ complex plot arrangements.</li>
 has been replaced by the use of <code>PE_Oudin()</code>.</li>
 </ul>
 </div>
-<div id="bug-fixes-6" class="section level4">
+<div id="bug-fixes-7" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>plot.OutputsModel()</code>. The function now runs
@@ -997,7 +1039,7 @@ and “perf” corresponds to the performance graphs
 (i.e. <code>c("Error", "Regime", "CumFreq", "CorQQ")</code>).</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-6" class="section level4">
+<div id="minor-user-visible-changes-7" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><code>.ErrorCrit()</code> private function added to check inputs
@@ -1110,7 +1152,7 @@ following functions: <code>Calibration()</code>,
 <code>RunModel()</code> and <code>TransfoParam()</code>.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-7" class="section level4">
+<div id="minor-user-visible-changes-8" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><code>ErrorCrit_*()</code> functions now return objects of class
@@ -1135,7 +1177,7 @@ checked.</li>
 CITATION files.</li>
 </ul>
 </div>
-<div id="cran-compatibility-updates-5" class="section level4">
+<div id="cran-compatibility-updates-6" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>Tabulations removed, unused variables removed and variable
@@ -1146,7 +1188,7 @@ statements fixed in Fortran files.</li>
 </div>
 <div id="release-notes-2018-10-10" class="section level3">
 <h3>1.0.15.2 Release Notes (2018-10-10)</h3>
-<div id="bug-fixes-7" class="section level4">
+<div id="bug-fixes-8" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>CreateRunOptions()</code>. The function now
@@ -1154,14 +1196,14 @@ accounts correctly for leap years when no warm-up period is
 defined.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-8" class="section level4">
+<div id="minor-user-visible-changes-9" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><code>CreateRunOptions()</code> was cleaned up, with no effect on
 its outputs.</li>
 </ul>
 </div>
-<div id="cran-compatibility-updates-6" class="section level4">
+<div id="cran-compatibility-updates-7" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>The <code>vignetteParam*.rda</code> datasets moved to the inst
@@ -1216,7 +1258,7 @@ the following case: there are zeroes values in <code>Qobs</code> or
 <code>transfo = log</code> or <code>inv</code>.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-9" class="section level4">
+<div id="minor-user-visible-changes-10" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Several functions of the package were cleaned up or slightly
@@ -1227,7 +1269,7 @@ modified, with no effect on their outputs.</li>
 package.</li>
 </ul>
 </div>
-<div id="cran-compatibility-updates-7" class="section level4">
+<div id="cran-compatibility-updates-8" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>Function name changed in a vignettes to avoid error during the check
@@ -1243,7 +1285,7 @@ objects needed for param_optim and param_mcmc vignettes.</li>
 </div>
 <div id="release-notes-2018-06-29" class="section level3">
 <h3>1.0.10.11 Release Notes (2018-06-29)</h3>
-<div id="bug-fixes-8" class="section level4">
+<div id="bug-fixes-9" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>RunModel_GR2M()</code>. The function now returns
@@ -1260,7 +1302,7 @@ the KGE (or KGE’) is used with a log transformation on flows.</li>
 <li>The article reference is corrected.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-10" class="section level4">
+<div id="minor-user-visible-changes-11" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>The documentation and help of several functions were improved.</li>
@@ -1293,7 +1335,7 @@ GR4J model).</li>
 <code>CreateRunOptions()</code>.</li>
 </ul>
 </div>
-<div id="bug-fixes-9" class="section level4">
+<div id="bug-fixes-10" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>RunModel_GR4H()</code>: in <code>frun_GR4H</code>
@@ -1321,7 +1363,7 @@ details about the calculation of these variables.</li>
 same order as the other models.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-11" class="section level4">
+<div id="minor-user-visible-changes-12" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><code>plot.OutputsModel()</code> now returns a warning message when
@@ -1340,7 +1382,7 @@ with no effect on their outputs.</li>
 <li>The documentation and help of several functions were improved.</li>
 </ul>
 </div>
-<div id="cran-compatibility-updates-8" class="section level4">
+<div id="cran-compatibility-updates-9" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>“airGR.c” file registers native routines.</li>
@@ -1359,7 +1401,7 @@ argument which allows rescaling precipitation when it is interpolated on
 the elevation layers when CemaNeige is used.</li>
 </ul>
 </div>
-<div id="bug-fixes-10" class="section level4">
+<div id="bug-fixes-11" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>DataAltiExtrapolation_Valery()</code>. The
@@ -1421,7 +1463,7 @@ argument to replace the verbose action and the <code>verbose</code>
 argument now prints the criterion value(s).</li>
 </ul>
 </div>
-<div id="bug-fixes-11" class="section level4">
+<div id="bug-fixes-12" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>CreateCalibOptions()</code> when
@@ -1473,7 +1515,7 @@ transparent to the user.</li>
 argument that was not used.</li>
 </ul>
 </div>
-<div id="bug-fixes-12" class="section level4">
+<div id="bug-fixes-13" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>The value <code>sort</code> for the <code>transfo</code> argument of
@@ -1498,7 +1540,7 @@ are much more efficient. In case you were using your own calibration
 algorithm, you will not notice any difference.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-12" class="section level4">
+<div id="minor-user-visible-changes-13" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li><code>CreateInputsModel()</code> and
@@ -1549,7 +1591,7 @@ these quantiles constitute the starting point of the calibration
 algorithm, calibration results will be different.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-13" class="section level4">
+<div id="minor-user-visible-changes-14" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>The Fortran model core codes have been modified:
@@ -1567,7 +1609,7 @@ the following R-command <code>citation("airGR")</code>.</li>
 </div>
 <div id="release-notes-2015-08-21" class="section level3">
 <h3>0.8.1.2 Release Notes (2015-08-21)</h3>
-<div id="bug-fixes-13" class="section level4">
+<div id="bug-fixes-14" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>CreateInputsModel()</code> that was related to
@@ -1577,14 +1619,14 @@ correct use of the <code>IniResLevels</code> argument (to manually set
 the filling rate of the production and routing stores).</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-14" class="section level4">
+<div id="minor-user-visible-changes-15" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Removal of an unnecessary warning when
 <code>IndPeriod_WarmUp = 0</code>.</li>
 </ul>
 </div>
-<div id="cran-compatibility-updates-9" class="section level4">
+<div id="cran-compatibility-updates-10" class="section level4">
 <h4>CRAN-compatibility updates</h4>
 <ul>
 <li>Modification of namespace file to ensure proper use under linux
@@ -1606,7 +1648,7 @@ without compilation issues.</li>
 timesteps.</li>
 </ul>
 </div>
-<div id="bug-fixes-14" class="section level4">
+<div id="bug-fixes-15" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>ErrorCrit_RMSE()</code> which led to incorrect
@@ -1623,7 +1665,7 @@ to handle the new models.</li>
 after the SnowPack update (no impact on snow simulation).</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-15" class="section level4">
+<div id="minor-user-visible-changes-16" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Improvement of the <code>plot_OutputsModel()</code> function to
@@ -1656,7 +1698,7 @@ not.</li>
 <code>Calibration_*()</code>.</li>
 </ul>
 </div>
-<div id="bug-fixes-15" class="section level4">
+<div id="bug-fixes-16" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Fixed bug in <code>CreateCalibOptions()</code> to handle models with
@@ -1683,7 +1725,7 @@ function” created by the users has been removed).</li>
 <li>Improved documentation and examples.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-16" class="section level4">
+<div id="minor-user-visible-changes-17" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Improvements allowing the arrival of new models.</li>
@@ -1722,7 +1764,7 @@ in the outputs e.g. NSE[Q] instead of (-1) × NSE[Q].</li>
 algorithms minimise the error criterion).</li>
 </ul>
 </div>
-<div id="bug-fixes-16" class="section level4">
+<div id="bug-fixes-17" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>RC11 bug correction: the automatic selection of the warm-up period
@@ -1759,7 +1801,7 @@ way (e.g. see <code>DefineFunctions_Model()</code> or
 <code>DefineFunctions_ErrorCrit()</code>).</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-17" class="section level4">
+<div id="minor-user-visible-changes-18" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Code improvements to reduce the computation time.</li>
@@ -1794,7 +1836,7 @@ made in the <code>CheckArg()</code> functions.</li>
 <code>OutputsAlgo()</code>.</li>
 </ul>
 </div>
-<div id="minor-user-visible-changes-18" class="section level4">
+<div id="minor-user-visible-changes-19" class="section level4">
 <h4>Minor user-visible changes</h4>
 <ul>
 <li>Missing values in Fortran are now -999.999 instead of -9.999.</li>
@@ -1811,7 +1853,7 @@ made in the <code>CheckArg()</code> functions.</li>
 criterion on sqrt flows.</li>
 </ul>
 </div>
-<div id="bug-fixes-17" class="section level4">
+<div id="bug-fixes-18" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>Incorrect arguments in the call to <code>RunModelAndCrit</code> from
@@ -1828,7 +1870,7 @@ defined in <code>DefineFunctions_CalibrationAlgo()</code>
 
 <footer>
   <div style="float:left"><img src="fig/logo_republique_francaise_CMJN.svg" alt="airGR logo" height=50px style="margin-top:-20px" /></div>
-  <div style="float:right">Developed by INRAE&nbsp;<a href="https://webgr.inrae.fr/en">Catchment Hydrology Research Group</a>&nbsp;&#x2013; Antony, France</div>
+  <div style="float:right">Developed by INRAE&nbsp;<a href="https://webgr.inrae.fr/">Catchment Hydrology Research Group</a>&nbsp;&#x2013; Antony, France</div>
 </footer>
 
 
