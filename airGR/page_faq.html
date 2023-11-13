@@ -13,7 +13,7 @@
 
 <title>Frequently asked questions</title>
 
-<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -344,8 +344,8 @@ div.tocify {
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<a href='https://www.inrae.fr/en/' onclick="window.open(this.href); return false;", title="inrae.fr"><img src='fig/logo_inrae_CMJN_square.svg' style='width:45px;height:45px;'></a>
-				<a href='https://webgr.inrae.fr/en/' onclick="window.open(this.href); return false;", title="webgr.inrae.fr"><img src='fig/logo_inrae_hydro_CMJN_square.svg' style='width:45px;height:45px;'></a>
-				<a href='https://webgr.inrae.fr/en/software/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGR_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.inrae.fr/' onclick="window.open(this.href); return false;", title="webgr.inrae.fr"><img src='fig/logo_inrae_hydro_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.inrae.fr/logiciels/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGR_CMJN_square.svg' style='width:45px;height:45px;'></a>
 				<a href='https://gitlab.irstea.fr/HYCAR-Hydro/airgr/' onclick="window.open(this.href); return false;", title="GitLab"><img src='fig/logo_gitlab_CMJN_square.svg' style='width:45px;height:45px;'></a>				
 			</ul>
 		</div><!--/.nav-collapse -->
@@ -399,17 +399,30 @@ div.tocify {
 </div>
 
 
-<div id="is-there-any-flood-forecasting-model-in-airgr"
+<div id="can-we-perform-flow-forcasting-with-airgr"
 class="section level4">
-<h4>Is there any flood forecasting model in airGR?</h4>
+<h4>Can we perform flow forcasting with airGR?</h4>
 <ul>
-<li>All the RR models included in
+<li><p>All the RR models included in
 <strong><font color="#00a3a6">airGR</font></strong> are set up to work
-in a simulation mode. However, provided that users have meteorological
-forecast data and arrange their code to do so, hydrological forecasting
-can be performed with the
+in a simulation mode. There is no forecasting model in
+<strong><font color="#00a3a6">airGR</font></strong>. However, provided
+that users have meteorological forecast data and arrange their code to
+do so, hydrological forecasting can be performed with the
 <strong><font color="#00a3a6">airGR</font></strong> RR models
-(especially the hourly and daily models).</li>
+(especially the hourly and daily models).</p></li>
+<li><p><a
+href="https://webgr.inrae.fr/modeles/modele-de-prevision-grp/">GRP</a>
+is the operational flood forecasting model used by many flood
+forecasting centers in France. It is not included in
+<strong><font color="#00a3a6">airGR</font></strong> (see previous
+question) but is available upon request and after signing an agreement,
+both for research and real-time use, when contacting the responsible
+team.</p></li>
+<li><p>With some data manipulation it is possible to perform flow
+forecasting. Such a work has already been done in the past. However we
+did not include a specific function for this in
+<strong><font color="#00a3a6">airGR</font></strong>.</p></li>
 </ul>
 </div>
 <div id="what-about-inundation-modelling-can-airgr-do-that"
@@ -420,35 +433,14 @@ class="section level4">
 <strong><font color="#00a3a6">airGR</font></strong> yet.</li>
 </ul>
 </div>
-<div id="is-grp-in-airgr" class="section level4">
-<h4>Is GRP in airGR?</h4>
+<div id="is-it-possible-to-estimate-uncertainties-with-airgr"
+class="section level4">
+<h4>Is it possible to estimate uncertainties with airGR?</h4>
 <ul>
-<li><a
-href="https://webgr.inrae.fr/en/models/hydrological-forecasting-model-grp/">GRP</a>
-is the operational flood forecasting model used by many flood
-forecasting centres in France. It is not included in
-<strong><font color="#00a3a6">airGR</font></strong> (see previous
-question) but is available upon request and after signing an agreement,
-both for research and real-time use, when contacting the responsible
-team.</li>
-</ul>
-</div>
-<div id="is-otamin-in-airgr" class="section level4">
-<h4>Is OTAMIN in airGR?</h4>
-<ul>
-<li><a href="https://webgr.inrae.fr/en/software/otamin/">OTAMIN</a> is a
+<li><a href="https://webgr.inrae.fr/logiciels/otamin/">OTAMIN</a> is a
 forecast uncertainty tool that is not included in
 <strong><font color="#00a3a6">airGR</font></strong>. See the webpage for
 further information.</li>
-</ul>
-</div>
-<div id="can-we-perform-flow-forecasting-with-airgr"
-class="section level4">
-<h4>Can we perform flow forecasting with airGR?</h4>
-<ul>
-<li>Yes, with some data manipulation, such a work has already been done
-in the past. However we did not include a specific function for this in
-<strong><font color="#00a3a6">airGR</font></strong>.</li>
 </ul>
 </div>
 <div id="can-we-perform-data-assimilation-of-any-kind-in-airgr"
@@ -557,7 +549,7 @@ than the default ones.</li>
 
 <footer>
   <div style="float:left"><img src="fig/logo_republique_francaise_CMJN.svg" alt="airGR logo" height=50px style="margin-top:-20px" /></div>
-  <div style="float:right">Developed by INRAE&nbsp;<a href="https://webgr.inrae.fr/en">Catchment Hydrology Research Group</a>&nbsp;&#x2013; Antony, France</div>
+  <div style="float:right">Developed by INRAE&nbsp;<a href="https://webgr.inrae.fr/">Catchment Hydrology Research Group</a>&nbsp;&#x2013; Antony, France</div>
 </footer>
 
 
