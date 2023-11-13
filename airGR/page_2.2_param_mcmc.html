@@ -14,7 +14,7 @@
 
 <title>Parameter estimation within a Bayesian MCMC framework</title>
 
-<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -446,8 +446,8 @@ div.tocify {
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<a href='https://www.inrae.fr/en/' onclick="window.open(this.href); return false;", title="inrae.fr"><img src='fig/logo_inrae_CMJN_square.svg' style='width:45px;height:45px;'></a>
-				<a href='https://webgr.inrae.fr/en/' onclick="window.open(this.href); return false;", title="webgr.inrae.fr"><img src='fig/logo_inrae_hydro_CMJN_square.svg' style='width:45px;height:45px;'></a>
-				<a href='https://webgr.inrae.fr/en/software/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGR_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.inrae.fr/' onclick="window.open(this.href); return false;", title="webgr.inrae.fr"><img src='fig/logo_inrae_hydro_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.inrae.fr/logiciels/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGR_CMJN_square.svg' style='width:45px;height:45px;'></a>
 				<a href='https://gitlab.irstea.fr/HYCAR-Hydro/airgr/' onclick="window.open(this.href); return false;", title="GitLab"><img src='fig/logo_gitlab_CMJN_square.svg' style='width:45px;height:45px;'></a>				
 			</ul>
 		</div><!--/.nav-collapse -->
@@ -578,7 +578,7 @@ class="section level2" number="2.1">
 best-fit parameters as a starting point</h2>
 <p>We start by using the PORT optimization routine to estimate the
 best-fit parameters.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>optPORT <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">nlminb</span>(<span class="at">start =</span> <span class="fu">c</span>(<span class="fl">4.1</span>, <span class="fl">3.9</span>, <span class="sc">-</span><span class="fl">0.9</span>, <span class="sc">-</span><span class="fl">8.7</span>), </span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>optPORT <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">nlminb</span>(<span class="at">start =</span> <span class="fu">c</span>(<span class="fl">4.1</span>, <span class="fl">3.9</span>, <span class="sc">-</span><span class="fl">0.9</span>, <span class="sc">-</span><span class="fl">8.7</span>),</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>                         <span class="at">objective =</span> LogLikeGR4J,</span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                         <span class="at">lower =</span> <span class="fu">rep</span>(<span class="sc">-</span><span class="fl">9.9</span>, <span class="at">times =</span> <span class="dv">4</span>), <span class="at">upper =</span> <span class="fu">rep</span>(<span class="fl">9.9</span>, <span class="at">times =</span> <span class="dv">4</span>),</span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>                         <span class="at">control =</span> <span class="fu">list</span>(<span class="at">trace =</span> <span class="dv">1</span>))</span>
@@ -640,7 +640,7 @@ transformed space to the real space.</p>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  }))</span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>gelRub <span class="ot">&lt;-</span> coda<span class="sc">::</span><span class="fu">gelman.diag</span>(multDRAM, <span class="at">autoburnin =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>mpsrf</span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>gelRub</span></code></pre></div>
-<pre><code>## [1] 1.06</code></pre>
+<pre><code>## [1] 1.062202</code></pre>
 <p>In addition, graphical tools can be used, with for example the <a
 href="https://cran.r-project.org/package=ggmcmc">ggmcmc</a> package.</p>
 <p>First, the evolution of the Markov chains can be seen with a
@@ -673,7 +673,7 @@ the limitations of the Gaussian error model.</p>
 
 <footer>
   <div style="float:left"><img src="fig/logo_republique_francaise_CMJN.svg" alt="airGR logo" height=50px style="margin-top:-20px" /></div>
-  <div style="float:right">Developed by INRAE&nbsp;<a href="https://webgr.inrae.fr/en">Catchment Hydrology Research Group</a>&nbsp;&#x2013; Antony, France</div>
+  <div style="float:right">Developed by INRAE&nbsp;<a href="https://webgr.inrae.fr/">Catchment Hydrology Research Group</a>&nbsp;&#x2013; Antony, France</div>
 </footer>
 
 

@@ -14,7 +14,7 @@
 
 <title>Plugging in new calibration algorithms in airGR</title>
 
-<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -446,8 +446,8 @@ div.tocify {
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<a href='https://www.inrae.fr/en/' onclick="window.open(this.href); return false;", title="inrae.fr"><img src='fig/logo_inrae_CMJN_square.svg' style='width:45px;height:45px;'></a>
-				<a href='https://webgr.inrae.fr/en/' onclick="window.open(this.href); return false;", title="webgr.inrae.fr"><img src='fig/logo_inrae_hydro_CMJN_square.svg' style='width:45px;height:45px;'></a>
-				<a href='https://webgr.inrae.fr/en/software/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGR_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.inrae.fr/' onclick="window.open(this.href); return false;", title="webgr.inrae.fr"><img src='fig/logo_inrae_hydro_CMJN_square.svg' style='width:45px;height:45px;'></a>
+				<a href='https://webgr.inrae.fr/logiciels/airgr/' onclick="window.open(this.href); return false;", title="aiGR"><img src='fig/logo_airGR_CMJN_square.svg' style='width:45px;height:45px;'></a>
 				<a href='https://gitlab.irstea.fr/HYCAR-Hydro/airgr/' onclick="window.open(this.href); return false;", title="GitLab"><img src='fig/logo_gitlab_CMJN_square.svg' style='width:45px;height:45px;'></a>				
 			</ul>
 		</div><!--/.nav-collapse -->
@@ -608,13 +608,13 @@ performance criteria:</p>
 (column <em>objective</em>) can differ from the global optimum value in
 many cases, resulting in various parameter sets.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">summary</span>(resPORT)</span></code></pre></div>
-<pre><code>##        X1             X2              X3              X4             RMSE      
-##  Min.   :5.55   Min.   :0.124   Min.   :-0.04   Min.   :-8.24   Min.   :0.786  
-##  1st Qu.:5.55   1st Qu.:0.124   1st Qu.: 0.00   1st Qu.:-8.24   1st Qu.:0.786  
-##  Median :5.55   Median :0.887   Median : 4.48   Median :-8.24   Median :0.786  
-##  Mean   :5.68   Mean   :0.632   Mean   : 2.98   Mean   :-5.82   Mean   :0.922  
-##  3rd Qu.:5.95   3rd Qu.:0.887   3rd Qu.: 4.48   3rd Qu.:-1.97   3rd Qu.:1.163  
-##  Max.   :5.95   Max.   :0.887   Max.   : 4.48   Max.   : 0.01   Max.   :1.223</code></pre>
+<pre><code>##        X1              X2               X3                  X4                 RMSE       
+##  Min.   :5.548   Min.   :0.1240   Min.   :-0.038062   Min.   :-8.242667   Min.   :0.7864  
+##  1st Qu.:5.548   1st Qu.:0.1243   1st Qu.:-0.003741   1st Qu.:-8.242667   1st Qu.:0.7864  
+##  Median :5.548   Median :0.8866   Median : 4.478766   Median :-8.242667   Median :0.7864  
+##  Mean   :5.682   Mean   :0.6325   Mean   : 2.977265   Mean   :-5.820890   Mean   :0.9220  
+##  3rd Qu.:5.946   3rd Qu.:0.8866   3rd Qu.: 4.478766   3rd Qu.:-1.965413   3rd Qu.:1.1630  
+##  Max.   :5.953   Max.   :0.8866   Max.   : 4.478767   Max.   : 0.009845   Max.   :1.2235</code></pre>
 <p>The existence of several local minima illustrates the importance of
 defining an appropriate starting point or of using a multi-start
 strategy or a global optimization strategy.</p>
@@ -643,18 +643,18 @@ Evolution</h2>
 </div>
 <div id="particle-swarm" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Particle Swarm</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>optPSO <span class="ot">&lt;-</span> hydroPSO<span class="sc">::</span><span class="fu">hydroPSO</span>(<span class="at">fn =</span> OptimGR4J,</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>                             <span class="at">lower =</span> lowerGR4J, <span class="at">upper =</span> upperGR4J,</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>                             <span class="at">control =</span> <span class="fu">list</span>(<span class="at">write2disk =</span> <span class="cn">FALSE</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># to install the package temporary removed from CRAN</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="co"># Rtools needed (windows : https://cran.r-project.org/bin/windows/Rtools/)</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="co"># install.packages(&quot;https://cran.r-project.org/src/contrib/Archive/hydroPSO/hydroPSO_0.5-1.tar.gz&quot;,</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co">#                  repos = NULL, type = &quot;source&quot;, dependencies = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>optPSO <span class="ot">&lt;-</span> hydroPSO<span class="sc">::</span><span class="fu">hydroPSO</span>(<span class="at">fn =</span> OptimGR4J,</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>                             <span class="at">lower =</span> lowerGR4J, <span class="at">upper =</span> upperGR4J,</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>                             <span class="at">control =</span> <span class="fu">list</span>(<span class="at">write2disk =</span> <span class="cn">FALSE</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
 </div>
 <div id="ma-ls-chains" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> MA-LS-Chains</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># to install the package temporary removde from CRAN</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="co"># Rtools needed (windows : https://cran.r-project.org/bin/windows/Rtools/)</span></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;https://cran.r-project.org/src/contrib/Archive/Rmalschains/Rmalschains_0.2-8.tar.gz&quot;</span>, </span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>                 <span class="at">repos =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="st">&quot;source&quot;</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>optMALS <span class="ot">&lt;-</span> Rmalschains<span class="sc">::</span><span class="fu">malschains</span>(<span class="at">fn =</span> OptimGR4J,</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>                                   <span class="at">lower =</span> lowerGR4J, <span class="at">upper =</span> upperGR4J, </span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>                                   <span class="at">lower =</span> lowerGR4J, <span class="at">upper =</span> upperGR4J,</span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>                                   <span class="at">maxEvals =</span> <span class="dv">2000</span>)</span></code></pre></div>
 </div>
 </div>
@@ -662,12 +662,12 @@ Evolution</h2>
 <h1><span class="header-section-number">4</span> Results</h1>
 <p>As it can be seen in the table below, the four additional
 optimization strategies tested lead to very close optima.</p>
-<pre><code>##    Algo  X1   X2   X3   X4
-## 1 airGR 257 1.01 88.2 2.21
-## 2  PORT 257 1.01 88.1 2.21
-## 3    DE 257 1.01 88.1 2.21
-## 4   PSO 257 1.01 88.1 2.21
-## 5 MA-LS 257 1.01 88.1 2.21</code></pre>
+<pre><code>##    Algo      X1    X2     X3    X4
+## 1 airGR 257.238 1.012 88.235 2.208
+## 2  PORT 256.840 1.007 88.126 2.205
+## 3    DE 256.840 1.007 88.126 2.205
+## 4   PSO 256.799 1.007 88.147 2.205
+## 5 MA-LS 256.820 1.007 88.116 2.205</code></pre>
 <!-- This is an expected result because the response surface for quadratic performance criteria of the **GR4J** model is generally sufficiently well defined in the transformed parameter space to allow using a local optimization strategy instead of a more time consuming global optimization strategy. -->
 </div>
 <div id="multiobjective-optimization" class="section level1" number="5">
@@ -687,7 +687,7 @@ data transformation and with the inverse transformation.</p>
 modified to return two values.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>InputsCrit_inv <span class="ot">&lt;-</span> InputsCrit</span>
 <span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>InputsCrit_inv<span class="sc">$</span>transfo <span class="ot">&lt;-</span> <span class="st">&quot;inv&quot;</span></span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  </span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a></span>
 <span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>MOptimGR4J <span class="ot">&lt;-</span> <span class="cf">function</span>(i) {</span>
 <span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>  <span class="cf">if</span> (algo <span class="sc">==</span> <span class="st">&quot;caRamel&quot;</span>) {</span>
 <span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>    ParamOptim <span class="ot">&lt;-</span> x[i, ]</span>
@@ -728,19 +728,19 @@ algorithm and the NGSA-II algorithm.</p>
 <p>The algorithm returns parameter sets that describe the pareto front,
 illustrating the trade-off between overall good performance and good
 performance for low flow.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(optMO<span class="sc">$</span>objectives[, <span class="dv">1</span>], optMO<span class="sc">$</span>objectives[, <span class="dv">2</span>])) <span class="sc">+</span></span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="fu">coord_equal</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.9</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.9</span>)) <span class="sc">+</span> </span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="fu">coord_equal</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.9</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.9</span>)) <span class="sc">+</span></span>
 <span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;KGE&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;KGE [1/Q]&quot;</span>) <span class="sc">+</span></span>
 <span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="page_2.1_param_optim_files/figure-html/unnamed-chunk-19-1.png" width="576" /></p>
+<p><img src="page_2.1_param_optim_files/figure-html/unnamed-chunk-4-1.png" width="576" /></p>
 <p>The parameter sets can be viewed in the parameter space, illustrating
 different populations.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>param_optMO <span class="ot">&lt;-</span> <span class="fu">apply</span>(optMO<span class="sc">$</span>parameters, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
 <span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>  airGR<span class="sc">::</span><span class="fu">TransfoParam_GR4J</span>(x, <span class="at">Direction =</span> <span class="st">&quot;TR&quot;</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>  })</span>
 <span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>GGally<span class="sc">::</span><span class="fu">ggpairs</span>(<span class="fu">data.frame</span>(<span class="fu">t</span>(param_optMO)), <span class="at">diag =</span> <span class="cn">NULL</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="page_2.1_param_optim_files/figure-html/unnamed-chunk-20-1.png" width="576" /></p>
+<p><img src="page_2.1_param_optim_files/figure-html/unnamed-chunk-5-1.png" width="576" /></p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>RunOptions<span class="sc">$</span>Outputs_Sim <span class="ot">&lt;-</span> <span class="st">&quot;Qsim&quot;</span></span>
 <span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>run_optMO <span class="ot">&lt;-</span> <span class="fu">apply</span>(optMO<span class="sc">$</span>parameters, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
 <span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>  airGR<span class="sc">::</span><span class="fu">RunModel_GR4J</span>(<span class="at">InputsModel =</span> InputsModel,</span>
@@ -759,13 +759,13 @@ different populations.</p>
 <span id="cb19-16"><a href="#cb19-16" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Discharge [mm/d]&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Date&quot;</span>) <span class="sc">+</span></span>
 <span id="cb19-17"><a href="#cb19-17" tabindex="-1"></a>  <span class="fu">scale_y_sqrt</span>() <span class="sc">+</span></span>
 <span id="cb19-18"><a href="#cb19-18" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="page_2.1_param_optim_files/figure-html/unnamed-chunk-21-1.png" width="1152" /></p>
+<p><img src="page_2.1_param_optim_files/figure-html/unnamed-chunk-6-1.png" width="1152" /></p>
 </div>
 </div>
 
 <footer>
   <div style="float:left"><img src="fig/logo_republique_francaise_CMJN.svg" alt="airGR logo" height=50px style="margin-top:-20px" /></div>
-  <div style="float:right">Developed by INRAE&nbsp;<a href="https://webgr.inrae.fr/en">Catchment Hydrology Research Group</a>&nbsp;&#x2013; Antony, France</div>
+  <div style="float:right">Developed by INRAE&nbsp;<a href="https://webgr.inrae.fr/">Catchment Hydrology Research Group</a>&nbsp;&#x2013; Antony, France</div>
 </footer>
 
 
