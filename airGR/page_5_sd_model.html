@@ -14,7 +14,7 @@
 
 <title>Simulated vs observed upstream flows in calibration of semi-distributed GR4J model</title>
 
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.26/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -651,8 +651,8 @@ first case and upstream simulated flows for the other cases:</p>
 <span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>  <span class="at">LengthHydro =</span> <span class="dv">100</span>, <span class="co"># distance between upstream catchment outlet &amp; the downstream one [km]</span></span>
 <span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>  <span class="at">BasinAreas =</span> <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">180</span>) <span class="co"># upstream and downstream areas [km²]</span></span>
 <span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>)</span></code></pre></div>
-<pre><code>## Warning in CreateInputsModel(FUN_MOD = RunModel_GR4J, DatesR = BasinObs$DatesR, : &#39;Qupstream&#39; contains NA
-## values: model outputs will contain NAs</code></pre>
+<pre><code>## Warning in CreateInputsModel(FUN_MOD = RunModel_GR4J, DatesR = BasinObs$DatesR, :
+## &#39;Qupstream&#39; contains NA values: model outputs will contain NAs</code></pre>
 <p>For using upstream simulated flows, we should concatenate a vector
 with the simulated flows for the entire period of simulation (warm-up +
 run):</p>
@@ -669,8 +669,8 @@ run):</p>
 <span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>  <span class="at">LengthHydro =</span> <span class="dv">100</span>, <span class="co"># distance between upstream catchment outlet &amp; the downstream one [km]</span></span>
 <span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>  <span class="at">BasinAreas =</span> <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">180</span>) <span class="co"># upstream and downstream areas [km²]</span></span>
 <span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a>)</span></code></pre></div>
-<pre><code>## Warning in CreateInputsModel(FUN_MOD = RunModel_GR4J, DatesR = BasinObs$DatesR, : &#39;Qupstream&#39; contains NA
-## values: model outputs will contain NAs</code></pre>
+<pre><code>## Warning in CreateInputsModel(FUN_MOD = RunModel_GR4J, DatesR = BasinObs$DatesR, :
+## &#39;Qupstream&#39; contains NA values: model outputs will contain NAs</code></pre>
 </div>
 <div id="calibration-with-upstream-flow-observations"
 class="section level2" number="3.2">
