@@ -14,7 +14,7 @@
 
 <title>Low-flow forecasting</title>
 
-<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.26/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -91,11 +91,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #c4a000; } /* Attribute */
+code span.at { color: #204a87; } /* Attribute */
 code span.bn { color: #0000cf; } /* BaseN */
 code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #000000; } /* Constant */
+code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #8f5902; font-style: italic; } /* Comment */
 code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
 code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
@@ -104,14 +104,14 @@ code span.dv { color: #0000cf; } /* DecVal */
 code span.er { color: #a40000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #000000; } /* Function */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
 code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
 code span.ot { color: #8f5902; } /* Other */
 code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #000000; } /* SpecialChar */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
 code span.ss { color: #4e9a06; } /* SpecialString */
 code span.st { color: #4e9a06; } /* String */
 code span.va { color: #000000; } /* Variable */
@@ -553,7 +553,7 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <h1><span class="header-section-number">1</span> Objective</h1>
 <div id="context" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Context</h2>
-<p>End of summer 2018, the river Meuse at Saint-Mihiel has reached its
+<p>End of summer 2018, the river La Meuse à Saint-Mihiel has reached its
 lowest level for several years and the rain is still awaited for on this
 catchment characterized by many water uses in summer. In charge of the
 monitoring of the streamflows in period of low-flow, you have been
@@ -565,7 +565,7 @@ regional forecasting service for several weeks… You do not have any
 forecast of the coming precipitation, but you still have to quantify the
 possible streamflows on the catchment for the next weeks.</p>
 <p>The exercise consists in using the available hydro-climatic data (at
-daily time step) on Meuse at Saint-Mihiel (2543 km²), and a
+daily time step) on La Meuse à Saint-Mihiel (2543 km²), and a
 rainfall-runoff model to forecast the streamflows of the coming weeks by
 using (1) the last observed streamflow on the considered catchment, (2)
 the observed precipitation climatology and (3) the observed streamflow
@@ -631,9 +631,8 @@ series of daily precipitation and potential evapotranspiration (PE) as
 input.</p>
 <p>This model is easily usable thanks to the
 <strong><font color="#0BA6AA">airGRteaching</font></strong> package
-<span class="citation">(Delaigue, Coron, and Brigode 2022; Delaigue et
-al. 2018)</span>, developped for the <a
-href="https://cran.r-project.org/">R software</a> by the <a
+<span class="citation">(Delaigue et al. 2023, 2018)</span>, developped
+for the <a href="https://cran.r-project.org/">R software</a> by the <a
 href="https://webgr.inrae.fr/en/home/">Catchment Hydrology research
 group of the HYCAR reaserch unit</a> (<a
 href="https://www.inrae.fr/en">INRAE</a>, France).</p>
@@ -654,7 +653,7 @@ which will then be used as initial conditions for all the tested
 scenarios. These scenarios are all based on the same state at the date
 of launching the forecasts.</p>
 <p>The period to be considered to calibrate the parameters of the model
-on Meuse at Saint-Mihiel catchment starts on 1 September 2000 and ends
+on La Meuse à Saint-Mihiel catchment starts on 1 September 2000 and ends
 on 31 August 2018. A warm-up period of 20 months should also be
 considered from 1 January 1999 to 31 August 2000.</p>
 </div>
@@ -793,65 +792,65 @@ formatting of data</h2>
 <p>The following command lines are used to prepare the data required to
 calibrate the rainfall-runoff model, and to define the working periods
 (initialization period, calibration period and forecast period).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calibration period</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>per_cal_hist <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2000-09-01&quot;</span>, <span class="st">&quot;2018-08-31&quot;</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Forecasting period</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>per_fcst <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2018-09-01&quot;</span>, <span class="st">&quot;2018-10-20&quot;</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Warm-up period to simulate on the historical period </span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>per_wup_hist <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2000-08-31&quot;</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Warm-up period to simulate on the forcasting period</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>per_wup_fcst <span class="ot">&lt;-</span> <span class="fu">c</span>(per_wup_hist[<span class="dv">1</span>], per_cal_hist[<span class="dv">2</span>])</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Forecasting dates</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>dates_fcst <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">as.POSIXct</span>(per_fcst[<span class="dv">1</span>], <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>), </span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                  <span class="at">to   =</span> <span class="fu">as.POSIXct</span>(per_fcst[<span class="dv">2</span>], <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>), </span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">by   =</span> <span class="st">&quot;1 day&quot;</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dates_fcst)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Calibration period</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>per_cal_hist <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2000-09-01&quot;</span>, <span class="st">&quot;2018-08-31&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co"># Forecasting period</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>per_fcst <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2018-09-01&quot;</span>, <span class="st">&quot;2018-10-20&quot;</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co"># Warm-up period to simulate on the historical period </span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>per_wup_hist <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2000-08-31&quot;</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co"># Warm-up period to simulate on the forcasting period</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>per_wup_fcst <span class="ot">&lt;-</span> <span class="fu">c</span>(per_wup_hist[<span class="dv">1</span>], per_cal_hist[<span class="dv">2</span>])</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co"># Forecasting dates</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>dates_fcst <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">as.POSIXct</span>(per_fcst[<span class="dv">1</span>], <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>), </span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>                  <span class="at">to   =</span> <span class="fu">as.POSIXct</span>(per_fcst[<span class="dv">2</span>], <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>), </span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>                  <span class="at">by   =</span> <span class="st">&quot;1 day&quot;</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="fu">head</span>(dates_fcst)</span></code></pre></div>
 <pre><code>## [1] &quot;2018-09-01 UTC&quot; &quot;2018-09-02 UTC&quot; &quot;2018-09-03 UTC&quot; &quot;2018-09-04 UTC&quot; &quot;2018-09-05 UTC&quot; &quot;2018-09-06 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Formatting of forecast dates (Month-Day)</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>month_day_fcst <span class="ot">&lt;-</span> <span class="fu">format</span>(dates_fcst, <span class="st">&quot;%m-%d&quot;</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(month_day_fcst)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Formatting of forecast dates (Month-Day)</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>month_day_fcst <span class="ot">&lt;-</span> <span class="fu">format</span>(dates_fcst, <span class="st">&quot;%m-%d&quot;</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">head</span>(month_day_fcst)</span></code></pre></div>
 <pre><code>## [1] &quot;09-01&quot; &quot;09-02&quot; &quot;09-03&quot; &quot;09-04&quot; &quot;09-05&quot; &quot;09-06&quot;</code></pre>
 <div id="initial-time-series" class="section level3" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> Initial time
 series</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Catchment data loading</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(airGRdatasets)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;B222001001&quot;</span>, <span class="at">package =</span> <span class="st">&quot;airGRdatasets&quot;</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Ctachment area</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>area <span class="ot">&lt;-</span> B222001001<span class="sc">$</span>Meta<span class="sc">$</span>Area</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Observed daily time series</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>ts_init <span class="ot">&lt;-</span> B222001001<span class="sc">$</span>TS</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add date information to the time series</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>ts_init<span class="sc">$</span>Year     <span class="ot">&lt;-</span> <span class="fu">format</span>(ts_init<span class="sc">$</span>Date, <span class="at">format =</span> <span class="st">&quot;%Y&quot;</span>)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>ts_init<span class="sc">$</span>MonthDay <span class="ot">&lt;-</span> <span class="fu">format</span>(ts_init<span class="sc">$</span>Date, <span class="at">format =</span> <span class="st">&quot;%m-%d&quot;</span>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Display of the 1st time steps of the time series</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ts_init)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Catchment data loading</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">library</span>(airGRdatasets)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;B222001001&quot;</span>, <span class="at">package =</span> <span class="st">&quot;airGRdatasets&quot;</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co"># Ctachment area</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>area <span class="ot">&lt;-</span> B222001001<span class="sc">$</span>Meta<span class="sc">$</span>Area</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co"># Observed daily time series</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>ts_init <span class="ot">&lt;-</span> B222001001<span class="sc">$</span>TS</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co"># Add date information to the time series</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>ts_init<span class="sc">$</span>Year     <span class="ot">&lt;-</span> <span class="fu">format</span>(ts_init<span class="sc">$</span>Date, <span class="at">format =</span> <span class="st">&quot;%Y&quot;</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>ts_init<span class="sc">$</span>MonthDay <span class="ot">&lt;-</span> <span class="fu">format</span>(ts_init<span class="sc">$</span>Date, <span class="at">format =</span> <span class="st">&quot;%m-%d&quot;</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co"># Display of the 1st time steps of the time series</span></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="fu">head</span>(ts_init)</span></code></pre></div>
 <pre><code>##             Date Ptot Temp Evap   Qls  Qmmd Year MonthDay
-## 14764 1999-01-01  0.1  3.0  0.3 33200 1.128 1999    01-01
+## 14764 1999-01-01  0.1  3.0  0.3 33100 1.124 1999    01-01
 ## 14765 1999-01-02  5.8  5.5  0.4 31400 1.067 1999    01-02
 ## 14766 1999-01-03  5.3  5.6  0.4 30700 1.043 1999    01-03
-## 14767 1999-01-04  1.2  9.1  0.5 32000 1.087 1999    01-04
-## 14768 1999-01-05  0.0  9.1  0.5 41200 1.400 1999    01-05
-## 14769 1999-01-06  0.1  7.2  0.5 44200 1.502 1999    01-06</code></pre>
+## 14767 1999-01-04  1.2  9.1  0.5 32200 1.094 1999    01-04
+## 14768 1999-01-05  0.0  9.1  0.5 41600 1.413 1999    01-05
+## 14769 1999-01-06  0.1  7.2  0.5 44100 1.498 1999    01-06</code></pre>
 </div>
 <div id="ploted-time-series" class="section level3" number="2.1.2">
 <h3><span class="header-section-number">2.1.2</span> Ploted time
 series</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set values of the last winter to missing data</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ts_plot <span class="ot">&lt;-</span> ts_init</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>isd_wint <span class="ot">&lt;-</span> ts_plot<span class="sc">$</span>Date <span class="sc">&gt;=</span> <span class="fu">as.POSIXct</span>(per_fcst[<span class="dv">1</span>], <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>ts_plot[isd_wint, <span class="fu">c</span>(<span class="st">&quot;Ptot&quot;</span>, <span class="st">&quot;Temp&quot;</span>, <span class="st">&quot;Evap&quot;</span>, <span class="st">&quot;Qls&quot;</span>, <span class="st">&quot;Qmmd&quot;</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Display of the last time steps of the time series</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(ts_plot)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Set values of the last winter to missing data</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>ts_plot <span class="ot">&lt;-</span> ts_init</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>isd_wint <span class="ot">&lt;-</span> ts_plot<span class="sc">$</span>Date <span class="sc">&gt;=</span> <span class="fu">as.POSIXct</span>(per_fcst[<span class="dv">1</span>], <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>ts_plot[isd_wint, <span class="fu">c</span>(<span class="st">&quot;Ptot&quot;</span>, <span class="st">&quot;Temp&quot;</span>, <span class="st">&quot;Evap&quot;</span>, <span class="st">&quot;Qls&quot;</span>, <span class="st">&quot;Qmmd&quot;</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co"># Display of the last time steps of the time series</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="fu">tail</span>(ts_plot)</span></code></pre></div>
 <pre><code>##             Date Ptot Temp Evap Qls Qmmd Year MonthDay
 ## 22063 2018-12-26   NA   NA   NA  NA   NA 2018    12-26
 ## 22064 2018-12-27   NA   NA   NA  NA   NA 2018    12-27
@@ -863,11 +862,11 @@ series</h3>
 <div id="observed-time-series" class="section level3" number="2.1.3">
 <h3><span class="header-section-number">2.1.3</span> Observed time
 series</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the time series over the observed period (no &quot;future&quot; dates)</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ts_hist <span class="ot">&lt;-</span> ts_plot[ts_plot<span class="sc">$</span>Date <span class="sc">&lt;</span> dates_fcst[<span class="dv">1</span>], ]</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display of the last time steps of the time series</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(ts_hist)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Select the time series over the observed period (no &quot;future&quot; dates)</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>ts_hist <span class="ot">&lt;-</span> ts_plot[ts_plot<span class="sc">$</span>Date <span class="sc">&lt;</span> dates_fcst[<span class="dv">1</span>], ]</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co"># Display of the last time steps of the time series</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="fu">tail</span>(ts_hist)</span></code></pre></div>
 <pre><code>##             Date Ptot Temp Evap  Qls  Qmmd Year MonthDay
 ## 21941 2018-08-26  0.1 13.4  2.5 2910 0.099 2018    08-26
 ## 21942 2018-08-27  0.6 16.5  2.9 3040 0.103 2018    08-27
@@ -879,11 +878,11 @@ series</h3>
 <div id="forecast-time-series" class="section level3" number="2.1.4">
 <h3><span class="header-section-number">2.1.4</span> Forecast time
 series</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the time series after the observed period (only &quot;future&quot; dates)</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ts_fcst <span class="ot">&lt;-</span> ts_plot[ts_plot<span class="sc">$</span>Date <span class="sc">&gt;=</span> dates_fcst[<span class="dv">1</span>] <span class="sc">&amp;</span> ts_plot<span class="sc">$</span>Date <span class="sc">&lt;=</span> dates_fcst[<span class="fu">length</span>(dates_fcst)], ]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display of the 1st time steps of the time series</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ts_fcst)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># Select the time series after the observed period (only &quot;future&quot; dates)</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>ts_fcst <span class="ot">&lt;-</span> ts_plot[ts_plot<span class="sc">$</span>Date <span class="sc">&gt;=</span> dates_fcst[<span class="dv">1</span>] <span class="sc">&amp;</span> ts_plot<span class="sc">$</span>Date <span class="sc">&lt;=</span> dates_fcst[<span class="fu">length</span>(dates_fcst)], ]</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co"># Display of the 1st time steps of the time series</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="fu">head</span>(ts_fcst)</span></code></pre></div>
 <pre><code>##             Date Ptot Temp Evap Qls Qmmd Year MonthDay
 ## 21947 2018-09-01   NA   NA   NA  NA   NA 2018    09-01
 ## 21948 2018-09-02   NA   NA   NA  NA   NA 2018    09-02
@@ -900,25 +899,25 @@ number="2.2">
 <p>The following command lines allow the analysis of the streamflow
 climatology by calculating the interannual streamflow quantiles over the
 forecasting period:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculation of the historical streamflow quantiles</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ts_qclim_quant <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(Qmmd <span class="sc">~</span> MonthDay, </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">data =</span> ts_hist[ts_hist<span class="sc">$</span>MonthDay <span class="sc">%in%</span> month_day_fcst, ], </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">quantile</span>(x, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.10</span>, <span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span>, <span class="fl">0.90</span>))</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                            })</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>ts_qclim_quant <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(ts_qclim_quant<span class="sc">$</span>Qmmd)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ts_qclim_quant) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Q&quot;</span>, <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">D&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">colnames</span>(ts_qclim_quant)))</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(ts_qclim_quant) <span class="ot">&lt;-</span> month_day_fcst</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Display of the 1st calculated quantiles</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ts_qclim_quant)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># Calculation of the historical streamflow quantiles</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>ts_qclim_quant <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(Qmmd <span class="sc">~</span> MonthDay, </span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>                            <span class="at">data =</span> ts_hist[ts_hist<span class="sc">$</span>MonthDay <span class="sc">%in%</span> month_day_fcst, ], </span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>                            <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>                              <span class="fu">quantile</span>(x, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.10</span>, <span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span>, <span class="fl">0.90</span>))</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>                            })</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>ts_qclim_quant <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(ts_qclim_quant<span class="sc">$</span>Qmmd)</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="fu">colnames</span>(ts_qclim_quant) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Q&quot;</span>, <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">D&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">colnames</span>(ts_qclim_quant)))</span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="fu">rownames</span>(ts_qclim_quant) <span class="ot">&lt;-</span> month_day_fcst</span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="co"># Display of the 1st calculated quantiles</span></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="fu">head</span>(ts_qclim_quant)</span></code></pre></div>
 <pre><code>##          Q10    Q25   Q50    Q75    Q90
-## 09-01 0.0736 0.0965 0.120 0.1925 0.2958
-## 09-02 0.0786 0.0990 0.118 0.1850 0.2894
-## 09-03 0.0790 0.0980 0.114 0.1770 0.2892
-## 09-04 0.0806 0.0955 0.110 0.1910 0.3008
-## 09-05 0.0770 0.0905 0.109 0.1890 0.3128
-## 09-06 0.0748 0.0870 0.107 0.1995 0.3172</code></pre>
+## 09-01 0.0736 0.0965 0.120 0.1925 0.2930
+## 09-02 0.0786 0.0990 0.118 0.1850 0.2888
+## 09-03 0.0790 0.0985 0.114 0.1770 0.2900
+## 09-04 0.0806 0.0955 0.110 0.1925 0.3016
+## 09-05 0.0762 0.0905 0.109 0.1885 0.3138
+## 09-06 0.0748 0.0870 0.107 0.2000 0.3154</code></pre>
 <p>The streamflow climatology allows to obtain a first order of
 magnitude of the possible streamflows of the next days (cf. following
 figure), but does not allow to account for the last observed
@@ -931,16 +930,16 @@ GR6J</h2>
 <p>The following command lines aim to prepare the available data for use
 by GR6J, using the <code>PrepGR()</code> function of the
 <strong><font color="#0BA6AA">airGRteaching</font></strong> package.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding an epsilon to observed streamflows for criterion calculation</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>epsilon_qobs <span class="ot">&lt;-</span> <span class="fu">mean</span>(ts_hist<span class="sc">$</span>Qmmd, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="dv">100</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Data processing for GR6J</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>prep_hist <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_hist<span class="sc">$</span>Date,</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Precip     =</span> ts_hist<span class="sc">$</span>Ptot,</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">PotEvap    =</span> ts_hist<span class="sc">$</span>Evap, </span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Qobs       =</span> ts_hist<span class="sc">$</span>Qmmd <span class="sc">+</span> epsilon_qobs,</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">HydroModel =</span> <span class="st">&quot;GR6J&quot;</span>, </span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">CemaNeige  =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># Adding an epsilon to observed streamflows for criterion calculation</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>epsilon_qobs <span class="ot">&lt;-</span> <span class="fu">mean</span>(ts_hist<span class="sc">$</span>Qmmd, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="co"># Data processing for GR6J</span></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>prep_hist <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_hist<span class="sc">$</span>Date,</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>                    <span class="at">Precip     =</span> ts_hist<span class="sc">$</span>Ptot,</span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>                    <span class="at">PotEvap    =</span> ts_hist<span class="sc">$</span>Evap, </span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>                    <span class="at">Qobs       =</span> ts_hist<span class="sc">$</span>Qmmd <span class="sc">+</span> epsilon_qobs,</span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>                    <span class="at">HydroModel =</span> <span class="st">&quot;GR6J&quot;</span>, </span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>                    <span class="at">CemaNeige  =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 <div id="gr6j-calibration-on-the-historical-period"
 class="section level2" number="2.4">
@@ -948,38 +947,38 @@ class="section level2" number="2.4">
 the historical period</h2>
 <p>The following command lines are used to calibrate the GR6J model on
 the historical period.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calibration step</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>cal_hist <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep_hist, </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">WupPer  =</span> per_wup_hist, </span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">CalPer  =</span> per_cal_hist,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">transfo =</span> <span class="st">&quot;log&quot;</span>,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># Calibration step</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>cal_hist <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep_hist, </span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>                  <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>                  <span class="at">WupPer  =</span> per_wup_hist, </span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>                  <span class="at">CalPer  =</span> per_cal_hist,</span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>                  <span class="at">transfo =</span> <span class="st">&quot;log&quot;</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (729 runs)
 ##       Param =   49.402,   -0.521,  148.413,    2.345,    0.020,   20.086
-##       Crit. NSE[log(Q)]  = 0.9170
+##       Crit. NSE[log(Q)]  = 0.9176
 ## Steepest-descent local search in progress
-##   Calibration completed (56 iterations, 1402 runs)
-##       Param =  194.102,   -0.369,   27.124,    4.485,    0.289,    9.183
+##   Calibration completed (58 iterations, 1427 runs)
+##       Param =  195.102,   -0.374,   27.227,    4.470,    0.291,    9.093
 ##       Crit. NSE[log(Q)]  = 0.9638</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get parameter and criterion values</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>param_cal_hist <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_hist)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>crit_cal_hist <span class="ot">&lt;-</span> <span class="fu">GetCrit</span>(cal_hist)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Graphical assessment of the calibration performance</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cal_hist)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># Get parameter and criterion values</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>param_cal_hist <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_hist)</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>crit_cal_hist <span class="ot">&lt;-</span> <span class="fu">GetCrit</span>(cal_hist)</span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a><span class="co"># Graphical assessment of the calibration performance</span></span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a><span class="fu">plot</span>(cal_hist)</span></code></pre></div>
 <p><img src="figure/v02_fig_step_cal_hist-1.png" width="98%" /></p>
 <p>The six parameters and the value of the calibration criterion (<span
 class="math inline">\(NSE_{ln}\)</span>) obtained after the automatic
 calibration procedure are:</p>
 <ul>
-<li>X1 = 194 [mm]</li>
-<li>X2 = -0.369 [mm/day]</li>
+<li>X1 = 195 [mm]</li>
+<li>X2 = -0.374 [mm/day]</li>
 <li>X3 = 27 [mm]</li>
-<li>X4 = 4.485 [day]</li>
-<li>X5 = 0.289 [-]</li>
-<li>X6 = 9.18 [mm]</li>
+<li>X4 = 4.47 [day]</li>
+<li>X5 = 0.291 [-]</li>
+<li>X6 = 9.09 [mm]</li>
 <li><span class="math inline">\(NSE_{ln}\)</span> = 0.964 [-]</li>
 </ul>
 <p>The performance obtained in calibration is very good, since the
@@ -989,16 +988,16 @@ criterion <span class="math inline">\(NSE_{ln}\)</span> is equal to
 observed streamflows and the simulated streamflows with the set of
 parameters obtained by automatic calibration, in order to compare
 them.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series on the calibration period</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ts_cal_hist <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(cal_hist)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ts_cal_hist)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series on the calibration period</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>ts_cal_hist <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(cal_hist)</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="fu">head</span>(ts_cal_hist)</span></code></pre></div>
 <pre><code>##        Dates PotEvap PrecipObs PrecipFracSolid_CemaNeige TempMeanSim_CemaNeige     Qobs      Qsim
-## 1 2000-09-01     2.6       6.6                        NA                    NA 0.272145 0.2242221
-## 2 2000-09-02     2.2      13.8                        NA                    NA 0.275145 0.2213256
-## 3 2000-09-03     2.2       3.2                        NA                    NA 0.278145 0.2265819
-## 4 2000-09-04     2.0       0.2                        NA                    NA 0.296145 0.2438811
-## 5 2000-09-05     2.0       0.0                        NA                    NA 0.316145 0.2878273
-## 6 2000-09-06     2.2       8.2                        NA                    NA 0.360145 0.3087457</code></pre>
+## 1 2000-09-01     2.6       6.6                        NA                    NA 0.270145 0.2240305
+## 2 2000-09-02     2.2      13.8                        NA                    NA 0.275145 0.2211849
+## 3 2000-09-03     2.2       3.2                        NA                    NA 0.280145 0.2265360
+## 4 2000-09-04     2.0       0.2                        NA                    NA 0.297145 0.2440921
+## 5 2000-09-05     2.0       0.0                        NA                    NA 0.318145 0.2887186
+## 6 2000-09-06     2.2       8.2                        NA                    NA 0.363145 0.3087389</code></pre>
 <p>The following figure represents the observed and simulated streamflow
 series over the end of the calibration period.</p>
 <p><img src="figure/v02_fig_cal_hist-1.png" width="98%" /></p>
@@ -1012,23 +1011,23 @@ that combines observed data (for model warm-up) and data generated for
 the “zero precipitation” scenario. This time series will then be used as
 input to the GR6J model to “transform” this meteorological scenario into
 a hydrological scenario.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Duplicate the time series with future dates to fill the forecast period</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ts_fcst_p0 <span class="ot">&lt;-</span> ts_fcst</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting zero precipitation for the forecast period</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>ts_fcst_p0<span class="sc">$</span>Ptot <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Addition of interannual average PE</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>ts_eclim <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(Evap <span class="sc">~</span> MonthDay, </span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> ts_hist[ts_hist<span class="sc">$</span>MonthDay <span class="sc">%in%</span> month_day_fcst, ], </span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">FUN =</span> mean)</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>ts_fcst_p0<span class="sc">$</span>Evap <span class="ot">&lt;-</span> ts_eclim<span class="sc">$</span>Evap</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine historical and forecasting time series</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>ts_scen_p0 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ts_hist, ts_fcst_p0)</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Display of the last lines</span></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(ts_scen_p0)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># Duplicate the time series with future dates to fill the forecast period</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>ts_fcst_p0 <span class="ot">&lt;-</span> ts_fcst</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a><span class="co"># Setting zero precipitation for the forecast period</span></span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>ts_fcst_p0<span class="sc">$</span>Ptot <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a><span class="co"># Addition of interannual average PE</span></span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a>ts_eclim <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(Evap <span class="sc">~</span> MonthDay, </span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a>                      <span class="at">data =</span> ts_hist[ts_hist<span class="sc">$</span>MonthDay <span class="sc">%in%</span> month_day_fcst, ], </span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a>                      <span class="at">FUN =</span> mean)</span>
+<span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a>ts_fcst_p0<span class="sc">$</span>Evap <span class="ot">&lt;-</span> ts_eclim<span class="sc">$</span>Evap</span>
+<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a><span class="co"># Combine historical and forecasting time series</span></span>
+<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a>ts_scen_p0 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ts_hist, ts_fcst_p0)</span>
+<span id="cb21-15"><a href="#cb21-15" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" tabindex="-1"></a><span class="co"># Display of the last lines</span></span>
+<span id="cb21-17"><a href="#cb21-17" tabindex="-1"></a><span class="fu">tail</span>(ts_scen_p0)</span></code></pre></div>
 <pre><code>##             Date Ptot Temp      Evap Qls Qmmd Year MonthDay
 ## 21991 2018-10-15    0   NA 1.0526316  NA   NA 2018    10-15
 ## 21992 2018-10-16    0   NA 1.0473684  NA   NA 2018    10-16
@@ -1039,24 +1038,24 @@ a hydrological scenario.</p>
 <p>The following command lines allow us to format the previously created
 time series as inputs to the GR6J model and to perform a rainfall-runoff
 simulation.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data processing for GR6J</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>prep_scen_p0 <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_scen_p0<span class="sc">$</span>Date,</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">Precip     =</span> ts_scen_p0<span class="sc">$</span>Ptot,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">PotEvap    =</span> ts_scen_p0<span class="sc">$</span>Evap, </span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">Qobs       =</span> <span class="cn">NULL</span>,</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">HydroModel =</span> <span class="st">&quot;GR6J&quot;</span>, </span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">CemaNeige  =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Hydrological forecast</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>sim_scen_p0 <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep_scen_p0, </span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">WupPer  =</span> per_wup_fcst, </span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">SimPer  =</span> per_fcst,</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>                     <span class="at">Param   =</span> param_cal_hist,</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="co"># Data processing for GR6J</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>prep_scen_p0 <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_scen_p0<span class="sc">$</span>Date,</span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>                       <span class="at">Precip     =</span> ts_scen_p0<span class="sc">$</span>Ptot,</span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>                       <span class="at">PotEvap    =</span> ts_scen_p0<span class="sc">$</span>Evap, </span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>                       <span class="at">Qobs       =</span> <span class="cn">NULL</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>                       <span class="at">HydroModel =</span> <span class="st">&quot;GR6J&quot;</span>, </span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>                       <span class="at">CemaNeige  =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a><span class="co"># Hydrological forecast</span></span>
+<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a>sim_scen_p0 <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep_scen_p0, </span>
+<span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a>                     <span class="at">WupPer  =</span> per_wup_fcst, </span>
+<span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a>                     <span class="at">SimPer  =</span> per_fcst,</span>
+<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a>                     <span class="at">Param   =</span> param_cal_hist,</span>
+<span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a>                     <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Warning in SimGR(PrepGR = prep_scen_p0, WupPer = per_wup_fcst, SimPer = per_fcst, : &quot;PrepGR&quot; does not contain
 ## any Qobs values. The efficiency criterion is not computed</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulated streamflow time series</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>ts_sim_scen_p0 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sim_scen_p0)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co"># Simulated streamflow time series</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>ts_sim_scen_p0 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sim_scen_p0)</span></code></pre></div>
 <p>The following figure represents the observed and simulated streamflow
 series over the end of the calibration period, and the result of the
 simulation of the “zero precipitation” scenario. The slow decay of the
@@ -1065,10 +1064,10 @@ reservoirs, is observed.</p>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (729 runs)
 ##       Param =   49.402,   -0.521,  148.413,    2.345,    0.020,   20.086
-##       Crit. NSE[log(Q)]  = 0.9170
+##       Crit. NSE[log(Q)]  = 0.9176
 ## Steepest-descent local search in progress
-##   Calibration completed (56 iterations, 1402 runs)
-##       Param =  194.102,   -0.369,   27.124,    4.485,    0.289,    9.183
+##   Calibration completed (58 iterations, 1427 runs)
+##       Param =  195.102,   -0.374,   27.227,    4.470,    0.291,    9.093
 ##       Crit. NSE[log(Q)]  = 0.9638</code></pre>
 <p><img src="figure/v02_fig_qscen_p0-1.png" width="98%" /></p>
 <p>It is important to note that the simulations performed so far do not
@@ -1083,12 +1082,12 @@ ratio to correct all the following simulated streamflows. The following
 command lines allow to calculate such a ratio, which will be used
 thereafter to correct the streamflows simulated by GR6J, by dividing
 them by this ratio (e.g. following figure).</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correction (~ assimilation)</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>corr_qsim <span class="ot">&lt;-</span> ts_sim_scen_p0<span class="sc">$</span>Qsim[<span class="dv">1</span>] <span class="sc">/</span> ts_hist<span class="sc">$</span>Qmmd[<span class="fu">nrow</span>(ts_hist)]</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ratio display</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>corr_qsim</span></code></pre></div>
-<pre><code>## [1] 0.8259944</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="co"># Correction (~ assimilation)</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>corr_qsim <span class="ot">&lt;-</span> ts_sim_scen_p0<span class="sc">$</span>Qsim[<span class="dv">1</span>] <span class="sc">/</span> ts_hist<span class="sc">$</span>Qmmd[<span class="fu">nrow</span>(ts_hist)]</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a><span class="co"># Ratio display</span></span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a>corr_qsim</span></code></pre></div>
+<pre><code>## [1] 0.8250818</code></pre>
 <p><img src="figure/v02_fig_qscen_p0corr-1.png" width="98%" /></p>
 </div>
 <div id="non-zero-future-precipitation-scenarios" class="section level2"
@@ -1099,60 +1098,60 @@ precipitation</em> scenarios</h2>
 simulations for the studied summer using the last observed streamflow by
 “replaying” the precipitation climatology, i.e. the precipitation
 observed during other summers.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Historical years</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>year_hist <span class="ot">&lt;-</span> <span class="fu">unique</span>(ts_hist<span class="sc">$</span>Year)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>year_hist <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(year_hist, <span class="fu">unique</span>(ts_fcst<span class="sc">$</span>Year))</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>year_hist</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># Historical years</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>year_hist <span class="ot">&lt;-</span> <span class="fu">unique</span>(ts_hist<span class="sc">$</span>Year)</span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>year_hist <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(year_hist, <span class="fu">unique</span>(ts_fcst<span class="sc">$</span>Year))</span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>year_hist</span></code></pre></div>
 <pre><code>##  [1] &quot;1999&quot; &quot;2000&quot; &quot;2001&quot; &quot;2002&quot; &quot;2003&quot; &quot;2004&quot; &quot;2005&quot; &quot;2006&quot; &quot;2007&quot; &quot;2008&quot; &quot;2009&quot; &quot;2010&quot; &quot;2011&quot; &quot;2012&quot; &quot;2013&quot;
 ## [16] &quot;2014&quot; &quot;2015&quot; &quot;2016&quot; &quot;2017&quot;</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop on the historical years</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>ts_qscen_year <span class="ot">&lt;-</span> <span class="fu">sapply</span>(year_hist, <span class="at">FUN =</span> <span class="cf">function</span>(i_year) {</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  i_ts_hist <span class="ot">&lt;-</span> ts_hist[ts_hist<span class="sc">$</span>Year <span class="sc">==</span> i_year <span class="sc">&amp;</span> ts_hist<span class="sc">$</span>MonthDay <span class="sc">%in%</span> month_day_fcst, ]</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  i_ts_hist<span class="sc">$</span>Date <span class="ot">&lt;-</span> dates_fcst</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine historical and forecasting (based on precipitation climatology) time series</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  i_ts_scen_py <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ts_hist, i_ts_hist)</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Data processing for GR6J</span></span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  prep_scen_py <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> i_ts_scen_py<span class="sc">$</span>Date,</span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Precip     =</span> i_ts_scen_py<span class="sc">$</span>Ptot, </span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>                         <span class="at">PotEvap    =</span> i_ts_scen_py<span class="sc">$</span>Evap, </span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>                         <span class="at">HydroModel =</span> <span class="st">&quot;GR6J&quot;</span>, </span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>                         <span class="at">CemaNeige  =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Hydrological forecast</span></span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>  sim_scen_py <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep_scen_py, </span>
-<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>                       <span class="at">WupPer  =</span> per_wup_fcst, </span>
-<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>                       <span class="at">SimPer  =</span> per_fcst, </span>
-<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>                       <span class="at">Param   =</span> param_cal_hist, </span>
-<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>                       <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Correction of the simulated streamflow</span></span>
-<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>  sim_scen_py<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim <span class="sc">/</span> corr_qsim</span>
-<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute future streamflow quantiles (based on precipitation climatology)</span></span>
-<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>ts_qscen_quant <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">apply</span>(ts_qscen_year, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
-<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">quantile</span>(x, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.10</span>, <span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span>, <span class="fl">0.90</span>))</span>
-<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a>}))</span>
-<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a>ts_qscen_quant <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(ts_qscen_quant)</span>
-<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ts_qscen_quant) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Q&quot;</span>, <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">D&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">colnames</span>(ts_qscen_quant)))</span>
-<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(ts_qscen_quant) <span class="ot">&lt;-</span> month_day_fcst</span>
-<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Display of the first calculated quantiles</span></span>
-<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ts_qscen_quant)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># Loop on the historical years</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>ts_qscen_year <span class="ot">&lt;-</span> <span class="fu">sapply</span>(year_hist, <span class="at">FUN =</span> <span class="cf">function</span>(i_year) {</span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>  </span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>  i_ts_hist <span class="ot">&lt;-</span> ts_hist[ts_hist<span class="sc">$</span>Year <span class="sc">==</span> i_year <span class="sc">&amp;</span> ts_hist<span class="sc">$</span>MonthDay <span class="sc">%in%</span> month_day_fcst, ]</span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>  i_ts_hist<span class="sc">$</span>Date <span class="ot">&lt;-</span> dates_fcst</span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a>  </span>
+<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a>  <span class="co"># Combine historical and forecasting (based on precipitation climatology) time series</span></span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a>  i_ts_scen_py <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ts_hist, i_ts_hist)</span>
+<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a>  </span>
+<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a>  <span class="co"># Data processing for GR6J</span></span>
+<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a>  prep_scen_py <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> i_ts_scen_py<span class="sc">$</span>Date,</span>
+<span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a>                         <span class="at">Precip     =</span> i_ts_scen_py<span class="sc">$</span>Ptot, </span>
+<span id="cb31-13"><a href="#cb31-13" tabindex="-1"></a>                         <span class="at">PotEvap    =</span> i_ts_scen_py<span class="sc">$</span>Evap, </span>
+<span id="cb31-14"><a href="#cb31-14" tabindex="-1"></a>                         <span class="at">HydroModel =</span> <span class="st">&quot;GR6J&quot;</span>, </span>
+<span id="cb31-15"><a href="#cb31-15" tabindex="-1"></a>                         <span class="at">CemaNeige  =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb31-16"><a href="#cb31-16" tabindex="-1"></a>  </span>
+<span id="cb31-17"><a href="#cb31-17" tabindex="-1"></a>  <span class="co"># Hydrological forecast</span></span>
+<span id="cb31-18"><a href="#cb31-18" tabindex="-1"></a>  sim_scen_py <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep_scen_py, </span>
+<span id="cb31-19"><a href="#cb31-19" tabindex="-1"></a>                       <span class="at">WupPer  =</span> per_wup_fcst, </span>
+<span id="cb31-20"><a href="#cb31-20" tabindex="-1"></a>                       <span class="at">SimPer  =</span> per_fcst, </span>
+<span id="cb31-21"><a href="#cb31-21" tabindex="-1"></a>                       <span class="at">Param   =</span> param_cal_hist, </span>
+<span id="cb31-22"><a href="#cb31-22" tabindex="-1"></a>                       <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb31-23"><a href="#cb31-23" tabindex="-1"></a>  </span>
+<span id="cb31-24"><a href="#cb31-24" tabindex="-1"></a>  <span class="co"># Correction of the simulated streamflow</span></span>
+<span id="cb31-25"><a href="#cb31-25" tabindex="-1"></a>  sim_scen_py<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim <span class="sc">/</span> corr_qsim</span>
+<span id="cb31-26"><a href="#cb31-26" tabindex="-1"></a>  </span>
+<span id="cb31-27"><a href="#cb31-27" tabindex="-1"></a>})</span>
+<span id="cb31-28"><a href="#cb31-28" tabindex="-1"></a></span>
+<span id="cb31-29"><a href="#cb31-29" tabindex="-1"></a><span class="co"># Compute future streamflow quantiles (based on precipitation climatology)</span></span>
+<span id="cb31-30"><a href="#cb31-30" tabindex="-1"></a>ts_qscen_quant <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">apply</span>(ts_qscen_year, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb31-31"><a href="#cb31-31" tabindex="-1"></a>  <span class="fu">quantile</span>(x, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.10</span>, <span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span>, <span class="fl">0.90</span>))</span>
+<span id="cb31-32"><a href="#cb31-32" tabindex="-1"></a>}))</span>
+<span id="cb31-33"><a href="#cb31-33" tabindex="-1"></a>ts_qscen_quant <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(ts_qscen_quant)</span>
+<span id="cb31-34"><a href="#cb31-34" tabindex="-1"></a><span class="fu">colnames</span>(ts_qscen_quant) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Q&quot;</span>, <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">D&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">colnames</span>(ts_qscen_quant)))</span>
+<span id="cb31-35"><a href="#cb31-35" tabindex="-1"></a><span class="fu">rownames</span>(ts_qscen_quant) <span class="ot">&lt;-</span> month_day_fcst</span>
+<span id="cb31-36"><a href="#cb31-36" tabindex="-1"></a></span>
+<span id="cb31-37"><a href="#cb31-37" tabindex="-1"></a><span class="co"># Display of the first calculated quantiles</span></span>
+<span id="cb31-38"><a href="#cb31-38" tabindex="-1"></a><span class="fu">head</span>(ts_qscen_quant)</span></code></pre></div>
 <pre><code>##             Q10       Q25       Q50       Q75       Q90
-## 09-01 0.1090000 0.1090000 0.1090000 0.1090000 0.1090446
-## 09-02 0.1090681 0.1090682 0.1090683 0.1090683 0.1107465
-## 09-03 0.1077215 0.1077216 0.1077217 0.1078549 0.1093933
-## 09-04 0.1066052 0.1066053 0.1066055 0.1071582 0.1097108
-## 09-05 0.1055190 0.1055192 0.1055491 0.1069772 0.1127549
-## 09-06 0.1044619 0.1044631 0.1046779 0.1081965 0.1150989</code></pre>
+## 09-01 0.1090000 0.1090000 0.1090000 0.1090000 0.1090454
+## 09-02 0.1095399 0.1095399 0.1095400 0.1095401 0.1112381
+## 09-03 0.1077081 0.1077081 0.1077082 0.1078438 0.1095709
+## 09-04 0.1065918 0.1065920 0.1065921 0.1071548 0.1099786
+## 09-05 0.1055059 0.1055061 0.1055366 0.1069900 0.1132276
+## 09-06 0.1044492 0.1044504 0.1046695 0.1082807 0.1156838</code></pre>
 <p>Streamflow forecasts based on the precipitation climatology suggest
 that the next few days will be dry, and that an increase in the
-streamflow of the river Meuse at Saint-Mihiel is not expected until a
+streamflow of the river La Meuse à Saint-Mihiel is not expected until a
 few days.</p>
 <p><img src="figure/v02_fig_qscen_py-1.png" width="98%" /></p>
 <p>The following figure allows to compare all the results on the same
@@ -1168,7 +1167,7 @@ climatology.</p>
 <h1 class="unnumbered">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-airGRteaching_man" class="csl-entry">
-Delaigue, O., L. Coron, and P. Brigode. 2022. <em><span
+Delaigue, O., L. Coron, P. Brigode, and G. Thirel. 2023. <em><span
 class="nocase">airGRteaching</span>: Teaching Hydrological Modelling
 with <span>GR</span> (<span>Shiny</span> Interface Included)</em>. <em>R
 News</em>. <a

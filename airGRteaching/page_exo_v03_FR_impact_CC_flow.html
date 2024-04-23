@@ -14,7 +14,7 @@
 
 <title>Impact du changement climatique sur le régime des débits</title>
 
-<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.26/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -91,11 +91,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #c4a000; } /* Attribute */
+code span.at { color: #204a87; } /* Attribute */
 code span.bn { color: #0000cf; } /* BaseN */
 code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #000000; } /* Constant */
+code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #8f5902; font-style: italic; } /* Comment */
 code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
 code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
@@ -104,14 +104,14 @@ code span.dv { color: #0000cf; } /* DecVal */
 code span.er { color: #a40000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #000000; } /* Function */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
 code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
 code span.ot { color: #8f5902; } /* Other */
 code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #000000; } /* SpecialChar */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
 code span.ss { color: #4e9a06; } /* SpecialString */
 code span.st { color: #4e9a06; } /* String */
 code span.va { color: #000000; } /* Variable */
@@ -562,12 +562,12 @@ simulées par la dernière version de plusieurs modèles climatiques.</p>
 descente d’échelle avec pour objectif de transformer les projections
 climatiques globales à large échelle proposées par le GIEC, à une
 échelle spatiale compatible avec une analyse hydrologique à l’échelle de
-votre bassin versant, Durance at Embrun [La Clapière] - DREAL PACA. Vous
-suivrez la méthodologie appliquée par <span class="citation">Sauquet et
-al. (2015)</span> dans le cadre du <a
+votre bassin versant, La Durance à Embrun [La Clapière] - DREAL PACA.
+Vous suivrez la méthodologie appliquée par <span
+class="citation">Sauquet et al. (2015)</span> dans le cadre du <a
 href="https://hal.inrae.fr/view/index/identifiant/hal-02601503">projet
-R²D²</a>, quantifiant notamment le futur de la ressource en eau de la
-Durance at Embrun [La Clapière] - DREAL PACA en 2050. Le produit final
+R²D²</a>, quantifiant notamment le futur de la ressource en eau de la La
+Durance à Embrun [La Clapière] - DREAL PACA en 2050. Le produit final
 proposé par vos collègues climatologues est un tableau de changements
 moyens (i) de températures moyennes mensuelles et (ii) de cumuls
 mensuels de précipitation, selon trois scénarios. Ces changements ont
@@ -579,9 +579,10 @@ températures de l’air (plus marquée en été pour les scénarios 2 et 3),
 une diminution des précipitations en été et une augmentation des
 précipitations à l’automne.</p>
 <p>Vous êtes chargé.es de quantifier l’impact de ces changements
-climatiques sur le régime des débits de Durance at Embrun [La Clapière]
-- DREAL PACA à partir des résultats de vos collègues climatologues et
-grâce à une modélisation pluie-débit (cf. figure suivante).</p>
+climatiques sur le régime des débits de La Durance à Embrun [La
+Clapière] - DREAL PACA à partir des résultats de vos collègues
+climatologues et grâce à une modélisation pluie-débit (cf. figure
+suivante).</p>
 <p>Ce travail sera réalisé en quatre étapes :</p>
 <ol style="list-style-type: decimal">
 <li>Génération des séries climatiques futures</li>
@@ -831,9 +832,8 @@ temporelles décrivant la température de l’air au sein du bassin
 versant.</p>
 <p>Ces modèles sont utilisables facilement grâce au package
 <strong><font color="#0BA6AA">airGRteaching</font></strong> <span
-class="citation">(Delaigue, Coron, and Brigode 2022; Delaigue et al.
-2018)</span>, développé pour le <a
-href="https://cran.r-project.org/">logiciel R</a> par l’<a
+class="citation">(Delaigue et al. 2023, 2018)</span>, développé pour le
+<a href="https://cran.r-project.org/">logiciel R</a> par l’<a
 href="https://webgr.inrae.fr/">équipe Hydrologie des bassins versants de
 l’unité de recherche HYCAR</a> (<a
 href="https://www.inrae.fr/">INRAE</a>, France).</p>
@@ -936,50 +936,50 @@ forme des données</h2>
 données nécessaires au calage du modèle pluie-débit GR4J et de définir
 les périodes temporelles de travail (période d’initialisation, période
 de calage et période de simulation) :</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Catchment data loading</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(airGRdatasets)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;X031001001&quot;</span>, <span class="at">package =</span> <span class="st">&quot;airGRdatasets&quot;</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Observed daily time series</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ts_obs <span class="ot">&lt;-</span> X031001001<span class="sc">$</span>TS</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Latitude of the catchment outlet</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>lat <span class="ot">&lt;-</span> X031001001<span class="sc">$</span>Meta<span class="sc">$</span>Coor<span class="sc">$</span>Y</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Catchment elevation distribution</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>hypso <span class="ot">&lt;-</span> X031001001<span class="sc">$</span>Hypso</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Warm-up period</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>per_ini <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2000-08-31&quot;</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Calibration period</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>per_cal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2000-09-01&quot;</span>, <span class="st">&quot;2009-06-29&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Elevation distribution</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> hypso,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Frequency (%)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Catchment elevation [m]&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Catchment data loading</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(airGRdatasets)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;X031001001&quot;</span>, <span class="at">package =</span> <span class="st">&quot;airGRdatasets&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># Observed daily time series</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>ts_obs <span class="ot">&lt;-</span> X031001001<span class="sc">$</span>TS</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co"># Latitude of the catchment outlet</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>lat <span class="ot">&lt;-</span> X031001001<span class="sc">$</span>Meta<span class="sc">$</span>Coor<span class="sc">$</span>Y</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co"># Catchment elevation distribution</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>hypso <span class="ot">&lt;-</span> X031001001<span class="sc">$</span>Hypso</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co"># Warm-up period</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>per_ini <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2000-08-31&quot;</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="co"># Calibration period</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>per_cal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2000-09-01&quot;</span>, <span class="st">&quot;2009-06-29&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Elevation distribution</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> hypso,</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Frequency (%)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Catchment elevation [m]&quot;</span>)</span></code></pre></div>
 <p><img src="figure/v03_fig_hypso-1.png" width="66%" /></p>
 </div>
 <div id="calage-automatique-de-gr4j-et-de-cemaneige"
 class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Calage automatique de
 GR4J et de CemaNeige</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data processing for GR4J</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>prep_hist <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_obs<span class="sc">$</span>Date,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Precip     =</span> ts_obs<span class="sc">$</span>Ptot,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">PotEvap    =</span> ts_obs<span class="sc">$</span>Evap,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">TempMean   =</span> ts_obs<span class="sc">$</span>Temp,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ZInputs    =</span> hypso[<span class="dv">51</span>],</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">HypsoData  =</span> hypso,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Qobs       =</span> ts_obs<span class="sc">$</span>Qmmd,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">HydroModel =</span> <span class="st">&quot;GR4J&quot;</span>, </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">CemaNeige  =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calibration step</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>cal_hist <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep_hist, </span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                  <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                  <span class="at">WupPer  =</span> per_ini, </span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">CalPer  =</span> per_cal,</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Data processing for GR4J</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>prep_hist <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_obs<span class="sc">$</span>Date,</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>                    <span class="at">Precip     =</span> ts_obs<span class="sc">$</span>Ptot,</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                    <span class="at">PotEvap    =</span> ts_obs<span class="sc">$</span>Evap,</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>                    <span class="at">TempMean   =</span> ts_obs<span class="sc">$</span>Temp,</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>                    <span class="at">ZInputs    =</span> hypso[<span class="dv">51</span>],</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>                    <span class="at">HypsoData  =</span> hypso,</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>                    <span class="at">Qobs       =</span> ts_obs<span class="sc">$</span>Qmmd,</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>                    <span class="at">HydroModel =</span> <span class="st">&quot;GR4J&quot;</span>, </span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>                    <span class="at">CemaNeige  =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co"># Calibration step</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>cal_hist <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep_hist, </span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>                  <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>                  <span class="at">WupPer  =</span> per_ini, </span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>                  <span class="at">CalPer  =</span> per_cal,</span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (729 runs)
 ##       Param =  432.681,   -0.649,   83.096,    2.384,    0.705,    3.787
@@ -988,17 +988,17 @@ GR4J et de CemaNeige</h2>
 ##   Calibration completed (41 iterations, 1196 runs)
 ##       Param =  482.992,    0.601,  275.889,    1.369,    0.333,    3.942
 ##       Crit. NSE[Q]       = 0.9075</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get parameter and criterion values</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>param_cal_hist <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_hist)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">GetCrit</span>(cal_hist)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Get parameter and criterion values</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>param_cal_hist <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_hist)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">GetCrit</span>(cal_hist)</span></code></pre></div>
 <pre><code>##    NSE[Q] 
-## 0.9075078</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graphical assessment</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cal_hist)</span></code></pre></div>
+## 0.9075081</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Graphical assessment</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">plot</span>(cal_hist)</span></code></pre></div>
 <p><img src="figure/v03_fig_cal-1.png" width="98%" /></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series </span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ts_qhist <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(cal_hist)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ts_qhist <span class="ot">&lt;-</span> ts_qhist[, <span class="fu">c</span>(<span class="st">&quot;Dates&quot;</span>, <span class="st">&quot;Qobs&quot;</span>, <span class="st">&quot;Qsim&quot;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series </span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>ts_qhist <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(cal_hist)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>ts_qhist <span class="ot">&lt;-</span> ts_qhist[, <span class="fu">c</span>(<span class="st">&quot;Dates&quot;</span>, <span class="st">&quot;Qobs&quot;</span>, <span class="st">&quot;Qsim&quot;</span>)]</span></code></pre></div>
 </div>
 <div id="calcul-des-régimes-observé-et-simulé-sur-la-période-cp"
 class="section level2" number="2.3">
@@ -1007,33 +1007,33 @@ observé et simulé sur la période CP</h2>
 <p>Les lignes de codes présentées ci-après permettent de calculer les
 régimes observés et simulés des débits aux pas de temps journaliers et
 mensuels.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daily regimes</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>reg_hist_d <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(ts_qhist,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">Format =</span> <span class="st">&quot;%d&quot;</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">ConvertFun =</span> <span class="fu">c</span>(<span class="st">&quot;mean&quot;</span>, <span class="st">&quot;mean&quot;</span>))</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>is_feb29 <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="at">x =</span> reg_d<span class="sc">$</span>Date, <span class="at">format =</span> <span class="st">&quot;%m-%d&quot;</span>) <span class="sc">==</span> <span class="st">&quot;02-29&quot;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>reg_hist_d <span class="ot">&lt;-</span> reg_d[<span class="sc">!</span>is_feb29, ]</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Monthly regimes</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>reg_hist_m <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(ts_qhist,</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                           <span class="at">Format =</span> <span class="st">&quot;%m&quot;</span>,</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>                           <span class="at">ConvertFun =</span> <span class="fu">c</span>(<span class="st">&quot;sum&quot;</span>, <span class="st">&quot;sum&quot;</span>))</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculated regimes</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>reg_hist_m</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Daily regimes</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>reg_hist_d <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(ts_qhist,</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>                           <span class="at">Format =</span> <span class="st">&quot;%d&quot;</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>                           <span class="at">ConvertFun =</span> <span class="fu">c</span>(<span class="st">&quot;mean&quot;</span>, <span class="st">&quot;mean&quot;</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>is_feb29 <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="at">x =</span> reg_d<span class="sc">$</span>Date, <span class="at">format =</span> <span class="st">&quot;%m-%d&quot;</span>) <span class="sc">==</span> <span class="st">&quot;02-29&quot;</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>reg_hist_d <span class="ot">&lt;-</span> reg_d[<span class="sc">!</span>is_feb29, ]</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co"># Monthly regimes</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>reg_hist_m <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(ts_qhist,</span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>                           <span class="at">Format =</span> <span class="st">&quot;%m&quot;</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>                           <span class="at">ConvertFun =</span> <span class="fu">c</span>(<span class="st">&quot;sum&quot;</span>, <span class="st">&quot;sum&quot;</span>))</span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="co"># Calculated regimes</span></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a>reg_hist_m</span></code></pre></div>
 <pre><code>##           Dates     Qobs      Qsim
-## 2270 2000-09-01  339.928  342.9322
-## 2545 2000-10-01  376.959  424.5159
-## 2856 2000-11-01  317.620  413.6535
-## 3165 2000-12-01  241.386  312.4544
+## 2270 2000-09-01  339.939  342.9322
+## 2545 2000-10-01  376.967  424.5159
+## 2856 2000-11-01  317.624  413.6535
+## 3165 2000-12-01  241.390  312.4544
 ## 2    2001-01-01  219.614  248.8342
-## 423  2001-02-01  166.265  192.1759
-## 717  2001-03-01  291.189  286.5678
-## 1068 2001-04-01  471.406  370.3787
+## 423  2001-02-01  166.271  192.1759
+## 717  2001-03-01  291.193  286.5678
+## 1068 2001-04-01  471.410  370.3787
 ## 1221 2001-05-01 1209.560 1104.5823
 ## 1537 2001-06-01 1174.049 1112.9204
-## 1807 2001-07-01  554.159  509.9024
-## 2076 2001-08-01  369.625  326.5216</code></pre>
+## 1807 2001-07-01  554.163  509.9024
+## 2076 2001-08-01  369.629  326.5216</code></pre>
 <p>Les régimes ainsi calculés peuvent être représentés graphiquement
 (cf. figure suivante). La comparaison des deux régimes permet d’évaluer
 la capacité du modèle pluie-débit (ici GR4J et CemaNeige) à reproduire
@@ -1049,47 +1049,47 @@ séries climatiques (ETP, T et P) sur la période de “climat futur” en
 utilisant les séries observées sur la période de “climat présent” et en
 les transformant à partir des changements climatiques estimés par les
 climatologues.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Delta of temperature (assigned on the 15th of each month)</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>delta_temp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Month =</span> <span class="fu">sprintf</span>(<span class="st">&quot;%02i-15&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>),</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Tscen1 =</span> <span class="fu">rep</span>(<span class="fl">1.5</span>, <span class="dv">12</span>),</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Tscen2 =</span> <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="fl">2.5</span>, <span class="fl">3.0</span>, <span class="fl">3.0</span>, <span class="fl">3.5</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">3.5</span>, <span class="fl">3.0</span>, <span class="fl">3.0</span>, <span class="fl">2.5</span>, <span class="fl">2.5</span>),</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Tscen3 =</span> <span class="fu">c</span>(<span class="fl">3.5</span>, <span class="fl">3.5</span>, <span class="fl">4.0</span>, <span class="fl">4.5</span>, <span class="fl">5.0</span>, <span class="fl">6.0</span>, <span class="fl">6.0</span>, <span class="fl">5.0</span>, <span class="fl">4.5</span>, <span class="fl">4.0</span>, <span class="fl">3.5</span>, <span class="fl">3.5</span>))</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Delta of precipitation (assigned on the 15th of each month)</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>delta_ptot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Month =</span> <span class="fu">sprintf</span>(<span class="st">&quot;%02i-15&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>),</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Pscen1 =</span> <span class="fu">c</span>(<span class="sc">+</span><span class="dv">10</span>, <span class="sc">+</span><span class="dv">10</span>, <span class="sc">+</span><span class="dv">05</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">05</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">05</span>, <span class="dv">0</span>, <span class="sc">+</span><span class="dv">05</span>, <span class="sc">+</span><span class="dv">10</span>, <span class="sc">+</span><span class="dv">10</span>),</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Pscen2 =</span> <span class="fu">c</span>(<span class="sc">+</span><span class="dv">15</span>, <span class="sc">+</span><span class="dv">15</span>, <span class="sc">+</span><span class="dv">07</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">07</span>, <span class="sc">-</span><span class="dv">15</span>, <span class="sc">-</span><span class="dv">15</span>, <span class="sc">-</span><span class="dv">07</span>, <span class="dv">0</span>, <span class="sc">+</span><span class="dv">07</span>, <span class="sc">+</span><span class="dv">25</span>, <span class="sc">+</span><span class="dv">20</span>),</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Pscen3 =</span> <span class="fu">c</span>(<span class="sc">+</span><span class="dv">20</span>, <span class="sc">+</span><span class="dv">15</span>, <span class="sc">+</span><span class="dv">10</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">15</span>, <span class="sc">-</span><span class="dv">30</span>, <span class="sc">-</span><span class="dv">30</span>, <span class="sc">-</span><span class="dv">15</span>, <span class="dv">0</span>, <span class="sc">+</span><span class="dv">20</span>, <span class="sc">+</span><span class="dv">40</span>, <span class="sc">+</span><span class="dv">30</span>))</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Time series with additional date information</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>ts_cc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Dates =</span> ts_obs<span class="sc">$</span>Date)</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>ts_cc<span class="sc">$</span>Month <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="at">x =</span> ts_cc<span class="sc">$</span>Date, <span class="at">format =</span> <span class="st">&quot;%m-%d&quot;</span>)</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Delta of temperature and precipitation in the same table</span></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>delta_cc <span class="ot">&lt;-</span> <span class="fu">merge</span>(delta_temp, delta_ptot, <span class="at">by =</span> <span class="st">&quot;Month&quot;</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Merging the complete time series and the delta table</span></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>ts_cc <span class="ot">&lt;-</span> <span class="fu">merge</span>(ts_cc, delta_cc, <span class="at">by =</span> <span class="st">&quot;Month&quot;</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>ts_cc <span class="ot">&lt;-</span> ts_cc[<span class="fu">order</span>(ts_cc<span class="sc">$</span>Dates), ]</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Sub-setting of the time series with the dates available in the delta table</span></span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>ts_cc_15 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(ts_cc)</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Constitution of &quot;future climate&quot; time series</span></span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>ts_clim_cc <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">grep</span>(<span class="st">&quot;scen&quot;</span>, <span class="fu">colnames</span>(ts_cc_15), <span class="at">value =</span> <span class="cn">TRUE</span>), <span class="at">FUN =</span> <span class="cf">function</span>(i) {</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Daily delta interpolation (between the 15th of each month)</span></span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  i_interpol <span class="ot">&lt;-</span> <span class="fu">approx</span>(<span class="at">x =</span> ts_cc_15<span class="sc">$</span>Dates, <span class="at">y =</span> ts_cc_15[, i], </span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>                       <span class="at">xout =</span> ts_cc<span class="sc">$</span>Dates, <span class="at">rule =</span> <span class="dv">2</span>)<span class="sc">$</span>y</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">&quot;T&quot;</span>, i)) {</span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    ts_obs<span class="sc">$</span>Temp <span class="sc">+</span> i_interpol</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    ts_obs<span class="sc">$</span>Ptot <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">+</span> i_interpol <span class="sc">/</span> <span class="dv">100</span>)</span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>ts_clim_cc <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(ts_clim_cc)</span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the &quot;future climate&quot; time series</span></span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ts_clim_cc)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># Delta of temperature (assigned on the 15th of each month)</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>delta_temp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Month =</span> <span class="fu">sprintf</span>(<span class="st">&quot;%02i-15&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>),</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>                         <span class="at">Tscen1 =</span> <span class="fu">rep</span>(<span class="fl">1.5</span>, <span class="dv">12</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>                         <span class="at">Tscen2 =</span> <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="fl">2.5</span>, <span class="fl">3.0</span>, <span class="fl">3.0</span>, <span class="fl">3.5</span>, <span class="fl">4.0</span>, <span class="fl">4.0</span>, <span class="fl">3.5</span>, <span class="fl">3.0</span>, <span class="fl">3.0</span>, <span class="fl">2.5</span>, <span class="fl">2.5</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>                         <span class="at">Tscen3 =</span> <span class="fu">c</span>(<span class="fl">3.5</span>, <span class="fl">3.5</span>, <span class="fl">4.0</span>, <span class="fl">4.5</span>, <span class="fl">5.0</span>, <span class="fl">6.0</span>, <span class="fl">6.0</span>, <span class="fl">5.0</span>, <span class="fl">4.5</span>, <span class="fl">4.0</span>, <span class="fl">3.5</span>, <span class="fl">3.5</span>))</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co"># Delta of precipitation (assigned on the 15th of each month)</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>delta_ptot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Month =</span> <span class="fu">sprintf</span>(<span class="st">&quot;%02i-15&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>),</span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>                         <span class="at">Pscen1 =</span> <span class="fu">c</span>(<span class="sc">+</span><span class="dv">10</span>, <span class="sc">+</span><span class="dv">10</span>, <span class="sc">+</span><span class="dv">05</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">05</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">05</span>, <span class="dv">0</span>, <span class="sc">+</span><span class="dv">05</span>, <span class="sc">+</span><span class="dv">10</span>, <span class="sc">+</span><span class="dv">10</span>),</span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>                         <span class="at">Pscen2 =</span> <span class="fu">c</span>(<span class="sc">+</span><span class="dv">15</span>, <span class="sc">+</span><span class="dv">15</span>, <span class="sc">+</span><span class="dv">07</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">07</span>, <span class="sc">-</span><span class="dv">15</span>, <span class="sc">-</span><span class="dv">15</span>, <span class="sc">-</span><span class="dv">07</span>, <span class="dv">0</span>, <span class="sc">+</span><span class="dv">07</span>, <span class="sc">+</span><span class="dv">25</span>, <span class="sc">+</span><span class="dv">20</span>),</span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>                         <span class="at">Pscen3 =</span> <span class="fu">c</span>(<span class="sc">+</span><span class="dv">20</span>, <span class="sc">+</span><span class="dv">15</span>, <span class="sc">+</span><span class="dv">10</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">15</span>, <span class="sc">-</span><span class="dv">30</span>, <span class="sc">-</span><span class="dv">30</span>, <span class="sc">-</span><span class="dv">15</span>, <span class="dv">0</span>, <span class="sc">+</span><span class="dv">20</span>, <span class="sc">+</span><span class="dv">40</span>, <span class="sc">+</span><span class="dv">30</span>))</span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="co"># Time series with additional date information</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a>ts_cc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Dates =</span> ts_obs<span class="sc">$</span>Date)</span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a>ts_cc<span class="sc">$</span>Month <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="at">x =</span> ts_cc<span class="sc">$</span>Date, <span class="at">format =</span> <span class="st">&quot;%m-%d&quot;</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="co"># Delta of temperature and precipitation in the same table</span></span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a>delta_cc <span class="ot">&lt;-</span> <span class="fu">merge</span>(delta_temp, delta_ptot, <span class="at">by =</span> <span class="st">&quot;Month&quot;</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a><span class="co"># Merging the complete time series and the delta table</span></span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a>ts_cc <span class="ot">&lt;-</span> <span class="fu">merge</span>(ts_cc, delta_cc, <span class="at">by =</span> <span class="st">&quot;Month&quot;</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a>ts_cc <span class="ot">&lt;-</span> ts_cc[<span class="fu">order</span>(ts_cc<span class="sc">$</span>Dates), ]</span>
+<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a><span class="co"># Sub-setting of the time series with the dates available in the delta table</span></span>
+<span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a>ts_cc_15 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(ts_cc)</span>
+<span id="cb11-26"><a href="#cb11-26" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" tabindex="-1"></a><span class="co"># Constitution of &quot;future climate&quot; time series</span></span>
+<span id="cb11-28"><a href="#cb11-28" tabindex="-1"></a>ts_clim_cc <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">grep</span>(<span class="st">&quot;scen&quot;</span>, <span class="fu">colnames</span>(ts_cc_15), <span class="at">value =</span> <span class="cn">TRUE</span>), <span class="at">FUN =</span> <span class="cf">function</span>(i) {</span>
+<span id="cb11-29"><a href="#cb11-29" tabindex="-1"></a>  <span class="co"># Daily delta interpolation (between the 15th of each month)</span></span>
+<span id="cb11-30"><a href="#cb11-30" tabindex="-1"></a>  i_interpol <span class="ot">&lt;-</span> <span class="fu">approx</span>(<span class="at">x =</span> ts_cc_15<span class="sc">$</span>Dates, <span class="at">y =</span> ts_cc_15[, i], </span>
+<span id="cb11-31"><a href="#cb11-31" tabindex="-1"></a>                       <span class="at">xout =</span> ts_cc<span class="sc">$</span>Dates, <span class="at">rule =</span> <span class="dv">2</span>)<span class="sc">$</span>y</span>
+<span id="cb11-32"><a href="#cb11-32" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">&quot;T&quot;</span>, i)) {</span>
+<span id="cb11-33"><a href="#cb11-33" tabindex="-1"></a>    ts_obs<span class="sc">$</span>Temp <span class="sc">+</span> i_interpol</span>
+<span id="cb11-34"><a href="#cb11-34" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb11-35"><a href="#cb11-35" tabindex="-1"></a>    ts_obs<span class="sc">$</span>Ptot <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">+</span> i_interpol <span class="sc">/</span> <span class="dv">100</span>)</span>
+<span id="cb11-36"><a href="#cb11-36" tabindex="-1"></a>  }</span>
+<span id="cb11-37"><a href="#cb11-37" tabindex="-1"></a>})</span>
+<span id="cb11-38"><a href="#cb11-38" tabindex="-1"></a>ts_clim_cc <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(ts_clim_cc)</span>
+<span id="cb11-39"><a href="#cb11-39" tabindex="-1"></a></span>
+<span id="cb11-40"><a href="#cb11-40" tabindex="-1"></a><span class="co"># Summary of the &quot;future climate&quot; time series</span></span>
+<span id="cb11-41"><a href="#cb11-41" tabindex="-1"></a><span class="fu">summary</span>(ts_clim_cc)</span></code></pre></div>
 <pre><code>##      Tscen1            Tscen2            Tscen3            Pscen1             Pscen2         
 ##  Min.   :-15.200   Min.   :-14.200   Min.   :-13.200   Min.   : 0.00000   Min.   :  0.00000  
 ##  1st Qu.: -0.200   1st Qu.:  1.000   1st Qu.:  2.061   1st Qu.: 0.00000   1st Qu.:  0.00000  
@@ -1104,17 +1104,17 @@ climatologues.</p>
 ##  Mean   :  2.964  
 ##  3rd Qu.:  2.201  
 ##  Max.   :117.354</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PE calculation</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ts_clim_cc<span class="sc">$</span>Julian <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="at">x =</span> <span class="fu">format</span>(<span class="at">x =</span> ts_cc<span class="sc">$</span>Date, <span class="at">format =</span> <span class="st">&quot;%j&quot;</span>))</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ts_clim_cc<span class="sc">$</span>Escen1 <span class="ot">&lt;-</span> <span class="fu">PE_Oudin</span>(<span class="at">JD =</span> ts_clim_cc<span class="sc">$</span>Julian, </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Temp =</span> ts_clim_cc<span class="sc">$</span>Tscen1, </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Lat =</span> lat, <span class="at">LatUnit =</span> <span class="st">&quot;deg&quot;</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>ts_clim_cc<span class="sc">$</span>Escen2 <span class="ot">&lt;-</span> <span class="fu">PE_Oudin</span>(<span class="at">JD =</span> ts_clim_cc<span class="sc">$</span>Julian, </span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Temp =</span> ts_clim_cc<span class="sc">$</span>Tscen2, </span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Lat =</span> lat, <span class="at">LatUnit =</span> <span class="st">&quot;deg&quot;</span>)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>ts_clim_cc<span class="sc">$</span>Escen3 <span class="ot">&lt;-</span> <span class="fu">PE_Oudin</span>(<span class="at">JD =</span> ts_clim_cc<span class="sc">$</span>Julian, </span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Temp =</span> ts_clim_cc<span class="sc">$</span>Tscen3, </span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Lat =</span> lat, <span class="at">LatUnit =</span> <span class="st">&quot;deg&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># PE calculation</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>ts_clim_cc<span class="sc">$</span>Julian <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="at">x =</span> <span class="fu">format</span>(<span class="at">x =</span> ts_cc<span class="sc">$</span>Date, <span class="at">format =</span> <span class="st">&quot;%j&quot;</span>))</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>ts_clim_cc<span class="sc">$</span>Escen1 <span class="ot">&lt;-</span> <span class="fu">PE_Oudin</span>(<span class="at">JD =</span> ts_clim_cc<span class="sc">$</span>Julian, </span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>                              <span class="at">Temp =</span> ts_clim_cc<span class="sc">$</span>Tscen1, </span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>                              <span class="at">Lat =</span> lat, <span class="at">LatUnit =</span> <span class="st">&quot;deg&quot;</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>ts_clim_cc<span class="sc">$</span>Escen2 <span class="ot">&lt;-</span> <span class="fu">PE_Oudin</span>(<span class="at">JD =</span> ts_clim_cc<span class="sc">$</span>Julian, </span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>                              <span class="at">Temp =</span> ts_clim_cc<span class="sc">$</span>Tscen2, </span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>                              <span class="at">Lat =</span> lat, <span class="at">LatUnit =</span> <span class="st">&quot;deg&quot;</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>ts_clim_cc<span class="sc">$</span>Escen3 <span class="ot">&lt;-</span> <span class="fu">PE_Oudin</span>(<span class="at">JD =</span> ts_clim_cc<span class="sc">$</span>Julian, </span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>                              <span class="at">Temp =</span> ts_clim_cc<span class="sc">$</span>Tscen3, </span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>                              <span class="at">Lat =</span> lat, <span class="at">LatUnit =</span> <span class="st">&quot;deg&quot;</span>)</span></code></pre></div>
 </div>
 <div id="simulation-pluie-débit-sur-la-période-future"
 class="section level2" number="2.5">
@@ -1123,38 +1123,38 @@ pluie-débit sur la période future</h2>
 <p>Les lignes de codes présentées ci-après permettent de réaliser une
 simulation pluie-débit de la période de “climat futur” à partir des
 séries climatiques générées dans la section précédente.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop on the three scenarios</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ts_qcc <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  i_col_P <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Pscen&quot;</span>, i)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  i_col_E <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Escen&quot;</span>, i)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  i_col_T <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Tscen&quot;</span>, i)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  i_col_Q <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Qscen&quot;</span>, i)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Data processing for GR4J</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  i_prep_cc <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_cc<span class="sc">$</span>Date,</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Precip     =</span> ts_clim_cc[, i_col_P],</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">PotEvap    =</span> ts_clim_cc[, i_col_E],</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>                      <span class="at">TempMean   =</span> ts_clim_cc[, i_col_T],</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>                      <span class="at">ZInputs    =</span> hypso[<span class="dv">51</span>],</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>                      <span class="at">HypsoData  =</span> hypso,</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>                      <span class="at">HydroModel =</span> <span class="st">&quot;GR4J&quot;</span>, </span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>                      <span class="at">CemaNeige  =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Simulation step</span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  i_sim_cc <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> i_prep_cc, </span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>                    <span class="at">WupPer  =</span> per_ini, </span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>                    <span class="at">SimPer  =</span> per_cal,</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Param   =</span> param_cal_hist,</span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>                    <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Storage of observed and simulated streamflow series</span></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>  i_ts_cc_15 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(i_sim_cc)</span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>  ts_qcc[[i_col_Q]] <span class="ot">&lt;-</span> i_ts_cc_15<span class="sc">$</span>Qsim</span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine historical and future time series</span></span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>ts_q <span class="ot">&lt;-</span> <span class="fu">cbind</span>(ts_qhist, <span class="fu">as.data.frame</span>(ts_qcc))</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># Loop on the three scenarios</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>ts_qcc <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  i_col_P <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Pscen&quot;</span>, i)</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  i_col_E <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Escen&quot;</span>, i)</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>  i_col_T <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Tscen&quot;</span>, i)</span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>  i_col_Q <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Qscen&quot;</span>, i)</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>  </span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>  <span class="co"># Data processing for GR4J</span></span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>  i_prep_cc <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_cc<span class="sc">$</span>Date,</span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>                      <span class="at">Precip     =</span> ts_clim_cc[, i_col_P],</span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>                      <span class="at">PotEvap    =</span> ts_clim_cc[, i_col_E],</span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a>                      <span class="at">TempMean   =</span> ts_clim_cc[, i_col_T],</span>
+<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a>                      <span class="at">ZInputs    =</span> hypso[<span class="dv">51</span>],</span>
+<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a>                      <span class="at">HypsoData  =</span> hypso,</span>
+<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a>                      <span class="at">HydroModel =</span> <span class="st">&quot;GR4J&quot;</span>, </span>
+<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a>                      <span class="at">CemaNeige  =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a>  </span>
+<span id="cb14-19"><a href="#cb14-19" tabindex="-1"></a>  <span class="co"># Simulation step</span></span>
+<span id="cb14-20"><a href="#cb14-20" tabindex="-1"></a>  i_sim_cc <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> i_prep_cc, </span>
+<span id="cb14-21"><a href="#cb14-21" tabindex="-1"></a>                    <span class="at">WupPer  =</span> per_ini, </span>
+<span id="cb14-22"><a href="#cb14-22" tabindex="-1"></a>                    <span class="at">SimPer  =</span> per_cal,</span>
+<span id="cb14-23"><a href="#cb14-23" tabindex="-1"></a>                    <span class="at">Param   =</span> param_cal_hist,</span>
+<span id="cb14-24"><a href="#cb14-24" tabindex="-1"></a>                    <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb14-25"><a href="#cb14-25" tabindex="-1"></a>  </span>
+<span id="cb14-26"><a href="#cb14-26" tabindex="-1"></a>  <span class="co"># Storage of observed and simulated streamflow series</span></span>
+<span id="cb14-27"><a href="#cb14-27" tabindex="-1"></a>  i_ts_cc_15 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(i_sim_cc)</span>
+<span id="cb14-28"><a href="#cb14-28" tabindex="-1"></a>  ts_qcc[[i_col_Q]] <span class="ot">&lt;-</span> i_ts_cc_15<span class="sc">$</span>Qsim</span>
+<span id="cb14-29"><a href="#cb14-29" tabindex="-1"></a>}</span>
+<span id="cb14-30"><a href="#cb14-30" tabindex="-1"></a></span>
+<span id="cb14-31"><a href="#cb14-31" tabindex="-1"></a><span class="co"># Combine historical and future time series</span></span>
+<span id="cb14-32"><a href="#cb14-32" tabindex="-1"></a>ts_q <span class="ot">&lt;-</span> <span class="fu">cbind</span>(ts_qhist, <span class="fu">as.data.frame</span>(ts_qcc))</span></code></pre></div>
 </div>
 <div id="calculs-du-régime-simulé-sur-la-période-cf"
 class="section level2" number="2.6">
@@ -1162,33 +1162,33 @@ class="section level2" number="2.6">
 simulé sur la période CF</h2>
 <p>Les lignes de codes présentées ci-après permettent de calculer le
 régime des débits simulés sur la période de climat futur.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daily regimes</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>reg_cc_d <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(ts_q,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Format =</span> <span class="st">&quot;%d&quot;</span>,</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ConvertFun =</span> <span class="fu">rep</span>(<span class="st">&quot;mean&quot;</span>, <span class="dv">5</span>))</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>is_feb29 <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="at">x =</span> reg_cc_d<span class="sc">$</span>Dates, <span class="at">format =</span> <span class="st">&quot;%m-%d&quot;</span>) <span class="sc">==</span> <span class="st">&quot;02-29&quot;</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>reg_cc_d <span class="ot">&lt;-</span> reg_cc_d[<span class="sc">!</span>is_feb29, ]</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Monthly regimes</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>reg_cc_m <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(ts_q,</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Format =</span> <span class="st">&quot;%m&quot;</span>,</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ConvertFun =</span> <span class="fu">rep</span>(<span class="st">&quot;sum&quot;</span>, <span class="dv">5</span>))</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculated regimes</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>reg_cc_m</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># Daily regimes</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>reg_cc_d <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(ts_q,</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>                         <span class="at">Format =</span> <span class="st">&quot;%d&quot;</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>                         <span class="at">ConvertFun =</span> <span class="fu">rep</span>(<span class="st">&quot;mean&quot;</span>, <span class="dv">5</span>))</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>is_feb29 <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="at">x =</span> reg_cc_d<span class="sc">$</span>Dates, <span class="at">format =</span> <span class="st">&quot;%m-%d&quot;</span>) <span class="sc">==</span> <span class="st">&quot;02-29&quot;</span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>reg_cc_d <span class="ot">&lt;-</span> reg_cc_d[<span class="sc">!</span>is_feb29, ]</span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="co"># Monthly regimes</span></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>reg_cc_m <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(ts_q,</span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>                         <span class="at">Format =</span> <span class="st">&quot;%m&quot;</span>,</span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>                         <span class="at">ConvertFun =</span> <span class="fu">rep</span>(<span class="st">&quot;sum&quot;</span>, <span class="dv">5</span>))</span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a><span class="co"># Calculated regimes</span></span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a>reg_cc_m</span></code></pre></div>
 <pre><code>##           Dates     Qobs      Qsim    Qscen1   Qscen2   Qscen3
-## 2270 2000-09-01  339.928  342.9322  256.0630 185.7943 129.2014
-## 2545 2000-10-01  376.959  424.5159  378.8893 311.4428 263.4452
-## 2856 2000-11-01  317.620  413.6535  488.4572 546.3996 640.1677
-## 3165 2000-12-01  241.386  312.4544  409.2737 490.5027 583.0666
+## 2270 2000-09-01  339.939  342.9322  256.0630 185.7943 129.2014
+## 2545 2000-10-01  376.967  424.5159  378.8893 311.4428 263.4452
+## 2856 2000-11-01  317.624  413.6535  488.4572 546.3996 640.1677
+## 3165 2000-12-01  241.390  312.4544  409.2737 490.5027 583.0666
 ## 2    2001-01-01  219.614  248.8342  343.7781 429.3201 533.9006
-## 423  2001-02-01  166.265  192.1759  262.7620 322.5987 384.7521
-## 717  2001-03-01  291.189  286.5678  436.3709 583.8233 668.3347
-## 1068 2001-04-01  471.406  370.3787  536.1424 667.8721 704.6265
+## 423  2001-02-01  166.271  192.1759  262.7620 322.5987 384.7521
+## 717  2001-03-01  291.193  286.5678  436.3709 583.8233 668.3347
+## 1068 2001-04-01  471.410  370.3787  536.1424 667.8721 704.6265
 ## 1221 2001-05-01 1209.560 1104.5823 1049.0074 869.3730 644.5160
 ## 1537 2001-06-01 1174.049 1112.9204  771.4922 527.6899 365.9184
-## 1807 2001-07-01  554.159  509.9024  327.4281 230.6258 165.8818
-## 2076 2001-08-01  369.625  326.5216  226.2868 159.2173 111.6768</code></pre>
+## 1807 2001-07-01  554.163  509.9024  327.4281 230.6258 165.8818
+## 2076 2001-08-01  369.629  326.5216  226.2868 159.2173 111.6768</code></pre>
 <p>Ce régime “futur” peut être comparé graphiquement avec les régimes de
 débits simulés sur la période de climat présent (cf. figure suivante).
 Cette comparaison révèle une diminution des débits, diminution
@@ -1228,7 +1228,7 @@ Research</em> 48: W05552. <a
 href="https://doi.org/10.1029/2011WR011721">https://doi.org/10.1029/2011WR011721</a>.
 </div>
 <div id="ref-airGRteaching_man" class="csl-entry">
-Delaigue, O., L. Coron, and P. Brigode. 2022. <em><span
+Delaigue, O., L. Coron, P. Brigode, and G. Thirel. 2023. <em><span
 class="nocase">airGRteaching</span>: Teaching Hydrological Modelling
 with <span>GR</span> (<span>Shiny</span> Interface Included)</em>. <em>R
 News</em>. <a

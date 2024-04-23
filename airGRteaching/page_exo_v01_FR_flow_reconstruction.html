@@ -14,7 +14,7 @@
 
 <title>Reconstitution de débits</title>
 
-<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.26/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -91,11 +91,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #c4a000; } /* Attribute */
+code span.at { color: #204a87; } /* Attribute */
 code span.bn { color: #0000cf; } /* BaseN */
 code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #000000; } /* Constant */
+code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #8f5902; font-style: italic; } /* Comment */
 code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
 code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
@@ -104,14 +104,14 @@ code span.dv { color: #0000cf; } /* DecVal */
 code span.er { color: #a40000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #000000; } /* Function */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
 code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
 code span.ot { color: #8f5902; } /* Other */
 code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #000000; } /* SpecialChar */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
 code span.ss { color: #4e9a06; } /* SpecialString */
 code span.st { color: #4e9a06; } /* String */
 code span.va { color: #000000; } /* Variable */
@@ -553,8 +553,8 @@ The <b>airGRteaching Shiny GUI</b> launched by the 'ShinyGR' function is sometim
 <h1><span class="header-section-number">1</span> Énoncé</h1>
 <div id="contexte" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Contexte</h2>
-<p>Le bassin versant Esteron at Broc [La Clave] est un bassin de 442 km²
-pour lequel les débits mesurés sont disponibles de 1999 à 2018, mais
+<p>Le bassin versant L’Esteron au Broc [La Clave] est un bassin de 442
+km² pour lequel les débits mesurés sont disponibles de 1999 à 2018, mais
 avec quelques lacunes (notamment durant l’année 2014).</p>
 <p>L’exercice consiste à utiliser les données hydro-climatiques
 disponibles sur le bassin versant de et un modèle pluie-débit pour
@@ -590,9 +590,8 @@ nécessite en entrée des séries temporelles continues de précipitations
 et d’évapotranspirations potentielles (ETP) mensuelles.</p>
 <p>Ce modèle est utilisable facilement grâce au package
 <strong><font color="#0BA6AA">airGRteaching</font></strong> <span
-class="citation">(Delaigue, Coron, and Brigode 2022; Delaigue et al.
-2018)</span>, développé pour le <a
-href="https://cran.r-project.org/">logiciel R</a> par l’<a
+class="citation">(Delaigue et al. 2023, 2018)</span>, développé pour le
+<a href="https://cran.r-project.org/">logiciel R</a> par l’<a
 href="https://webgr.inrae.fr/">équipe Hydrologie des bassins versants de
 l’unité de recherche HYCAR</a> (<a
 href="https://www.inrae.fr/">INRAE</a>, France).</p>
@@ -732,7 +731,7 @@ d’initilisation débutant en janvier 2009 et s’achevant en décembre
 <h3><span class="header-section-number">1.2.7</span> Période de
 simulation</h3>
 <p>La simulation finale vise, pour cet exercice, à reconstituer les
-débits du bassin versant Esteron at Broc [La Clave] pour les mois sans
+débits du bassin versant L’Esteron au Broc [La Clave] pour les mois sans
 mesures. Afin d’avoir une seule simulation couvrant l’ensemble de la
 période étudiée, cette simulation débutera en janvier 2001 et s’achèvera
 en décembre 2018, avec une période d’initialisation de 24 mois débutant
@@ -768,45 +767,45 @@ forme des données</h2>
 données nécessaires au calage du modèle pluie-débit GR2M et de définir
 les périodes temporelles de travail (période d’initialisation, période
 de calage et période d’évaluation) :</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Catchment data loading</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(airGRdatasets)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;Y643401001&quot;</span>, <span class="at">package =</span> <span class="st">&quot;airGRdatasets&quot;</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Catchment metadata</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Y643401001<span class="sc">$</span>Meta)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Catchment data loading</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(airGRdatasets)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;Y643401001&quot;</span>, <span class="at">package =</span> <span class="st">&quot;airGRdatasets&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># Catchment metadata</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">str</span>(Y643401001<span class="sc">$</span>Meta)</span></code></pre></div>
 <pre><code>## List of 4
 ##  $ Code:List of 2
 ##   ..$ H3: chr &quot;Y643401001&quot;
 ##   ..$ H2: chr &quot;Y6434010&quot;
-##  $ Name: chr &quot;the Esteron at Broc [La Clave]&quot;
+##  $ Name: chr &quot;L&#39;Esteron au Broc [La Clave]&quot;
 ##  $ Coor:List of 2
 ##   ..$ X: num 7.16
 ##   ..$ Y: num 43.8
 ##  $ Area: num 442</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Observed daily time series</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ts_obs_d <span class="ot">&lt;-</span> Y643401001<span class="sc">$</span>TS</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the time series</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ts_obs_d)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Observed daily time series</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>ts_obs_d <span class="ot">&lt;-</span> Y643401001<span class="sc">$</span>TS</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># Summary of the time series</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">summary</span>(ts_obs_d)</span></code></pre></div>
 <pre><code>##       Date                 Ptot              Temp            Evap            Qls              Qmmd       
 ##  Min.   :1999-01-01   Min.   :  0.000   Min.   :-7.20   Min.   :0.000   Min.   :   790   Min.   : 0.154  
 ##  1st Qu.:2004-01-01   1st Qu.:  0.000   1st Qu.: 5.20   1st Qu.:0.600   1st Qu.:  1830   1st Qu.: 0.357  
 ##  Median :2008-12-31   Median :  0.000   Median :10.40   Median :1.700   Median :  3100   Median : 0.605  
-##  Mean   :2008-12-31   Mean   :  2.934   Mean   :10.69   Mean   :1.989   Mean   :  6302   Mean   : 1.231  
-##  3rd Qu.:2013-12-31   3rd Qu.:  1.200   3rd Qu.:16.30   3rd Qu.:3.300   3rd Qu.:  6970   3rd Qu.: 1.361  
+##  Mean   :2008-12-31   Mean   :  2.934   Mean   :10.69   Mean   :1.989   Mean   :  6303   Mean   : 1.231  
+##  3rd Qu.:2013-12-31   3rd Qu.:  1.200   3rd Qu.:16.30   3rd Qu.:3.300   3rd Qu.:  6990   3rd Qu.: 1.365  
 ##  Max.   :2018-12-31   Max.   :146.300   Max.   :27.20   Max.   :5.300   Max.   :167000   Max.   :32.611  
 ##                                                                         NA&#39;s   :136      NA&#39;s   :136</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calibration period</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>per_cal_wup <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2003-01-01&quot;</span>, <span class="st">&quot;2004-12-01&quot;</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>per_cal_run <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2005-01-01&quot;</span>, <span class="st">&quot;2010-12-01&quot;</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluation period </span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>per_eva_wup <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2009-01-01&quot;</span>, <span class="st">&quot;2010-12-01&quot;</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>per_eva_run <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2011-01-01&quot;</span>, <span class="st">&quot;2018-12-01&quot;</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation period</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>per_sim_wup <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2000-12-01&quot;</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>per_sim_run <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2001-01-01&quot;</span>, <span class="st">&quot;2018-12-01&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Calibration period</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>per_cal_wup <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2003-01-01&quot;</span>, <span class="st">&quot;2004-12-01&quot;</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>per_cal_run <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2005-01-01&quot;</span>, <span class="st">&quot;2010-12-01&quot;</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co"># Evaluation period </span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>per_eva_wup <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2009-01-01&quot;</span>, <span class="st">&quot;2010-12-01&quot;</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>per_eva_run <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2011-01-01&quot;</span>, <span class="st">&quot;2018-12-01&quot;</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co"># Simulation period</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>per_sim_wup <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2000-12-01&quot;</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>per_sim_run <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2001-01-01&quot;</span>, <span class="st">&quot;2018-12-01&quot;</span>)</span></code></pre></div>
 </div>
 <div id="préparation-des-données-pour-gr2m" class="section level2"
 number="2.2">
@@ -815,17 +814,17 @@ données pour GR2M</h2>
 <p>Les lignes de codes présentées ci-après visent à préparer les données
 disponibles pour leur utilisation par GR2M, grâce à aux fonctions
 <code>SeriesAggreg()</code> et <code>PrepGR()</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Monthly aggregation of observed daily time series</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ts_obs_m <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(ts_obs_d[, <span class="fu">c</span>(<span class="st">&quot;Date&quot;</span>, <span class="st">&quot;Ptot&quot;</span>, <span class="st">&quot;Evap&quot;</span>, <span class="st">&quot;Qmmd&quot;</span>, <span class="st">&quot;Temp&quot;</span>)],</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Format =</span> <span class="st">&quot;%Y%m&quot;</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ConvertFun =</span> <span class="fu">c</span>(<span class="st">&quot;sum&quot;</span>, <span class="st">&quot;sum&quot;</span>, <span class="st">&quot;sum&quot;</span>, <span class="st">&quot;mean&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data processing for GR2M</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>prep <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_obs_m<span class="sc">$</span>Date,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">Precip     =</span> ts_obs_m<span class="sc">$</span>Ptot,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">PotEvap    =</span> ts_obs_m<span class="sc">$</span>Evap, </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">Qobs       =</span> ts_obs_m<span class="sc">$</span>Qmmd,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">HydroModel =</span> <span class="st">&quot;GR2M&quot;</span>, </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">CemaNeige  =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Monthly aggregation of observed daily time series</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>ts_obs_m <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(ts_obs_d[, <span class="fu">c</span>(<span class="st">&quot;Date&quot;</span>, <span class="st">&quot;Ptot&quot;</span>, <span class="st">&quot;Evap&quot;</span>, <span class="st">&quot;Qmmd&quot;</span>, <span class="st">&quot;Temp&quot;</span>)],</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>                         <span class="at">Format =</span> <span class="st">&quot;%Y%m&quot;</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>                         <span class="at">ConvertFun =</span> <span class="fu">c</span>(<span class="st">&quot;sum&quot;</span>, <span class="st">&quot;sum&quot;</span>, <span class="st">&quot;sum&quot;</span>, <span class="st">&quot;mean&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Data processing for GR2M</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>prep <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_obs_m<span class="sc">$</span>Date,</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>               <span class="at">Precip     =</span> ts_obs_m<span class="sc">$</span>Ptot,</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>               <span class="at">PotEvap    =</span> ts_obs_m<span class="sc">$</span>Evap, </span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>               <span class="at">Qobs       =</span> ts_obs_m<span class="sc">$</span>Qmmd,</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>               <span class="at">HydroModel =</span> <span class="st">&quot;GR2M&quot;</span>, </span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>               <span class="at">CemaNeige  =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 <div id="calage-manuel" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> Calage manuel</h2>
@@ -833,23 +832,23 @@ disponibles pour leur utilisation par GR2M, grâce à aux fonctions
 nécessaires pour réaliser une simulation pluie-débit à partir d’un jeu
 de paramètres donné (ici le jeu constitué des valeurs par défault de
 GR2M) et pour calculer le critère NSE associé à cette simulation.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameter set to test</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>i_param_gr2m <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">X1 =</span> <span class="dv">380</span>, <span class="at">X2 =</span> <span class="fl">0.92</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation over the calibration period</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>i_sim_manu <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Param   =</span> i_param_gr2m,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">EffCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">WupPer  =</span> per_cal_wup, </span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">SimPer  =</span> per_cal_run,</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## Crit. NSE[Q] = 0.8129</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calibration criterion</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">GetCrit</span>(i_sim_manu)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Parameter set to test</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>i_param_gr2m <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">X1 =</span> <span class="dv">380</span>, <span class="at">X2 =</span> <span class="fl">0.92</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># Simulation over the calibration period</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>i_sim_manu <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>                    <span class="at">Param   =</span> i_param_gr2m,</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>                    <span class="at">EffCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>                    <span class="at">WupPer  =</span> per_cal_wup, </span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>                    <span class="at">SimPer  =</span> per_cal_run,</span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>                    <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Crit. NSE[Q] = 0.8133</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># Calibration criterion</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">GetCrit</span>(i_sim_manu)</span></code></pre></div>
 <pre><code>##    NSE[Q] 
-## 0.8129469</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graphical assessment of the calibration performance</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(i_sim_manu)</span></code></pre></div>
+## 0.8132615</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># Graphical assessment of the calibration performance</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">plot</span>(i_sim_manu)</span></code></pre></div>
 <p><img src="figure/v01_fig_cal_manu_gr2m-1.png" width="98%" /></p>
 <p>Le premier jeu de paramères testé (valeurs de GR2M par défaut) permet
 d’obtenir un critère NSE de 0.813, ce qui est une bonne performance
@@ -870,37 +869,37 @@ ainsi trouver le “meilleur” jeu de paramètres.</p>
 automatique</h2>
 <p>Les lignes de codes présentées ci-après permettent de caler le modèle
 GR2M sur la période dite de “calage”.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calibration</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>cal_auto <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep, </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">WupPer  =</span> per_cal_wup, </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">CalPer  =</span> per_cal_run,</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># Calibration</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>cal_auto <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>                  <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>                  <span class="at">WupPer  =</span> per_cal_wup, </span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>                  <span class="at">CalPer  =</span> per_cal_run,</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (9 runs)
 ##       Param =  347.234,    0.907
-##       Crit. NSE[Q]       = 0.8019
+##       Crit. NSE[Q]       = 0.8022
 ## Steepest-descent local search in progress
-##   Calibration completed (15 iterations, 64 runs)
-##       Param =  645.484,    0.932
-##       Crit. NSE[Q]       = 0.8557</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graphical assessment of the calibration performance</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cal_auto)</span></code></pre></div>
+##   Calibration completed (17 iterations, 72 runs)
+##       Param =  639.061,    0.930
+##       Crit. NSE[Q]       = 0.8558</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># Graphical assessment of the calibration performance</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">plot</span>(cal_auto)</span></code></pre></div>
 <p><img src="figure/v01_fig_cal_auto_gr2m-1.png" width="98%" /></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get parameter values</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>param_cal <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_auto)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>param_cal</span></code></pre></div>
-<pre><code>## [1] 645.4837   0.9325</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get criterion value</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">GetCrit</span>(cal_auto)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># Get parameter values</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>param_cal <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_auto)</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>param_cal</span></code></pre></div>
+<pre><code>## [1] 639.0611   0.9300</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># Get criterion value</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">GetCrit</span>(cal_auto)</span></code></pre></div>
 <pre><code>##    NSE[Q] 
-## 0.8556588</code></pre>
+## 0.8558419</code></pre>
 <p>Les deux paramètres et la valeur du critère de calage (<span
 class="math inline">\(NSE\)</span>) obtenus après la procédure de calage
 automatique sont :</p>
 <ul>
-<li>X1 = 645 [mm]</li>
-<li>X2 = 0.932 [-]</li>
+<li>X1 = 639 [mm]</li>
+<li>X2 = 0.93 [-]</li>
 <li><span class="math inline">\(NSE\)</span> = 0.856 [-]</li>
 </ul>
 <p>Les performances obtenues en calage sont jugées bonnes, avec un
@@ -908,13 +907,13 @@ critère <span class="math inline">\(NSE\)</span> égal à 0.856.</p>
 <p>Les lignes de codes présentées ci-après permettent de stocker dans un
 même tableau les débits observés et les débits simulés avec le jeu de
 paramètres obtenu par calage automatique, afin de les comparer.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series on the calibration period</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ts_cal <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(cal_auto)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series on the entire period</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>ts_cal_all <span class="ot">&lt;-</span> <span class="fu">merge</span>(<span class="at">x =</span> ts_obs_m[, <span class="st">&quot;Date&quot;</span>, <span class="at">drop =</span> <span class="cn">FALSE</span>], <span class="at">y =</span> ts_cal, </span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">by.x =</span> <span class="st">&quot;Date&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Dates&quot;</span>, </span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series on the calibration period</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>ts_cal <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(cal_auto)</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series on the entire period</span></span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>ts_cal_all <span class="ot">&lt;-</span> <span class="fu">merge</span>(<span class="at">x =</span> ts_obs_m[, <span class="st">&quot;Date&quot;</span>, <span class="at">drop =</span> <span class="cn">FALSE</span>], <span class="at">y =</span> ts_cal, </span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>                    <span class="at">by.x =</span> <span class="st">&quot;Date&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Dates&quot;</span>, </span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>                    <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>La figure suivante représente les séries de débits observés et
 simulés sur la période de calage.</p>
 <p><img src="figure/v01_fig_cal-1.png" width="98%" /></p>
@@ -927,20 +926,20 @@ simulation sur la période d’évaluation (2011-2018) et de calculer le
 score <span class="math inline">\(NSE\)</span> associé à cette
 simulation. Ce score constitue la performance en “contrôle” du
 modèle.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation over the evaluation period</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>eva <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">Param   =</span> param_cal,</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">WupPer  =</span> per_eva_wup, </span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">SimPer  =</span> per_eva_run,</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">EffCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the criterion value</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="fu">GetCrit</span>(eva)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># Simulation over the evaluation period</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>eva <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>             <span class="at">Param   =</span> param_cal,</span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>             <span class="at">WupPer  =</span> per_eva_wup, </span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>             <span class="at">SimPer  =</span> per_eva_run,</span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a>             <span class="at">EffCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a>             <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a><span class="co"># Get the criterion value</span></span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a><span class="fu">GetCrit</span>(eva)</span></code></pre></div>
 <pre><code>##    NSE[Q] 
-## 0.8641404</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ts_eva <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(eva)</span></code></pre></div>
+## 0.8642077</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>ts_eva <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(eva)</span></code></pre></div>
 <p>La performance obtenue par le modèle en évaluation est de 0.864.</p>
 <p>La figure suivante représente les séries de débits observés et
 simulés sur la période d’évaluation.</p>
@@ -951,19 +950,19 @@ simulés sur la période d’évaluation.</p>
 <p>Les lignes de codes présentées ci-après permettent d’utiliser les
 paramètres obtenus par calage automatique pour simuler le débit sur
 l’ensemble de la période étudiée.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation over the entire period</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">Param   =</span> param_cal,</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">WupPer  =</span> per_sim_wup, </span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">SimPer  =</span> per_sim_run,</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">EffCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the criterion value</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">GetCrit</span>(sim)</span></code></pre></div>
-<pre><code>##   NSE[Q] 
-## 0.844102</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ts_sim <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sim)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="co"># Simulation over the entire period</span></span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>             <span class="at">Param   =</span> param_cal,</span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>             <span class="at">WupPer  =</span> per_sim_wup, </span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>             <span class="at">SimPer  =</span> per_sim_run,</span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a>             <span class="at">EffCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" tabindex="-1"></a>             <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co"># Get the criterion value</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="fu">GetCrit</span>(sim)</span></code></pre></div>
+<pre><code>##  NSE[Q] 
+## 0.84484</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>ts_sim <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sim)</span></code></pre></div>
 <p>Les résultats de la simulation finale sont illustrés sur la figure
 suivante.</p>
 <p><img src="figure/v01_fig_sim-1.png" width="98%" /></p>
@@ -973,7 +972,7 @@ suivante.</p>
 <h1 class="unnumbered">Références</h1>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-airGRteaching_man" class="csl-entry">
-Delaigue, O., L. Coron, and P. Brigode. 2022. <em><span
+Delaigue, O., L. Coron, P. Brigode, and G. Thirel. 2023. <em><span
 class="nocase">airGRteaching</span>: Teaching Hydrological Modelling
 with <span>GR</span> (<span>Shiny</span> Interface Included)</em>. <em>R
 News</em>. <a
