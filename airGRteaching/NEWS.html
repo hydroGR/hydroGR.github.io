@@ -425,9 +425,32 @@ Package</h1>
 </div>
 
 
+<div id="release-notes-2023-07-11" class="section level3">
+<h3>0.3.2 Release Notes (2023-07-11)</h3>
+<div id="new-features" class="section level4">
+<h4>New features</h4>
+<ul>
+<li><code>plot.CalGR()</code> and <code>plot.SimGR()</code> gain a
+<code>log_scale</code> argument to display flow time series with a
+logarithmic scale. (<a
+href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/71">#71</a>)</li>
+</ul>
+</div>
+<div id="bug-fixes" class="section level4">
+<h4>Bug fixes</h4>
+<ul>
+<li>bug fixed in <code>plot.CalGR()</code> and
+<code>plot.SimGR()</code>. The functions work well when
+<code>log_scale = TRUE</code> to display flow time series with a
+logarithmic scale. (<a
+href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/71">#71</a>)</li>
+</ul>
+<hr />
+</div>
+</div>
 <div id="release-notes-2022-12-15" class="section level3">
 <h3>0.3.1 Release Notes (2022-12-15)</h3>
-<div id="new-features" class="section level4">
+<div id="new-features-1" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>added the <code>GetCrit</code> and and <code>GetParam</code> S3
@@ -443,7 +466,7 @@ French). (<a
 href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/47">#47</a>)</li>
 </ul>
 </div>
-<div id="bug-fixes" class="section level4">
+<div id="bug-fixes-1" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed in <code>plot.CalGR()</code>, now returns no more the
@@ -478,7 +501,7 @@ href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/61">#61</a>)</
 </div>
 <div id="release-notes-2022-02-03" class="section level3">
 <h3>0.2.13 Release Notes (2022-02-03)</h3>
-<div id="bug-fixes-1" class="section level4">
+<div id="bug-fixes-2" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed in <code>PrepGR()</code> and by consequence in
@@ -526,7 +549,7 @@ href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/56">#56</a>)</li>
 </div>
 <div id="release-notes-2021-08-06" class="section level3">
 <h3>0.2.12 Release Notes (2021-08-06)</h3>
-<div id="bug-fixes-2" class="section level4">
+<div id="bug-fixes-3" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed in the GUI launched by <code>ShinyGR()</code>, it is
@@ -570,7 +593,7 @@ href="https://gitlab.irstea.fr/HYCAR-Hydro/airgr/-/issues/44">#44</a>)</li>
 </div>
 <div id="release-notes-2021-06-07" class="section level3">
 <h3>0.2.11 Release Notes (2021-06-07)</h3>
-<div id="bug-fixes-3" class="section level4">
+<div id="bug-fixes-4" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed in <code>ShinyGR()</code> when the date column of
@@ -593,7 +616,7 @@ href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/39">#39</a>)</
 </div>
 <div id="release-notes-2021-01-23" class="section level3">
 <h3>0.2.10.112 Release Notes (2021-01-23)</h3>
-<div id="new-features-1" class="section level4">
+<div id="new-features-2" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>GUI, launched by the <code>ShinyGR()</code> function, can now run on
@@ -601,7 +624,7 @@ monthly time series, using the GR2M model (<a
 href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/14">#14</a>)</li>
 </ul>
 </div>
-<div id="bug-fixes-4" class="section level4">
+<div id="bug-fixes-5" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed in <code>plot.PrepGR()</code> when all <code>Qobs</code>
@@ -657,7 +680,7 @@ href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/5">#5</a>)</li
 </div>
 <div id="release-notes-2020-10-19" class="section level3">
 <h3>0.2.9.25 Release Notes (2020-10-19)</h3>
-<div id="new-features-2" class="section level4">
+<div id="new-features-3" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>GUI, launched by the <code>ShinyGR()</code> function, now displays a
@@ -700,7 +723,7 @@ href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/5">#5</a>)</li
 </div>
 <div id="release-notes-2020-02-28" class="section level3">
 <h3>0.2.8.69 Release Notes (2020-02-28)</h3>
-<div id="new-features-3" class="section level4">
+<div id="new-features-4" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>added <code>as.data.frame.airGRt()</code> method in order to create
@@ -731,7 +754,7 @@ reproducible research. The references can be displayed with the
 <code>CalGR</code> or by a vector of parameters</li>
 </ul>
 </div>
-<div id="bug-fixes-5" class="section level4">
+<div id="bug-fixes-6" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><code>ShinyGR()</code> now runs when independent arguments
@@ -782,7 +805,7 @@ href="https://gitlab.irstea.fr/HYCAR-Hydro/airgrteaching/-/issues/5">#5</a>)</li
 </div>
 <div id="release-notes-2019-05-02" class="section level3">
 <h3>0.2.6.29 Release Notes (2019-05-02)</h3>
-<div id="bug-fixes-6" class="section level4">
+<div id="bug-fixes-7" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><code>ShinyGR()</code> can export the csv table again. It was broken
@@ -801,7 +824,7 @@ package</li>
 </div>
 <div id="release-notes-2019-04-23" class="section level3">
 <h3>0.2.6.27 Release Notes (2019-04-23)</h3>
-<div id="bug-fixes-7" class="section level4">
+<div id="bug-fixes-8" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><code>ShinyGR()</code> may now run for any timezone</li>
@@ -870,7 +893,7 @@ package from CRAN (embeded ‘dygraphs’ functions have been removed)</li>
 </div>
 <div id="release-notes-2018-03-21" class="section level3">
 <h3>0.2.2.2 Release Notes (2018-03-21)</h3>
-<div id="bug-fixes-8" class="section level4">
+<div id="bug-fixes-9" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed in <code>ShinyGR()</code>, the criteria values are now
@@ -899,7 +922,7 @@ necessary)</li>
 </div>
 <div id="release-notes-2018-02-01" class="section level3">
 <h3>0.1.11.26 Release Notes (2018-02-01)</h3>
-<div id="bug-fixes-9" class="section level4">
+<div id="bug-fixes-10" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed in <code>ShinyGR()</code> when C1 (or C2) is modified
@@ -941,7 +964,7 @@ PrepGR()</li>
 </div>
 <div id="release-notes-2018-01-30-1" class="section level3">
 <h3>0.1.9.29 Release Notes (2018-01-30)</h3>
-<div id="bug-fixes-10" class="section level4">
+<div id="bug-fixes-11" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>missing exchange added on exp. store when plotting GR6J model
@@ -976,7 +999,7 @@ when a criterion is very low</li>
 </div>
 <div id="release-notes-2017-11-29" class="section level3">
 <h3>0.1.8.14 Release Notes (2017-11-29)</h3>
-<div id="bug-fixes-11" class="section level4">
+<div id="bug-fixes-12" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li><code>ObsGR()</code> function now returns an error if the time zone
@@ -1014,14 +1037,14 @@ in the <code>ShinyGR()</code> interface</li>
 </div>
 <div id="release-notes-2017-09-29" class="section level3">
 <h3>0.1.6.15 Release Notes (2017-09-29)</h3>
-<div id="new-features-4" class="section level4">
+<div id="new-features-5" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>dyplot()</code> now allows to draw an additional time series
 of flow</li>
 </ul>
 </div>
-<div id="bug-fixes-12" class="section level4">
+<div id="bug-fixes-13" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed when zooming after changing snow model on plot to see the
@@ -1043,7 +1066,7 @@ Model diagram of <code>ShinyGR()</code></li>
 </div>
 <div id="release-notes-2017-09-14" class="section level3">
 <h3>0.1.5.22 Release Notes (2017-09-14)</h3>
-<div id="new-features-5" class="section level4">
+<div id="new-features-6" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>it is now possible to export some plots and tables from
@@ -1052,7 +1075,7 @@ Model diagram of <code>ShinyGR()</code></li>
 into <code>HydroModel</code></li>
 </ul>
 </div>
-<div id="bug-fixes-13" class="section level4">
+<div id="bug-fixes-14" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>period slider is linked to the ‘dygraphs’ selected period</li>
@@ -1083,7 +1106,7 @@ is used or not</li>
 </div>
 <div id="release-notes-2017-07-21" class="section level3">
 <h3>0.1.4.0 Release Notes (2017-07-21)</h3>
-<div id="new-features-6" class="section level4">
+<div id="new-features-7" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>ShinyGR()</code> now use ‘dygraphs’ devices (except for model
@@ -1101,7 +1124,7 @@ plot and not a step plot</li>
 </div>
 <div id="release-notes-2017-06-22" class="section level3">
 <h3>0.1.3.9 Release Notes (2017-06-22)</h3>
-<div id="new-features-7" class="section level4">
+<div id="new-features-8" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>added GR5J in the Model diagram of <code>ShinyGR()</code></li>
@@ -1109,7 +1132,7 @@ plot and not a step plot</li>
 model</li>
 </ul>
 </div>
-<div id="bug-fixes-14" class="section level4">
+<div id="bug-fixes-15" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>NA values can be drawn by <code>dyplot*()</code> functions</li>
@@ -1119,7 +1142,7 @@ model</li>
 </div>
 <div id="release-notes-2017-06-02" class="section level3">
 <h3>0.1.2.52 Release Notes (2017-06-02)</h3>
-<div id="new-features-8" class="section level4">
+<div id="new-features-9" class="section level4">
 <h4>New features</h4>
 <ul>
 <li><code>shiny.SimGR()</code> now presents a theme argument that allows
@@ -1133,7 +1156,7 @@ to change the stylesheet</li>
 <code>ShinyGR()</code></li>
 </ul>
 </div>
-<div id="bug-fixes-15" class="section level4">
+<div id="bug-fixes-16" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed in <code>ShinyGR()</code> to plot state variables with
@@ -1171,7 +1194,7 @@ value</li>
 </div>
 <div id="release-notes-2017-01-19" class="section level3">
 <h3>0.0.3.15 Release Notes (2017-01-19)</h3>
-<div id="new-features-9" class="section level4">
+<div id="new-features-10" class="section level4">
 <h4>New features</h4>
 <ul>
 <li>it is now possible to calibrate the model in
@@ -1186,7 +1209,7 @@ argument</li>
 <li><code>TypeModelGR()</code> is now a private function</li>
 </ul>
 </div>
-<div id="bug-fixes-16" class="section level4">
+<div id="bug-fixes-17" class="section level4">
 <h4>Bug fixes</h4>
 <ul>
 <li>bug fixed, it is now possible to run <code>CalGR()</code> with
