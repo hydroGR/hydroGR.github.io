@@ -14,7 +14,7 @@
 
 <title>Teaching hydrology with airGRteaching</title>
 
-<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -560,13 +560,13 @@ hydro-meteorological data provided by the
 following commands load daily temporal series for one particular
 catchment.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Package loading</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(airGRdatasets)</span></code></pre></div>
-<pre><code>## Warning: package &#39;airGRdatasets&#39; was built under R version 4.4.1</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Catchment data loading</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;B222001001&quot;</span>, <span class="at">package =</span> <span class="st">&quot;airGRdatasets&quot;</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># Structure of the catchment data object</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">str</span>(B222001001)</span></code></pre></div>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(airGRdatasets)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co"># Catchment data loading</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;B222001001&quot;</span>, <span class="at">package =</span> <span class="st">&quot;airGRdatasets&quot;</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co"># Structure of the catchment data object</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">str</span>(B222001001)</span></code></pre></div>
 <pre><code>## List of 3
 ##  $ Meta :List of 4
 ##   ..$ Code:List of 2
@@ -621,93 +621,93 @@ the intercatchment groundwater exchange (X2 parameter, the exchange
 coefficient [mm/day]).</p>
 <p>The following command lines allow to prepare the hydro-meteorological
 data for use with GR4J.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Package loading</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">library</span>(airGRdatasets)</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># Catchment data loading</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;B222001001&quot;</span>, <span class="at">package =</span> <span class="st">&quot;airGRdatasets&quot;</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co"># Observed daily time series</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>ts_obs <span class="ot">&lt;-</span> B222001001<span class="sc">$</span>TS</span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co"># Data processing for GR4J (without Q)</span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>prep_no_q <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_obs<span class="sc">$</span>Date,</span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>                    <span class="at">Precip     =</span> ts_obs<span class="sc">$</span>Ptot,</span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>                    <span class="at">PotEvap    =</span> ts_obs<span class="sc">$</span>Evap,</span>
-<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>                    <span class="at">HydroModel =</span> <span class="st">&quot;GR4J&quot;</span>, </span>
-<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>                    <span class="at">CemaNeige  =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co"># Simulation period</span></span>
-<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>per_sim <span class="ot">&lt;-</span> <span class="fu">range</span>(prep_no_q<span class="sc">$</span>InputsModel<span class="sc">$</span>DatesR)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Package loading</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">library</span>(airGRdatasets)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># Catchment data loading</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;B222001001&quot;</span>, <span class="at">package =</span> <span class="st">&quot;airGRdatasets&quot;</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># Observed daily time series</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>ts_obs <span class="ot">&lt;-</span> B222001001<span class="sc">$</span>TS</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co"># Data processing for GR4J (without Q)</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>prep_no_q <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_obs<span class="sc">$</span>Date,</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>                    <span class="at">Precip     =</span> ts_obs<span class="sc">$</span>Ptot,</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>                    <span class="at">PotEvap    =</span> ts_obs<span class="sc">$</span>Evap,</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>                    <span class="at">HydroModel =</span> <span class="st">&quot;GR4J&quot;</span>, </span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>                    <span class="at">CemaNeige  =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="co"># Simulation period</span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>per_sim <span class="ot">&lt;-</span> <span class="fu">range</span>(prep_no_q<span class="sc">$</span>InputsModel<span class="sc">$</span>DatesR)</span></code></pre></div>
 <p>As an example, the following commands and figure illustrate the role
 of the X2 parameter of GR4J on the production part of the
 rainfall-runoff transformation, by testing different X2 values. We
 observe higher streamflow values simulated with higher X2 values.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Different X2 values around its median values (0 [mm/day])</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>param_x2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">2</span>, <span class="at">to =</span> <span class="dv">2</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># Combination of parameter values (X1, X3 and X4 are fixed; X2 changes)</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>param_gr4j <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">X1 =</span> <span class="dv">350</span>, </span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>                          <span class="at">X2 =</span> param_x2,</span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>                          <span class="at">X3 =</span> <span class="dv">90</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>                          <span class="at">X4 =</span> <span class="fl">1.4</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co"># Streamflow simulations using parameter sets</span></span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>sim_x2 <span class="ot">&lt;-</span> <span class="fu">apply</span>(param_gr4j, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> <span class="cf">function</span>(i_param_gr4j) {</span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>  i_sim <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR =</span> prep_no_q, </span>
-<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a>                 <span class="at">Param =</span> i_param_gr4j, </span>
-<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a>                 <span class="at">SimPer =</span> per_sim, </span>
-<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a>                 <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a>  i_sim<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim</span>
-<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a>})</span>
-<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co"># Graphical comparison</span></span>
-<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a>ind_zoom <span class="ot">&lt;-</span> <span class="dv">400</span><span class="sc">:</span><span class="dv">430</span></span>
-<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a>col_param_x2 <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;green1&quot;</span>, <span class="st">&quot;green4&quot;</span>))(<span class="fu">ncol</span>(sim_x2))</span>
-<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="fu">matplot</span>(<span class="at">x =</span> <span class="fu">as.POSIXct</span>(prep_no_q<span class="sc">$</span>InputsModel<span class="sc">$</span>DatesR[ind_zoom]),</span>
-<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a>        <span class="at">y =</span> sim_x2[ind_zoom, ],</span>
-<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;time [days]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;flow [mm/day]&quot;</span>,</span>
-<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_param_x2)</span>
-<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,</span>
-<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">sprintf</span>(<span class="st">&quot;% .1f&quot;</span>, param_x2),</span>
-<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_param_x2,</span>
-<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;X2 values [mm/day]&quot;</span>,</span>
-<span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a>       <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Different X2 values around its median values (0 [mm/day])</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>param_x2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">2</span>, <span class="at">to =</span> <span class="dv">2</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co"># Combination of parameter values (X1, X3 and X4 are fixed; X2 changes)</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>param_gr4j <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">X1 =</span> <span class="dv">350</span>, </span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>                          <span class="at">X2 =</span> param_x2,</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>                          <span class="at">X3 =</span> <span class="dv">90</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>                          <span class="at">X4 =</span> <span class="fl">1.4</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co"># Streamflow simulations using parameter sets</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>sim_x2 <span class="ot">&lt;-</span> <span class="fu">apply</span>(param_gr4j, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> <span class="cf">function</span>(i_param_gr4j) {</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>  i_sim <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR =</span> prep_no_q, </span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>                 <span class="at">Param =</span> i_param_gr4j, </span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>                 <span class="at">SimPer =</span> per_sim, </span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>                 <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>  i_sim<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim</span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>})</span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co"># Graphical comparison</span></span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a>ind_zoom <span class="ot">&lt;-</span> <span class="dv">400</span><span class="sc">:</span><span class="dv">430</span></span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a>col_param_x2 <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;green1&quot;</span>, <span class="st">&quot;green4&quot;</span>))(<span class="fu">ncol</span>(sim_x2))</span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="fu">matplot</span>(<span class="at">x =</span> <span class="fu">as.POSIXct</span>(prep_no_q<span class="sc">$</span>InputsModel<span class="sc">$</span>DatesR[ind_zoom]),</span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a>        <span class="at">y =</span> sim_x2[ind_zoom, ],</span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;time [days]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;flow [mm/day]&quot;</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_param_x2)</span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,</span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">sprintf</span>(<span class="st">&quot;% .1f&quot;</span>, param_x2),</span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_param_x2,</span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;X2 values [mm/day]&quot;</span>,</span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a>       <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
 <p><img src="figure/v00_fig_gr4j_x2-1.png" width="98%" /></p>
 <p>Moreover, the following commands and figure illustrate the role of
 the X4 parameter on the routing part of the rainfall-runoff
 transformation, with delayed flood peak values when considering higher
 X4 values.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Different X4 values around its median values (1.4 [days])</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>param_x4 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">1.0</span>, <span class="at">to =</span> <span class="fl">3.0</span>, <span class="at">by =</span> <span class="fl">0.5</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co"># Combination of parameter values (X1, X2 and X3 are fixed; X4 changes)</span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>param_gr4j <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">X1 =</span> <span class="dv">350</span>, </span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>                          <span class="at">X2 =</span> <span class="dv">0</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>                          <span class="at">X3 =</span> <span class="dv">90</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>                          <span class="at">X4 =</span> param_x4)</span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co"># Streamflow simulations using parameter sets</span></span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>sim_x4 <span class="ot">&lt;-</span> <span class="fu">apply</span>(param_gr4j, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> <span class="cf">function</span>(i_param_gr4j) {</span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>  i_sim <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR =</span> prep_no_q, </span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>                 <span class="at">Param =</span> i_param_gr4j, </span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>                 <span class="at">SimPer =</span> per_sim, </span>
-<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>                 <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>  i_sim<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim</span>
-<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>})</span>
-<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="co"># Graphical comparison</span></span>
-<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>ind_zoom <span class="ot">&lt;-</span> <span class="dv">400</span><span class="sc">:</span><span class="dv">430</span></span>
-<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a>col_param_x4 <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;steelblue1&quot;</span>, <span class="st">&quot;steelblue4&quot;</span>))(<span class="fu">ncol</span>(sim_x4))</span>
-<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a><span class="fu">matplot</span>(<span class="at">x =</span> <span class="fu">as.POSIXct</span>(prep_no_q<span class="sc">$</span>InputsModel<span class="sc">$</span>DatesR[ind_zoom]),</span>
-<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a>        <span class="at">y =</span> sim_x4[ind_zoom, ],</span>
-<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;time [days]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;flow [mm/day]&quot;</span>,</span>
-<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_param_x4)</span>
-<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,</span>
-<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">sprintf</span>(<span class="st">&quot;% .1f&quot;</span>, param_x4),</span>
-<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>,<span class="at">col =</span> col_param_x4, </span>
-<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;X4 values [days]&quot;</span>,</span>
-<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a>       <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Different X4 values around its median values (1.4 [days])</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>param_x4 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">1.0</span>, <span class="at">to =</span> <span class="fl">3.0</span>, <span class="at">by =</span> <span class="fl">0.5</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># Combination of parameter values (X1, X2 and X3 are fixed; X4 changes)</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>param_gr4j <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">X1 =</span> <span class="dv">350</span>, </span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>                          <span class="at">X2 =</span> <span class="dv">0</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>                          <span class="at">X3 =</span> <span class="dv">90</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>                          <span class="at">X4 =</span> param_x4)</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co"># Streamflow simulations using parameter sets</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>sim_x4 <span class="ot">&lt;-</span> <span class="fu">apply</span>(param_gr4j, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> <span class="cf">function</span>(i_param_gr4j) {</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>  i_sim <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR =</span> prep_no_q, </span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>                 <span class="at">Param =</span> i_param_gr4j, </span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>                 <span class="at">SimPer =</span> per_sim, </span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>                 <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a>  i_sim<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim</span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a>})</span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co"># Graphical comparison</span></span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a>ind_zoom <span class="ot">&lt;-</span> <span class="dv">400</span><span class="sc">:</span><span class="dv">430</span></span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a>col_param_x4 <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;steelblue1&quot;</span>, <span class="st">&quot;steelblue4&quot;</span>))(<span class="fu">ncol</span>(sim_x4))</span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="fu">matplot</span>(<span class="at">x =</span> <span class="fu">as.POSIXct</span>(prep_no_q<span class="sc">$</span>InputsModel<span class="sc">$</span>DatesR[ind_zoom]),</span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a>        <span class="at">y =</span> sim_x4[ind_zoom, ],</span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;time [days]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;flow [mm/day]&quot;</span>,</span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_param_x4)</span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,</span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">sprintf</span>(<span class="st">&quot;% .1f&quot;</span>, param_x4),</span>
+<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>,<span class="at">col =</span> col_param_x4, </span>
+<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;X4 values [days]&quot;</span>,</span>
+<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a>       <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
 <p><img src="figure/v00_fig_gr4j_x4-1.png" width="98%" /></p>
 <p>The relative importance of the production and routing functions
 depends on the time step considered for the rainfall-runoff simulation.
@@ -721,28 +721,28 @@ simulations performed with different X4 parameter sets. We can observe
 that at this annual scale, the impact of considering different X4
 parameter values is limited compared to the use of different X2
 parameter values.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Aggregation of the simulated streamflow at the yearly time step</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>sim_x2_y <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">DatesR =</span> <span class="fu">as.POSIXct</span>(prep_no_q<span class="sc">$</span>InputsModel<span class="sc">$</span>DatesR), </span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>                  <span class="fu">as.data.frame</span>(sim_x2))</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>sim_x2_y <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(<span class="at">x =</span> sim_x2_y, </span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>                         <span class="at">Format =</span> <span class="st">&quot;%Y&quot;</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>                         <span class="at">ConvertFun =</span> <span class="fu">rep</span>(<span class="st">&quot;sum&quot;</span>, <span class="fu">ncol</span>(sim_x2_y) <span class="sc">-</span> <span class="dv">1</span>))</span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>sim_x4_y <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">DatesR =</span> <span class="fu">as.POSIXct</span>(prep_no_q<span class="sc">$</span>InputsModel<span class="sc">$</span>DatesR), </span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>                  <span class="fu">as.data.frame</span>(sim_x4))</span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>sim_x4_y <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(<span class="at">x =</span> sim_x4_y, </span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>                         <span class="at">Format =</span> <span class="st">&quot;%Y&quot;</span>,</span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>                         <span class="at">ConvertFun =</span> <span class="fu">rep</span>(<span class="st">&quot;sum&quot;</span>, <span class="fu">ncol</span>(sim_x4_y) <span class="sc">-</span> <span class="dv">1</span>))</span>
-<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="co"># Graphical comparison</span></span>
-<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="fu">matplot</span>(<span class="at">x =</span> sim_x2_y<span class="sc">$</span>DatesR, <span class="at">y =</span> sim_x2_y[, <span class="sc">-</span><span class="dv">1</span>], </span>
-<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_param_x2, </span>
-<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;time [years]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;flow [mm/year]&quot;</span>)</span>
-<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="fu">matlines</span>(<span class="at">x =</span> sim_x4_y<span class="sc">$</span>DatesR, <span class="at">y =</span> sim_x4_y[, <span class="sc">-</span><span class="dv">1</span>], </span>
-<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a>         <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_param_x4)</span>
-<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, </span>
-<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;X2&quot;</span>, <span class="st">&quot;X4&quot;</span>), </span>
-<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="fu">median</span>(col_param_x2), <span class="fu">median</span>(col_param_x4)),</span>
-<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a>       <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Aggregation of the simulated streamflow at the yearly time step</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>sim_x2_y <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">DatesR =</span> <span class="fu">as.POSIXct</span>(prep_no_q<span class="sc">$</span>InputsModel<span class="sc">$</span>DatesR), </span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>                  <span class="fu">as.data.frame</span>(sim_x2))</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>sim_x2_y <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(<span class="at">x =</span> sim_x2_y, </span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>                         <span class="at">Format =</span> <span class="st">&quot;%Y&quot;</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>                         <span class="at">ConvertFun =</span> <span class="fu">rep</span>(<span class="st">&quot;sum&quot;</span>, <span class="fu">ncol</span>(sim_x2_y) <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>sim_x4_y <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">DatesR =</span> <span class="fu">as.POSIXct</span>(prep_no_q<span class="sc">$</span>InputsModel<span class="sc">$</span>DatesR), </span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>                  <span class="fu">as.data.frame</span>(sim_x4))</span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>sim_x4_y <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(<span class="at">x =</span> sim_x4_y, </span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>                         <span class="at">Format =</span> <span class="st">&quot;%Y&quot;</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>                         <span class="at">ConvertFun =</span> <span class="fu">rep</span>(<span class="st">&quot;sum&quot;</span>, <span class="fu">ncol</span>(sim_x4_y) <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co"># Graphical comparison</span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="fu">matplot</span>(<span class="at">x =</span> sim_x2_y<span class="sc">$</span>DatesR, <span class="at">y =</span> sim_x2_y[, <span class="sc">-</span><span class="dv">1</span>], </span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_param_x2, </span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;time [years]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;flow [mm/year]&quot;</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="fu">matlines</span>(<span class="at">x =</span> sim_x4_y<span class="sc">$</span>DatesR, <span class="at">y =</span> sim_x4_y[, <span class="sc">-</span><span class="dv">1</span>], </span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a>         <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_param_x4)</span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, </span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;X2&quot;</span>, <span class="st">&quot;X4&quot;</span>), </span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="fu">median</span>(col_param_x2), <span class="fu">median</span>(col_param_x4)),</span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a>       <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
 <p><img src="figure/v00_fig_sim_aggreg-1.png" width="98%" /></p>
 <p>Finally, the simulation sensitivity on one given parameter can be
 also addressed using the
@@ -772,49 +772,49 @@ considering (i) no warm-up period, (ii) a one-month warm-up period, and
 <code>WupPer = NULL</code>, and in this case it ensures a one-year
 warm-up using the time steps preceding the <code>SimPer</code> (if data
 are available).</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Warm-up and simulation periods</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>per_wup1m <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2002-12-01&quot;</span>, <span class="st">&quot;2002-12-31&quot;</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>per_wup4y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2002-12-31&quot;</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>per_sim   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2003-01-01&quot;</span>, <span class="st">&quot;2006-12-31&quot;</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co"># Parameter set</span></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>param_gr4j <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">X1 =</span> <span class="dv">350</span>, <span class="at">X32 =</span> <span class="dv">0</span>, <span class="at">X3 =</span> <span class="dv">90</span>, <span class="at">X4 =</span> <span class="fl">1.4</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co"># Simulation without warm-up period</span></span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>sim_wup0d <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep_no_q, </span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>                   <span class="at">Param   =</span> param_gr4j,</span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>                   <span class="at">WupPer  =</span> <span class="dv">0</span><span class="dt">L</span>,</span>
-<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>                   <span class="at">SimPer  =</span> per_sim)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Warm-up and simulation periods</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>per_wup1m <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2002-12-01&quot;</span>, <span class="st">&quot;2002-12-31&quot;</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>per_wup4y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2002-12-31&quot;</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>per_sim   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2003-01-01&quot;</span>, <span class="st">&quot;2006-12-31&quot;</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co"># Parameter set</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>param_gr4j <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">X1 =</span> <span class="dv">350</span>, <span class="at">X32 =</span> <span class="dv">0</span>, <span class="at">X3 =</span> <span class="dv">90</span>, <span class="at">X4 =</span> <span class="fl">1.4</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co"># Simulation without warm-up period</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>sim_wup0d <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep_no_q, </span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>                   <span class="at">Param   =</span> param_gr4j,</span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>                   <span class="at">WupPer  =</span> <span class="dv">0</span><span class="dt">L</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>                   <span class="at">SimPer  =</span> per_sim)</span></code></pre></div>
 <pre><code>##  No warm up period is used</code></pre>
 <pre><code>## Warning in SimGR(PrepGR = prep_no_q, Param = param_gr4j, WupPer = 0L, SimPer = per_sim): &quot;PrepGR&quot; does not
 ## contain any Qobs values. The efficiency criterion is not computed</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># Simulation with a 1-month warm-up period</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>sim_wup1m <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep_no_q,</span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>                   <span class="at">Param   =</span> param_gr4j,</span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>                   <span class="at">WupPer  =</span> per_wup1m, </span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>                   <span class="at">SimPer  =</span> per_sim)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># Simulation with a 1-month warm-up period</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>sim_wup1m <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep_no_q,</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>                   <span class="at">Param   =</span> param_gr4j,</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>                   <span class="at">WupPer  =</span> per_wup1m, </span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>                   <span class="at">SimPer  =</span> per_sim)</span></code></pre></div>
 <pre><code>## Warning in SimGR(PrepGR = prep_no_q, Param = param_gr4j, WupPer = per_wup1m, : &quot;PrepGR&quot; does not contain any
 ## Qobs values. The efficiency criterion is not computed</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># Simulation with a 4-year warm-up period</span></span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>sim_wup4y <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep_no_q, </span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>                   <span class="at">Param   =</span> param_gr4j,</span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>                   <span class="at">WupPer  =</span> per_wup4y, </span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>                   <span class="at">SimPer  =</span> per_sim)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># Simulation with a 4-year warm-up period</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>sim_wup4y <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep_no_q, </span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>                   <span class="at">Param   =</span> param_gr4j,</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>                   <span class="at">WupPer  =</span> per_wup4y, </span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>                   <span class="at">SimPer  =</span> per_sim)</span></code></pre></div>
 <pre><code>## Warning in SimGR(PrepGR = prep_no_q, Param = param_gr4j, WupPer = per_wup4y, : &quot;PrepGR&quot; does not contain any
 ## Qobs values. The efficiency criterion is not computed</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># Graphical comparison</span></span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>col_wup <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;orchid&quot;</span>, <span class="st">&quot;orange2&quot;</span>, <span class="st">&quot;green3&quot;</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="fu">matplot</span>(<span class="at">x =</span> <span class="fu">as.POSIXct</span>(sim_wup0d<span class="sc">$</span>OutputsModel<span class="sc">$</span>DatesR),</span>
-<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">cbind</span>(sim_wup0d<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim,</span>
-<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>                  sim_wup1m<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim,</span>
-<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>                  sim_wup4y<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim),</span>
-<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;time [days]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;flow [mm/day]&quot;</span>, </span>
-<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_wup,</span>
-<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a>        <span class="at">xlim =</span> <span class="fu">as.POSIXct</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;2003-01-01&quot;</span>, <span class="st">&quot;2003-09-01&quot;</span>), <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>))</span>
-<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, </span>
-<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;no warm-up&quot;</span>, <span class="st">&quot;1-month warm-up&quot;</span>, <span class="st">&quot;4-year warm-up&quot;</span>), </span>
-<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a>       <span class="at">col =</span> col_wup, <span class="at">lwd =</span> <span class="dv">2</span>,</span>
-<span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a>       <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># Graphical comparison</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>col_wup <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;orchid&quot;</span>, <span class="st">&quot;orange2&quot;</span>, <span class="st">&quot;green3&quot;</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="fu">matplot</span>(<span class="at">x =</span> <span class="fu">as.POSIXct</span>(sim_wup0d<span class="sc">$</span>OutputsModel<span class="sc">$</span>DatesR),</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">cbind</span>(sim_wup0d<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim,</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>                  sim_wup1m<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim,</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>                  sim_wup4y<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim),</span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;time [days]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;flow [mm/day]&quot;</span>, </span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_wup,</span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>        <span class="at">xlim =</span> <span class="fu">as.POSIXct</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;2003-01-01&quot;</span>, <span class="st">&quot;2003-09-01&quot;</span>), <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>))</span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, </span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;no warm-up&quot;</span>, <span class="st">&quot;1-month warm-up&quot;</span>, <span class="st">&quot;4-year warm-up&quot;</span>), </span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>       <span class="at">col =</span> col_wup, <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a>       <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
 <p><img src="figure/v00_fig_wup-1.png" width="98%" /></p>
 </div>
 </div>
@@ -841,31 +841,31 @@ function.</p>
 processing step using <code>PrepGR()</code>). At each iteration you test
 a new parameter set and compute corresponding the criterion. This way
 you can find the “best” parameter set.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># Data processing for GR4J (with Q for calibration)</span></span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>prep <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_obs<span class="sc">$</span>Date,</span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>               <span class="at">Precip     =</span> ts_obs<span class="sc">$</span>Ptot,</span>
-<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>               <span class="at">PotEvap    =</span> ts_obs<span class="sc">$</span>Evap, </span>
-<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>               <span class="at">Qobs       =</span> ts_obs<span class="sc">$</span>Qmmd,</span>
-<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>               <span class="at">HydroModel =</span> <span class="st">&quot;GR4J&quot;</span>, </span>
-<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>               <span class="at">CemaNeige  =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a><span class="co"># Parameter set to test</span></span>
-<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>i_param_gr4j <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">X1 =</span> <span class="dv">350</span>, <span class="at">X2 =</span> <span class="dv">0</span>, <span class="at">X3 =</span> <span class="dv">90</span>, <span class="at">X4 =</span> <span class="fl">1.4</span>)</span>
-<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a></span>
-<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a><span class="co"># Rainfall-runoff simulation on the calibration period</span></span>
-<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>i_sim_manu <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
-<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a>                    <span class="at">Param   =</span> param_gr4j,</span>
-<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a>                    <span class="at">WupPer  =</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2000-12-31&quot;</span>),</span>
-<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a>                    <span class="at">SimPer  =</span> <span class="fu">c</span>(<span class="st">&quot;2001-01-01&quot;</span>, <span class="st">&quot;2010-12-31&quot;</span>),</span>
-<span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a>                    <span class="at">EffCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
-<span id="cb17-18"><a href="#cb17-18" tabindex="-1"></a>                    <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># Data processing for GR4J (with Q for calibration)</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>prep <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_obs<span class="sc">$</span>Date,</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>               <span class="at">Precip     =</span> ts_obs<span class="sc">$</span>Ptot,</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>               <span class="at">PotEvap    =</span> ts_obs<span class="sc">$</span>Evap, </span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>               <span class="at">Qobs       =</span> ts_obs<span class="sc">$</span>Qmmd,</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>               <span class="at">HydroModel =</span> <span class="st">&quot;GR4J&quot;</span>, </span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>               <span class="at">CemaNeige  =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="co"># Parameter set to test</span></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>i_param_gr4j <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">X1 =</span> <span class="dv">350</span>, <span class="at">X2 =</span> <span class="dv">0</span>, <span class="at">X3 =</span> <span class="dv">90</span>, <span class="at">X4 =</span> <span class="fl">1.4</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a><span class="co"># Rainfall-runoff simulation on the calibration period</span></span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>i_sim_manu <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a>                    <span class="at">Param   =</span> param_gr4j,</span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a>                    <span class="at">WupPer  =</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2000-12-31&quot;</span>),</span>
+<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a>                    <span class="at">SimPer  =</span> <span class="fu">c</span>(<span class="st">&quot;2001-01-01&quot;</span>, <span class="st">&quot;2010-12-31&quot;</span>),</span>
+<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a>                    <span class="at">EffCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a>                    <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Crit. NSE[Q] = 0.6295</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># Get the criterion value</span></span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">GetCrit</span>(i_sim_manu)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># Get the criterion value</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">GetCrit</span>(i_sim_manu)</span></code></pre></div>
 <pre><code>##    NSE[Q] 
 ## 0.6294621</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># Graphical assessment of the calibration performance</span></span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">plot</span>(i_sim_manu)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># Graphical assessment of the calibration performance</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">plot</span>(i_sim_manu)</span></code></pre></div>
 <p><img src="figure/v00_fig_cal_manu-1.png" width="98%" /></p>
 </div>
 <div id="automatic-calibration" class="section level2" number="3.2">
@@ -886,11 +886,11 @@ options in airGRteaching:</p>
 functions (<code>PrepGR()</code> and <code>CalGR()</code>), see
 following commands.</li>
 </ol>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co"># Calibration using NSE score </span></span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>cal_auto <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep, </span>
-<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>                  <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
-<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>                  <span class="at">WupPer  =</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2000-12-31&quot;</span>), </span>
-<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>                  <span class="at">CalPer  =</span> <span class="fu">c</span>(<span class="st">&quot;2001-01-01&quot;</span>, <span class="st">&quot;2010-12-31&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># Calibration using NSE score </span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>cal_auto <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>                  <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>                  <span class="at">WupPer  =</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2000-12-31&quot;</span>), </span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>                  <span class="at">CalPer  =</span> <span class="fu">c</span>(<span class="st">&quot;2001-01-01&quot;</span>, <span class="st">&quot;2010-12-31&quot;</span>))</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (81 runs)
 ##       Param =  247.151,   -2.376,   83.096,    2.384
@@ -899,14 +899,14 @@ following commands.</li>
 ##   Calibration completed (27 iterations, 281 runs)
 ##       Param =  242.257,   -0.888,   63.434,    5.126
 ##       Crit. NSE[Q]       = 0.9095</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="co"># Get parameter and criteria values at the end of the calibration step</span></span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="fu">GetParam</span>(cal_auto)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co"># Get parameter and criteria values at the end of the calibration step</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">GetParam</span>(cal_auto)</span></code></pre></div>
 <pre><code>## [1] 242.257207  -0.888106  63.434000   5.126126</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">GetCrit</span>(cal_auto)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">GetCrit</span>(cal_auto)</span></code></pre></div>
 <pre><code>##   NSE[Q] 
 ## 0.909467</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="co"># Graphical assessment of the calibration performance</span></span>
-<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="fu">plot</span>(cal_auto)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="co"># Graphical assessment of the calibration performance</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="fu">plot</span>(cal_auto)</span></code></pre></div>
 <p><img src="figure/v00_fig_cal_auto-1.png" width="98%" /></p>
 </div>
 <div id="how-to-evaluate-model-calibration" class="section level2"
@@ -930,46 +930,46 @@ towards the guess of the need to use an additional snow accumulation and
 melting routine such as CemaNeige <span class="citation">(Valéry,
 Andréassian, and Perrin 2014)</span>, available using
 <strong><font color="#0BA6AA">airGRteaching</font></strong>.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># Catchment data loading</span></span>
-<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;X031001001&quot;</span>, <span class="at">package =</span> <span class="st">&quot;airGRdatasets&quot;</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a><span class="co"># Observed daily time series</span></span>
-<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>ts_obs <span class="ot">&lt;-</span> X031001001<span class="sc">$</span>TS</span>
-<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a></span>
-<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a><span class="co"># Catchment elevation distribution</span></span>
-<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a>hypso <span class="ot">&lt;-</span> X031001001<span class="sc">$</span>Hypso</span>
-<span id="cb29-9"><a href="#cb29-9" tabindex="-1"></a></span>
-<span id="cb29-10"><a href="#cb29-10" tabindex="-1"></a><span class="co"># Temporal subset</span></span>
-<span id="cb29-11"><a href="#cb29-11" tabindex="-1"></a>is_per <span class="ot">&lt;-</span> ts_obs<span class="sc">$</span>Date <span class="sc">&gt;=</span> <span class="fu">as.POSIXct</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>) <span class="sc">&amp;</span> </span>
-<span id="cb29-12"><a href="#cb29-12" tabindex="-1"></a>  ts_obs<span class="sc">$</span>Date <span class="sc">&lt;=</span> <span class="fu">as.POSIXct</span>(<span class="st">&quot;2009-12-30&quot;</span>, <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>)</span>
-<span id="cb29-13"><a href="#cb29-13" tabindex="-1"></a>ts_obs <span class="ot">&lt;-</span> ts_obs[is_per, ]</span>
-<span id="cb29-14"><a href="#cb29-14" tabindex="-1"></a></span>
-<span id="cb29-15"><a href="#cb29-15" tabindex="-1"></a><span class="co"># Data processing for GR4J (without snow module)</span></span>
-<span id="cb29-16"><a href="#cb29-16" tabindex="-1"></a>prep_snow_n <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_obs<span class="sc">$</span>Date,</span>
-<span id="cb29-17"><a href="#cb29-17" tabindex="-1"></a>                      <span class="at">Precip     =</span> ts_obs<span class="sc">$</span>Ptot,</span>
-<span id="cb29-18"><a href="#cb29-18" tabindex="-1"></a>                      <span class="at">PotEvap    =</span> ts_obs<span class="sc">$</span>Evap, </span>
-<span id="cb29-19"><a href="#cb29-19" tabindex="-1"></a>                      <span class="at">Qobs       =</span> ts_obs<span class="sc">$</span>Qmmd,</span>
-<span id="cb29-20"><a href="#cb29-20" tabindex="-1"></a>                      <span class="at">HydroModel =</span> <span class="st">&quot;GR4J&quot;</span>, </span>
-<span id="cb29-21"><a href="#cb29-21" tabindex="-1"></a>                      <span class="at">CemaNeige  =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb29-22"><a href="#cb29-22" tabindex="-1"></a></span>
-<span id="cb29-23"><a href="#cb29-23" tabindex="-1"></a><span class="co"># Data processing for GR4J with snow module</span></span>
-<span id="cb29-24"><a href="#cb29-24" tabindex="-1"></a>prep_snow_y <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_obs<span class="sc">$</span>Date,</span>
-<span id="cb29-25"><a href="#cb29-25" tabindex="-1"></a>                      <span class="at">Precip     =</span> ts_obs<span class="sc">$</span>Ptot,</span>
-<span id="cb29-26"><a href="#cb29-26" tabindex="-1"></a>                      <span class="at">PotEvap    =</span> ts_obs<span class="sc">$</span>Evap, </span>
-<span id="cb29-27"><a href="#cb29-27" tabindex="-1"></a>                      <span class="at">Qobs       =</span> ts_obs<span class="sc">$</span>Qmmd,</span>
-<span id="cb29-28"><a href="#cb29-28" tabindex="-1"></a>                      <span class="at">TempMean   =</span> ts_obs<span class="sc">$</span>Temp,</span>
-<span id="cb29-29"><a href="#cb29-29" tabindex="-1"></a>                      <span class="at">ZInputs =</span> <span class="fu">median</span>(hypso),</span>
-<span id="cb29-30"><a href="#cb29-30" tabindex="-1"></a>                      <span class="at">HypsoData =</span> hypso,</span>
-<span id="cb29-31"><a href="#cb29-31" tabindex="-1"></a>                      <span class="at">NLayers =</span> <span class="dv">5</span>,</span>
-<span id="cb29-32"><a href="#cb29-32" tabindex="-1"></a>                      <span class="at">HydroModel =</span> <span class="st">&quot;GR4J&quot;</span>, </span>
-<span id="cb29-33"><a href="#cb29-33" tabindex="-1"></a>                      <span class="at">CemaNeige  =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb29-34"><a href="#cb29-34" tabindex="-1"></a></span>
-<span id="cb29-35"><a href="#cb29-35" tabindex="-1"></a><span class="co"># Calibration using NSE score (without snow module)</span></span>
-<span id="cb29-36"><a href="#cb29-36" tabindex="-1"></a>cal_snow_n <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep_snow_n, </span>
-<span id="cb29-37"><a href="#cb29-37" tabindex="-1"></a>                    <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
-<span id="cb29-38"><a href="#cb29-38" tabindex="-1"></a>                    <span class="at">WupPer  =</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2000-12-31&quot;</span>), </span>
-<span id="cb29-39"><a href="#cb29-39" tabindex="-1"></a>                    <span class="at">CalPer  =</span> <span class="fu">c</span>(<span class="st">&quot;2001-01-01&quot;</span>, <span class="st">&quot;2009-12-30&quot;</span>),</span>
-<span id="cb29-40"><a href="#cb29-40" tabindex="-1"></a>                    <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="co"># Catchment data loading</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;X031001001&quot;</span>, <span class="at">package =</span> <span class="st">&quot;airGRdatasets&quot;</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a><span class="co"># Observed daily time series</span></span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a>ts_obs <span class="ot">&lt;-</span> X031001001<span class="sc">$</span>TS</span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a><span class="co"># Catchment elevation distribution</span></span>
+<span id="cb27-8"><a href="#cb27-8" tabindex="-1"></a>hypso <span class="ot">&lt;-</span> X031001001<span class="sc">$</span>Hypso</span>
+<span id="cb27-9"><a href="#cb27-9" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" tabindex="-1"></a><span class="co"># Temporal subset</span></span>
+<span id="cb27-11"><a href="#cb27-11" tabindex="-1"></a>is_per <span class="ot">&lt;-</span> ts_obs<span class="sc">$</span>Date <span class="sc">&gt;=</span> <span class="fu">as.POSIXct</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>) <span class="sc">&amp;</span> </span>
+<span id="cb27-12"><a href="#cb27-12" tabindex="-1"></a>  ts_obs<span class="sc">$</span>Date <span class="sc">&lt;=</span> <span class="fu">as.POSIXct</span>(<span class="st">&quot;2009-12-30&quot;</span>, <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>)</span>
+<span id="cb27-13"><a href="#cb27-13" tabindex="-1"></a>ts_obs <span class="ot">&lt;-</span> ts_obs[is_per, ]</span>
+<span id="cb27-14"><a href="#cb27-14" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" tabindex="-1"></a><span class="co"># Data processing for GR4J (without snow module)</span></span>
+<span id="cb27-16"><a href="#cb27-16" tabindex="-1"></a>prep_snow_n <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_obs<span class="sc">$</span>Date,</span>
+<span id="cb27-17"><a href="#cb27-17" tabindex="-1"></a>                      <span class="at">Precip     =</span> ts_obs<span class="sc">$</span>Ptot,</span>
+<span id="cb27-18"><a href="#cb27-18" tabindex="-1"></a>                      <span class="at">PotEvap    =</span> ts_obs<span class="sc">$</span>Evap, </span>
+<span id="cb27-19"><a href="#cb27-19" tabindex="-1"></a>                      <span class="at">Qobs       =</span> ts_obs<span class="sc">$</span>Qmmd,</span>
+<span id="cb27-20"><a href="#cb27-20" tabindex="-1"></a>                      <span class="at">HydroModel =</span> <span class="st">&quot;GR4J&quot;</span>, </span>
+<span id="cb27-21"><a href="#cb27-21" tabindex="-1"></a>                      <span class="at">CemaNeige  =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb27-22"><a href="#cb27-22" tabindex="-1"></a></span>
+<span id="cb27-23"><a href="#cb27-23" tabindex="-1"></a><span class="co"># Data processing for GR4J with snow module</span></span>
+<span id="cb27-24"><a href="#cb27-24" tabindex="-1"></a>prep_snow_y <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_obs<span class="sc">$</span>Date,</span>
+<span id="cb27-25"><a href="#cb27-25" tabindex="-1"></a>                      <span class="at">Precip     =</span> ts_obs<span class="sc">$</span>Ptot,</span>
+<span id="cb27-26"><a href="#cb27-26" tabindex="-1"></a>                      <span class="at">PotEvap    =</span> ts_obs<span class="sc">$</span>Evap, </span>
+<span id="cb27-27"><a href="#cb27-27" tabindex="-1"></a>                      <span class="at">Qobs       =</span> ts_obs<span class="sc">$</span>Qmmd,</span>
+<span id="cb27-28"><a href="#cb27-28" tabindex="-1"></a>                      <span class="at">TempMean   =</span> ts_obs<span class="sc">$</span>Temp,</span>
+<span id="cb27-29"><a href="#cb27-29" tabindex="-1"></a>                      <span class="at">ZInputs =</span> <span class="fu">median</span>(hypso),</span>
+<span id="cb27-30"><a href="#cb27-30" tabindex="-1"></a>                      <span class="at">HypsoData =</span> hypso,</span>
+<span id="cb27-31"><a href="#cb27-31" tabindex="-1"></a>                      <span class="at">NLayers =</span> <span class="dv">5</span>,</span>
+<span id="cb27-32"><a href="#cb27-32" tabindex="-1"></a>                      <span class="at">HydroModel =</span> <span class="st">&quot;GR4J&quot;</span>, </span>
+<span id="cb27-33"><a href="#cb27-33" tabindex="-1"></a>                      <span class="at">CemaNeige  =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb27-34"><a href="#cb27-34" tabindex="-1"></a></span>
+<span id="cb27-35"><a href="#cb27-35" tabindex="-1"></a><span class="co"># Calibration using NSE score (without snow module)</span></span>
+<span id="cb27-36"><a href="#cb27-36" tabindex="-1"></a>cal_snow_n <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep_snow_n, </span>
+<span id="cb27-37"><a href="#cb27-37" tabindex="-1"></a>                    <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb27-38"><a href="#cb27-38" tabindex="-1"></a>                    <span class="at">WupPer  =</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2000-12-31&quot;</span>), </span>
+<span id="cb27-39"><a href="#cb27-39" tabindex="-1"></a>                    <span class="at">CalPer  =</span> <span class="fu">c</span>(<span class="st">&quot;2001-01-01&quot;</span>, <span class="st">&quot;2009-12-30&quot;</span>),</span>
+<span id="cb27-40"><a href="#cb27-40" tabindex="-1"></a>                    <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (81 runs)
 ##       Param =  432.681,   -2.376,   83.096,    2.384
@@ -978,12 +978,12 @@ Andréassian, and Perrin 2014)</span>, available using
 ##   Calibration completed (36 iterations, 357 runs)
 ##       Param = 1652.426,    1.369, 4359.009,    1.769
 ##       Crit. NSE[Q]       = 0.1700</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># Calibration using NSE score (with snow module)</span></span>
-<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>cal_snow_y <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep_snow_y, </span>
-<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>                    <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
-<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>                    <span class="at">WupPer  =</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2000-12-31&quot;</span>), </span>
-<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>                    <span class="at">CalPer  =</span> <span class="fu">c</span>(<span class="st">&quot;2001-01-01&quot;</span>, <span class="st">&quot;2009-12-30&quot;</span>),</span>
-<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a>                    <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># Calibration using NSE score (with snow module)</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>cal_snow_y <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep_snow_y, </span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>                    <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>                    <span class="at">WupPer  =</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2000-12-31&quot;</span>), </span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>                    <span class="at">CalPer  =</span> <span class="fu">c</span>(<span class="st">&quot;2001-01-01&quot;</span>, <span class="st">&quot;2009-12-30&quot;</span>),</span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a>                    <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (729 runs)
 ##       Param =  432.681,   -0.020,   83.096,    2.384,    0.043,    3.787
@@ -992,27 +992,27 @@ Andréassian, and Perrin 2014)</span>, available using
 ##   Calibration completed (29 iterations, 1050 runs)
 ##       Param =  473.428,    0.984,  298.867,    1.388,    0.094,    3.982
 ##       Crit. NSE[Q]       = 0.9148</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow</span></span>
-<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>tab_cal <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Date        =</span> cal_snow_n<span class="sc">$</span>OutputsModel<span class="sc">$</span>DatesR,</span>
-<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a>                      <span class="at">QOobs       =</span> cal_snow_n<span class="sc">$</span>Qobs,</span>
-<span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a>                      <span class="at">Qsim_snow_n =</span> cal_snow_n<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim,</span>
-<span id="cb33-5"><a href="#cb33-5" tabindex="-1"></a>                      <span class="at">Qsim_snow_y =</span> cal_snow_y<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim)</span>
-<span id="cb33-6"><a href="#cb33-6" tabindex="-1"></a></span>
-<span id="cb33-7"><a href="#cb33-7" tabindex="-1"></a><span class="co"># Computation of regime streamflow</span></span>
-<span id="cb33-8"><a href="#cb33-8" tabindex="-1"></a>tab_cal_reg <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(tab_cal, </span>
-<span id="cb33-9"><a href="#cb33-9" tabindex="-1"></a>                            <span class="at">Format =</span> <span class="st">&quot;%m&quot;</span>, </span>
-<span id="cb33-10"><a href="#cb33-10" tabindex="-1"></a>                            <span class="at">ConvertFun =</span> <span class="fu">rep</span>(<span class="st">&quot;mean&quot;</span>, <span class="fu">ncol</span>(tab_cal) <span class="sc">-</span> <span class="dv">1</span>))</span>
-<span id="cb33-11"><a href="#cb33-11" tabindex="-1"></a></span>
-<span id="cb33-12"><a href="#cb33-12" tabindex="-1"></a><span class="co"># Graphical comparison between simulated and observed streamflow regimes</span></span>
-<span id="cb33-13"><a href="#cb33-13" tabindex="-1"></a>col_snow <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="fu">rep</span>(<span class="st">&quot;orangered&quot;</span>, <span class="dv">2</span>))</span>
-<span id="cb33-14"><a href="#cb33-14" tabindex="-1"></a>lty_snow <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
-<span id="cb33-15"><a href="#cb33-15" tabindex="-1"></a><span class="fu">matplot</span>(<span class="at">y =</span> tab_cal_reg[, <span class="fu">grep</span>(<span class="st">&quot;^Q&quot;</span>, <span class="fu">colnames</span>(tab_cal))],</span>
-<span id="cb33-16"><a href="#cb33-16" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;time [months]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;flow [mm/day]&quot;</span>, </span>
-<span id="cb33-17"><a href="#cb33-17" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> lty_snow, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_snow)</span>
-<span id="cb33-18"><a href="#cb33-18" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, </span>
-<span id="cb33-19"><a href="#cb33-19" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Qobs&quot;</span>, <span class="st">&quot;Qsim without snow mod.&quot;</span>, <span class="st">&quot;Qsim with snow mod.&quot;</span>),</span>
-<span id="cb33-20"><a href="#cb33-20" tabindex="-1"></a>       <span class="at">lty =</span> lty_snow, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_snow,</span>
-<span id="cb33-21"><a href="#cb33-21" tabindex="-1"></a>       <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>tab_cal <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Date        =</span> cal_snow_n<span class="sc">$</span>OutputsModel<span class="sc">$</span>DatesR,</span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>                      <span class="at">QOobs       =</span> cal_snow_n<span class="sc">$</span>Qobs,</span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>                      <span class="at">Qsim_snow_n =</span> cal_snow_n<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim,</span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>                      <span class="at">Qsim_snow_y =</span> cal_snow_y<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim)</span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a><span class="co"># Computation of regime streamflow</span></span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a>tab_cal_reg <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(tab_cal, </span>
+<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a>                            <span class="at">Format =</span> <span class="st">&quot;%m&quot;</span>, </span>
+<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a>                            <span class="at">ConvertFun =</span> <span class="fu">rep</span>(<span class="st">&quot;mean&quot;</span>, <span class="fu">ncol</span>(tab_cal) <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a><span class="co"># Graphical comparison between simulated and observed streamflow regimes</span></span>
+<span id="cb31-13"><a href="#cb31-13" tabindex="-1"></a>col_snow <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="fu">rep</span>(<span class="st">&quot;orangered&quot;</span>, <span class="dv">2</span>))</span>
+<span id="cb31-14"><a href="#cb31-14" tabindex="-1"></a>lty_snow <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
+<span id="cb31-15"><a href="#cb31-15" tabindex="-1"></a><span class="fu">matplot</span>(<span class="at">y =</span> tab_cal_reg[, <span class="fu">grep</span>(<span class="st">&quot;^Q&quot;</span>, <span class="fu">colnames</span>(tab_cal))],</span>
+<span id="cb31-16"><a href="#cb31-16" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;time [months]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;flow [mm/day]&quot;</span>, </span>
+<span id="cb31-17"><a href="#cb31-17" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> lty_snow, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_snow)</span>
+<span id="cb31-18"><a href="#cb31-18" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, </span>
+<span id="cb31-19"><a href="#cb31-19" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Qobs&quot;</span>, <span class="st">&quot;Qsim without snow mod.&quot;</span>, <span class="st">&quot;Qsim with snow mod.&quot;</span>),</span>
+<span id="cb31-20"><a href="#cb31-20" tabindex="-1"></a>       <span class="at">lty =</span> lty_snow, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_snow,</span>
+<span id="cb31-21"><a href="#cb31-21" tabindex="-1"></a>       <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
 <p><img src="figure/v00_fig_cal_eval-1.png" width="98%" /></p>
 </div>
 <div id="streamflow-transformation-for-model-calibration"
@@ -1033,24 +1033,24 @@ class="math inline">\(NSE_{\sqrt{Q}}\)</span> hereafter) and (iii) NSE
 calculated on logarithmic transformed streamflows (noted <span
 class="math inline">\(NSE_{\log{Q}}\)</span> hereafter), emphazing
 performance on high, mean and low flows, respectively.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="co"># Catchment data loading</span></span>
-<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;B222001001&quot;</span>, <span class="at">package =</span> <span class="st">&quot;airGRdatasets&quot;</span>)</span>
-<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>ts_obs <span class="ot">&lt;-</span> B222001001<span class="sc">$</span>TS</span>
-<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a></span>
-<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a><span class="co"># Data processing for GR4J (with Q for calibration)</span></span>
-<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a>prep <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_obs<span class="sc">$</span>Date,</span>
-<span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a>               <span class="at">Precip     =</span> ts_obs<span class="sc">$</span>Ptot,</span>
-<span id="cb34-8"><a href="#cb34-8" tabindex="-1"></a>               <span class="at">PotEvap    =</span> ts_obs<span class="sc">$</span>Evap, </span>
-<span id="cb34-9"><a href="#cb34-9" tabindex="-1"></a>               <span class="at">Qobs       =</span> ts_obs<span class="sc">$</span>Qmmd,</span>
-<span id="cb34-10"><a href="#cb34-10" tabindex="-1"></a>               <span class="at">HydroModel =</span> <span class="st">&quot;GR4J&quot;</span>, </span>
-<span id="cb34-11"><a href="#cb34-11" tabindex="-1"></a>               <span class="at">CemaNeige  =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb34-12"><a href="#cb34-12" tabindex="-1"></a></span>
-<span id="cb34-13"><a href="#cb34-13" tabindex="-1"></a><span class="co"># Calibration using NSE score on raw Q</span></span>
-<span id="cb34-14"><a href="#cb34-14" tabindex="-1"></a>cal_raw <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep, </span>
-<span id="cb34-15"><a href="#cb34-15" tabindex="-1"></a>                 <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
-<span id="cb34-16"><a href="#cb34-16" tabindex="-1"></a>                 <span class="at">transfo =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb34-17"><a href="#cb34-17" tabindex="-1"></a>                 <span class="at">WupPer  =</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2001-12-31&quot;</span>), </span>
-<span id="cb34-18"><a href="#cb34-18" tabindex="-1"></a>                 <span class="at">CalPer  =</span> <span class="fu">c</span>(<span class="st">&quot;2002-01-01&quot;</span>, <span class="st">&quot;2016-12-31&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="co"># Catchment data loading</span></span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;B222001001&quot;</span>, <span class="at">package =</span> <span class="st">&quot;airGRdatasets&quot;</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a>ts_obs <span class="ot">&lt;-</span> B222001001<span class="sc">$</span>TS</span>
+<span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" tabindex="-1"></a><span class="co"># Data processing for GR4J (with Q for calibration)</span></span>
+<span id="cb32-6"><a href="#cb32-6" tabindex="-1"></a>prep <span class="ot">&lt;-</span> <span class="fu">PrepGR</span>(<span class="at">DatesR     =</span> ts_obs<span class="sc">$</span>Date,</span>
+<span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a>               <span class="at">Precip     =</span> ts_obs<span class="sc">$</span>Ptot,</span>
+<span id="cb32-8"><a href="#cb32-8" tabindex="-1"></a>               <span class="at">PotEvap    =</span> ts_obs<span class="sc">$</span>Evap, </span>
+<span id="cb32-9"><a href="#cb32-9" tabindex="-1"></a>               <span class="at">Qobs       =</span> ts_obs<span class="sc">$</span>Qmmd,</span>
+<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a>               <span class="at">HydroModel =</span> <span class="st">&quot;GR4J&quot;</span>, </span>
+<span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a>               <span class="at">CemaNeige  =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a></span>
+<span id="cb32-13"><a href="#cb32-13" tabindex="-1"></a><span class="co"># Calibration using NSE score on raw Q</span></span>
+<span id="cb32-14"><a href="#cb32-14" tabindex="-1"></a>cal_raw <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb32-15"><a href="#cb32-15" tabindex="-1"></a>                 <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb32-16"><a href="#cb32-16" tabindex="-1"></a>                 <span class="at">transfo =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb32-17"><a href="#cb32-17" tabindex="-1"></a>                 <span class="at">WupPer  =</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2001-12-31&quot;</span>), </span>
+<span id="cb32-18"><a href="#cb32-18" tabindex="-1"></a>                 <span class="at">CalPer  =</span> <span class="fu">c</span>(<span class="st">&quot;2002-01-01&quot;</span>, <span class="st">&quot;2016-12-31&quot;</span>))</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (81 runs)
 ##       Param =  432.681,   -0.020,   83.096,    2.384
@@ -1059,12 +1059,12 @@ performance on high, mean and low flows, respectively.</p>
 ##   Calibration completed (27 iterations, 281 runs)
 ##       Param =  237.460,   -0.746,   64.072,    5.165
 ##       Crit. NSE[Q]       = 0.9063</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="co"># Calibration using NSE score on sqrt(Q)</span></span>
-<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a>cal_sqrt <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep, </span>
-<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>                  <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
-<span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a>                  <span class="at">transfo =</span> <span class="st">&quot;sqrt&quot;</span>,</span>
-<span id="cb36-5"><a href="#cb36-5" tabindex="-1"></a>                  <span class="at">WupPer  =</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2001-12-31&quot;</span>),</span>
-<span id="cb36-6"><a href="#cb36-6" tabindex="-1"></a>                  <span class="at">CalPer  =</span> <span class="fu">c</span>(<span class="st">&quot;2002-01-01&quot;</span>, <span class="st">&quot;2016-12-31&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="co"># Calibration using NSE score on sqrt(Q)</span></span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>cal_sqrt <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>                  <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>                  <span class="at">transfo =</span> <span class="st">&quot;sqrt&quot;</span>,</span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a>                  <span class="at">WupPer  =</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2001-12-31&quot;</span>),</span>
+<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a>                  <span class="at">CalPer  =</span> <span class="fu">c</span>(<span class="st">&quot;2002-01-01&quot;</span>, <span class="st">&quot;2016-12-31&quot;</span>))</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (81 runs)
 ##       Param =  247.151,   -2.376,   83.096,    2.384
@@ -1073,12 +1073,12 @@ performance on high, mean and low flows, respectively.</p>
 ##   Calibration completed (22 iterations, 240 runs)
 ##       Param =  221.406,   -1.114,   75.944,    4.638
 ##       Crit. NSE[sqrt(Q)] = 0.9416</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="co"># Calibration using NSE score on log(Q)</span></span>
-<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>cal_log <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep, </span>
-<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a>                 <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
-<span id="cb38-4"><a href="#cb38-4" tabindex="-1"></a>                 <span class="at">transfo =</span> <span class="st">&quot;log&quot;</span>,</span>
-<span id="cb38-5"><a href="#cb38-5" tabindex="-1"></a>                 <span class="at">WupPer  =</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2001-12-31&quot;</span>), </span>
-<span id="cb38-6"><a href="#cb38-6" tabindex="-1"></a>                 <span class="at">CalPer  =</span> <span class="fu">c</span>(<span class="st">&quot;2002-01-01&quot;</span>, <span class="st">&quot;2016-12-31&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="co"># Calibration using NSE score on log(Q)</span></span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a>cal_log <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>                 <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a>                 <span class="at">transfo =</span> <span class="st">&quot;log&quot;</span>,</span>
+<span id="cb36-5"><a href="#cb36-5" tabindex="-1"></a>                 <span class="at">WupPer  =</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2001-12-31&quot;</span>), </span>
+<span id="cb36-6"><a href="#cb36-6" tabindex="-1"></a>                 <span class="at">CalPer  =</span> <span class="fu">c</span>(<span class="st">&quot;2002-01-01&quot;</span>, <span class="st">&quot;2016-12-31&quot;</span>))</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (81 runs)
 ##       Param =  247.151,   -2.376,   83.096,    2.384
@@ -1087,31 +1087,31 @@ performance on high, mean and low flows, respectively.</p>
 ##   Calibration completed (42 iterations, 409 runs)
 ##       Param =  209.961,   -1.867,   96.085,    4.058
 ##       Crit. NSE[log(Q)]  = 0.9473</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="co"># Combination of simulated streamflow</span></span>
-<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>tab_sim_trsf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Date       =</span> cal_raw<span class="sc">$</span>OutputsModel<span class="sc">$</span>DatesR,</span>
-<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a>                           <span class="at">QSIM_rawQ  =</span> cal_raw<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim,</span>
-<span id="cb40-4"><a href="#cb40-4" tabindex="-1"></a>                           <span class="at">QSIM_sqrtQ =</span> cal_sqrt<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim,</span>
-<span id="cb40-5"><a href="#cb40-5" tabindex="-1"></a>                           <span class="at">QSIM_logQ  =</span> cal_log<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim)</span>
-<span id="cb40-6"><a href="#cb40-6" tabindex="-1"></a>tab_sim_trsf <span class="ot">&lt;-</span> <span class="fu">merge</span>(<span class="at">x =</span> ts_obs[, <span class="fu">c</span>(<span class="st">&quot;Date&quot;</span>, <span class="st">&quot;Qmmd&quot;</span>)], </span>
-<span id="cb40-7"><a href="#cb40-7" tabindex="-1"></a>                      <span class="at">y =</span> tab_sim_trsf, </span>
-<span id="cb40-8"><a href="#cb40-8" tabindex="-1"></a>                      <span class="at">by =</span> <span class="st">&quot;Date&quot;</span>, </span>
-<span id="cb40-9"><a href="#cb40-9" tabindex="-1"></a>                      <span class="at">all.y =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb40-10"><a href="#cb40-10" tabindex="-1"></a></span>
-<span id="cb40-11"><a href="#cb40-11" tabindex="-1"></a><span class="co"># Computation of regime streamflow</span></span>
-<span id="cb40-12"><a href="#cb40-12" tabindex="-1"></a>tab_sim_reg <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(tab_sim_trsf, </span>
-<span id="cb40-13"><a href="#cb40-13" tabindex="-1"></a>                            <span class="at">Format =</span> <span class="st">&quot;%m&quot;</span>, </span>
-<span id="cb40-14"><a href="#cb40-14" tabindex="-1"></a>                            <span class="at">ConvertFun =</span> <span class="fu">rep</span>(<span class="st">&quot;mean&quot;</span>, <span class="fu">ncol</span>(tab_sim_trsf) <span class="sc">-</span> <span class="dv">1</span>))</span>
-<span id="cb40-15"><a href="#cb40-15" tabindex="-1"></a></span>
-<span id="cb40-16"><a href="#cb40-16" tabindex="-1"></a><span class="co"># Graphical comparison between simulated and observed streamflow regimes</span></span>
-<span id="cb40-17"><a href="#cb40-17" tabindex="-1"></a>col_trsf <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="fu">rep</span>(<span class="st">&quot;orangered&quot;</span>, <span class="dv">3</span>))</span>
-<span id="cb40-18"><a href="#cb40-18" tabindex="-1"></a>lty_trsf <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
-<span id="cb40-19"><a href="#cb40-19" tabindex="-1"></a><span class="fu">matplot</span>(<span class="at">y =</span> tab_sim_reg[, <span class="sc">-</span><span class="dv">1</span>],</span>
-<span id="cb40-20"><a href="#cb40-20" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;time [months]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;flow [mm/day]&quot;</span>, </span>
-<span id="cb40-21"><a href="#cb40-21" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> lty_trsf, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_trsf)</span>
-<span id="cb40-22"><a href="#cb40-22" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomleft&quot;</span>, </span>
-<span id="cb40-23"><a href="#cb40-23" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Qobs&quot;</span>, <span class="st">&quot;Qsim&quot;</span>, <span class="st">&quot;sqrt(Qsim)&quot;</span>, <span class="st">&quot;log(Qsim)&quot;</span>),</span>
-<span id="cb40-24"><a href="#cb40-24" tabindex="-1"></a>       <span class="at">lty =</span> lty_trsf, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_trsf,</span>
-<span id="cb40-25"><a href="#cb40-25" tabindex="-1"></a>       <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="co"># Combination of simulated streamflow</span></span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>tab_sim_trsf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Date       =</span> cal_raw<span class="sc">$</span>OutputsModel<span class="sc">$</span>DatesR,</span>
+<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a>                           <span class="at">QSIM_rawQ  =</span> cal_raw<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim,</span>
+<span id="cb38-4"><a href="#cb38-4" tabindex="-1"></a>                           <span class="at">QSIM_sqrtQ =</span> cal_sqrt<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim,</span>
+<span id="cb38-5"><a href="#cb38-5" tabindex="-1"></a>                           <span class="at">QSIM_logQ  =</span> cal_log<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim)</span>
+<span id="cb38-6"><a href="#cb38-6" tabindex="-1"></a>tab_sim_trsf <span class="ot">&lt;-</span> <span class="fu">merge</span>(<span class="at">x =</span> ts_obs[, <span class="fu">c</span>(<span class="st">&quot;Date&quot;</span>, <span class="st">&quot;Qmmd&quot;</span>)], </span>
+<span id="cb38-7"><a href="#cb38-7" tabindex="-1"></a>                      <span class="at">y =</span> tab_sim_trsf, </span>
+<span id="cb38-8"><a href="#cb38-8" tabindex="-1"></a>                      <span class="at">by =</span> <span class="st">&quot;Date&quot;</span>, </span>
+<span id="cb38-9"><a href="#cb38-9" tabindex="-1"></a>                      <span class="at">all.y =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb38-10"><a href="#cb38-10" tabindex="-1"></a></span>
+<span id="cb38-11"><a href="#cb38-11" tabindex="-1"></a><span class="co"># Computation of regime streamflow</span></span>
+<span id="cb38-12"><a href="#cb38-12" tabindex="-1"></a>tab_sim_reg <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(tab_sim_trsf, </span>
+<span id="cb38-13"><a href="#cb38-13" tabindex="-1"></a>                            <span class="at">Format =</span> <span class="st">&quot;%m&quot;</span>, </span>
+<span id="cb38-14"><a href="#cb38-14" tabindex="-1"></a>                            <span class="at">ConvertFun =</span> <span class="fu">rep</span>(<span class="st">&quot;mean&quot;</span>, <span class="fu">ncol</span>(tab_sim_trsf) <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb38-15"><a href="#cb38-15" tabindex="-1"></a></span>
+<span id="cb38-16"><a href="#cb38-16" tabindex="-1"></a><span class="co"># Graphical comparison between simulated and observed streamflow regimes</span></span>
+<span id="cb38-17"><a href="#cb38-17" tabindex="-1"></a>col_trsf <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="fu">rep</span>(<span class="st">&quot;orangered&quot;</span>, <span class="dv">3</span>))</span>
+<span id="cb38-18"><a href="#cb38-18" tabindex="-1"></a>lty_trsf <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb38-19"><a href="#cb38-19" tabindex="-1"></a><span class="fu">matplot</span>(<span class="at">y =</span> tab_sim_reg[, <span class="sc">-</span><span class="dv">1</span>],</span>
+<span id="cb38-20"><a href="#cb38-20" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;time [months]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;flow [mm/day]&quot;</span>, </span>
+<span id="cb38-21"><a href="#cb38-21" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> lty_trsf, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_trsf)</span>
+<span id="cb38-22"><a href="#cb38-22" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomleft&quot;</span>, </span>
+<span id="cb38-23"><a href="#cb38-23" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Qobs&quot;</span>, <span class="st">&quot;Qsim&quot;</span>, <span class="st">&quot;sqrt(Qsim)&quot;</span>, <span class="st">&quot;log(Qsim)&quot;</span>),</span>
+<span id="cb38-24"><a href="#cb38-24" tabindex="-1"></a>       <span class="at">lty =</span> lty_trsf, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_trsf,</span>
+<span id="cb38-25"><a href="#cb38-25" tabindex="-1"></a>       <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
 <p><img src="figure/v00_fig_flow_transfo-1.png" width="98%" /></p>
 </div>
 <div id="impact-of-objective-functions" class="section level2"
@@ -1125,12 +1125,12 @@ model calibration, the
 such as NSE or KGE. The following commands and figure show how to
 calibrate GR4J parameters considering two objective functions, and to
 compare the different simulations on a specific period.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="co"># Calibration using NSE score on Q</span></span>
-<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a>cal_nse <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep, </span>
-<span id="cb41-3"><a href="#cb41-3" tabindex="-1"></a>                 <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
-<span id="cb41-4"><a href="#cb41-4" tabindex="-1"></a>                 <span class="at">transfo =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb41-5"><a href="#cb41-5" tabindex="-1"></a>                 <span class="at">WupPer  =</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2001-12-31&quot;</span>), </span>
-<span id="cb41-6"><a href="#cb41-6" tabindex="-1"></a>                 <span class="at">CalPer  =</span> <span class="fu">c</span>(<span class="st">&quot;2002-01-01&quot;</span>, <span class="st">&quot;2016-12-31&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="co"># Calibration using NSE score on Q</span></span>
+<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a>cal_nse <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a>                 <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb39-4"><a href="#cb39-4" tabindex="-1"></a>                 <span class="at">transfo =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb39-5"><a href="#cb39-5" tabindex="-1"></a>                 <span class="at">WupPer  =</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2001-12-31&quot;</span>), </span>
+<span id="cb39-6"><a href="#cb39-6" tabindex="-1"></a>                 <span class="at">CalPer  =</span> <span class="fu">c</span>(<span class="st">&quot;2002-01-01&quot;</span>, <span class="st">&quot;2016-12-31&quot;</span>))</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (81 runs)
 ##       Param =  432.681,   -0.020,   83.096,    2.384
@@ -1139,12 +1139,12 @@ compare the different simulations on a specific period.</p>
 ##   Calibration completed (27 iterations, 281 runs)
 ##       Param =  237.460,   -0.746,   64.072,    5.165
 ##       Crit. NSE[Q]       = 0.9063</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="co"># Calibration using KGE score on Q</span></span>
-<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a>cal_kge <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep, </span>
-<span id="cb43-3"><a href="#cb43-3" tabindex="-1"></a>                 <span class="at">CalCrit =</span> <span class="st">&quot;KGE&quot;</span>,</span>
-<span id="cb43-4"><a href="#cb43-4" tabindex="-1"></a>                 <span class="at">transfo =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb43-5"><a href="#cb43-5" tabindex="-1"></a>                 <span class="at">WupPer  =</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2001-12-31&quot;</span>), </span>
-<span id="cb43-6"><a href="#cb43-6" tabindex="-1"></a>                 <span class="at">CalPer  =</span> <span class="fu">c</span>(<span class="st">&quot;2002-01-01&quot;</span>, <span class="st">&quot;2016-12-31&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="co"># Calibration using KGE score on Q</span></span>
+<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a>cal_kge <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb41-3"><a href="#cb41-3" tabindex="-1"></a>                 <span class="at">CalCrit =</span> <span class="st">&quot;KGE&quot;</span>,</span>
+<span id="cb41-4"><a href="#cb41-4" tabindex="-1"></a>                 <span class="at">transfo =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb41-5"><a href="#cb41-5" tabindex="-1"></a>                 <span class="at">WupPer  =</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2001-12-31&quot;</span>), </span>
+<span id="cb41-6"><a href="#cb41-6" tabindex="-1"></a>                 <span class="at">CalPer  =</span> <span class="fu">c</span>(<span class="st">&quot;2002-01-01&quot;</span>, <span class="st">&quot;2016-12-31&quot;</span>))</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (81 runs)
 ##       Param =  247.151,   -0.649,   83.096,    2.384
@@ -1153,23 +1153,23 @@ compare the different simulations on a specific period.</p>
 ##   Calibration completed (29 iterations, 297 runs)
 ##       Param =  206.888,   -0.751,   49.328,    5.360
 ##       Crit. KGE[Q]       = 0.9474</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow</span></span>
-<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a>tab_crit <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Date     =</span> <span class="fu">as.POSIXct</span>(cal_nse<span class="sc">$</span>OutputsModel<span class="sc">$</span>DatesR),</span>
-<span id="cb45-3"><a href="#cb45-3" tabindex="-1"></a>                       <span class="at">Qobs     =</span> cal_nse<span class="sc">$</span>Qobs,</span>
-<span id="cb45-4"><a href="#cb45-4" tabindex="-1"></a>                       <span class="at">Qsim_nse =</span> cal_nse<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim,</span>
-<span id="cb45-5"><a href="#cb45-5" tabindex="-1"></a>                       <span class="at">Qsim_kge =</span> cal_kge<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim)</span>
-<span id="cb45-6"><a href="#cb45-6" tabindex="-1"></a></span>
-<span id="cb45-7"><a href="#cb45-7" tabindex="-1"></a><span class="co"># Graphical comparison</span></span>
-<span id="cb45-8"><a href="#cb45-8" tabindex="-1"></a>col_crit <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="fu">rep</span>(<span class="st">&quot;orangered&quot;</span>, <span class="dv">2</span>))</span>
-<span id="cb45-9"><a href="#cb45-9" tabindex="-1"></a>lty_crit <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
-<span id="cb45-10"><a href="#cb45-10" tabindex="-1"></a><span class="fu">matplot</span>(<span class="at">x =</span> tab_crit<span class="sc">$</span>Date, <span class="at">y =</span> tab_crit[, <span class="sc">-</span><span class="dv">1</span>],</span>
-<span id="cb45-11"><a href="#cb45-11" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;time [days]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;flow [mm/day]&quot;</span>, </span>
-<span id="cb45-12"><a href="#cb45-12" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> lty_crit, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_crit,</span>
-<span id="cb45-13"><a href="#cb45-13" tabindex="-1"></a>        <span class="at">xlim =</span> <span class="fu">as.POSIXct</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;2004-01-01&quot;</span>, <span class="st">&quot;2004-03-01&quot;</span>), <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>))</span>
-<span id="cb45-14"><a href="#cb45-14" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, </span>
-<span id="cb45-15"><a href="#cb45-15" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Qobs&quot;</span>, <span class="st">&quot;Qsim NSE&quot;</span>, <span class="st">&quot;Qsim KGE&quot;</span>), </span>
-<span id="cb45-16"><a href="#cb45-16" tabindex="-1"></a>       <span class="at">lty =</span> lty_crit, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_crit,</span>
-<span id="cb45-17"><a href="#cb45-17" tabindex="-1"></a>       <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow</span></span>
+<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a>tab_crit <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Date     =</span> <span class="fu">as.POSIXct</span>(cal_nse<span class="sc">$</span>OutputsModel<span class="sc">$</span>DatesR),</span>
+<span id="cb43-3"><a href="#cb43-3" tabindex="-1"></a>                       <span class="at">Qobs     =</span> cal_nse<span class="sc">$</span>Qobs,</span>
+<span id="cb43-4"><a href="#cb43-4" tabindex="-1"></a>                       <span class="at">Qsim_nse =</span> cal_nse<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim,</span>
+<span id="cb43-5"><a href="#cb43-5" tabindex="-1"></a>                       <span class="at">Qsim_kge =</span> cal_kge<span class="sc">$</span>OutputsModel<span class="sc">$</span>Qsim)</span>
+<span id="cb43-6"><a href="#cb43-6" tabindex="-1"></a></span>
+<span id="cb43-7"><a href="#cb43-7" tabindex="-1"></a><span class="co"># Graphical comparison</span></span>
+<span id="cb43-8"><a href="#cb43-8" tabindex="-1"></a>col_crit <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="fu">rep</span>(<span class="st">&quot;orangered&quot;</span>, <span class="dv">2</span>))</span>
+<span id="cb43-9"><a href="#cb43-9" tabindex="-1"></a>lty_crit <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
+<span id="cb43-10"><a href="#cb43-10" tabindex="-1"></a><span class="fu">matplot</span>(<span class="at">x =</span> tab_crit<span class="sc">$</span>Date, <span class="at">y =</span> tab_crit[, <span class="sc">-</span><span class="dv">1</span>],</span>
+<span id="cb43-11"><a href="#cb43-11" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;time [days]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;flow [mm/day]&quot;</span>, </span>
+<span id="cb43-12"><a href="#cb43-12" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> lty_crit, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_crit,</span>
+<span id="cb43-13"><a href="#cb43-13" tabindex="-1"></a>        <span class="at">xlim =</span> <span class="fu">as.POSIXct</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;2004-01-01&quot;</span>, <span class="st">&quot;2004-03-01&quot;</span>), <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>))</span>
+<span id="cb43-14"><a href="#cb43-14" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, </span>
+<span id="cb43-15"><a href="#cb43-15" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Qobs&quot;</span>, <span class="st">&quot;Qsim NSE&quot;</span>, <span class="st">&quot;Qsim KGE&quot;</span>), </span>
+<span id="cb43-16"><a href="#cb43-16" tabindex="-1"></a>       <span class="at">lty =</span> lty_crit, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> col_crit,</span>
+<span id="cb43-17"><a href="#cb43-17" tabindex="-1"></a>       <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
 <p><img src="figure/v00_fig_obj_fun-1.png" width="98%" /></p>
 </div>
 </div>
@@ -1191,19 +1191,19 @@ evaluation. The following commands and figure compare the performance
 obtained by the GR4J model after calibration on two sub-periods
 (<code>per1</code> and <code>per2</code>) and evaluation on the same
 sub-periods.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="co"># Calibration and evaluation sub-periods</span></span>
-<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a>per1_wup <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2001-12-31&quot;</span>)</span>
-<span id="cb46-3"><a href="#cb46-3" tabindex="-1"></a>per1_sim <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2002-01-01&quot;</span>, <span class="st">&quot;2008-12-31&quot;</span>)</span>
-<span id="cb46-4"><a href="#cb46-4" tabindex="-1"></a>per2_wup <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2009-01-01&quot;</span>, <span class="st">&quot;2011-12-31&quot;</span>)</span>
-<span id="cb46-5"><a href="#cb46-5" tabindex="-1"></a>per2_sim <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2012-01-01&quot;</span>, <span class="st">&quot;2018-12-31&quot;</span>)</span>
-<span id="cb46-6"><a href="#cb46-6" tabindex="-1"></a></span>
-<span id="cb46-7"><a href="#cb46-7" tabindex="-1"></a><span class="co"># Calibration on per1 and per2</span></span>
-<span id="cb46-8"><a href="#cb46-8" tabindex="-1"></a>cal_per1 <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep,</span>
-<span id="cb46-9"><a href="#cb46-9" tabindex="-1"></a>                  <span class="at">CalCrit =</span> <span class="st">&quot;KGE&quot;</span>,</span>
-<span id="cb46-10"><a href="#cb46-10" tabindex="-1"></a>                  <span class="at">transfo =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb46-11"><a href="#cb46-11" tabindex="-1"></a>                  <span class="at">WupPer  =</span> per1_wup,</span>
-<span id="cb46-12"><a href="#cb46-12" tabindex="-1"></a>                  <span class="at">CalPer  =</span> per1_sim,</span>
-<span id="cb46-13"><a href="#cb46-13" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="co"># Calibration and evaluation sub-periods</span></span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a>per1_wup <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1999-01-01&quot;</span>, <span class="st">&quot;2001-12-31&quot;</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a>per1_sim <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2002-01-01&quot;</span>, <span class="st">&quot;2008-12-31&quot;</span>)</span>
+<span id="cb44-4"><a href="#cb44-4" tabindex="-1"></a>per2_wup <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2009-01-01&quot;</span>, <span class="st">&quot;2011-12-31&quot;</span>)</span>
+<span id="cb44-5"><a href="#cb44-5" tabindex="-1"></a>per2_sim <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2012-01-01&quot;</span>, <span class="st">&quot;2018-12-31&quot;</span>)</span>
+<span id="cb44-6"><a href="#cb44-6" tabindex="-1"></a></span>
+<span id="cb44-7"><a href="#cb44-7" tabindex="-1"></a><span class="co"># Calibration on per1 and per2</span></span>
+<span id="cb44-8"><a href="#cb44-8" tabindex="-1"></a>cal_per1 <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep,</span>
+<span id="cb44-9"><a href="#cb44-9" tabindex="-1"></a>                  <span class="at">CalCrit =</span> <span class="st">&quot;KGE&quot;</span>,</span>
+<span id="cb44-10"><a href="#cb44-10" tabindex="-1"></a>                  <span class="at">transfo =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb44-11"><a href="#cb44-11" tabindex="-1"></a>                  <span class="at">WupPer  =</span> per1_wup,</span>
+<span id="cb44-12"><a href="#cb44-12" tabindex="-1"></a>                  <span class="at">CalPer  =</span> per1_sim,</span>
+<span id="cb44-13"><a href="#cb44-13" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (81 runs)
 ##       Param =  247.151,   -0.649,   83.096,    2.384
@@ -1212,12 +1212,12 @@ sub-periods.</p>
 ##   Calibration completed (64 iterations, 603 runs)
 ##       Param =  218.333,   -0.929,   46.810,    5.289
 ##       Crit. KGE[Q]       = 0.9504</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a>cal_per2 <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep,</span>
-<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a>                  <span class="at">CalCrit =</span> <span class="st">&quot;KGE&quot;</span>,</span>
-<span id="cb48-3"><a href="#cb48-3" tabindex="-1"></a>                  <span class="at">transfo =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb48-4"><a href="#cb48-4" tabindex="-1"></a>                  <span class="at">WupPer  =</span> per2_wup,</span>
-<span id="cb48-5"><a href="#cb48-5" tabindex="-1"></a>                  <span class="at">CalPer  =</span> per2_sim,</span>
-<span id="cb48-6"><a href="#cb48-6" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>cal_per2 <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep,</span>
+<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a>                  <span class="at">CalCrit =</span> <span class="st">&quot;KGE&quot;</span>,</span>
+<span id="cb46-3"><a href="#cb46-3" tabindex="-1"></a>                  <span class="at">transfo =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb46-4"><a href="#cb46-4" tabindex="-1"></a>                  <span class="at">WupPer  =</span> per2_wup,</span>
+<span id="cb46-5"><a href="#cb46-5" tabindex="-1"></a>                  <span class="at">CalPer  =</span> per2_sim,</span>
+<span id="cb46-6"><a href="#cb46-6" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (81 runs)
 ##       Param =  169.017,   -0.649,   83.096,    2.384
@@ -1226,45 +1226,45 @@ sub-periods.</p>
 ##   Calibration completed (47 iterations, 458 runs)
 ##       Param =  195.825,   -0.531,   62.223,    5.361
 ##       Crit. KGE[Q]       = 0.9579</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="co"># Get parameter values at the end of the calibration step</span></span>
-<span id="cb50-2"><a href="#cb50-2" tabindex="-1"></a>param_per1 <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_per1)</span>
-<span id="cb50-3"><a href="#cb50-3" tabindex="-1"></a>param_per2 <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_per2)</span>
-<span id="cb50-4"><a href="#cb50-4" tabindex="-1"></a></span>
-<span id="cb50-5"><a href="#cb50-5" tabindex="-1"></a><span class="co"># Get criteria values at the end of the calibration step</span></span>
-<span id="cb50-6"><a href="#cb50-6" tabindex="-1"></a>crit_cal_per1 <span class="ot">&lt;-</span> <span class="fu">GetCrit</span>(cal_per1)</span>
-<span id="cb50-7"><a href="#cb50-7" tabindex="-1"></a>crit_cal_per2 <span class="ot">&lt;-</span> <span class="fu">GetCrit</span>(cal_per2)</span>
-<span id="cb50-8"><a href="#cb50-8" tabindex="-1"></a></span>
-<span id="cb50-9"><a href="#cb50-9" tabindex="-1"></a><span class="co"># Evaluation over per1 and per2</span></span>
-<span id="cb50-10"><a href="#cb50-10" tabindex="-1"></a>eva_per1 <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
-<span id="cb50-11"><a href="#cb50-11" tabindex="-1"></a>                  <span class="at">Param   =</span> param_per2,</span>
-<span id="cb50-12"><a href="#cb50-12" tabindex="-1"></a>                  <span class="at">WupPer  =</span> per1_wup,</span>
-<span id="cb50-13"><a href="#cb50-13" tabindex="-1"></a>                  <span class="at">SimPer  =</span> per1_sim,</span>
-<span id="cb50-14"><a href="#cb50-14" tabindex="-1"></a>                  <span class="at">EffCrit =</span> <span class="st">&quot;KGE&quot;</span>,</span>
-<span id="cb50-15"><a href="#cb50-15" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="co"># Get parameter values at the end of the calibration step</span></span>
+<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a>param_per1 <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_per1)</span>
+<span id="cb48-3"><a href="#cb48-3" tabindex="-1"></a>param_per2 <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_per2)</span>
+<span id="cb48-4"><a href="#cb48-4" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" tabindex="-1"></a><span class="co"># Get criteria values at the end of the calibration step</span></span>
+<span id="cb48-6"><a href="#cb48-6" tabindex="-1"></a>crit_cal_per1 <span class="ot">&lt;-</span> <span class="fu">GetCrit</span>(cal_per1)</span>
+<span id="cb48-7"><a href="#cb48-7" tabindex="-1"></a>crit_cal_per2 <span class="ot">&lt;-</span> <span class="fu">GetCrit</span>(cal_per2)</span>
+<span id="cb48-8"><a href="#cb48-8" tabindex="-1"></a></span>
+<span id="cb48-9"><a href="#cb48-9" tabindex="-1"></a><span class="co"># Evaluation over per1 and per2</span></span>
+<span id="cb48-10"><a href="#cb48-10" tabindex="-1"></a>eva_per1 <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb48-11"><a href="#cb48-11" tabindex="-1"></a>                  <span class="at">Param   =</span> param_per2,</span>
+<span id="cb48-12"><a href="#cb48-12" tabindex="-1"></a>                  <span class="at">WupPer  =</span> per1_wup,</span>
+<span id="cb48-13"><a href="#cb48-13" tabindex="-1"></a>                  <span class="at">SimPer  =</span> per1_sim,</span>
+<span id="cb48-14"><a href="#cb48-14" tabindex="-1"></a>                  <span class="at">EffCrit =</span> <span class="st">&quot;KGE&quot;</span>,</span>
+<span id="cb48-15"><a href="#cb48-15" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Crit. KGE[Q] = 0.8483
 ##  SubCrit. KGE[Q] cor(sim, obs, &quot;pearson&quot;) = 0.9509 
 ##  SubCrit. KGE[Q] sd(sim)/sd(obs)          = 1.0657 
 ##  SubCrit. KGE[Q] mean(sim)/mean(obs)      = 1.1276</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a>eva_per2 <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
-<span id="cb52-2"><a href="#cb52-2" tabindex="-1"></a>                  <span class="at">Param   =</span> param_per1,</span>
-<span id="cb52-3"><a href="#cb52-3" tabindex="-1"></a>                  <span class="at">WupPer  =</span> per2_wup,</span>
-<span id="cb52-4"><a href="#cb52-4" tabindex="-1"></a>                  <span class="at">SimPer  =</span> per2_sim,</span>
-<span id="cb52-5"><a href="#cb52-5" tabindex="-1"></a>                  <span class="at">EffCrit =</span> <span class="st">&quot;KGE&quot;</span>,</span>
-<span id="cb52-6"><a href="#cb52-6" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a>eva_per2 <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb50-2"><a href="#cb50-2" tabindex="-1"></a>                  <span class="at">Param   =</span> param_per1,</span>
+<span id="cb50-3"><a href="#cb50-3" tabindex="-1"></a>                  <span class="at">WupPer  =</span> per2_wup,</span>
+<span id="cb50-4"><a href="#cb50-4" tabindex="-1"></a>                  <span class="at">SimPer  =</span> per2_sim,</span>
+<span id="cb50-5"><a href="#cb50-5" tabindex="-1"></a>                  <span class="at">EffCrit =</span> <span class="st">&quot;KGE&quot;</span>,</span>
+<span id="cb50-6"><a href="#cb50-6" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Crit. KGE[Q] = 0.8572
 ##  SubCrit. KGE[Q] cor(sim, obs, &quot;pearson&quot;) = 0.9545 
 ##  SubCrit. KGE[Q] sd(sim)/sd(obs)          = 0.9207 
 ##  SubCrit. KGE[Q] mean(sim)/mean(obs)      = 0.8903</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="co"># Get criteria values</span></span>
-<span id="cb54-2"><a href="#cb54-2" tabindex="-1"></a>crit_eva_per1 <span class="ot">&lt;-</span> <span class="fu">GetCrit</span>(eva_per1)</span>
-<span id="cb54-3"><a href="#cb54-3" tabindex="-1"></a>crit_eva_per2 <span class="ot">&lt;-</span> <span class="fu">GetCrit</span>(eva_per2)</span>
-<span id="cb54-4"><a href="#cb54-4" tabindex="-1"></a></span>
-<span id="cb54-5"><a href="#cb54-5" tabindex="-1"></a><span class="co"># Cleveland dot plot of the criteria</span></span>
-<span id="cb54-6"><a href="#cb54-6" tabindex="-1"></a><span class="fu">dotchart</span>(<span class="fu">c</span>(crit_eva_per1, crit_cal_per1, crit_eva_per2, crit_cal_per2),</span>
-<span id="cb54-7"><a href="#cb54-7" tabindex="-1"></a>         <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;eva (per1)&quot;</span>, <span class="st">&quot;cal (per1)&quot;</span>, <span class="st">&quot;eva (per2)&quot;</span>, <span class="st">&quot;cal (per2)&quot;</span>),</span>
-<span id="cb54-8"><a href="#cb54-8" tabindex="-1"></a>         <span class="at">groups =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">each =</span> <span class="dv">2</span>),</span>
-<span id="cb54-9"><a href="#cb54-9" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;darkblue&quot;</span>), <span class="at">each =</span> <span class="dv">2</span>), <span class="at">pch =</span> <span class="dv">19</span>, </span>
-<span id="cb54-10"><a href="#cb54-10" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">&quot;KGE [-]&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="co"># Get criteria values</span></span>
+<span id="cb52-2"><a href="#cb52-2" tabindex="-1"></a>crit_eva_per1 <span class="ot">&lt;-</span> <span class="fu">GetCrit</span>(eva_per1)</span>
+<span id="cb52-3"><a href="#cb52-3" tabindex="-1"></a>crit_eva_per2 <span class="ot">&lt;-</span> <span class="fu">GetCrit</span>(eva_per2)</span>
+<span id="cb52-4"><a href="#cb52-4" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" tabindex="-1"></a><span class="co"># Cleveland dot plot of the criteria</span></span>
+<span id="cb52-6"><a href="#cb52-6" tabindex="-1"></a><span class="fu">dotchart</span>(<span class="fu">c</span>(crit_eva_per1, crit_cal_per1, crit_eva_per2, crit_cal_per2),</span>
+<span id="cb52-7"><a href="#cb52-7" tabindex="-1"></a>         <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;eva (per1)&quot;</span>, <span class="st">&quot;cal (per1)&quot;</span>, <span class="st">&quot;eva (per2)&quot;</span>, <span class="st">&quot;cal (per2)&quot;</span>),</span>
+<span id="cb52-8"><a href="#cb52-8" tabindex="-1"></a>         <span class="at">groups =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">each =</span> <span class="dv">2</span>),</span>
+<span id="cb52-9"><a href="#cb52-9" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;darkblue&quot;</span>), <span class="at">each =</span> <span class="dv">2</span>), <span class="at">pch =</span> <span class="dv">19</span>, </span>
+<span id="cb52-10"><a href="#cb52-10" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">&quot;KGE [-]&quot;</span>)</span></code></pre></div>
 <p><img src="figure/v00_fig_sst-1.png" width="98%" /></p>
 </div>
 <div id="differential-split-sample-test" class="section level2"
@@ -1278,28 +1278,28 @@ the split-sample test using these two periods. The following commands
 and figure allow to select the wettest and the driest hydrological years
 (based on the aridity index), and show the calibration/evaluation
 performance of the GR4J model on these two sub-periods.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a><span class="co"># Estimation of annual aridity index (PE/P)</span></span>
-<span id="cb55-2"><a href="#cb55-2" tabindex="-1"></a>ts_obs_y <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(<span class="at">x =</span> ts_obs[, <span class="fu">c</span>(<span class="st">&quot;Date&quot;</span>, <span class="st">&quot;Ptot&quot;</span>, <span class="st">&quot;Evap&quot;</span>)], </span>
-<span id="cb55-3"><a href="#cb55-3" tabindex="-1"></a>                         <span class="at">Format =</span> <span class="st">&quot;%Y&quot;</span>, </span>
-<span id="cb55-4"><a href="#cb55-4" tabindex="-1"></a>                         <span class="at">ConvertFun =</span> <span class="fu">c</span>(<span class="st">&quot;sum&quot;</span>, <span class="st">&quot;sum&quot;</span>), </span>
-<span id="cb55-5"><a href="#cb55-5" tabindex="-1"></a>                         <span class="at">YearFirstMonth =</span> <span class="dv">10</span>)</span>
-<span id="cb55-6"><a href="#cb55-6" tabindex="-1"></a>ts_obs_y<span class="sc">$</span>Arid <span class="ot">&lt;-</span> ts_obs_y<span class="sc">$</span>Evap <span class="sc">/</span> ts_obs_y<span class="sc">$</span>Ptot</span>
-<span id="cb55-7"><a href="#cb55-7" tabindex="-1"></a></span>
-<span id="cb55-8"><a href="#cb55-8" tabindex="-1"></a><span class="co"># Identification of wetter and dryer hydrological years</span></span>
-<span id="cb55-9"><a href="#cb55-9" tabindex="-1"></a><span class="fu">barplot</span>(<span class="at">height =</span> ts_obs_y<span class="sc">$</span>Arid, </span>
-<span id="cb55-10"><a href="#cb55-10" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">format</span>(ts_obs_y<span class="sc">$</span>Date, <span class="at">format =</span> <span class="st">&quot;%Y&quot;</span>), </span>
-<span id="cb55-11"><a href="#cb55-11" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;time [years]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;aridity index [-]&quot;</span>,</span>
-<span id="cb55-12"><a href="#cb55-12" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;royalblue&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="co"># Estimation of annual aridity index (PE/P)</span></span>
+<span id="cb53-2"><a href="#cb53-2" tabindex="-1"></a>ts_obs_y <span class="ot">&lt;-</span> <span class="fu">SeriesAggreg</span>(<span class="at">x =</span> ts_obs[, <span class="fu">c</span>(<span class="st">&quot;Date&quot;</span>, <span class="st">&quot;Ptot&quot;</span>, <span class="st">&quot;Evap&quot;</span>)], </span>
+<span id="cb53-3"><a href="#cb53-3" tabindex="-1"></a>                         <span class="at">Format =</span> <span class="st">&quot;%Y&quot;</span>, </span>
+<span id="cb53-4"><a href="#cb53-4" tabindex="-1"></a>                         <span class="at">ConvertFun =</span> <span class="fu">c</span>(<span class="st">&quot;sum&quot;</span>, <span class="st">&quot;sum&quot;</span>), </span>
+<span id="cb53-5"><a href="#cb53-5" tabindex="-1"></a>                         <span class="at">YearFirstMonth =</span> <span class="dv">10</span>)</span>
+<span id="cb53-6"><a href="#cb53-6" tabindex="-1"></a>ts_obs_y<span class="sc">$</span>Arid <span class="ot">&lt;-</span> ts_obs_y<span class="sc">$</span>Evap <span class="sc">/</span> ts_obs_y<span class="sc">$</span>Ptot</span>
+<span id="cb53-7"><a href="#cb53-7" tabindex="-1"></a></span>
+<span id="cb53-8"><a href="#cb53-8" tabindex="-1"></a><span class="co"># Identification of wetter and dryer hydrological years</span></span>
+<span id="cb53-9"><a href="#cb53-9" tabindex="-1"></a><span class="fu">barplot</span>(<span class="at">height =</span> ts_obs_y<span class="sc">$</span>Arid, </span>
+<span id="cb53-10"><a href="#cb53-10" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">format</span>(ts_obs_y<span class="sc">$</span>Date, <span class="at">format =</span> <span class="st">&quot;%Y&quot;</span>), </span>
+<span id="cb53-11"><a href="#cb53-11" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;time [years]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;aridity index [-]&quot;</span>,</span>
+<span id="cb53-12"><a href="#cb53-12" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;royalblue&quot;</span>)</span></code></pre></div>
 <p><img src="figure/v00_fig_dsst-1.png" width="98%" /></p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a><span class="co"># Wet and dry periods</span></span>
-<span id="cb56-2"><a href="#cb56-2" tabindex="-1"></a>per_wet <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2016-10-01&quot;</span>, <span class="st">&quot;2017-09-30&quot;</span>)</span>
-<span id="cb56-3"><a href="#cb56-3" tabindex="-1"></a>per_dry <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2000-10-01&quot;</span>, <span class="st">&quot;2001-09-30&quot;</span>)</span>
-<span id="cb56-4"><a href="#cb56-4" tabindex="-1"></a></span>
-<span id="cb56-5"><a href="#cb56-5" tabindex="-1"></a><span class="co"># Calibration over the wet and the dry periods</span></span>
-<span id="cb56-6"><a href="#cb56-6" tabindex="-1"></a>cal_wet <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep,</span>
-<span id="cb56-7"><a href="#cb56-7" tabindex="-1"></a>                 <span class="at">CalCrit =</span> <span class="st">&quot;KGE&quot;</span>,</span>
-<span id="cb56-8"><a href="#cb56-8" tabindex="-1"></a>                 <span class="at">CalPer  =</span> per_wet,</span>
-<span id="cb56-9"><a href="#cb56-9" tabindex="-1"></a>                 <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="co"># Wet and dry periods</span></span>
+<span id="cb54-2"><a href="#cb54-2" tabindex="-1"></a>per_wet <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2016-10-01&quot;</span>, <span class="st">&quot;2017-09-30&quot;</span>)</span>
+<span id="cb54-3"><a href="#cb54-3" tabindex="-1"></a>per_dry <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2000-10-01&quot;</span>, <span class="st">&quot;2001-09-30&quot;</span>)</span>
+<span id="cb54-4"><a href="#cb54-4" tabindex="-1"></a></span>
+<span id="cb54-5"><a href="#cb54-5" tabindex="-1"></a><span class="co"># Calibration over the wet and the dry periods</span></span>
+<span id="cb54-6"><a href="#cb54-6" tabindex="-1"></a>cal_wet <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep,</span>
+<span id="cb54-7"><a href="#cb54-7" tabindex="-1"></a>                 <span class="at">CalCrit =</span> <span class="st">&quot;KGE&quot;</span>,</span>
+<span id="cb54-8"><a href="#cb54-8" tabindex="-1"></a>                 <span class="at">CalPer  =</span> per_wet,</span>
+<span id="cb54-9"><a href="#cb54-9" tabindex="-1"></a>                 <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (81 runs)
 ##       Param =  169.017,   -0.649,   83.096,    2.384
@@ -1308,10 +1308,10 @@ performance of the GR4J model on these two sub-periods.</p>
 ##   Calibration completed (24 iterations, 256 runs)
 ##       Param =  169.017,   -0.555,   54.598,    4.492
 ##       Crit. KGE[Q]       = 0.9741</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a>cal_dry <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep,</span>
-<span id="cb58-2"><a href="#cb58-2" tabindex="-1"></a>                 <span class="at">CalCrit =</span> <span class="st">&quot;KGE&quot;</span>,</span>
-<span id="cb58-3"><a href="#cb58-3" tabindex="-1"></a>                 <span class="at">CalPer  =</span> per_dry,</span>
-<span id="cb58-4"><a href="#cb58-4" tabindex="-1"></a>                 <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a>cal_dry <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep,</span>
+<span id="cb56-2"><a href="#cb56-2" tabindex="-1"></a>                 <span class="at">CalCrit =</span> <span class="st">&quot;KGE&quot;</span>,</span>
+<span id="cb56-3"><a href="#cb56-3" tabindex="-1"></a>                 <span class="at">CalPer  =</span> per_dry,</span>
+<span id="cb56-4"><a href="#cb56-4" tabindex="-1"></a>                 <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (81 runs)
 ##       Param =  247.151,   -0.649,   83.096,    2.384
@@ -1320,42 +1320,42 @@ performance of the GR4J model on these two sub-periods.</p>
 ##   Calibration completed (29 iterations, 296 runs)
 ##       Param =  208.513,   -0.685,   63.434,    5.565
 ##       Crit. KGE[Q]       = 0.9624</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a><span class="co"># Get parameter values at the end of the calibration step</span></span>
-<span id="cb60-2"><a href="#cb60-2" tabindex="-1"></a>param_dry <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_dry)</span>
-<span id="cb60-3"><a href="#cb60-3" tabindex="-1"></a>param_wet <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_wet)</span>
-<span id="cb60-4"><a href="#cb60-4" tabindex="-1"></a></span>
-<span id="cb60-5"><a href="#cb60-5" tabindex="-1"></a><span class="co"># Get criteria values at the end of the calibration step</span></span>
-<span id="cb60-6"><a href="#cb60-6" tabindex="-1"></a>crit_cal_dry <span class="ot">&lt;-</span> <span class="fu">GetCrit</span>(cal_dry)</span>
-<span id="cb60-7"><a href="#cb60-7" tabindex="-1"></a>crit_cal_wet <span class="ot">&lt;-</span> <span class="fu">GetCrit</span>(cal_wet)</span>
-<span id="cb60-8"><a href="#cb60-8" tabindex="-1"></a></span>
-<span id="cb60-9"><a href="#cb60-9" tabindex="-1"></a><span class="co"># Evaluation over the wet and the dry periods</span></span>
-<span id="cb60-10"><a href="#cb60-10" tabindex="-1"></a>eva_wet <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
-<span id="cb60-11"><a href="#cb60-11" tabindex="-1"></a>                 <span class="at">Param   =</span> cal_dry,</span>
-<span id="cb60-12"><a href="#cb60-12" tabindex="-1"></a>                 <span class="at">SimPer  =</span> per_wet,</span>
-<span id="cb60-13"><a href="#cb60-13" tabindex="-1"></a>                 <span class="at">EffCrit =</span> <span class="st">&quot;KGE&quot;</span>,</span>
-<span id="cb60-14"><a href="#cb60-14" tabindex="-1"></a>                 <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a><span class="co"># Get parameter values at the end of the calibration step</span></span>
+<span id="cb58-2"><a href="#cb58-2" tabindex="-1"></a>param_dry <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_dry)</span>
+<span id="cb58-3"><a href="#cb58-3" tabindex="-1"></a>param_wet <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_wet)</span>
+<span id="cb58-4"><a href="#cb58-4" tabindex="-1"></a></span>
+<span id="cb58-5"><a href="#cb58-5" tabindex="-1"></a><span class="co"># Get criteria values at the end of the calibration step</span></span>
+<span id="cb58-6"><a href="#cb58-6" tabindex="-1"></a>crit_cal_dry <span class="ot">&lt;-</span> <span class="fu">GetCrit</span>(cal_dry)</span>
+<span id="cb58-7"><a href="#cb58-7" tabindex="-1"></a>crit_cal_wet <span class="ot">&lt;-</span> <span class="fu">GetCrit</span>(cal_wet)</span>
+<span id="cb58-8"><a href="#cb58-8" tabindex="-1"></a></span>
+<span id="cb58-9"><a href="#cb58-9" tabindex="-1"></a><span class="co"># Evaluation over the wet and the dry periods</span></span>
+<span id="cb58-10"><a href="#cb58-10" tabindex="-1"></a>eva_wet <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb58-11"><a href="#cb58-11" tabindex="-1"></a>                 <span class="at">Param   =</span> cal_dry,</span>
+<span id="cb58-12"><a href="#cb58-12" tabindex="-1"></a>                 <span class="at">SimPer  =</span> per_wet,</span>
+<span id="cb58-13"><a href="#cb58-13" tabindex="-1"></a>                 <span class="at">EffCrit =</span> <span class="st">&quot;KGE&quot;</span>,</span>
+<span id="cb58-14"><a href="#cb58-14" tabindex="-1"></a>                 <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Crit. KGE[Q] = 0.8378
 ##  SubCrit. KGE[Q] cor(sim, obs, &quot;pearson&quot;) = 0.9583 
 ##  SubCrit. KGE[Q] sd(sim)/sd(obs)          = 0.8627 
 ##  SubCrit. KGE[Q] mean(sim)/mean(obs)      = 0.9244</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" tabindex="-1"></a>eva_dry <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
-<span id="cb62-2"><a href="#cb62-2" tabindex="-1"></a>                 <span class="at">Param   =</span> cal_wet,</span>
-<span id="cb62-3"><a href="#cb62-3" tabindex="-1"></a>                 <span class="at">SimPer  =</span> per_dry,</span>
-<span id="cb62-4"><a href="#cb62-4" tabindex="-1"></a>                 <span class="at">EffCrit =</span> <span class="st">&quot;KGE&quot;</span>,</span>
-<span id="cb62-5"><a href="#cb62-5" tabindex="-1"></a>                 <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a>eva_dry <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb60-2"><a href="#cb60-2" tabindex="-1"></a>                 <span class="at">Param   =</span> cal_wet,</span>
+<span id="cb60-3"><a href="#cb60-3" tabindex="-1"></a>                 <span class="at">SimPer  =</span> per_dry,</span>
+<span id="cb60-4"><a href="#cb60-4" tabindex="-1"></a>                 <span class="at">EffCrit =</span> <span class="st">&quot;KGE&quot;</span>,</span>
+<span id="cb60-5"><a href="#cb60-5" tabindex="-1"></a>                 <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Crit. KGE[Q] = 0.8866
 ##  SubCrit. KGE[Q] cor(sim, obs, &quot;pearson&quot;) = 0.9281 
 ##  SubCrit. KGE[Q] sd(sim)/sd(obs)          = 1.0812 
 ##  SubCrit. KGE[Q] mean(sim)/mean(obs)      = 1.0332</code></pre>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" tabindex="-1"></a><span class="co"># Get criteria values</span></span>
-<span id="cb64-2"><a href="#cb64-2" tabindex="-1"></a>crit_eva_dry <span class="ot">&lt;-</span> <span class="fu">GetCrit</span>(eva_dry)</span>
-<span id="cb64-3"><a href="#cb64-3" tabindex="-1"></a>crit_eva_wet <span class="ot">&lt;-</span> <span class="fu">GetCrit</span>(eva_wet)</span>
-<span id="cb64-4"><a href="#cb64-4" tabindex="-1"></a></span>
-<span id="cb64-5"><a href="#cb64-5" tabindex="-1"></a><span class="co"># Cleveland dot plot of the criteria</span></span>
-<span id="cb64-6"><a href="#cb64-6" tabindex="-1"></a><span class="fu">dotchart</span>(<span class="fu">c</span>(crit_eva_dry, crit_cal_dry, crit_eva_wet, crit_cal_wet),</span>
-<span id="cb64-7"><a href="#cb64-7" tabindex="-1"></a>         <span class="at">labels =</span>  <span class="fu">c</span>(<span class="st">&quot;eva (dry)&quot;</span>, <span class="st">&quot;cal (dry)&quot;</span>, <span class="st">&quot;eva (wet)&quot;</span>, <span class="st">&quot;cal (wet)&quot;</span>),</span>
-<span id="cb64-8"><a href="#cb64-8" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;deepskyblue3&quot;</span>), <span class="at">each =</span> <span class="dv">2</span>), <span class="at">pch =</span> <span class="dv">19</span>,</span>
-<span id="cb64-9"><a href="#cb64-9" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">&quot;KGE [-]&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" tabindex="-1"></a><span class="co"># Get criteria values</span></span>
+<span id="cb62-2"><a href="#cb62-2" tabindex="-1"></a>crit_eva_dry <span class="ot">&lt;-</span> <span class="fu">GetCrit</span>(eva_dry)</span>
+<span id="cb62-3"><a href="#cb62-3" tabindex="-1"></a>crit_eva_wet <span class="ot">&lt;-</span> <span class="fu">GetCrit</span>(eva_wet)</span>
+<span id="cb62-4"><a href="#cb62-4" tabindex="-1"></a></span>
+<span id="cb62-5"><a href="#cb62-5" tabindex="-1"></a><span class="co"># Cleveland dot plot of the criteria</span></span>
+<span id="cb62-6"><a href="#cb62-6" tabindex="-1"></a><span class="fu">dotchart</span>(<span class="fu">c</span>(crit_eva_dry, crit_cal_dry, crit_eva_wet, crit_cal_wet),</span>
+<span id="cb62-7"><a href="#cb62-7" tabindex="-1"></a>         <span class="at">labels =</span>  <span class="fu">c</span>(<span class="st">&quot;eva (dry)&quot;</span>, <span class="st">&quot;cal (dry)&quot;</span>, <span class="st">&quot;eva (wet)&quot;</span>, <span class="st">&quot;cal (wet)&quot;</span>),</span>
+<span id="cb62-8"><a href="#cb62-8" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;deepskyblue3&quot;</span>), <span class="at">each =</span> <span class="dv">2</span>), <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb62-9"><a href="#cb62-9" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">&quot;KGE [-]&quot;</span>)</span></code></pre></div>
 <p><img src="figure/v00_fig_dsst-2.png" width="98%" /></p>
 </div>
 </div>
