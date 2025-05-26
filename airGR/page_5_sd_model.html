@@ -580,14 +580,14 @@ constant delay of 2 days.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>QObsDown <span class="ot">&lt;-</span> (BasinObs<span class="sc">$</span>Qmm <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, BasinObs<span class="sc">$</span>Qmm[<span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(BasinObs<span class="sc">$</span>Qmm)<span class="sc">-</span><span class="dv">2</span>)])) <span class="sc">/</span> <span class="dv">2</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">5</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">cbind</span>(<span class="at">QObsUp =</span> BasinObs<span class="sc">$</span>Qmm, QObsDown))</span></code></pre></div>
-<pre><code>##      QObsUp         QObsDown    
-##  Min.   : 0.02   Min.   : 0.02  
-##  1st Qu.: 0.39   1st Qu.: 0.41  
-##  Median : 0.98   Median : 1.00  
-##  Mean   : 1.47   Mean   : 1.47  
-##  3rd Qu.: 1.88   3rd Qu.: 1.91  
-##  Max.   :23.88   Max.   :19.80  
-##  NA&#39;s   :802     NA&#39;s   :820</code></pre>
+<pre><code>##      QObsUp           QObsDown      
+##  Min.   : 0.0168   Min.   : 0.0204  
+##  1st Qu.: 0.3936   1st Qu.: 0.4104  
+##  Median : 0.9768   Median : 0.9984  
+##  Mean   : 1.4732   Mean   : 1.4740  
+##  3rd Qu.: 1.8840   3rd Qu.: 1.9060  
+##  Max.   :23.8800   Max.   :19.8000  
+##  NA&#39;s   :802       NA&#39;s   :820</code></pre>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p>With a delay of 2 days between the 2 gauging stations, the
 theoretical Velocity parameter should be equal to:</p>
