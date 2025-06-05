@@ -1091,20 +1091,20 @@ climatologues.</p>
 <span id="cb11-39"><a href="#cb11-39" tabindex="-1"></a></span>
 <span id="cb11-40"><a href="#cb11-40" tabindex="-1"></a><span class="co"># Summary of the &quot;future climate&quot; time series</span></span>
 <span id="cb11-41"><a href="#cb11-41" tabindex="-1"></a><span class="fu">summary</span>(ts_clim_cc)</span></code></pre></div>
-<pre><code>##      Tscen1            Tscen2            Tscen3            Pscen1        
-##  Min.   :-15.200   Min.   :-14.200   Min.   :-13.200   Min.   : 0.00000  
-##  1st Qu.: -0.200   1st Qu.:  1.000   1st Qu.:  2.061   1st Qu.: 0.00000  
-##  Median :  4.800   Median :  6.333   Median :  7.567   Median : 0.09833  
-##  Mean   :  4.812   Mean   :  6.396   Mean   :  7.731   Mean   : 2.85887  
-##  3rd Qu.: 10.200   3rd Qu.: 12.200   3rd Qu.: 13.783   3rd Qu.: 2.27613  
-##  Max.   : 20.700   Max.   : 23.200   Max.   : 25.200   Max.   :95.56339  
-##      Pscen2              Pscen3       
-##  Min.   :  0.00000   Min.   :  0.000  
-##  1st Qu.:  0.00000   1st Qu.:  0.000  
-##  Median :  0.09767   Median :  0.095  
-##  Mean   :  2.93352   Mean   :  2.964  
-##  3rd Qu.:  2.30533   3rd Qu.:  2.201  
-##  Max.   :104.73519   Max.   :117.354</code></pre>
+<pre><code>##      Tscen1            Tscen2            Tscen3            Pscen1             Pscen2         
+##  Min.   :-15.200   Min.   :-14.200   Min.   :-13.200   Min.   : 0.00000   Min.   :  0.00000  
+##  1st Qu.: -0.200   1st Qu.:  1.000   1st Qu.:  2.061   1st Qu.: 0.00000   1st Qu.:  0.00000  
+##  Median :  4.800   Median :  6.333   Median :  7.567   Median : 0.09833   Median :  0.09767  
+##  Mean   :  4.812   Mean   :  6.396   Mean   :  7.731   Mean   : 2.85887   Mean   :  2.93352  
+##  3rd Qu.: 10.200   3rd Qu.: 12.200   3rd Qu.: 13.783   3rd Qu.: 2.27613   3rd Qu.:  2.30533  
+##  Max.   : 20.700   Max.   : 23.200   Max.   : 25.200   Max.   :95.56339   Max.   :104.73519  
+##      Pscen3       
+##  Min.   :  0.000  
+##  1st Qu.:  0.000  
+##  Median :  0.095  
+##  Mean   :  2.964  
+##  3rd Qu.:  2.201  
+##  Max.   :117.354</code></pre>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># PE calculation</span></span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>ts_clim_cc<span class="sc">$</span>Julian <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="at">x =</span> <span class="fu">format</span>(<span class="at">x =</span> ts_cc<span class="sc">$</span>Date, <span class="at">format =</span> <span class="st">&quot;%j&quot;</span>))</span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>ts_clim_cc<span class="sc">$</span>Escen1 <span class="ot">&lt;-</span> <span class="fu">PE_Oudin</span>(<span class="at">JD =</span> ts_clim_cc<span class="sc">$</span>Julian, </span>
