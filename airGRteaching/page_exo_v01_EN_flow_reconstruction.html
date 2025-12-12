@@ -14,7 +14,7 @@
 
 <title>Streamflow reconstruction</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -55,8 +55,9 @@
   }
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -67,7 +68,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -835,13 +836,19 @@ associated with this simulation.</p>
 <span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>                    <span class="at">WupPer  =</span> per_cal_wup, </span>
 <span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>                    <span class="at">SimPer  =</span> per_cal_run,</span>
 <span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>                    <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Warning in CreateIniStates(FUN_MOD = FUN_MOD, InputsModel = InputsModel, : &#39;RunModel_GR2M&#39; does not require
+## &#39;ExpStore&#39;. Value set to NA</code></pre>
+<pre><code>## Warning in CreateIniStates(FUN_MOD = FUN_MOD, InputsModel = InputsModel, : &#39;RunModel_GR2M&#39; does not require
+## &#39;IntStore&#39;. Values set to NA</code></pre>
+<pre><code>## Warning in CreateIniStates(FUN_MOD = FUN_MOD, InputsModel = InputsModel, : &#39;RunModel_GR2M&#39; does not require
+## &#39;GCemaNeigeLayers&#39; &#39;GCemaNeigeLayers&#39;, &#39;GthrCemaNeigeLayers&#39; and &#39;GlocmaxCemaNeigeLayers&#39;. Values set to NA</code></pre>
 <pre><code>## Crit. NSE[Q] = 0.8133</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># Calibration criterion</span></span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">GetCrit</span>(i_sim_manu)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># Calibration criterion</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">GetCrit</span>(i_sim_manu)</span></code></pre></div>
 <pre><code>##    NSE[Q] 
 ## 0.8132615</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># Graphical assessment of the calibration performance</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">plot</span>(i_sim_manu)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># Graphical assessment of the calibration performance</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">plot</span>(i_sim_manu)</span></code></pre></div>
 <p><img src="figure/v01_fig_cal_manu_gr2m-1.png" width="98%" /></p>
 <p>The first set of parameters tested (default GR2M values) gives an NSE
 criterion of 0.813, which is a good overall performance. The precedent
@@ -863,12 +870,18 @@ can find the “best” parameter set.</p>
 calibration</h2>
 <p>The following command lines allow the GR2M model to be calibrated
 over the so-called “calibration” period.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># Calibration</span></span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>cal_auto <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep, </span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>                  <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>                  <span class="at">WupPer  =</span> per_cal_wup, </span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>                  <span class="at">CalPer  =</span> per_cal_run,</span>
-<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># Calibration</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>cal_auto <span class="ot">&lt;-</span> <span class="fu">CalGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>                  <span class="at">CalCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>                  <span class="at">WupPer  =</span> per_cal_wup, </span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>                  <span class="at">CalPer  =</span> per_cal_run,</span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Warning in CreateIniStates(FUN_MOD = FUN_MOD, InputsModel = InputsModel, : &#39;RunModel_GR2M&#39; does not require
+## &#39;ExpStore&#39;. Value set to NA</code></pre>
+<pre><code>## Warning in CreateIniStates(FUN_MOD = FUN_MOD, InputsModel = InputsModel, : &#39;RunModel_GR2M&#39; does not require
+## &#39;IntStore&#39;. Values set to NA</code></pre>
+<pre><code>## Warning in CreateIniStates(FUN_MOD = FUN_MOD, InputsModel = InputsModel, : &#39;RunModel_GR2M&#39; does not require
+## &#39;GCemaNeigeLayers&#39; &#39;GCemaNeigeLayers&#39;, &#39;GthrCemaNeigeLayers&#39; and &#39;GlocmaxCemaNeigeLayers&#39;. Values set to NA</code></pre>
 <pre><code>## Grid-Screening in progress (0% 20% 40% 60% 80% 100%)
 ##   Screening completed (9 runs)
 ##       Param =  347.234,    0.907
@@ -877,15 +890,15 @@ over the so-called “calibration” period.</p>
 ##   Calibration completed (17 iterations, 72 runs)
 ##       Param =  639.061,    0.930
 ##       Crit. NSE[Q]       = 0.8558</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># Graphical assessment of the calibration performance</span></span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">plot</span>(cal_auto)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># Graphical assessment of the calibration performance</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">plot</span>(cal_auto)</span></code></pre></div>
 <p><img src="figure/v01_fig_cal_auto_gr2m-1.png" width="98%" /></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># Get parameter values</span></span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>param_cal <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_auto)</span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>param_cal</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co"># Get parameter values</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>param_cal <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_auto)</span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>param_cal</span></code></pre></div>
 <pre><code>## [1] 639.0611   0.9300</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># Get criterion value</span></span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">GetCrit</span>(cal_auto)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="co"># Get criterion value</span></span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="fu">GetCrit</span>(cal_auto)</span></code></pre></div>
 <pre><code>##    NSE[Q] 
 ## 0.8558419</code></pre>
 <p>The two parameters and the value of the calibration criterion (<span
@@ -902,13 +915,13 @@ criterion <span class="math inline">\(NSE\)</span> equal to 0.856.</p>
 observed streamflows and the simulated streamflows with the set of
 parameters obtained by automatic calibration, in order to compare
 them.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series on the calibration period</span></span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>ts_cal <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(cal_auto)</span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series on the entire period</span></span>
-<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>ts_cal_all <span class="ot">&lt;-</span> <span class="fu">merge</span>(<span class="at">x =</span> ts_obs_m[, <span class="st">&quot;Date&quot;</span>, <span class="at">drop =</span> <span class="cn">FALSE</span>], <span class="at">y =</span> ts_cal, </span>
-<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>                    <span class="at">by.x =</span> <span class="st">&quot;Date&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Dates&quot;</span>, </span>
-<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>                    <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series on the calibration period</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>ts_cal <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(cal_auto)</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series on the entire period</span></span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>ts_cal_all <span class="ot">&lt;-</span> <span class="fu">merge</span>(<span class="at">x =</span> ts_obs_m[, <span class="st">&quot;Date&quot;</span>, <span class="at">drop =</span> <span class="cn">FALSE</span>], <span class="at">y =</span> ts_cal, </span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>                    <span class="at">by.x =</span> <span class="st">&quot;Date&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Dates&quot;</span>, </span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a>                    <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>The following figure shows the observed and simulated streamflow
 series over the calibration period.</p>
 <p><img src="figure/v01_fig_cal-1.png" width="98%" /></p>
@@ -920,20 +933,25 @@ obtained by automatic calibration to carry out a simulation over the
 evaluation period (2011-2018) and to calculate the score <span
 class="math inline">\(NSE\)</span> associated with this simulation. This
 score constitutes the evaluation performance of the model.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># Simulation over the evaluation period</span></span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>eva <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
-<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>             <span class="at">Param   =</span> param_cal,</span>
-<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>             <span class="at">WupPer  =</span> per_eva_wup, </span>
-<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>             <span class="at">SimPer  =</span> per_eva_run,</span>
-<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a>             <span class="at">EffCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
-<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a>             <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a></span>
-<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a><span class="co"># Get the criterion value</span></span>
-<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a><span class="fu">GetCrit</span>(eva)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="co"># Simulation over the evaluation period</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>eva <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>             <span class="at">Param   =</span> param_cal,</span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a>             <span class="at">WupPer  =</span> per_eva_wup, </span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a>             <span class="at">SimPer  =</span> per_eva_run,</span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a>             <span class="at">EffCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a>             <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Warning in CreateIniStates(FUN_MOD = FUN_MOD, InputsModel = InputsModel, : &#39;RunModel_GR2M&#39; does not require
+## &#39;ExpStore&#39;. Value set to NA</code></pre>
+<pre><code>## Warning in CreateIniStates(FUN_MOD = FUN_MOD, InputsModel = InputsModel, : &#39;RunModel_GR2M&#39; does not require
+## &#39;IntStore&#39;. Values set to NA</code></pre>
+<pre><code>## Warning in CreateIniStates(FUN_MOD = FUN_MOD, InputsModel = InputsModel, : &#39;RunModel_GR2M&#39; does not require
+## &#39;GCemaNeigeLayers&#39; &#39;GCemaNeigeLayers&#39;, &#39;GthrCemaNeigeLayers&#39; and &#39;GlocmaxCemaNeigeLayers&#39;. Values set to NA</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># Get the criterion value</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="fu">GetCrit</span>(eva)</span></code></pre></div>
 <pre><code>##    NSE[Q] 
 ## 0.8642077</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series</span></span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>ts_eva <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(eva)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series</span></span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>ts_eva <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(eva)</span></code></pre></div>
 <p>The performance obtained by the model in evaluation is 0.864.</p>
 <p>The following figure represents the observed and simulated streamflow
 series over the evaluation period.</p>
@@ -944,19 +962,25 @@ series over the evaluation period.</p>
 <p>The following command lines allow the use of the parameters obtained
 by automatic calibration to simulate the streamflow over the entire
 period studied.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="co"># Simulation over the entire period</span></span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
-<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>             <span class="at">Param   =</span> param_cal,</span>
-<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>             <span class="at">WupPer  =</span> per_sim_wup, </span>
-<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>             <span class="at">SimPer  =</span> per_sim_run,</span>
-<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a>             <span class="at">EffCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
-<span id="cb24-7"><a href="#cb24-7" tabindex="-1"></a>             <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co"># Get the criterion value</span></span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="fu">GetCrit</span>(sim)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="co"># Simulation over the entire period</span></span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">SimGR</span>(<span class="at">PrepGR  =</span> prep, </span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>             <span class="at">Param   =</span> param_cal,</span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>             <span class="at">WupPer  =</span> per_sim_wup, </span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a>             <span class="at">SimPer  =</span> per_sim_run,</span>
+<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a>             <span class="at">EffCrit =</span> <span class="st">&quot;NSE&quot;</span>,</span>
+<span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a>             <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Warning in CreateIniStates(FUN_MOD = FUN_MOD, InputsModel = InputsModel, : &#39;RunModel_GR2M&#39; does not require
+## &#39;ExpStore&#39;. Value set to NA</code></pre>
+<pre><code>## Warning in CreateIniStates(FUN_MOD = FUN_MOD, InputsModel = InputsModel, : &#39;RunModel_GR2M&#39; does not require
+## &#39;IntStore&#39;. Values set to NA</code></pre>
+<pre><code>## Warning in CreateIniStates(FUN_MOD = FUN_MOD, InputsModel = InputsModel, : &#39;RunModel_GR2M&#39; does not require
+## &#39;GCemaNeigeLayers&#39; &#39;GCemaNeigeLayers&#39;, &#39;GthrCemaNeigeLayers&#39; and &#39;GlocmaxCemaNeigeLayers&#39;. Values set to NA</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="co"># Get the criterion value</span></span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a><span class="fu">GetCrit</span>(sim)</span></code></pre></div>
 <pre><code>##  NSE[Q] 
 ## 0.84484</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series</span></span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>ts_sim <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sim)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series</span></span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>ts_sim <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sim)</span></code></pre></div>
 <p>The results of the final simulation are shown in the following
 figure.</p>
 <p><img src="figure/v01_fig_sim-1.png" width="98%" /></p>
