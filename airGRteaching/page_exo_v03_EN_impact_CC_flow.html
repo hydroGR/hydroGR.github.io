@@ -14,7 +14,7 @@
 
 <title>Impact of climate change on streamflow regime</title>
 
-<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -470,10 +470,10 @@ div.tocify {
 						<li><a href="https://CRAN.R-project.org/package=airGRdatasets">airGRdatasets R-package</a></li>
 						<li><a href="https://CRAN.R-project.org/package=airGRdatassim">airGRdatassim R-package</a></li>
 						<li><a href="https://airgriwrm.g-eau.fr/">airGRiwrm R-package</a></li>
-						<li><a href="https://sunshine.inrae.fr/app/airGRmaps">airGRmaps web app</a></li>
+						<li><a href="https://airgrmaps.sk8.inrae.fr">airGRmaps web app</a></li>
 					</ul>
 				</li>
-				<li><a tabindex="-1" href="https://sunshine.inrae.fr/app/airGRteaching" onclick="window.open(this.href); return false;">GUI Demo</a></li>
+				<li><a tabindex="-1" href="https://airgrteaching.sk8.inrae.fr" onclick="window.open(this.href); return false;">GUI Demo</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<a href='http://www.inrae.fr/en/' onclick="window.open(this.href); return false;", title="inrae.fr"><img src='fig/logo_inrae_CMJN_square.svg' style='width:45px;height:45px;'></a>
@@ -760,7 +760,7 @@ period.</caption>
 </tr>
 </tbody>
 </table>
-<p><img src="figure/v03_fig_presentation-1.png" width="98%" /></p>
+<p><img src="figure/v03_fig_presentation-1.png" alt="" width="98%" /></p>
 </div>
 <div id="instructions" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Instructions</h2>
@@ -950,7 +950,7 @@ periods (warm-up period, calibration period and simulation period):</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Elevation distribution</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> hypso,</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Frequency (%)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Catchment elevation [m]&quot;</span>)</span></code></pre></div>
-<p><img src="figure/v03_fig_hypso-1.png" width="66%" /></p>
+<p><img src="figure/v03_fig_hypso-1.png" alt="" width="66%" /></p>
 </div>
 <div id="automatic-calibration-of-gr4j-and-cemaneige"
 class="section level2" number="2.2">
@@ -988,7 +988,7 @@ of GR4J and CemaNeige</h2>
 ## 0.9075081</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Graphical assessment</span></span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">plot</span>(cal_hist)</span></code></pre></div>
-<p><img src="figure/v03_fig_cal-1.png" width="98%" /></p>
+<p><img src="figure/v03_fig_cal-1.png" alt="" width="98%" /></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Combination of observed and simulated streamflow time series </span></span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>ts_qhist <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(cal_hist)</span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>ts_qhist <span class="ot">&lt;-</span> ts_qhist[, <span class="fu">c</span>(<span class="st">&quot;Dates&quot;</span>, <span class="st">&quot;Qobs&quot;</span>, <span class="st">&quot;Qsim&quot;</span>)]</span></code></pre></div>
@@ -1031,7 +1031,7 @@ simulated streamflow regimes at daily and monthly time steps.</p>
 (see following figure). The comparison of the two regimes allows to
 evaluate the capacity of the rainfall-runoff model (here GR4J and
 CemaNeige) to reproduce the regime of the studied catchment.</p>
-<p><img src="figure/v03_fig_regime-1.png" width="98%" /></p>
+<p><img src="figure/v03_fig_regime-1.png" alt="" width="98%" /></p>
 </div>
 <div id="generation-of-climate-series-for-the-future-period"
 class="section level2" number="2.4">
@@ -1186,10 +1186,10 @@ streamflow regime over the future climate period.</p>
 regimes simulated over the present climate period (see next figure).
 This comparison reveals a decrease in streamflows, particularly marked
 for the spring and summer months (May to August).</p>
-<p><img src="figure/v03_fig_regime_month_cc-1.png" width="98%" /></p>
+<p><img src="figure/v03_fig_regime_month_cc-1.png" alt="" width="98%" /></p>
 <p>The evolutions are more marked at the daily time step (see following
 figure).</p>
-<p><img src="figure/v03_fig_regime_day_cc-1.png" width="98%" /></p>
+<p><img src="figure/v03_fig_regime_day_cc-1.png" alt="" width="98%" /></p>
 <p>It is important to analyze the results obtained in light of the many
 uncertainties associated with the production of simulations of
 hydrological impacts of climate change. The uncertainties associated

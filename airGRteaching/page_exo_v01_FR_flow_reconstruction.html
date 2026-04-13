@@ -14,7 +14,7 @@
 
 <title>Reconstitution de débits</title>
 
-<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -470,10 +470,10 @@ div.tocify {
 						<li><a href="https://CRAN.R-project.org/package=airGRdatasets">airGRdatasets R-package</a></li>
 						<li><a href="https://CRAN.R-project.org/package=airGRdatassim">airGRdatassim R-package</a></li>
 						<li><a href="https://airgriwrm.g-eau.fr/">airGRiwrm R-package</a></li>
-						<li><a href="https://sunshine.inrae.fr/app/airGRmaps">airGRmaps web app</a></li>
+						<li><a href="https://airgrmaps.sk8.inrae.fr">airGRmaps web app</a></li>
 					</ul>
 				</li>
-				<li><a tabindex="-1" href="https://sunshine.inrae.fr/app/airGRteaching" onclick="window.open(this.href); return false;">GUI Demo</a></li>
+				<li><a tabindex="-1" href="https://airgrteaching.sk8.inrae.fr" onclick="window.open(this.href); return false;">GUI Demo</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<a href='http://www.inrae.fr/en/' onclick="window.open(this.href); return false;", title="inrae.fr"><img src='fig/logo_inrae_CMJN_square.svg' style='width:45px;height:45px;'></a>
@@ -575,7 +575,7 @@ performance suffisant pour réaliser cet exercice de reconstitution.</p>
 <li>Reconstitution hydrologique par modélisation pluie-débit (sur la
 période dite de “simulation”).</li>
 </ol>
-<p><img src="figure/v01_fig_presentation-1.png" width="98%" /></p>
+<p><img src="figure/v01_fig_presentation-1.png" alt="" width="98%" /></p>
 </div>
 <div id="consignes" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Consignes</h2>
@@ -857,7 +857,7 @@ GR2M) et pour calculer le critère NSE associé à cette simulation.</p>
 ## 0.8132615</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># Graphical assessment of the calibration performance</span></span>
 <span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">plot</span>(i_sim_manu)</span></code></pre></div>
-<p><img src="figure/v01_fig_cal_manu_gr2m-1.png" width="98%" /></p>
+<p><img src="figure/v01_fig_cal_manu_gr2m-1.png" alt="" width="98%" /></p>
 <p>Le premier jeu de paramères testé (valeurs de GR2M par défaut) permet
 d’obtenir un critère NSE de 0.813, ce qui est une bonne performance
 générale. La figure précédente permet, quant à elle, de comparer la
@@ -899,7 +899,7 @@ GR2M sur la période dite de “calage”.</p>
 ##       Crit. NSE[Q]       = 0.8558</code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># Graphical assessment of the calibration performance</span></span>
 <span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">plot</span>(cal_auto)</span></code></pre></div>
-<p><img src="figure/v01_fig_cal_auto_gr2m-1.png" width="98%" /></p>
+<p><img src="figure/v01_fig_cal_auto_gr2m-1.png" alt="" width="98%" /></p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co"># Get parameter values</span></span>
 <span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>param_cal <span class="ot">&lt;-</span> <span class="fu">GetParam</span>(cal_auto)</span>
 <span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>param_cal</span></code></pre></div>
@@ -930,7 +930,7 @@ paramètres obtenu par calage automatique, afin de les comparer.</p>
 <span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a>                    <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>La figure suivante représente les séries de débits observés et
 simulés sur la période de calage.</p>
-<p><img src="figure/v01_fig_cal-1.png" width="98%" /></p>
+<p><img src="figure/v01_fig_cal-1.png" alt="" width="98%" /></p>
 </div>
 <div id="evaluation" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> Evaluation</h2>
@@ -962,7 +962,7 @@ modèle.</p>
 <p>La performance obtenue par le modèle en évaluation est de 0.864.</p>
 <p>La figure suivante représente les séries de débits observés et
 simulés sur la période d’évaluation.</p>
-<p><img src="figure/v01_fig_eval-1.png" width="98%" /></p>
+<p><img src="figure/v01_fig_eval-1.png" alt="" width="98%" /></p>
 </div>
 <div id="reconstitution" class="section level2" number="2.6">
 <h2><span class="header-section-number">2.6</span> Reconstitution</h2>
@@ -990,7 +990,7 @@ l’ensemble de la période étudiée.</p>
 <span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>ts_sim <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sim)</span></code></pre></div>
 <p>Les résultats de la simulation finale sont illustrés sur la figure
 suivante.</p>
-<p><img src="figure/v01_fig_sim-1.png" width="98%" /></p>
+<p><img src="figure/v01_fig_sim-1.png" alt="" width="98%" /></p>
 </div>
 </div>
 <div id="références" class="section level1 unnumbered">
